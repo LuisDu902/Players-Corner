@@ -54,6 +54,6 @@
 <?php function drawLogoutForm(Session $session) { ?>
   <form action="../actions/action_logout.php" method="post" class="logout">
     <a href="../pages/profile.php"><?=$session->getName()?></a>
-    <button type="submit">Logout</button>
+    <button type="submit" class="sign-out-button"><span>Sign out</span></button>
   </form>
 <?php } ?>

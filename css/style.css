@@ -87,7 +87,7 @@ html, body{
     width: 100%;
 }
 
-.sign-up-button {
+.sign-up-button, .sign-out-button {
     top: 40px;
     right: 80px;
     position: absolute;
@@ -100,7 +100,7 @@ html, body{
     background-clip: content-box, border-box;
 }
 
-.sign-in-button span, .sign-up-button span{
+.sign-in-button span, .sign-up-button span, .sign-out-button span{
     display: block;
     padding: 8px 22px;
 }
