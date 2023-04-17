@@ -23,6 +23,14 @@
             ?>
             </ul>
     </div>
+    <section id="messages">
+      <?php foreach ($session->getMessages() as $messsage) { ?>
+        <article class="<?=$messsage['type']?>">
+          <?=$messsage['text']?>
+        </article>
+      <?php } ?>
+    </section>
+
     
 <?php } ?>
 

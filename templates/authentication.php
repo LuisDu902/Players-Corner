@@ -32,6 +32,9 @@
         </div>
         <div class="input-box">
           <span class="icon"><img src="../images/password.png" alt=""></span>
+     
+          <div class="input-box">
+          <span class="icon"><img src="../images/password.png" alt=""></span>
           <input type="password" name="password" required="required" placeholder="Password">
 
         </div>
@@ -41,6 +44,6 @@
         </div>
 
         <button type="submit" class="register-button"><span>Register</span></button>
-
+      </form>
     </div>
   <?php }
