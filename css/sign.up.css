@@ -50,37 +50,14 @@
 
 .input-box input:focus {
     outline: none;
-    border-color: #4CAF50;
+    border-color: #D66AE6;
 }
-
-.input-box label {
-    margin-left: -20px;
-    position: absolute;
-    top: 50%;
-    left: 0px;
-    transform: translateY(-50%);
-    color: #fff;
-    font-size: 18px;
-    pointer-events: none;
-    transition: 0.5s;
-}
-
-
-.input-box input:focus~label,
-.input-box input:valid~label {
-    top: -2px;
-    left: 2px;
-    font-size: 14px;
-    color: #4CAF50;
-}
-
 
 .icon img {
     position: absolute;
     right: -15px;
     top: 15px;
     font-size: 1.2em;
-    color: white;
     line-height: 57px;
     width: 1.2em;
     height: 1.2em;
@@ -105,8 +82,7 @@
 
 .register span {
     display: block;
-    padding: 8px 22px;
-    font-size: 1.1em;
+    font-size: 1.2em;
 }
 
 .register:hover {
