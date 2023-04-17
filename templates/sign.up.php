@@ -1,9 +1,8 @@
 <?php function drawSignUp()
 { ?>
-  <div class="sign-up" id="sign-up">
-    <div class="form-box sign-up">
-      <h2> Welcome to <span class="highlight">Player's Corner</span>! <br>Let's begin the adventure </h2>
-      <form action="#">
+    <div class="sign-up">
+      <h2>Welcome to <span class="highlight">Player's Corner</span>! <br>Let's begin the adventure.</h2>
+      <form action="../actions/action_login.php">
         <div class="input-box">
         <span class="icon"><img src="../images/user.png" alt=""></span>
           <input type="text" placeholder="Name" required="required">
