@@ -10,20 +10,19 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="menu">
-            <ul>
-                <li class="logo"><a href="../pages/index.php"><img src="../images/logo.png" alt=""></a></li>
-                <li class="active"> <a href="../pages/index.php">Home</a></li>
-                <li>Forum</li>
-                <li>FAQ</li>
-                <li>Help</li>
-                <?php
-                    drawAuthForms();
-                ?>
-                </ul>
-        </div>
+    <div class="menu">
+        <ul>
+            <li class="logo"><a href="../pages/index.php"><img src="../images/logo.png" alt=""></a></li>
+            <li class="active"> <a href="../pages/index.php">Home</a></li>
+            <li>Forum</li>
+            <li>FAQ</li>
+            <li>Help</li>
+            <?php
+                drawAuthForms();
+            ?>
+            </ul>
     </div>
+    
 <?php } ?>
 
 <?php function drawFooter()

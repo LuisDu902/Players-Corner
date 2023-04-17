@@ -10,14 +10,19 @@
   $db = getDatabaseConnection();
 
   $user = User::getUserWithPassword($db, $_POST['email'], $_POST['password']);
-
+  
   if ($user) {
     $session->setId($user->userId);
     $session->setName($user->username());
     $session->addMessage('success', 'Login successful!');
+    header('Location: ../pages/index.php');
+    
   } else {
     $session->addMessage('error', 'Wrong password!');
+   
+    die(header('Location: ../pages/index.php'));
+    
   }
 
-  header('Location: ' . $_SERVER['HTTP_REFERER']);
+
 ?>
