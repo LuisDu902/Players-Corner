@@ -20,7 +20,6 @@
             <?php
              if ($session->isLoggedIn()) drawLogoutForm($session);
              else drawAuthForms();;
-               
             ?>
             </ul>
     </div>

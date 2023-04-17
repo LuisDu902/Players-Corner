@@ -21,7 +21,7 @@
 <?php function drawRegister() { ?>
     <div class="register">
       <h2>Welcome to <span class="highlight">Player's Corner</span>! <br>Let's begin the adventure.</h2>
-      <form action="../actions/action_register.php">
+      <form action="../actions/action_register.php" method="post">
         <div class="input-box">
         <span class="icon"><img src="../images/user.png" alt=""></span>
           <input type="text" name="name" required="required" placeholder="Name">
