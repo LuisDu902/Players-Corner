@@ -99,3 +99,7 @@
 .register:hover {
     background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #222033, #222033);
 }
+
+.highlight {
+    color: #D66AE6;
+  }

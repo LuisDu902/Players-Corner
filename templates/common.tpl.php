@@ -12,8 +12,8 @@
         <div class="container">
             <div class="menu">
                 <ul>
-                    <li class="logo"><img src="../images/logo.png" alt=""></li>
-                    <li class="active">Home</li>
+                    <li class="logo"><a href= "../pages/index.php"><img src="../images/logo.png" alt=""></a></li>
+                    <li class="active"> <a href= "../pages/index.php">Home</a></li>
                     <li>Forum</li>
                     <li>FAQ</li>
                     <li>Help</li>

@@ -43,9 +43,10 @@ html, body{
     margin-right: 48px;
 }
 
-.active{
+.active a{
     color: #D66AE6 !important;
     font-weight: bold;
+    text-decoration: none;
 }
 
 .sign-button{
