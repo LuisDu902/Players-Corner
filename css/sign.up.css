@@ -1,0 +1,114 @@
+.sign-up {
+    position: relative;
+    width: 400px;
+    height: 520px;
+    background-clip: padding-box, border-box;
+    background-origin: padding-box, border-box;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    border-radius: 20px;
+    border: 2px solid transparent;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+
+.sign-up h2 {
+    text-align: center;
+    color: #fff;
+    font-size: 24px;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.form-box {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+}
+
+.input-box {
+    position: relative;
+    width: 100%;
+    margin: 20px 0px;
+}
+
+
+.input-box input {
+    margin-left: -20px;
+    width: 100%;
+    padding: 25px 25px;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid #fff;
+    color: #fff;
+    font-size: 18px;
+    transition: 0.5s;
+}
+
+.input-box input:focus {
+    outline: none;
+    border-color: #4CAF50;
+}
+
+.input-box label {
+    margin-left: -20px;
+    position: absolute;
+    top: 50%;
+    left: 0px;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 18px;
+    pointer-events: none;
+    transition: 0.5s;
+}
+
+
+.input-box input:focus~label,
+.input-box input:valid~label {
+    top: -2px;
+    left: 2px;
+    font-size: 14px;
+    color: #4CAF50;
+}
+
+
+.icon img {
+    position: absolute;
+    right: -15px;
+    top: 15px;
+    font-size: 1.2em;
+    color: white;
+    line-height: 57px;
+    width: 1.2em;
+    height: 1.2em;
+}
+
+.register {
+    position: relative;
+    width: 40%;
+    height: 12%;
+    text-decoration: none;
+    color: #f7feff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    padding: auto;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+
+.register span {
+    display: block;
+    padding: 8px 22px;
+    font-size: 1.1em;
+}
+
+.register:hover {
+    background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #222033, #222033);
+}
