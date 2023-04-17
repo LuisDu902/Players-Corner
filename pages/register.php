@@ -3,8 +3,8 @@
     require_once(__DIR__ . '/../classes/session.class.php');
     $session = new Session();   
     require_once(__DIR__ . '/../templates/common.tpl.php');
-    require_once(__DIR__ . '/../templates/sign.up.php');
+    require_once(__DIR__ . '/../templates/authentication.php');
     drawHeader($session);
-    drawSignUp();
+    drawRegister();
     drawFooter();
 ?>

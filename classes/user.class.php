@@ -20,7 +20,7 @@
       $this->type = $type;
     }
 
-    function username() {
+    function getUsername() {
       return $this->username;
     }
 
@@ -55,6 +55,26 @@
       } else return null;
     }
 
+  
+    static function registerUser(PDO $db, string $name, string $username, string $email, string $password){
+        $stmt = $db->prepare('
+        INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (9999,?,?,?,?,0,"client")');
+      $stmt->execute(array($name, $username, $email, $password));
+    
+      }
+
+
+    static function validEmail(PDO $db, string $email){
+        $stmt = $db->prepare('
+        SELECT userId, name, username, email, password, reputation, type
+        FROM User 
+        WHERE email = ?
+      ');
+
+      $stmt->execute(array($email));
+      if ($stmt->fetch()) return false;
+      return true;
+    }  
     static function getUser(PDO $db, int $id) : User {
       $stmt = $db->prepare('
         SELECT userId, name, username, email, password, reputation, type

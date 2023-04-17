@@ -5,9 +5,8 @@
     $session = new Session();
 
     require_once(__DIR__ . '/../templates/common.tpl.php');
-    require_once(__DIR__ . '/../templates/sign.up.php');
+    require_once(__DIR__ . '/../templates/authentication.php');
     require_once(__DIR__ . '/../templates/initial.php');
-    require_once(__DIR__ . '/../templates/login.php');
     drawHeader($session);
     drawInitial();
     drawFooter();

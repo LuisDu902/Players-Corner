@@ -6,7 +6,7 @@
 <head>
     <title>Player's Corner</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/sign.up.css">
+    <link rel="stylesheet" href="../css/authentication.css">
 </head>
 
 <body>
@@ -18,7 +18,9 @@
             <li>FAQ</li>
             <li>Help</li>
             <?php
-                drawAuthForms();
+             if ($session->isLoggedIn()) drawLogoutForm($session);
+             else drawAuthForms();;
+               
             ?>
             </ul>
     </div>
@@ -37,7 +39,14 @@
 
 
 <?php function drawAuthForms(){ ?>
-    
-    <li><a href="../pages/login.php" class="login-button"><span>Sign In</span></a></li>
-    <li><a href="../pages/sign.up.php" class="sign-button"><span>Sign Up</span></a></li>
+    <li><a href="../pages/login.php" class="sign-in-button"><span>Sign In</span></a></li>
+    <li><a href="../pages/register.php" class="sign-up-button"><span>Sign Up</span></a></li>
 <?php } ?>     
+
+
+<?php function drawLogoutForm(Session $session) { ?>
+  <form action="../actions/action_logout.php" method="post" class="logout">
+    <a href="../pages/profile.php"><?=$session->getName()?></a>
+    <button type="submit">Logout</button>
+  </form>
+<?php } ?>
