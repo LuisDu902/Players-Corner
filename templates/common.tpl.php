@@ -17,6 +17,7 @@
                     <li>Forum</li>
                     <li>FAQ</li>
                     <li>Help</li>
+                    <li><a href="../pages/login.php" class="login-button"><span>Sign In</span></a></li>
                     <li><a href="../pages/sign.up.php" class="sign-button"><span>Sign Up</span></a></li>
                 </ul>
             </div>

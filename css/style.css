@@ -67,6 +67,24 @@ html, body{
     padding: 8px 22px;
 }
 
+.login-button{
+    top: 40px;
+    right: 200px;
+    position: absolute;
+    text-decoration: none;
+    color: #f7feff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.login-button span{
+    display: block;
+    padding: 8px 22px;
+}
+
 .banner{
     width: 80%;
     height: 70%;

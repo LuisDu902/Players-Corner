@@ -1,4 +1,4 @@
-.sign-up {
+.sign-up, .sign-in {
     position: relative;
     width: 400px;
     background-clip: padding-box, border-box;
@@ -12,7 +12,7 @@
     padding: 0;
 }
 
-.sign-up h2 {
+.sign-up h2, .sign-in h2 {
     text-align: center;
     color: #fff;
     font-size: 24px;
@@ -72,7 +72,7 @@
     height: 1.5em;
 }
 
-.register {
+.register, .login {
     position: relative;
     width: 40%;
     height: 12%;
@@ -90,13 +90,13 @@
     margin-bottom: 30px;
 }
 
-.register span {
+.register span, .login span {
     display: block;
     padding: 5% 5%;
     font-size: 1.5em;
 }
 
-.register:hover {
+.register:hover, .login:hover {
     background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #222033, #222033);
 }
 
