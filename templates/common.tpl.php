@@ -3,9 +3,10 @@
   <!DOCTYPE html>
 
   <head>
-    <title>Navbar</title>
+    <title>Player's Corner</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/authentication.css">
+    <link rel="stylesheet" href="../css/profile.css">
   </head>
 
   <body>
@@ -52,9 +53,9 @@
 
 
 <?php function drawProfileIcon(Session $session){ ?>
-  <a href="../pages/profile.php" class="buttons">
+  <a href="../pages/profile.php" class="buttons round-wrap">
     <img src="../images/profile.png" alt="profile"></img>
-    <span class="username">Username</span>
+    <span class="username"><?=$session->getName()?></span>
   </a>
 <?php } ?>
 

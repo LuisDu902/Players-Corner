@@ -1,45 +1,11 @@
 <?php function drawProfile(User $user)
 { ?>
     <div class="user-profile-container">
-        <div class="user-profile">
-            <div class="user-avatar-container">
-                <img src="../images/profile.png" alt="user-profile">
-            </div>
-            <a href="../pages/profile.edit.php" id="edit-button">
-                <span>Edit profile</span>
-            </a>
-            <div class="user-details">
-                <table>
-                    <tr>
-                        <th>
-                        <span class="highlight">username :</span> 
-                        </th>
-                        <th>
-                        <?=$user->username?> 
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                        <span class="highlight">email :</span> 
-                        </th>
-                        <th>
-                        <?=$user->email?> 
-                        </th>
-                    </tr>
-                    <tr>
-                        <th>
-                        <span class="highlight">type :</span> 
-                        </th>
-                        <th>
-                        <?=$user->type?> 
-                        </th>
-                    </tr>
-                </table>
-            </div>
+        <div class="user-profile round-wrap">
+            <img src="../images/profile.png" alt="user-profile">
+            <span> <?=$user->username?> </span>
+            <a href="../pages/profile.edit.php" id="edit-button"> Edit profile</a>
         </div>
-        
-    </div>
-
 <?php } ?>
 
 

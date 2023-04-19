@@ -1,114 +1,40 @@
-
-.user-profile-container {
+.user-profile-container{
   display: flex;
+  flex-direction: row;
+  padding: 30px 5%;
+}
+
+.user-profile{
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
-  width: 25%;
-  height: 100%;
+  align-content: center;
 }
 
-.user-profile {
-  text-align: left;
-  padding: 0 1.5rem;
-  width: auto;
-  margin-top: -1.5rem;
+.user-profile img{
+  max-height: 400px;
 }
 
-.user-avatar-container img {
-  width: 400px;
-  height: 400px;
-  top: 150px;
-  left: 100px;
-  position: absolute;
-  text-decoration: none;
-  color: #f7feff;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
+.user-info{
+  text-align: justify;
 }
 
-#edit-button{
-  top: 600px;
-  left: 150px;
-  position: absolute;
-  text-decoration: none;
+#edit-button {
+  font-size: 1.5rem;
+  text-align: center;
   color: #f7feff;
   border: 2px solid transparent;
   border-radius: 20px;
   background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
   background-origin: border-box;
   background-clip: content-box, border-box;
+  width: 80%;
+  margin: 30px 30px;
 }
 
-#edit-button span{
-  display: block;
-  padding: 8px 120px;
-}
-
-.user-details{
-  position: absolute;
-  top: 700px;
-  left: 160px;
-  display: inline;
-  text-align: left;
-}
-
-.user-details th{
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  
-  color: white;
+.user-profile span{
+  margin-top: 30px;
+  font-size: 2em;
+  color:#D66AE6;
   font-weight: bold;
-}
-
-.highlight {
-  color: #D66AE6;
-  margin-right: 10px;
-}
-
-.navbar {
-  position: fixed;
-  top: 100px;
-  left: 530px;
-  width: 100%;
-}
-
-.navbar ul {
-  display: inline-flex;
-  margin: 50px;
-  list-style: none;
-}
-
-.navbar li {
-  padding: 5px 5px 0;
-  text-decoration: none;
-  list-style: none;
-  margin: 0 20px;
-  color: #f7feff;
-  cursor: pointer;
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-.navbar li:hover {
-  color: #D66AE6;
-}
-
-.overview, .my-tickets, .stars, .messages{
-  position: fixed;
-  top: 250px;
-  left: 600px;
-  width: 63%;
-  height: 60%;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-}
-
-#edit-profile {
-  color: white;
 }
