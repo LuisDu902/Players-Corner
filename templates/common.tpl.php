@@ -18,8 +18,11 @@
             <li>FAQ</li>
             <li>Help</li>
             <?php
-             if ($session->isLoggedIn()) drawProfileIcon($session);
-             else drawAuthForms();;
+             if ($session->isLoggedIn()) {
+              drawLogoutForm($session);
+              drawProfileIcon($session);
+            }
+             else drawAuthForms();
             ?>
             </ul>
     </div>
@@ -53,16 +56,14 @@
 
 <?php function drawProfileIcon(Session $session) { ?>
   
-  <a href="../pages/profile.php">
+  <li><a href="../pages/profile.php">
     <img src="../images/profile.png" alt="" id="profile-img"></img>
     <span id="username"><?=$session->getName()?></span>
-  </a>
+  </a></li>
 
 <?php } ?>
 
 <?php function drawLogoutForm(Session $session) { ?>
-  <form action="../actions/action_logout.php" method="post" class="logout">
-    <a href="../pages/profile.php"><?=$session->getName()?></a>
-    <button type="submit" class="sign-out-button"><span>Sign out</span></button>
-  </form>
+  <li> <form action="../actions/action_logout.php" >
+    <button type="submit" class="sign-out-button"><span>Sign Out </span></button></form></li>
 <?php } ?>

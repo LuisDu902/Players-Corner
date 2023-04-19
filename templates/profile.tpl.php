@@ -1,8 +1,5 @@
-<?php function drawProfile(Session $session)
+<?php function drawProfile(User $user)
 { ?>
-
-
-
     <div class="user-profile-container">
         <div class="user-profile">
             <div class="user-avatar-container">
@@ -12,11 +9,32 @@
                 <span>Edit profile</span>
             </a>
             <div class="user-details">
-                <ul>
-                    <li> <span class="highlight">username</span> : <?=$session->getName()?> </li>
-                    <li> <span class="highlight">email</span> : <?=$session->getName()?>  </li>
-                    <li> <span class="highlight">type</span> : <?=$session->getName()?>  </li>
-                </ul>
+                <table>
+                    <tr>
+                        <th>
+                        <span class="highlight">username :</span> 
+                        </th>
+                        <th>
+                        <?=$user->username?> 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                        <span class="highlight">email :</span> 
+                        </th>
+                        <th>
+                        <?=$user->username?> 
+                        </th>
+                    </tr>
+                    <tr>
+                        <th>
+                        <span class="highlight">type :</span> 
+                        </th>
+                        <th>
+                        <?=$user->type?> 
+                        </th>
+                    </tr>
+                </table>
             </div>
         </div>
         <nav class="navbar">

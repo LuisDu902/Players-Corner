@@ -58,24 +58,20 @@
   top: 700px;
   left: 230px;
   display: inline;
-  text-align: center;
+  text-align: left;
 }
 
-.user-details ul{
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.user-details li{
+.user-details th{
   font-size: 1.2em;
   margin-bottom: 10px;
+  
   color: white;
   font-weight: bold;
 }
 
 .highlight {
   color: #D66AE6;
+  margin-right: 10px;
 }
 
 .navbar {
@@ -83,7 +79,6 @@
   top: 100px;
   left: 530px;
   width: 100%;
-  
 }
 
 .navbar ul {
@@ -92,8 +87,8 @@
   list-style: none;
 }
 
-.navbar li{
-  padding: 5px 20px;
+.navbar li {
+  padding: 5px 5px 0;
   text-decoration: none;
   list-style: none;
   margin: 0 20px;
