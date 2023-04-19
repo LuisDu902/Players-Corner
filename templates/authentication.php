@@ -20,31 +20,33 @@
 <?php } ?>
 
 <?php function drawRegister() { ?>
-    <div class="register">
-      <h2>Welcome to <span class="highlight">Player's Corner</span>! <br>Let's begin the adventure.</h2>
-      <form action="../actions/action_register.php" method="post">
-        <div class="input-box">
-        <span class="icon"><img src="../images/user.png" alt=""></span>
-          <input type="text" name="name" required="required" placeholder="Name">
-        </div>
-        <div class="input-box">
-          <span class="icon"><img src="../images/email.png" alt=""></span>
-          <input type="email" name="email" required="required" placeholder="Email">
-        </div>
-        <div class="input-box">
-          <span class="icon"><img src="../images/password.png" alt=""></span>
-     
+  <div class="register">
+        <div class="register-wrap">
+        <h2>Welcome to <span class="highlight">Player's Corner</span>! <br>Let's begin the adventure.</h2>
+        <form action="../actions/action_register.php" method="post" class="register-form">
+          
           <div class="input-box">
-          <span class="icon"><img src="../images/password.png" alt=""></span>
-          <input type="password" name="password" required="required" placeholder="Password">
+            <input type="text" name="name" required="required" placeholder="Name">
+            <span class="icon"><img src="../images/user.png" alt=""></span>
+          </div>
+          
+          <div class="input-box">
+            <input type="email" name="email" required="required" placeholder="Email">
+            <span class="icon"><img src="../images/email.png" alt=""></span> 
+          </div>
+          
+          <div class="input-box">
+            <input type="password" name="password" required="required" placeholder="Password">
+            <span class="icon"><img src="../images/password.png" alt=""></span>
+          </div>
 
-        </div>
-        <div class="input-box">
-          <span class="icon"><img src="../images/username.png" alt=""></span>
-          <input type="username" name="username" required="required" placeholder="Username">
-        </div>
+          <div class="input-box">
+            <input type="username" name="username" required="required" placeholder="Username">
+            <span class="icon"><img src="../images/username.png" alt=""></span>
+          </div>
 
-        <button type="submit" class="register-button"><span>Register</span></button>
-      </form>
-    </div>
+           <button type="submit" class="register-button">Register</button>
+        </form>
+        </div>
+      </div>
   <?php }

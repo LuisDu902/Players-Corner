@@ -1,8 +1,3 @@
-.container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-}
 
 .user-profile-container {
   display: flex;
@@ -52,11 +47,10 @@
   padding: 8px 120px;
 }
 
-
 .user-details{
   position: absolute;
   top: 700px;
-  left: 230px;
+  left: 160px;
   display: inline;
   text-align: left;
 }
@@ -113,4 +107,8 @@
   background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
   background-origin: border-box;
   background-clip: content-box, border-box;
+}
+
+#edit-profile {
+  color: white;
 }

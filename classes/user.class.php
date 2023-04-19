@@ -24,7 +24,7 @@
       return $this->username;
     }
 
-    function updateProfile(PDO $db, string $name, string $username, string $email, string $password) {
+    function editProfile(PDO $db) {
       $stmt = $db->prepare('
         UPDATE User SET name = ?, username = ?, email = ?, password = ?
         WHERE userId = ?

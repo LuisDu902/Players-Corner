@@ -1,46 +1,36 @@
 <?php function drawHeader(Session $session){ ?>
-<!DOCTYPE html>
-<html>
-
+  <!DOCTYPE html>
 <head>
-    <title>Player's Corner</title>
+    <title>Navbar</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/authentication.css">
-    <link rel="stylesheet" href="../css/profile.css">
 </head>
-
 <body>
-    <div class="menu">
-        <ul>
-            <li class="logo"><a href="../pages/index.php"><img src="../images/logo.png" alt=""></a></li>
+    <header>
+        <a href = "../pages/index.php"><img class="logo" src="../images/logo.png" alt="logo"> </a>
+        <nav>
+          <ul class="nav_links">
             <li class="active"> <a href="../pages/index.php">Home</a></li>
-            <li>Forum</li>
-            <li>FAQ</li>
-            <li>Help</li>
-            <?php
-             if ($session->isLoggedIn()) {
-              drawLogoutForm($session);
-              drawProfileIcon($session);
-            }
-             else drawAuthForms();
-            ?>
-            </ul>
-    </div>
-    <section id="messages">
-      <?php foreach ($session->getMessages() as $messsage) { ?>
-        <article class="<?=$messsage['type']?>">
-          <?=$messsage['text']?>
-        </article>
-      <?php } ?>
-    </section>
-
+            <li class="forum"><a href="#">Forum</a></li>
+            <li class="FAQ"><a href="#">FAQ</a></li>
+            <li class="Help"><a href="#">Help</a></li>
+          </ul>
+        </nav>
+        <div class="buttons">
+          <div class="button-border-wrap">
+            <a href="../pages/register.php"><button class="sign-in">Sign In</button></a>
+          </div>
+          <div class="button-border-wrap">
+          <a href="../pages/register.php"><button class="sign-up">Sign Up</button></a>
+        </div>
+        </div>
+        
+      </header>
     
 <?php } ?>
 
 <?php function drawFooter()
     { ?>
-
-
 
     </body>
 

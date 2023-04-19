@@ -1,120 +1,91 @@
-.register, .login {
-    position: relative;
-    width: 400px;
-    background-clip: padding-box, border-box;
-    background-origin: padding-box, border-box;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    border-radius: 20px;
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #f7feff;
+  
+    padding: 30px 5%;
+}
+
+.register-wrap{
     border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    justify-content: center;
     align-items: center;
     display: flex;
     flex-direction: column;
     padding: 0;
 }
 
-.register h2  {
+h2 {
+    display: block;
+    padding: 20px 22px;
     text-align: center;
-    color: #fff;
-    font-size: 24px;
-    margin-top: 50px;
-    margin-bottom: 20px;
+    margin: 30px 12px 12px 12px; 
+  }
+
+.highlight{
+    color: #D66AE6;
 }
 
-.login h2{
-    text-align: center;
-    color: #fff;
-    font-size: 24px;
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-.form-box {
-    width: 100%;
+.register-form{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin: 0;
     padding: 0;
+    align-items: center;
+    margin-bottom: 35px;
 }
 
 .input-box {
-    position: relative;
-    width: 100%;
-    margin: 20px 0px;
+    font-size: 1.3em;
+    display: flex;
+    padding: 20px 20px;
+    align-items:flex-end;
 }
 
-
 .input-box input {
-    margin-left: -20px;
+    font-size: 1.1rem;
     width: 100%;
-    padding: 25px 25px;
-    background: transparent;
+    padding: 15px 20px;
     border: none;
-    border-bottom: 2px solid #fff;
-    color: #fff;
-    font-size: 18px;
+    border-bottom: 2px solid white;
+    color: white;
     transition: 0.5s;
 }
 
+.register .icon img {
+    max-height: 1.5em;
+    padding-left: 10px;
+    padding-right: 10px;
+    
+}
+
+.input-box .icon{
+    padding-bottom: 10px;
+    border-bottom: 2px solid white;
+    color: white;
+}
+
+  
 .input-box input:focus {
     outline: none;
     border-color: #D66AE6;
 }
 
-.icon img {
-    position: absolute;
-    right: -15px;
-    top: 22px;
-    font-size: 1.2em;
-    line-height: 57px;
-    width: 1.5em;
-    height: 1.5em;
-}
-
-.icon img {
-    position: absolute;
-    right: -15px;
-    top: 22px;
-    font-size: 1.2em;
-    line-height: 57px;
-    width: 1.4em;
-    height: 1.5em;
-}
-
-.register-button, .login-button {
-    position: relative;
-    width: 40%;
-    height: 12%;
-    text-decoration: none;
+.register-button{
+    font-size: 1.2rem;
     color: #f7feff;
     border: 2px solid transparent;
     border-radius: 20px;
     background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
     background-origin: border-box;
     background-clip: content-box, border-box;
-    padding: auto;
-    display: block;
-    margin: 0 auto;
-    margin-top: 40px;
-    margin-bottom: 30px;
+    width: 30%;
+    height: 35px;
+    margin-top: 20px;
 }
-
-.register-button span, .login-button span {
-    display: block;
-    padding: 5% 5%;
-    font-size: 1.5em;
-}
-
-.register-button:hover, .login-button:hover {
-    background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #222033, #222033);
-}
-
-.highlight {
-    color: #D66AE6;
-  }
-
-  .login .logo img {
-    display: block;
-    margin: auto;
-    width: 50%;
-    height: 50%;
-    margin-bottom: 0;
-  }

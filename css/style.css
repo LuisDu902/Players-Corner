@@ -1,183 +1,79 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    height: 100%;
     background-color: #222033;
+    font-family: sans-serif;
 }
 
-html,
-body {
-    height: 100%;
+li, a, button {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
 }
 
-.menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 5% 3% 5%;
 }
 
-.menu ul {
-    display: inline-flex;
-    margin: 50px;
-}
-
-.menu ul li {
-    list-style: none;
-    margin: 0 20px;
-    color: #f7feff;
+.logo {
     cursor: pointer;
+    max-height: 100px;
+    margin-right: 20px;
 }
 
-.logo img {
-    width: 80px;
-    margin-top: -30px;
-    margin-right: 48px;
+.nav_links {
+    list-style-type: none;
+}
+
+.nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+    color: #D66AE6;
 }
 
 .active a {
     color: #D66AE6 !important;
-    font-weight: bold;
-    text-decoration: none;
 }
 
-.banner {
-    width: 80%;
-    height: 70%;
-    top: 25%;
-    left: 130px;
-    position: absolute;
-    color: #f7feff;
-}
-
-.corner-text {
-    width: 50%;
-    float: left;
-}
-
-.corner-text h1 {
-    font-size: 43px;
-    width: 640px;
-    position: relative;
-    margin-left: 40px;
-}
-
-.corner-text p {
-    width: 650px;
-    font-size: 15px;
-    margin: 30px 0 30px 40px;
-    line-height: 25px;
-    color: #859bb4;
-
-}
-
-.gif {
-    width: 50%;
-    float: right;
-}
-
-.gif img {
-    width: 100%;
-}
-
-.sign-up-button{
-    top: 40px;
-    right: 130px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
-
-.sign-out-button{
-    top: 50px;
-    right: 270px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
-
-
-.sign-in-button span,
-.sign-up-button span,
-.sign-out-button span {
-    display: block;
+.sign-in,.sign-up {
     padding: 8px 22px;
+    display: block;
+    background-color: transparent;
+    color: white;
+    font-family: sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
 }
 
-.sign-in-button {
-    top: 40px;
-    right: 250px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
+.button-border-wrap {
+  max-width: 250px;
+  color: #f7feff;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
 }
 
-
-#messages article {
-    margin: 1em 0;
-    padding: 1em;
+.buttons {
+    margin-left: auto;
+    padding: auto;
+    display: flex;
 }
 
-#messages article.success {
-    background-color: #DFF2BF;
-}
-
-#messages article.warning {
-    background-color: #FEEFB3;
-}
-
-#messages article.error {
-    background-color: #FFD2D2;
-}
-
-#messages article.info {
-    background-color: #BDE5F8;
-}
-.menu #profile-img {
-    width: 50px;
-    height: 50px;
-    top: 40px;
-    right: 180px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
+.buttons .button-border-wrap:first-child {
+    margin-right: 20px;
   }
   
-.menu #username {
-    top: 58px;
-    right: 120px;
-    position: absolute;
-    text-decoration: none;
-    color: #D66AE6;
-    font-weight: bold;
-}
