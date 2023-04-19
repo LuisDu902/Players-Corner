@@ -1,8 +1,8 @@
-*{
+* {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
- 
+
 }
 
 body {
@@ -15,41 +15,43 @@ body {
     background-color: #222033;
 }
 
-html, body{
+html,
+body {
     height: 100%;
 }
 
-.menu{
+.menu {
     position: fixed;
-    top:0;
-    left:0;
-    width: 100%;}
+    top: 0;
+    left: 0;
+    width: 100%;
+}
 
-.menu ul{
+.menu ul {
     display: inline-flex;
     margin: 50px;
 }
 
-.menu ul li{
+.menu ul li {
     list-style: none;
     margin: 0 20px;
     color: #f7feff;
     cursor: pointer;
 }
 
-.logo img{
+.logo img {
     width: 80px;
     margin-top: -30px;
     margin-right: 48px;
 }
 
-.active a{
+.active a {
     color: #D66AE6 !important;
     font-weight: bold;
     text-decoration: none;
 }
 
-.banner{
+.banner {
     width: 80%;
     height: 70%;
     top: 25%;
@@ -58,18 +60,19 @@ html, body{
     color: #f7feff;
 }
 
-.corner-text{
+.corner-text {
     width: 50%;
     float: left;
 }
-.corner-text h1{
+
+.corner-text h1 {
     font-size: 43px;
     width: 640px;
     position: relative;
     margin-left: 40px;
 }
 
-.corner-text p{
+.corner-text p {
     width: 650px;
     font-size: 15px;
     margin: 30px 0 30px 40px;
@@ -78,16 +81,17 @@ html, body{
 
 }
 
-.gif{
+.gif {
     width: 50%;
     float: right;
 }
 
-.gif img{
+.gif img {
     width: 100%;
 }
 
-.sign-up-button, .sign-out-button {
+.sign-up-button,
+.sign-out-button {
     top: 40px;
     right: 80px;
     position: absolute;
@@ -100,12 +104,14 @@ html, body{
     background-clip: content-box, border-box;
 }
 
-.sign-in-button span, .sign-up-button span, .sign-out-button span{
+.sign-in-button span,
+.sign-up-button span,
+.sign-out-button span {
     display: block;
     padding: 8px 22px;
 }
 
-.sign-in-button{
+.sign-in-button {
     top: 40px;
     right: 200px;
     position: absolute;
@@ -122,21 +128,43 @@ html, body{
 #messages article {
     margin: 1em 0;
     padding: 1em;
-  }
-  
-  #messages article.success {
+}
+
+#messages article.success {
     background-color: #DFF2BF;
-  }
-  
-  #messages article.warning {
+}
+
+#messages article.warning {
     background-color: #FEEFB3;
-  }
-  
-  #messages article.error {
+}
+
+#messages article.error {
     background-color: #FFD2D2;
-  }
-  
-  #messages article.info {
+}
+
+#messages article.info {
     background-color: #BDE5F8;
+}
+.menu #profile-img {
+    width: 50px;
+    height: 50px;
+    top: 40px;
+    right: 180px;
+    position: absolute;
+    text-decoration: none;
+    color: #f7feff;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
   }
   
+.menu #username {
+    top: 58px;
+    right: 120px;
+    position: absolute;
+    text-decoration: none;
+    color: #D66AE6;
+    font-weight: bold;
+}

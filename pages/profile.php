@@ -3,10 +3,12 @@
 
     require_once(__DIR__ . '/../classes/session.class.php');
     $session = new Session();
-    
+
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../templates/authentication.php');
+    require_once(__DIR__ . '/../templates/profile.tpl.php');
+
     drawHeader($session);
-    drawLogin();
+    drawProfile($session);
     drawFooter();
 ?>

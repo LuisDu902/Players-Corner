@@ -1,5 +1,4 @@
-<?php function drawHeader(Session $session)
-{ ?>
+<?php function drawHeader(Session $session){ ?>
 <!DOCTYPE html>
 <html>
 
@@ -7,6 +6,7 @@
     <title>Player's Corner</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/authentication.css">
+    <link rel="stylesheet" href="../css/profile.css">
 </head>
 
 <body>
@@ -18,7 +18,7 @@
             <li>FAQ</li>
             <li>Help</li>
             <?php
-             if ($session->isLoggedIn()) drawLogoutForm($session);
+             if ($session->isLoggedIn()) drawProfileIcon($session);
              else drawAuthForms();;
             ?>
             </ul>
@@ -50,6 +50,15 @@
     <li><a href="../pages/register.php" class="sign-up-button"><span>Sign Up</span></a></li>
 <?php } ?>     
 
+
+<?php function drawProfileIcon(Session $session) { ?>
+  
+  <a href="../pages/profile.php">
+    <img src="../images/profile.png" alt="" id="profile-img"></img>
+    <span id="username"><?=$session->getName()?></span>
+  </a>
+
+<?php } ?>
 
 <?php function drawLogoutForm(Session $session) { ?>
   <form action="../actions/action_logout.php" method="post" class="logout">
