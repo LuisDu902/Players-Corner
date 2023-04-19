@@ -1,22 +1,20 @@
-.user-profile-container{
+.user-profile-container {
   display: flex;
   flex-direction: row;
   padding: 30px 5%;
+  align-content: space-between;
+  align-items: center;
 }
 
-.user-profile{
+.user-profile {
   display: flex;
   flex-direction: column;
   align-items: center;
   align-content: center;
 }
 
-.user-profile img{
+.user-profile img {
   max-height: 400px;
-}
-
-.user-info{
-  text-align: justify;
 }
 
 #edit-button {
@@ -32,9 +30,78 @@
   margin: 30px 30px;
 }
 
-.user-profile span{
+.user-profile span {
   margin-top: 30px;
   font-size: 2em;
-  color:#D66AE6;
+  color: #D66AE6;
   font-weight: bold;
 }
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 70px;
+  border-radius: 20px;
+  align-items: center;
+  border: 5px solid white;
+  padding: 20px;
+}
+
+#reputation, #ticket{
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #44C4D9;
+}
+
+.reputation-value {
+  text-align: center;
+  font-weight: bold;
+  color: #D66AE6;
+  border: 10px solid transparent;
+  border-radius: 50%;
+  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  width: 300px;
+  height: 300px;
+  margin: 30px 30px;
+  font-size: 100px;
+  line-height: 300px;
+}
+
+.field {
+  margin-top: 40px;
+  margin-right: 10px;
+  padding: 5px 0px;
+  margin: 20px 0px;
+  color: #D66AE6;
+  font-weight: bolder;
+  font-size: 1.2em;
+}
+
+.info {
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  background-color: #44C4D9;
+  margin-top: 40px;
+  padding: 5px 20px;
+  margin: 20px 0px;
+  font-size: 1.2em;
+}
+
+.data{
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+}
+
+.last-ticket{
+  margin-left: 50px;
+  padding-right: 50px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+}
+

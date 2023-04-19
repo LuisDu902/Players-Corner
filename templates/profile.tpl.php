@@ -6,8 +6,28 @@
             <span> <?=$user->username?> </span>
             <a href="../pages/profile.edit.php" id="edit-button"> Edit profile</a>
         </div>
+        <div class="user-details">
+            <span id="reputation">Reputation</span>
+            <span class="reputation-value"><?= $user->reputation ?>%</span>
+            <div class = "data">
+                <span class="field"> Name </span>
+                <span class="info"> <?= $user->name?> </span> 
+                <span class="field"> Username </span>
+                <span class="info"> <?= $user->username?> </span> 
+                <span class="field"> Email </span>
+                <span class="info"> <?= $user->email?> </span> 
+            </div>
+        </div>
+        <div class="last-ticket">
+            <span id="ticket">Last ticket</span>
+            <div>
+                <img src="../images/giphy3.gif">
+            </div>
+        </div>
+       
+    </div>
+   
 <?php } ?>
-
 
 <?php function drawEditUserForm() { ?>
     <section id="edit-profile">

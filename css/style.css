@@ -57,7 +57,7 @@ header {
     transition: all 0.3s ease 0s;
 }
 
-.button-border-wrap {
+.button-wrap {
   max-width: 250px;
   color: #f7feff;
   border: 2px solid transparent;
@@ -74,7 +74,7 @@ header {
     align-items: center;
 }
 
-.button-border-wrap:first-child {
+.button-wrap:first-child {
     margin-right: 20px;
 }
   
