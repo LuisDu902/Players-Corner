@@ -22,7 +22,6 @@
       </nav>
       <?php
       if ($session->isLoggedIn()) {
-        drawLogoutForm($session);
         drawProfileIcon($session);
       } else
         drawAuthForms(); ?>
@@ -53,17 +52,14 @@
 
 
 <?php function drawProfileIcon(Session $session){ ?>
-  <a href="../pages/profile.php" class="buttons round-wrap">
+  
+  <div class="dropdown">
+  <button class="dropbtn"><a href="../pages/profile.php" class="buttons round-wrap">
     <img src="../images/profile.png" alt="profile"></img>
-    <span class="username"><?=$session->getName()?></span>
-  </a>
-<?php } ?>
-
-<?php function drawLogoutForm(Session $session)
-{ ?>
-  <li>
-    <form action="../actions/action_logout.php">
-      <button type="submit" class="sign-out-button"><span>Sign Out </span></button>
-    </form>
-  </li>
+  </a></button>
+  <div class="dropdown-content">
+    <a href="../pages/profile.php">Profile</a>
+    <a href="../actions/action_logout.php">Sign out</a>
+  </div>
+</div>
 <?php } ?>

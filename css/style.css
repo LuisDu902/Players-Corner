@@ -7,7 +7,9 @@
     color: white;
 }
 
-li, a, button {
+li,
+a,
+button {
     text-decoration: none;
     font-size: 1.1rem;
 }
@@ -46,7 +48,8 @@ header {
     color: #D66AE6 !important;
 }
 
-.sign-in,.sign-up {
+.sign-in,
+.sign-up {
     padding: 8px 22px;
     display: block;
     background-color: transparent;
@@ -58,13 +61,13 @@ header {
 }
 
 .button-wrap {
-  max-width: 250px;
-  color: #f7feff;
-  border: 2px solid transparent;
-  border-radius: 20px;
-  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
+    max-width: 250px;
+    color: #f7feff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
 }
 
 .buttons {
@@ -77,22 +80,78 @@ header {
 .button-wrap:first-child {
     margin-right: 20px;
 }
-  
-.buttons img{
-  max-width: 3em;
+
+.buttons img {
+    max-width: 3em;
 }
 
-.round-wrap img{
+.round-wrap img {
     color: #f7feff;
     border: 2px solid transparent;
     border-radius: 50%;
     background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
     background-origin: border-box;
-    background-clip: content-box, border-box;  
+    background-clip: content-box, border-box;
 }
 
-.buttons .username{
-    color:#D66AE6;
+.buttons .username {
+    color: #D66AE6;
     padding-left: 10px;
     font-weight: bold;
 }
+
+.dropbtn {
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    text-align: center;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: #D66AE6;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    align-items: center;
+    align-content: center;
+}
+
+.sign-out-button {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+}
+
+.sign-out-button span{
+    padding: 12px 16px;
+}
+
+.sign-out-button span:hover{
+color:#D66AE6}
