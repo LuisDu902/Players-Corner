@@ -155,3 +155,42 @@ header {
 
 .sign-out-button span:hover{
 color:#D66AE6}
+
+
+.banner{
+    width: 80%;
+    height: 70%;
+    top: 25%;
+    left: 130px;
+    position: absolute;
+    color: #f7feff;
+}
+
+.corner-text{
+    width: 50%;
+    float: left;
+}
+.corner-text h1{
+    font-size: 43px;
+    width: 640px;
+    position: relative;
+    margin-left: 40px;
+}
+
+.corner-text p{
+    width: 650px;
+    font-size: 15px;
+    margin: 30px 0 30px 40px;
+    line-height: 25px;
+    color: #859bb4;
+
+}
+
+.gif{
+    width: 50%;
+    float: right;
+}
+
+.gif img{
+    width: 100%;
+}

@@ -57,7 +57,7 @@
 
   
     static function registerUser(PDO $db, string $name, string $username, string $email, string $password){
-        $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (99998, ?, ?, ?, ?,0,"client")');
+        $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (NULL, ?, ?, ?, ?,0,"client")');
         $stmt->execute(array($name, $username, $email, $password));
       }
 
