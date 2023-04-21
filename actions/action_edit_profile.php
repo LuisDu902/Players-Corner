@@ -19,7 +19,9 @@
     
     $user->editProfile($db);
 
-    $session->setName($user->name);
+    $session->setName($user->username);
+    $session->setId($user->userId);
+   
   }
 
   header('Location: ../pages/profile.php');

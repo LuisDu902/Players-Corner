@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/authentication.css">
     <link rel="stylesheet" href="../css/profile.css">
+    <link rel="stylesheet" href="../css/user.css">
   </head>
 
   <body>
@@ -18,6 +19,10 @@
           <li class="forum"><a href="#">Forum</a></li>
           <li class="FAQ"><a href="#">FAQ</a></li>
           <li class="Help"><a href="#">Help</a></li>
+          <?php if ($session->isLoggedIn() && $session->getRole() == "admin"){
+            drawAdminButtons();
+          } ?>
+             
         </ul>
       </nav>
       <?php
@@ -26,6 +31,13 @@
       } else
         drawAuthForms(); ?>
     </header>
+    <section id="messages">
+      <?php foreach ($session->getMessages() as $messsage) { ?>
+        <article class="<?=$messsage['type']?>">
+          <?=$messsage['text']?>
+        </article>
+      <?php } ?>
+    </section>
 
   <?php } ?>
 
@@ -37,6 +49,10 @@
   </html>
 <?php } ?>
 
+
+<?php function drawAdminButtons(){ ?>
+   <li class="Users"><a href="../pages/users.php">Users</a></li>
+<?php } ?>
 
 <?php function drawAuthForms()
 { ?>
@@ -55,7 +71,8 @@
   
   <div class="dropdown">
   <button class="dropbtn"><a href="../pages/profile.php" class="buttons round-wrap">
-    <img src="../images/profile.png" alt="profile"></img>
+  <img src=<?=$session->getPhoto()?> alt="user-profile">
+    <span class="username"><?=$session->getName()?></span>
   </a></button>
   <div class="dropdown-content">
     <a href="../pages/profile.php">Profile</a>

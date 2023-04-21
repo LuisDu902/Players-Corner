@@ -98,7 +98,7 @@ INSERT INTO User(userId, name, username, email, password, reputation, type) VALU
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (96, "Oliver Wright", "oliverwright", "oliverwright@email.com", "adminpassword", "1500", "admin");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (97, "Brooklyn Lewis", "brooklynlewis", "brooklynlewis@email.com", "adminpassword", "1400", "admin");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (98, "Jacob Green", "jacobgreen", "jacobgreen@email.com", "adminpassword", "1300", "admin");
-INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (99, "Chloe Hall", "chloehall", "chloehall@email.com", "adminpassword", "1700", "admin");
+INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (99, "Chloe Hall", "chloehall", "chloehall@email.com", "adminpassword", "90", "admin");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (100, "Mia Davis", "miadavis", "miadavis@email.com", "adminpassword", "1600", "admin");
 
 INSERT INTO Hashtag(tag) VALUES ("#gamingissues");

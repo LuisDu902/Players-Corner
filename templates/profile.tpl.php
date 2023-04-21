@@ -28,7 +28,7 @@
             </span>
         </div>
         <div class="profile-picture round-wrap">
-            <img src="../images/profile.png" alt="user-profile">
+            <img src=<?= $user->getPhoto()?>  alt="user-profile">
             <span>
                 <?= $user->username ?>
             </span>
@@ -38,7 +38,7 @@
 
 <?php } ?>
 
-<?php function drawEditUserForm()
+<?php function drawEditUserForm(User $user)
 { ?>
     <div class="user-profile round-wrap">
         <div class="edit-profile">
@@ -68,10 +68,11 @@
             </form>
         </div>
         <div class="upload-photo round-wrap">
-            <form action="../actions/action_upload_image.php" method="post" enctype="multipart/form-data" class="authentication-form">
-                <img src="../images/profile.png" alt="user-profile">
-                <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
-                <button type="submit" value="upload" class="authentication-button" id="upload">Upload photo</button>
+        <img src=<?=$user->getPhoto()?> alt="user-profile">
+            <form action="../actions/action_upload_image.php" method="post" class="upload-form"
+                enctype="multipart/form-data">
+               <input type="file" id="profile-image" name="imageToUpload">
+                <button type="submit" id="upload" class="authentication-button">Upload photo</button>
             </form>
         </div>
     </div>

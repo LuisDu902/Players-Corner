@@ -1,6 +1,5 @@
 <?php
-    declare(strict_types = 1);
-
+    
     require_once(__DIR__ . '/../classes/session.class.php');
     require_once(__DIR__ . '/../classes/user.class.php');
     require_once(__DIR__ . '/../database/connection.db.php');
@@ -9,13 +8,13 @@
 
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../templates/authentication.php');
-    require_once(__DIR__ . '/../templates/profile.tpl.php');
+    require_once(__DIR__ . '/../templates/client.php');
     
     $db = getDatabaseConnection();
 
-    $user = User::getUser($db, $session->getId());
-
+    $clients = User::getClients($db);
+   
     drawHeader($session);
-    drawEditUserForm($user);
+    drawClients($clients);
     drawFooter();
 ?>

@@ -194,3 +194,30 @@ color:#D66AE6}
 .gif img{
     width: 100%;
 }
+
+
+#messages article {
+    margin: 1em 0;
+    padding: 1em;
+  }
+  
+  #messages article.success {
+    background-color: #DFF2BF;
+    color: black;
+  }
+  
+  #messages article.warning {
+    background-color: #FEEFB3;
+    color: black;
+  }
+  
+  #messages article.error {
+    background-color: #FFD2D2;
+    color: black;
+}
+  
+  #messages article.info {
+    background-color: #BDE5F8;
+    color: black;
+}
+  
