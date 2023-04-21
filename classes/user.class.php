@@ -72,6 +72,49 @@
 
       return $clients;
     }
+
+    static function getAllUsers(PDO $db) : array {
+
+      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User');
+      $stmt->execute();
+  
+      $users = array();
+      while ($user = $stmt->fetch()) {
+        $users[] = new User(
+          intval($user['userId']),
+          $user['name'],
+          $user['username'],
+          $user['email'],
+          $user['password'],
+          $user['reputation'],
+          $user['type'],
+        );
+      }
+
+      return $users;
+    }
+
+
+    static function getAgents(PDO $db) : array {
+
+      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE type="agent"');
+      $stmt->execute();
+  
+      $agents = array();
+      while ($agent = $stmt->fetch()) {
+        $agents[] = new User(
+          intval($agent['userId']),
+          $agent['name'],
+          $agent['username'],
+          $agent['email'],
+          $agent['password'],
+          $agent['reputation'],
+          $agent['type'],
+        );
+      }
+
+      return $agents;
+    }
   
     static function registerUser(PDO $db, string $name, string $username, string $email, string $password){
         $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (NULL, ?, ?, ?, ?,0,"client")');
@@ -101,7 +144,7 @@
       $user = $stmt->fetch();
       
       return new User(
-          $user['userId'],
+          intval($user['userId']),
           $user['name'],
           $user['username'],
           $user['email'],

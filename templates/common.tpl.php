@@ -57,10 +57,10 @@
 <?php function drawAuthForms()
 { ?>
   <div class="buttons">
-    <div class="button-wrap">
+    <div class="two-button-wrap button-wrap">
       <a href="../pages/login.php"><button class="sign-in">Sign In</button></a>
     </div>
-    <div class="button-wrap">
+    <div class="two-button-wrap button-wrap">
       <a href="../pages/register.php"><button class="sign-up">Sign Up</button></a>
     </div>
   </div>
