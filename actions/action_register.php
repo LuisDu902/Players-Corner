@@ -17,7 +17,7 @@ if (User::validEmail($db, $_POST['email'])) {
     $session->setRole($user->type);
     $session->setPhoto($user->getPhoto());
 
-    $session->addMessage('sucess', 'Registration sucessful!');
+    $session->addMessage('sucess', 'Registration successful!');
     header('Location: ../pages/index.php');
 }
 else{

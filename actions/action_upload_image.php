@@ -14,6 +14,6 @@
  
   $session->setPhoto($fileName);
  
-  $session->addMessage('success', 'Foto de perfil guardada com sucesso');
+  $session->addMessage('success', 'Profile photo sucessfully updated');
   header("Location: ../pages/profile.php");
 ?>
