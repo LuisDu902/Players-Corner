@@ -1,0 +1,114 @@
+
+.user-cards{
+  margin: 0px 50px ;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  grid-auto-rows: minmax(auto, max-content);
+  grid-gap: 20px;
+}
+
+
+.user-card{
+  display: flex;
+  flex: 0 0 auto;
+  max-width: 370px;
+  flex-direction: column;
+  padding: 10px 20px;
+  border: 2px solid #d9d9d9;
+  border-radius: 20px;
+  overflow-x: auto;
+  width: 100%; 
+}
+
+.card-type{
+  
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.clients{
+  display: flex;
+  padding: 30px;
+}
+
+.type {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.3em;
+  font-weight: bold;
+  border-radius: 10px;
+  margin: 20px 5px;
+  padding: 5px 20px 5px 20px;
+}
+
+.client-card-type{
+  background-color: #5271ff;
+}
+
+.client-card-border{
+  border: 5px solid #5271ff;
+}
+
+.agent-card-type{
+  background-color: #ff5757;
+}
+
+.agent-card-border{
+  border: 5px solid #ff5757;
+}
+
+.admin-card-type{
+  background-color: #7ed957;
+}
+
+.admin-card-border{
+  border: 5px solid #7ed957;
+}
+
+.rep {
+  border: 3px solid #ff914d;
+  color: #ff914d;
+  margin-top: 10px;
+  margin-right: 20px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 2.5em;
+  width: 2.5em;
+  line-height: 30px;
+  font-size: 2em;
+  font-weight: bolder;
+}
+
+.user-card img{
+  background-color: #0D0721;
+  max-height: 330px;
+  border-radius: 50%;
+  margin: 10px;
+  padding: 50px;
+}
+
+.card-details{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card-details .card-name{
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+.card-buttons{
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  align-content: center;
+  align-items: center;
+}

@@ -6,7 +6,7 @@
             <p><br>The one-stop-shop for all your gaming FAQs and strategies. <br> No gamer should be left out!</p>
         </div>
         <div class="gif">
-            <img src="../images/giphy3.gif">
+            <img src="../images/banner.gif">
         </div>
     </div>
 <?php }

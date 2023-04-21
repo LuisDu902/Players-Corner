@@ -14,7 +14,10 @@ if (User::validEmail($db, $_POST['email'])) {
     $user = User::getUserWithPassword($db, $_POST['email'], $_POST['password']);
     $session->setId($user->userId);
     $session->setName($user->username);
-    $session->addMessage('sucess', 'Registration sucessful!');
+    $session->setRole($user->type);
+    $session->setPhoto($user->getPhoto());
+
+    $session->addMessage('sucess', 'Registration successful!');
     header('Location: ../pages/index.php');
 }
 else{

@@ -20,11 +20,8 @@
       $this->type = $type;
     }
 
-    function getUsername() {
-      return $this->username;
-    }
 
-    function updateProfile(PDO $db, string $name, string $username, string $email, string $password) {
+    function editProfile(PDO $db) {
       $stmt = $db->prepare('
         UPDATE User SET name = ?, username = ?, email = ?, password = ?
         WHERE userId = ?
@@ -55,9 +52,72 @@
       } else return null;
     }
 
+    static function getClients(PDO $db) : array {
+
+      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE type="client"');
+      $stmt->execute();
+  
+      $clients = array();
+      while ($client = $stmt->fetch()) {
+        $clients[] = new User(
+          intval($client['userId']),
+          $client['name'],
+          $client['username'],
+          $client['email'],
+          $client['password'],
+          $client['reputation'],
+          $client['type'],
+        );
+      }
+
+      return $clients;
+    }
+
+    static function getAllUsers(PDO $db) : array {
+
+      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User');
+      $stmt->execute();
+  
+      $users = array();
+      while ($user = $stmt->fetch()) {
+        $users[] = new User(
+          intval($user['userId']),
+          $user['name'],
+          $user['username'],
+          $user['email'],
+          $user['password'],
+          $user['reputation'],
+          $user['type'],
+        );
+      }
+
+      return $users;
+    }
+
+
+    static function getAgents(PDO $db) : array {
+
+      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE type="agent"');
+      $stmt->execute();
+  
+      $agents = array();
+      while ($agent = $stmt->fetch()) {
+        $agents[] = new User(
+          intval($agent['userId']),
+          $agent['name'],
+          $agent['username'],
+          $agent['email'],
+          $agent['password'],
+          $agent['reputation'],
+          $agent['type'],
+        );
+      }
+
+      return $agents;
+    }
   
     static function registerUser(PDO $db, string $name, string $username, string $email, string $password){
-        $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (99998, ?, ?, ?, ?,0,"client")');
+        $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (NULL, ?, ?, ?, ?,0,"client")');
         $stmt->execute(array($name, $username, $email, $password));
       }
 
@@ -84,7 +144,7 @@
       $user = $stmt->fetch();
       
       return new User(
-          $user['userId'],
+          intval($user['userId']),
           $user['name'],
           $user['username'],
           $user['email'],
@@ -113,6 +173,15 @@
        $stmt->execute(array($reputation, $id));
      
      }
+
+     function getPhoto() : string {
+      
+      $default = "../images/profile/default.png";
+      $attemp = "../images/profile/profile" . $this->userId . ".png";
+      if (file_exists($attemp)) {
+        return $attemp;
+      } else return $default;
+    }
 
   }
 ?>

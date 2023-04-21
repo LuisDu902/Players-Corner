@@ -1,53 +1,161 @@
-*{
+* {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
- 
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    height: 100%;
     background-color: #222033;
+    font-family: sans-serif;
+    color: white;
 }
 
-html, body{
-    height: 100%;
+li,
+a,
+button {
+    text-decoration: none;
+    font-size: 1.1rem;
 }
 
-.menu{
-    position: fixed;
-    top:0;
-    left:0;
-    width: 100%;}
-
-.menu ul{
-    display: inline-flex;
-    margin: 50px;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 6% 3% 5%;
 }
 
-.menu ul li{
-    list-style: none;
-    margin: 0 20px;
-    color: #f7feff;
+.logo {
     cursor: pointer;
+    max-height: 100px;
+    margin-right: 40px;
 }
 
-.logo img{
-    width: 80px;
-    margin-top: -30px;
-    margin-right: 48px;
+.nav_links {
+    list-style-type: none;
 }
 
-.active a{
+.nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+    color: #D66AE6;
+}
+
+.active a {
     color: #D66AE6 !important;
+}
+
+.sign-in,
+.sign-up, .upgrade, .assign {
+    padding: 8px 22px;
+    display: block;
+    background-color: transparent;
+    color: white;
+    font-family: sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.button-wrap {
+    max-width: 250px;
+    color: #f7feff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.buttons {
+    margin-left: auto;
+    padding: auto;
+    display: flex;
+    align-items: center;
+}
+
+.two-button-wrap:first-child {
+    margin-right: 20px;
+}
+
+.buttons img {
+    max-width: 3em;
+}
+
+.buttons img {
+    color: #f7feff;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.buttons .username {
+    color: #D66AE6;
+    padding-left: 10px;
     font-weight: bold;
+}
+
+.dropbtn {
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    text-align: center;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: #D66AE6;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    align-items: center;
+    align-content: center;
+}
+
+.sign-out-button {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
     text-decoration: none;
 }
+
+.sign-out-button span{
+    padding: 12px 16px;
+}
+
+.sign-out-button span:hover{
+color:#D66AE6}
+
 
 .banner{
     width: 80%;
@@ -87,37 +195,6 @@ html, body{
     width: 100%;
 }
 
-.sign-up-button, .sign-out-button {
-    top: 40px;
-    right: 80px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
-
-.sign-in-button span, .sign-up-button span, .sign-out-button span{
-    display: block;
-    padding: 8px 22px;
-}
-
-.sign-in-button{
-    top: 40px;
-    right: 200px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
-
 
 #messages article {
     margin: 1em 0;
@@ -126,17 +203,21 @@ html, body{
   
   #messages article.success {
     background-color: #DFF2BF;
+    color: black;
   }
   
   #messages article.warning {
     background-color: #FEEFB3;
+    color: black;
   }
   
   #messages article.error {
     background-color: #FFD2D2;
-  }
+    color: black;
+}
   
   #messages article.info {
     background-color: #BDE5F8;
-  }
+    color: black;
+}
   
