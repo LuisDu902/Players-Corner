@@ -1,5 +1,7 @@
 <?php function drawAllUsers($users)
 { ?>
+  
+
   <div class="user-cards">
     <?php foreach ($users as $user): ?>
       <div class="user-card">

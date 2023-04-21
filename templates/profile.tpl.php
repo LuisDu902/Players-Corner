@@ -40,8 +40,8 @@
 
 <?php function drawEditUserForm(User $user)
 { ?>
-    <div class="user-profile round-wrap">
-        <div class="edit-profile">
+    <div class="edit-profile">
+        <div class="edit-fields">
             <h2 class="register-text">Edit profile</h2>
             </h2>
             <form action="../actions/action_edit_profile.php" method="post" class="authentication-form">
@@ -49,22 +49,26 @@
                     <input type="text" name="name" required="required" placeholder="Name">
                     <img src="../images/user.png" class="icon" alt="user">
                 </div>
-
+                <div class="input-box">
+                    <input type="username" name="username" required="required" placeholder="Username">
+                    <img src="../images/username.png" class="icon" alt="username">
+                </div>
                 <div class="input-box">
                     <input type="email" name="email" required="required" placeholder="Email">
                     <img src="../images/email.png" class="icon" alt="email">
                 </div>
 
                 <div class="input-box">
-                    <input type="password" name="password" required="required" placeholder="Password">
+                    <input type="password" name="old-password" required="required" placeholder="New password">
+                    <img src="../images/password.png" class="icon" alt="password">
+                </div>
+                <div class="input-box">
+                    <input type="password" name="new-password" required="required" placeholder="Old password">
                     <img src="../images/password.png" class="icon" alt="password">
                 </div>
 
-                <div class="input-box">
-                    <input type="username" name="username" required="required" placeholder="Username">
-                    <img src="../images/username.png" class="icon" alt="username">
-                </div>
-                <button type="submit" class="authentication-button">Edit</button>
+               
+                <button type="submit" class="authentication-button">Save</button>
             </form>
         </div>
         <div class="upload-photo round-wrap">
