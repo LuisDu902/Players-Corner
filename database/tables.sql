@@ -20,7 +20,7 @@ CREATE TABLE User(
    email VARCHAR NOT NULL,
    password VARCHAR NOT NULL,
    reputation VARCHAR,
-   type VARCHAR NOT NULL,
+   type INTEGER NOT NULL,
    CHECK (type = "client" OR type = "agent" OR type = "admin")
 );
 
