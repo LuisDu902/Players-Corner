@@ -7,10 +7,10 @@ class User
   public string $username;
   public string $email;
   public string $password;
-  public string $reputation;
+  public int $reputation;
   public string $type;
 
-  public function __construct(int $userId, string $name, string $username, string $email, string $password, string $reputation, string $type)
+  public function __construct(int $userId, string $name, string $username, string $email, string $password, int $reputation, string $type)
   {
     $this->userId = $userId;
     $this->name = $name;
@@ -44,12 +44,12 @@ class User
 
     if ($user = $stmt->fetch()) {
       return new User(
-        $user['userId'],
+        intval($user['userId']),
         $user['name'],
         $user['username'],
         $user['email'],
         $user['password'],
-        $user['reputation'],
+        intval($user['reputation']),
         $user['type'],
       );
     } else
@@ -79,7 +79,7 @@ class User
         $user['username'],
         $user['email'],
         $user['password'],
-        $user['reputation'],
+        intval($user['reputation']),
         $user['type'],
       );
     }

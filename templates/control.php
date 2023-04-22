@@ -5,7 +5,7 @@
     <div class="filter-condition">
       <span> Filter by </span>
       <select name="" id="filter-select">
-        <option value="users"> User </option>
+        <option value="users"> All users </option>
         <option value="client"> Clients </option>
         <option value="agent"> Agents </option>
         <option value="admin"> Admins </option>
@@ -16,7 +16,7 @@
       <select name="" id="order-select">
         <option value="name"> Name </option>
         <option value="reputation"> Reputation </option>
-        <option value="role"> Role </option>
+        <option value="type"> Role </option>
       </select>
     </div>
   </div>
