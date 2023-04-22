@@ -9,7 +9,7 @@
 
   $db = getDatabaseConnection();
 
-  $users = User::getUsersByRole($db, $_GET['role']);
+  $users = User::searchUsers($db, $_GET['search'], $_GET['role'], $_GET['order']);
 
   echo json_encode($users);
 

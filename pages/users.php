@@ -14,7 +14,7 @@
     
     $db = getDatabaseConnection();
 
-    $users = User::getUsersByRole($db, "users");
+    $users = User::searchUsers($db,"","users", "type desc");
    
     drawHeader($session);
     drawAllUsers($users);

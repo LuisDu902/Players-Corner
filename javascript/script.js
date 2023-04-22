@@ -6,42 +6,15 @@ const searchUser = document.querySelector('#search-user')
 if (searchUser) {
     searchUser.addEventListener('input', searchUsers)
 }
-
-filterSelect.onchange = filter
-orderSelect.onchange = order
-
-async function filter() {
-    
-    const response = await fetch('../api/api_filter_users.php?role=' + this.value)
-    const users = await response.json()
-    searchUser.value = ''
-    const section = document.querySelector('#users')
-    section.innerHTML = ''
-
-    for (const user of users) {
-        const userCard = createUserCard(user)
-        section.appendChild(userCard)
-    }
+if (filterSelect) {
+    filterSelect.addEventListener('change', searchUsers)
 }
-
-async function order() {
-    
-    const response = await fetch('../api/api_order_users.php?order=' + this.value)
-    const users = await response.json()
-    searchUser.value = ''
-    const section = document.querySelector('#users')
-    section.innerHTML = ''
-
-    for (const user of users) {
-        const userCard = createUserCard(user)
-        section.appendChild(userCard)
-    }
+if (orderSelect) {
+    orderSelect.addEventListener('change', searchUsers)
 }
-
-
 
 async function searchUsers() {
-    const response = await fetch('../api/api_search_user.php?search=' + this.value + '&role=' + filterSelect.value)
+    const response = await fetch('../api/api_search_users.php?search=' + searchUser.value + '&role=' + filterSelect.value + '&order=' + orderSelect.value)
     const users = await response.json()
 
     const section = document.querySelector('#users')

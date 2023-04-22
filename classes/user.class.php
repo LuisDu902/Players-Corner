@@ -57,40 +57,20 @@ class User
   }
 
 
-  static function getUsersByRole(PDO $db, string $criteria): array
+  static function searchUsers(PDO $db, string $search, string $filter, string $order): array
   {
-    if ($criteria == "users") {
-      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User');
-      $stmt->execute();
+    
+    if ($filter == "users") {
+      $query = 'SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ? ORDER BY ' . $order;
+      $stmt = $db->prepare($query);
+      $stmt->execute(array($search . '%'));
 
     } else {
-      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE type = ?');
-      $stmt->execute(array($criteria));
+      $query = 'SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ? and type = ? ORDER BY ' . $order;
+      $stmt = $db->prepare($query);
+      $stmt->execute(array($search . '%', $filter));
     }
-
-    $users = array();
-    while ($user = $stmt->fetch()) {
-      $users[] = new User(
-        intval($user['userId']),
-        $user['name'],
-        $user['username'],
-        $user['email'],
-        $user['password'],
-        $user['reputation'],
-        $user['type'],
-      );
-    }
-
-    return $users;
-  }
-
-  static function orderUsers(PDO $db, string $criteria): array
-  {
-    $query = 'SELECT userId, name, username, email, password, reputation, type FROM User ORDER BY ' . $criteria;
    
-    $stmt = $db->prepare($query);
-    $stmt->execute();
-    
     $users = array();
     while ($user = $stmt->fetch()) {
       $users[] = new User(
@@ -106,7 +86,6 @@ class User
 
     return $users;
   }
-
 
   static function registerUser(PDO $db, string $name, string $username, string $email, string $password)
   {
@@ -183,31 +162,6 @@ class User
       return $default;
   }
 
-  static function searchUsers(PDO $db, string $search, string $role): array
-  {
-
-    if ($role == "users") {
-      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ?');
-      $stmt->execute(array($search . '%'));
-    } else {
-      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ? AND type = ?');
-      $stmt->execute(array($search . '%', $role));
-    }
-    $users = array();
-    while ($user = $stmt->fetch()) {
-      $users[] = new User(
-        intval($user['userId']),
-        $user['name'],
-        $user['username'],
-        $user['email'],
-        $user['password'],
-        $user['reputation'],
-        $user['type'],
-      );
-    }
-
-    return $users;
-  }
-
+  
 }
 ?>
