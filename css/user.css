@@ -112,3 +112,10 @@
   align-content: center;
   align-items: center;
 }
+
+
+.search-bar{
+  display: flex;
+  justify-content: start;
+  margin: 30px 5%;
+}

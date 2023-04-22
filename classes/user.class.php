@@ -56,34 +56,19 @@ class User
       return null;
   }
 
-  static function getClients(PDO $db): array
+
+  static function getUsersByRole(PDO $db, string $criteria): array
   {
+    if ($criteria == "users"){
+      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User');
+      $stmt->execute();
 
-    $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE type="client"');
-    $stmt->execute();
-
-    $clients = array();
-    while ($client = $stmt->fetch()) {
-      $clients[] = new User(
-        intval($client['userId']),
-        $client['name'],
-        $client['username'],
-        $client['email'],
-        $client['password'],
-        $client['reputation'],
-        $client['type'],
-      );
     }
-
-    return $clients;
-  }
-
-  static function getAllUsers(PDO $db): array
-  {
-
-    $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User');
-    $stmt->execute();
-
+    else {
+      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE type = ?');
+      $stmt->execute(array($criteria));
+    }
+   
     $users = array();
     while ($user = $stmt->fetch()) {
       $users[] = new User(
@@ -100,28 +85,6 @@ class User
     return $users;
   }
 
-
-  static function getAgents(PDO $db): array
-  {
-
-    $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE type="agent"');
-    $stmt->execute();
-
-    $agents = array();
-    while ($agent = $stmt->fetch()) {
-      $agents[] = new User(
-        intval($agent['userId']),
-        $agent['name'],
-        $agent['username'],
-        $agent['email'],
-        $agent['password'],
-        $agent['reputation'],
-        $agent['type'],
-      );
-    }
-
-    return $agents;
-  }
 
   static function registerUser(PDO $db, string $name, string $username, string $email, string $password)
   {
