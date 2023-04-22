@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/authentication.css">
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/user.css">
+    <script src="../javascript/script.js" defer></script>
   </head>
 
   <body>
@@ -38,12 +39,12 @@
         </article>
       <?php } ?>
     </section>
-
+      <main>
   <?php } ?>
 
   <?php function drawFooter()
   { ?>
-
+  </main>
   </body>
 
   </html>

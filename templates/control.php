@@ -1,8 +1,11 @@
+
 <?php function drawAllUsers($users)
 { ?>
-  
-
-  <div class="user-cards">
+   <header>
+        <h2>Users</h2>
+        <input id="search-user" type="text" placeholder="search">   
+    </header>
+  <div class="user-cards" id ="users">
     <?php foreach ($users as $user): ?>
       <div class="user-card">
         <div class="card-type">
@@ -24,9 +27,9 @@
           }
           ?>
         </div>
-      </div>
+        </div>
     <?php endforeach; ?>
-
+        </div>
 <?php } ?>
 
 <?php function drawClientCardButtons(){ ?>

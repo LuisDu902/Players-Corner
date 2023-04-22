@@ -1,12 +1,14 @@
+<?php 
+    declare(strict_type = 1);
+    require_once(__DIR__ . '/../classes/user.class.php');
+?>
+
 <?php function drawProfile(User $user)
 { ?>
     <div class="user-profile">
-
         <div class="user-reputation">
             <span id="reputation" class="title">Reputation</span>
-            <span class="reputation-value">
-                <?= $user->reputation ?>%
-            </span>
+            <span class="reputation-value"> <?= $user->reputation ?>% </span>
         </div>
         <div class="user-details">
             <span id="about" class="title">About me</span>
