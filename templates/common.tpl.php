@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/authentication.css">
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/user.css">
+    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/search.css' rel='stylesheet'>
     <script src="../javascript/script.js" defer></script>
   </head>
 
@@ -20,7 +21,7 @@
           <li class="forum"><a href="#">Forum</a></li>
           <li class="FAQ"><a href="#">FAQ</a></li>
           <li class="Help"><a href="#">Help</a></li>
-          <?php if ($session->isLoggedIn() && $session->getRole() == "admin"){
+          <?php if ($session->isLoggedIn() && $session->getRole() === "admin"){
             drawAdminButtons();
           } ?>
              

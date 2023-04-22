@@ -1,16 +1,16 @@
 <?php function drawAllUsers($users)
 { ?>
   <div class="search-bar">
-    <input id="search-user" type="text" placeholder="search">
-    <div class="filter-condition">
-      <span> Filter by </span>
-      <select name="" id="filter-select">
+    <div class="search-box">
+      <input id="search-user" type="text" placeholder="search">
+      <i class="gg-search"></i>
+    </div>
+    <select name="" id="filter-select">
         <option value="users"> All users </option>
         <option value="client"> Clients </option>
         <option value="agent"> Agents </option>
         <option value="admin"> Admins </option>
       </select>
-    </div>
     <div class="order-condition">
       <span> Order by </span>
       <select name="" id="order-select">

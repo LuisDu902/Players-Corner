@@ -6,6 +6,7 @@
 
 
     require_once(__DIR__ . '/../classes/user.class.php');
+    require_once(__DIR__ . '/../classes/admin.class.php');
     require_once(__DIR__ . '/../database/connection.db.php');
 
     require_once(__DIR__ . '/../templates/common.tpl.php');
@@ -14,7 +15,7 @@
     
     $db = getDatabaseConnection();
 
-    $users = User::searchUsers($db,"","users", "type desc");
+    $users = Admin::searchUsers($db);
    
     drawHeader($session);
     drawAllUsers($users);

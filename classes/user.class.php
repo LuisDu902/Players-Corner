@@ -21,7 +21,6 @@ class User
     $this->type = $type;
   }
 
-
   function editProfile(PDO $db)
   {
     $stmt = $db->prepare('
@@ -56,43 +55,11 @@ class User
       return null;
   }
 
-
-  static function searchUsers(PDO $db, string $search, string $filter, string $order): array
-  {
-    
-    if ($filter == "users") {
-      $query = 'SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ? ORDER BY ' . $order;
-      $stmt = $db->prepare($query);
-      $stmt->execute(array($search . '%'));
-
-    } else {
-      $query = 'SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ? and type = ? ORDER BY ' . $order;
-      $stmt = $db->prepare($query);
-      $stmt->execute(array($search . '%', $filter));
-    }
-   
-    $users = array();
-    while ($user = $stmt->fetch()) {
-      $users[] = new User(
-        intval($user['userId']),
-        $user['name'],
-        $user['username'],
-        $user['email'],
-        $user['password'],
-        intval($user['reputation']),
-        $user['type'],
-      );
-    }
-
-    return $users;
-  }
-
   static function registerUser(PDO $db, string $name, string $username, string $email, string $password)
   {
     $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (NULL, ?, ?, ?, ?,0,"client")');
     $stmt->execute(array($name, $username, $email, $password));
   }
-
 
   static function validEmail(PDO $db, string $email)
   {
@@ -129,26 +96,14 @@ class User
     );
   }
 
-  function upgradeUser(PDO $db, string $type, int $id)
-  {
-    $stmt = $db->prepare('
-       UPDATE User SET type = ?
-       WHERE userId = ?
-      ');
-
-    $stmt->execute(array($type, $id));
-
-  }
-
-  function updateReputation(PDO $db, string $reputation, int $id)
+  function updateReputation(PDO $db, string $reputation)
   {
     $stmt = $db->prepare('
         UPDATE User SET reputation = ?
         WHERE userId = ?
        ');
 
-    $stmt->execute(array($reputation, $id));
-
+    $stmt->execute(array($reputation, $this->userId));
   }
 
   function getPhoto(): string
