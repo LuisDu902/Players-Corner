@@ -59,16 +59,38 @@ class User
 
   static function getUsersByRole(PDO $db, string $criteria): array
   {
-    if ($criteria == "users"){
+    if ($criteria == "users") {
       $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User');
       $stmt->execute();
 
-    }
-    else {
+    } else {
       $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE type = ?');
       $stmt->execute(array($criteria));
     }
+
+    $users = array();
+    while ($user = $stmt->fetch()) {
+      $users[] = new User(
+        intval($user['userId']),
+        $user['name'],
+        $user['username'],
+        $user['email'],
+        $user['password'],
+        $user['reputation'],
+        $user['type'],
+      );
+    }
+
+    return $users;
+  }
+
+  static function orderUsers(PDO $db, string $criteria): array
+  {
+    $query = 'SELECT userId, name, username, email, password, reputation, type FROM User ORDER BY ' . $criteria;
    
+    $stmt = $db->prepare($query);
+    $stmt->execute();
+    
     $users = array();
     while ($user = $stmt->fetch()) {
       $users[] = new User(
@@ -161,11 +183,16 @@ class User
       return $default;
   }
 
-  static function searchUsers(PDO $db, string $search): array
+  static function searchUsers(PDO $db, string $search, string $role): array
   {
-    $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ?');
-    $stmt->execute(array($search . '%'));
 
+    if ($role == "users") {
+      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ?');
+      $stmt->execute(array($search . '%'));
+    } else {
+      $stmt = $db->prepare('SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ? AND type = ?');
+      $stmt->execute(array($search . '%', $role));
+    }
     $users = array();
     while ($user = $stmt->fetch()) {
       $users[] = new User(

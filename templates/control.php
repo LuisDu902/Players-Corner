@@ -3,19 +3,22 @@
   <div class="search-bar">
     <input id="search-user" type="text" placeholder="search">
     <div class="filter-condition">
-    <span>Views as a </span>
-    <select name="" id="select">
-
-      <option value="users"> User </option>
-      <option value="client"> Clients </option>
-      <option value="agent"> Agents </option>
-      <option value="admin"> Admins </option>
-    </select>
-
-
-  </div>
-
-
+      <span> Filter by </span>
+      <select name="" id="filter-select">
+        <option value="users"> User </option>
+        <option value="client"> Clients </option>
+        <option value="agent"> Agents </option>
+        <option value="admin"> Admins </option>
+      </select>
+    </div>
+    <div class="order-condition">
+      <span> Order by </span>
+      <select name="" id="order-select">
+        <option value="name"> Name </option>
+        <option value="reputation"> Reputation </option>
+        <option value="role"> Role </option>
+      </select>
+    </div>
   </div>
   <div class="user-cards" id="users">
     <?php foreach ($users as $user): ?>
@@ -35,41 +38,12 @@
             <?= $user->username ?>
           </span>
         </div>
-        <div class="card-buttons">
-          <?php if ($user->type == "client") {
-            drawClientCardButtons();
-          } else if ($user->type == "agent") {
-            drawAgentCardButtons();
-          } else {
-            drawAdminCardButtons();
-          }
-          ?>
+        <div class="card-button">
+          <div class="button-wrap">
+            <a href="../pages/register.php"><button class="details">details</button></a>
+          </div>
         </div>
       </div>
     <?php endforeach; ?>
-  </div>
-<?php } ?>
-
-<?php function drawClientCardButtons()
-{ ?>
-  <div class="button-wrap">
-    <a href="../pages/register.php"><button class="upgrade">upgrade</button></a>
-  </div>
-<?php } ?>
-
-<?php function drawAgentCardButtons()
-{ ?>
-  <div class="two-button-wrap button-wrap">
-    <a href="../pages/login.php"><button class="upgrade">upgrade</button></a>
-  </div>
-  <div class="two-button-wrap button-wrap">
-    <a href="../pages/register.php"><button class="assign">assign</button></a>
-  </div>
-<?php } ?>
-
-<?php function drawAdminCardButtons()
-{ ?>
-  <div class="button-wrap">
-    <a href="../pages/register.php"><button class="assign">assign</button></a>
   </div>
 <?php } ?>

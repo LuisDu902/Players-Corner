@@ -1,267 +1,127 @@
 
-const select = document.getElementById('select');
+const filterSelect = document.querySelector('#filter-select')
+const orderSelect = document.querySelector('#order-select')
+const searchUser = document.querySelector('#search-user')
 
-select.onchange = filter;
+if (searchUser) {
+    searchUser.addEventListener('input', searchUsers)
+}
+
+filterSelect.onchange = filter
+orderSelect.onchange = order
 
 async function filter() {
+    
     const response = await fetch('../api/api_filter_users.php?role=' + this.value)
     const users = await response.json()
-
+    searchUser.value = ''
     const section = document.querySelector('#users')
     section.innerHTML = ''
 
     for (const user of users) {
-        const userCard = document.createElement('div')
-        userCard.classList.add('user-card')
+        const userCard = createUserCard(user)
+        section.appendChild(userCard)
+    }
+}
 
-        /* card-type*/
-        const cardType = document.createElement('div')
-        cardType.classList.add('card-type')
+async function order() {
+    
+    const response = await fetch('../api/api_order_users.php?order=' + this.value)
+    const users = await response.json()
+    searchUser.value = ''
+    const section = document.querySelector('#users')
+    section.innerHTML = ''
 
-        const typeSpan = document.createElement('span')
-        typeSpan.classList.add('type', user.type + '-card-type')
-        typeSpan.textContent = user.type;
-        cardType.appendChild(typeSpan)
-
-        const repSpan = document.createElement('span')
-        repSpan.classList.add('rep')
-        repSpan.textContent = user.reputation
-        cardType.appendChild(repSpan)
-
-        userCard.appendChild(cardType)
-
-        /* image */
-        const img = document.createElement('img')
-        img.src = '../images/profile/default.png'
-        img.classList.add(user.type + '-card-border')
-        userCard.appendChild(img)
-
-
-        /* card-details */
-        const cardDetails = document.createElement('div')
-        cardDetails.classList.add('card-details')
-
-        const cardName = document.createElement('span')
-        cardName.classList.add('card-name')
-        cardName.textContent = user.name
-        cardDetails.appendChild(cardName)
-
-        const username = document.createElement('span')
-        username.textContent = user.username
-        cardDetails.appendChild(username)
-
-        userCard.appendChild(cardDetails)
-
-        /* buttons */
-        const buttons = document.createElement('div')
-        buttons.classList.add('card-buttons')
-        if (user.type === "client") {
-            const buttonWrap = document.createElement('div')
-            buttonWrap.classList.add('button-wrap')
-
-            const link = document.createElement('a')
-            link.href = "../pages/register.php"
-
-            const upgradeButton = document.createElement('button')
-            upgradeButton.classList.add('upgrade')
-            upgradeButton.textContent = 'upgrade'
-
-            link.appendChild(upgradeButton)
-
-            buttonWrap.appendChild(link)
-
-            buttons.appendChild(buttonWrap)
-        }
-        else if (user.type === "agent") {
-            const buttonWrap = document.createElement('div')
-            buttonWrap.classList.add('button-wrap')
-            buttonWrap.classList.add('two-button-wrap')
-
-            const link = document.createElement('a')
-            link.href = "../pages/register.php"
-
-            const upgradeButton = document.createElement('button')
-            upgradeButton.classList.add('upgrade')
-            upgradeButton.textContent = 'upgrade'
-
-            link.appendChild(upgradeButton)
-
-            buttonWrap.appendChild(link)
-
-            buttons.appendChild(buttonWrap)
-
-            const buttonWrap1 = document.createElement('div')
-            buttonWrap1.classList.add('button-wrap')
-            buttonWrap1.classList.add('two-button-wrap')
-
-            const link1 = document.createElement('a')
-            link1.href = "../pages/register.php"
-
-            const upgradeButton1 = document.createElement('button')
-            upgradeButton1.classList.add('assign')
-            upgradeButton1.textContent = 'assign'
-
-            link1.appendChild(upgradeButton1)
-
-            buttonWrap1.appendChild(link1)
-
-            buttons.appendChild(buttonWrap1)
-
-        }
-        else if (user.type === "admin") {
-            const buttonWrap = document.createElement('div')
-            buttonWrap.classList.add('button-wrap')
-
-            const link = document.createElement('a')
-            link.href = "../pages/register.php"
-
-            const upgradeButton = document.createElement('button')
-            upgradeButton.classList.add('assign')
-            upgradeButton.textContent = 'assign'
-
-            link.appendChild(upgradeButton)
-
-            buttonWrap.appendChild(link)
-
-            buttons.appendChild(buttonWrap)
-        }
-
-        userCard.append(buttons)
-
+    for (const user of users) {
+        const userCard = createUserCard(user)
         section.appendChild(userCard)
     }
 }
 
 
 
-const searchUser = document.querySelector('#search-user')
-if (searchUser) {
-    searchUser.addEventListener('input', async function () {
-        const response = await fetch('../api/api_users.php?search=' + this.value)
-        const users = await response.json()
+async function searchUsers() {
+    const response = await fetch('../api/api_search_user.php?search=' + this.value + '&role=' + filterSelect.value)
+    const users = await response.json()
 
-        const section = document.querySelector('#users')
-        section.innerHTML = ''
+    const section = document.querySelector('#users')
+    section.innerHTML = ''
 
-        for (const user of users) {
-            const userCard = document.createElement('div')
-            userCard.classList.add('user-card')
+    for (const user of users) {
+        const userCard = createUserCard(user)
+        section.appendChild(userCard)
+    }
+}
 
-            /* card-type*/
-            const cardType = document.createElement('div')
-            cardType.classList.add('card-type')
+function createUserCard(user) {
+    const userCard = document.createElement('div')
+    userCard.classList.add('user-card')
 
-            const typeSpan = document.createElement('span')
-            typeSpan.classList.add('type', user.type + '-card-type')
-            typeSpan.textContent = user.type;
-            cardType.appendChild(typeSpan)
+    userCard.appendChild(createCardType(user))
+    userCard.appendChild(createImage(user))
+    userCard.appendChild(createCardDetails(user))
+    userCard.appendChild(createButton(user))
 
-            const repSpan = document.createElement('span')
-            repSpan.classList.add('rep')
-            repSpan.textContent = user.reputation
-            cardType.appendChild(repSpan)
+    return userCard
+}
 
-            userCard.appendChild(cardType)
+function createCardType(user) {
+    const cardType = document.createElement('div')
+    cardType.classList.add('card-type')
 
-            /* image */
-            const img = document.createElement('img')
-            img.src = '../images/profile/default.png'
-            img.classList.add(user.type + '-card-border')
-            userCard.appendChild(img)
+    const typeSpan = document.createElement('span')
+    typeSpan.classList.add('type', user.type + '-card-type')
+    typeSpan.textContent = user.type
+    cardType.appendChild(typeSpan)
 
+    const repSpan = document.createElement('span')
+    repSpan.classList.add('rep')
+    repSpan.textContent = user.reputation
+    cardType.appendChild(repSpan)
 
-            /* card-details */
-            const cardDetails = document.createElement('div')
-            cardDetails.classList.add('card-details')
+    return cardType
+}
 
-            const cardName = document.createElement('span')
-            cardName.classList.add('card-name')
-            cardName.textContent = user.name
-            cardDetails.appendChild(cardName)
+function createImage(user) {
+    const img = document.createElement('img')
+    img.src = '../images/profile/profile' + user.userId + '.png'
+    img.onerror = () => { img.src = '../images/profile/default.png' }
+    img.classList.add(user.type + '-card-border')
+    return img
+}
 
-            const username = document.createElement('span')
-            username.textContent = user.username
-            cardDetails.appendChild(username)
+function createCardDetails(user) {
+    const cardDetails = document.createElement('div')
+    cardDetails.classList.add('card-details')
 
-            userCard.appendChild(cardDetails)
+    const cardName = document.createElement('span')
+    cardName.classList.add('card-name')
+    cardName.textContent = user.name
+    cardDetails.appendChild(cardName)
 
-            /* buttons */
-            const buttons = document.createElement('div')
-            buttons.classList.add('card-buttons')
-            if (user.type === "client") {
-                const buttonWrap = document.createElement('div')
-                buttonWrap.classList.add('button-wrap')
+    const username = document.createElement('span')
+    username.textContent = user.username
+    cardDetails.appendChild(username)
 
-                const link = document.createElement('a')
-                link.href = "../pages/register.php"
+    return cardDetails
+}
 
-                const upgradeButton = document.createElement('button')
-                upgradeButton.classList.add('upgrade')
-                upgradeButton.textContent = 'upgrade'
+function createButton(user) {
+    const button = document.createElement('div')
+    button.classList.add('card-button')
 
-                link.appendChild(upgradeButton)
+    const buttonWrap = document.createElement('div')
+    buttonWrap.classList.add('button-wrap')
 
-                buttonWrap.appendChild(link)
+    const link = document.createElement('a')
+    link.href = "../pages/register.php"
 
-                buttons.appendChild(buttonWrap)
-            }
-            else if (user.type === "agent") {
-                const buttonWrap = document.createElement('div')
-                buttonWrap.classList.add('button-wrap')
-                buttonWrap.classList.add('two-button-wrap')
+    const upgradeButton = document.createElement('button')
+    upgradeButton.classList.add('details')
+    upgradeButton.textContent = 'details'
 
-                const link = document.createElement('a')
-                link.href = "../pages/register.php"
-
-                const upgradeButton = document.createElement('button')
-                upgradeButton.classList.add('upgrade')
-                upgradeButton.textContent = 'upgrade'
-
-                link.appendChild(upgradeButton)
-
-                buttonWrap.appendChild(link)
-
-                buttons.appendChild(buttonWrap)
-
-                const buttonWrap1 = document.createElement('div')
-                buttonWrap1.classList.add('button-wrap')
-                buttonWrap1.classList.add('two-button-wrap')
-
-                const link1 = document.createElement('a')
-                link1.href = "../pages/register.php"
-
-                const upgradeButton1 = document.createElement('button')
-                upgradeButton1.classList.add('assign')
-                upgradeButton1.textContent = 'assign'
-
-                link1.appendChild(upgradeButton1)
-
-                buttonWrap1.appendChild(link1)
-
-                buttons.appendChild(buttonWrap1)
-
-            }
-            else if (user.type === "admin") {
-                const buttonWrap = document.createElement('div')
-                buttonWrap.classList.add('button-wrap')
-
-                const link = document.createElement('a')
-                link.href = "../pages/register.php"
-
-                const upgradeButton = document.createElement('button')
-                upgradeButton.classList.add('assign')
-                upgradeButton.textContent = 'assign'
-
-                link.appendChild(upgradeButton)
-
-                buttonWrap.appendChild(link)
-
-                buttons.appendChild(buttonWrap)
-            }
-
-            userCard.append(buttons)
-
-            section.appendChild(userCard)
-        }
-    })
+    link.appendChild(upgradeButton)
+    buttonWrap.appendChild(link)
+    button.append(buttonWrap)
+    return button
 }
