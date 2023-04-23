@@ -145,13 +145,74 @@ form {
     align-items: center;
     font-size: 1.5rem;
     font-weight: bold;
-   
+
 }
 
-#modal-title h3{
+#modal-title h3 {
     margin-left: 100px;
 }
 
 #modal-title .close {
     cursor: pointer;
+}
+
+
+
+.department-content {
+    display: flex;
+    margin: 50px 6%;
+}
+
+/* Style for the tickets container */
+.tickets-container {
+    width: 80%;
+    padding-right: 20px;
+    /* add some spacing between columns */
+}
+
+/* Style for the members container */
+.members-container {
+    width: 20%;
+    align-items: center;
+    align-content: center;
+}
+
+.members-container h3{
+    text-align: center;
+    font-size: 2em;
+    color: #44C4D9;
+    margin-bottom: 30px;
+}
+
+.member{
+    margin-top: 15px;
+    border-radius: 20px;
+    border: 2px solid white;
+    padding: 10px;
+}
+
+.member img{
+    margin-right: 20px;
+}
+
+.member span{
+    text-align: center;
+    font-weight: bold;
+}
+
+.member:hover{
+    border: 2px solid #D66AE6;
+}
+
+#add-member-container {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+    width: 100%;
+    min-height: 70px;
 }
