@@ -22,10 +22,10 @@
           <li class="forum"><a href="#">Forum</a></li>
           <li class="FAQ"><a href="#">FAQ</a></li>
           <li class="Help"><a href="#">Help</a></li>
-          <?php if ($session->isLoggedIn() && $session->getRole() === "admin"){
+          <?php if ($session->isLoggedIn() && $session->getRole() === "admin") {
             drawAdminButtons();
           } ?>
-             
+
         </ul>
       </nav>
       <?php
@@ -36,26 +36,27 @@
     </header>
     <section id="messages">
       <?php foreach ($session->getMessages() as $messsage) { ?>
-        <article class="<?=$messsage['type']?>">
-          <?=$messsage['text']?>
+        <article class="<?= $messsage['type'] ?>">
+          <?= $messsage['text'] ?>
         </article>
       <?php } ?>
     </section>
-      <main>
-  <?php } ?>
+    <main>
+    <?php } ?>
 
-  <?php function drawFooter()
-  { ?>
-  </main>
+    <?php function drawFooter()
+    { ?>
+    </main>
   </body>
 
   </html>
 <?php } ?>
 
 
-<?php function drawAdminButtons(){ ?>
-   <li class="Users"><a href="../pages/users.php">Users</a></li>
-   <li class="Users"><a href="../pages/departments.php">Departments</a></li>
+<?php function drawAdminButtons()
+{ ?>
+  <li class="Users"><a href="../pages/users.php">Users</a></li>
+  <li class="Users"><a href="../pages/departments.php">Departments</a></li>
 <?php } ?>
 
 <?php function drawAuthForms()
@@ -71,16 +72,18 @@
 <?php } ?>
 
 
-<?php function drawProfileIcon(Session $session){ ?>
-  
+<?php function drawProfileIcon(Session $session)
+{ ?>
+
   <div class="dropdown">
-  <button class="dropbtn"><a href="../pages/profile.php" class="buttons round-wrap">
-  <img src=<?=$session->getPhoto()?> alt="user-profile">
-    <span class="username"><?=$session->getName()?></span>
-  </a></button>
-  <div class="dropdown-content">
-    <a href="../pages/profile.php">Profile</a>
-    <a href="../actions/action_logout.php">Sign out</a>
+    <button class="dropbtn">
+      <a href="../pages/profile.php" class="buttons">
+        <img src=<?=$session->getPhoto() ?> alt="user-profile">
+        <span class="username"><?= $session->getName() ?></span>
+      </a></button>
+    <div class="dropdown-content">
+      <a href="../pages/profile.php">Profile</a>
+      <a href="../actions/action_logout.php">Sign out</a>
+    </div>
   </div>
-</div>
 <?php } ?>

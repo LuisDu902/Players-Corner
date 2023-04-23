@@ -3,7 +3,7 @@
 class Department
 {
   public string $category;
- 
+
   public function __construct(string $category)
   {
     $this->category = $category;
@@ -18,7 +18,7 @@ class Department
       ');
 
     $stmt->execute(array($this->category));
-    
+
     $members = array();
     while ($member = $stmt->fetch()) {
       $members[] = new User(
@@ -35,11 +35,16 @@ class Department
     return $members;
   }
 
+  static function addDepartment(PDO $db, string $new_category){
+    $stmt = $db->prepare('INSERT INTO Department (category) VALUES (?)');
+    $stmt->execute(array($new_category));
+  }
+
   static function getDepartments(PDO $db): array
   {
     $stmt = $db->prepare('SELECT category FROM Department');
     $stmt->execute();
-   
+
     $departments = array();
     while ($department = $stmt->fetch()) {
       $departments[] = new Department(
@@ -48,6 +53,39 @@ class Department
     }
 
     return $departments;
+  }
+
+  static function getDepartment(PDO $db, string $category): Department
+  {
+    $stmt = $db->prepare('
+        SELECT category
+        FROM Department 
+        WHERE category = ?
+      ');
+
+    $stmt->execute(array($category));
+    $department = $stmt->fetch();
+
+    return new Department(
+      $department['category'],
+    );
+  }
+
+  function addMember(PDO $db, int $userId)
+  {
+    $stmt = $db->prepare('INSERT INTO AgentDepartment (agent, department) VALUES (?, ?);');
+    $stmt->execute(array($userId, $this->category));
+  }
+
+  function getPhoto(): string
+  {
+    $fileName = strtolower(str_replace(" ", "_", $this->category));
+    $default = "../images/departments/default.png";
+    $attemp = "../images/departments/" . $fileName . ".png";
+    if (file_exists($attemp)) {
+      return $attemp;
+    } else
+      return $default;
   }
 
 }
