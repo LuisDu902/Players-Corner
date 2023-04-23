@@ -8,13 +8,14 @@
     <link rel="stylesheet" href="../css/authentication.css">
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/user.css">
+    <link rel="stylesheet" href="../css/department.css">
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/search.css' rel='stylesheet'>
     <script src="../javascript/script.js" defer></script>
   </head>
 
   <body>
     <header>
-      <a href="../pages/index.php"><img class="logo" src="../images/logo.png" alt="logo"> </a>
+      <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>
         <ul class="nav_links">
           <li class="active"> <a href="../pages/index.php">Home</a></li>
@@ -54,6 +55,7 @@
 
 <?php function drawAdminButtons(){ ?>
    <li class="Users"><a href="../pages/users.php">Users</a></li>
+   <li class="Users"><a href="../pages/departments.php">Departments</a></li>
 <?php } ?>
 
 <?php function drawAuthForms()

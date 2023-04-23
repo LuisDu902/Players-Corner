@@ -49,24 +49,24 @@
             <form action="../actions/action_edit_profile.php" method="post" class="authentication-form">
                 <div class="input-box">
                     <input type="text" name="name" required="required" placeholder="Name">
-                    <img src="../images/user.png" class="icon" alt="user">
+                    <img src="../images/icons/user.png" class="icon" alt="user">
                 </div>
                 <div class="input-box">
                     <input type="username" name="username" required="required" placeholder="Username">
-                    <img src="../images/username.png" class="icon" alt="username">
+                    <img src="../images/icons/username.png" class="icon" alt="username">
                 </div>
                 <div class="input-box">
                     <input type="email" name="email" required="required" placeholder="Email">
-                    <img src="../images/email.png" class="icon" alt="email">
+                    <img src="../images/icons/email.png" class="icon" alt="email">
                 </div>
 
                 <div class="input-box">
                     <input type="password" name="old-password" required="required" placeholder="New password">
-                    <img src="../images/password.png" class="icon" alt="password">
+                    <img src="../images/icons/password.png" class="icon" alt="password">
                 </div>
                 <div class="input-box">
                     <input type="password" name="new-password" required="required" placeholder="Old password">
-                    <img src="../images/password.png" class="icon" alt="password">
+                    <img src="../images/icons/password.png" class="icon" alt="password">
                 </div>
 
                
@@ -82,4 +82,54 @@
             </form>
         </div>
     </div>
+<?php } ?>
+
+<?php function drawUsers($users)
+{ ?>
+  <div class="search-bar">
+    <div class="search-box">
+      <input id="search-user" type="text" placeholder="search">
+      <i class="gg-search"></i>
+    </div>
+    <select name="" id="filter-select">
+        <option value="users"> All users </option>
+        <option value="client"> Clients </option>
+        <option value="agent"> Agents </option>
+        <option value="admin"> Admins </option>
+      </select>
+    <div class="order-condition">
+      <span> Order by </span>
+      <select name="" id="order-select">
+        <option value="name"> Name </option>
+        <option value="reputation"> Reputation </option>
+        <option value="type"> Role </option>
+      </select>
+    </div>
+  </div>
+  <div class="user-cards" id="users">
+    <?php foreach ($users as $user): ?>
+      <div class="user-card">
+        <div class="card-type">
+          <span class="type <?= $user->type ?>-card-type"><?= $user->type ?></span>
+          <span class="rep">
+            <?= $user->reputation ?>
+          </span>
+        </div>
+        <img src=<?= $user->getPhoto() ?> alt="profile" class="<?= $user->type ?>-card-border"></img>
+        <div class="card-details">
+          <span class="card-name">
+            <?= $user->name ?>
+          </span>
+          <span>
+            <?= $user->username ?>
+          </span>
+        </div>
+        <div class="card-button">
+          <div class="button-wrap">
+            <a href="../pages/register.php"><button class="details">details</button></a>
+          </div>
+        </div>
+      </div>
+    <?php endforeach; ?>
+  </div>
 <?php } ?>

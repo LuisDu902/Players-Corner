@@ -9,7 +9,7 @@
     die(header("Location: ../pages/profile.edit.php"));
   }
 
-  $fileName = "../images/profile/profile" .  $session->getId() . ".png";
+  $fileName = "../images/profiles/profile" .  $session->getId() . ".png";
   move_uploaded_file($_FILES['imageToUpload']['tmp_name'], $fileName);
  
   $session->setPhoto($fileName);
