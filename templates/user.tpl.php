@@ -73,11 +73,11 @@
                 <button type="submit" class="authentication-button">Save</button>
             </form>
         </div>
-        <div class="upload-photo round-wrap">
-        <img src=<?=$user->getPhoto()?> alt="user-profile">
-            <form action="../actions/action_upload_image.php" method="post" class="upload-form"
+        <div class="upload-photo ">
+           <form action="../actions/action_upload_image.php" method="post" class="upload-form round-wrap"
                 enctype="multipart/form-data">
-               <input type="file" id="profile-image" name="imageToUpload">
+                <img src=<?=$user->getPhoto()?> alt="user-profile" id ="user-image-preview" >
+                <input type="file" id="profile-image" name="imageToUpload">
                 <button type="submit" id="upload" class="authentication-button">Upload photo</button>
             </form>
         </div>

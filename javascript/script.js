@@ -124,3 +124,15 @@ window.onclick = function(event) {
     modal.style.display = "none";
   }
 }
+
+const fileInput = document.querySelector('#image');
+const imagePreview = document.querySelector('#image-preview');
+
+fileInput.addEventListener('change', function(event) {
+  const file = event.target.files[0];
+  const reader = new FileReader();
+  reader.addEventListener('load', function() {
+    imagePreview.src = reader.result;
+  });
+  reader.readAsDataURL(file);
+});

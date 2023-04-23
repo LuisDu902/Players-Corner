@@ -12,9 +12,10 @@
                 <span class="close">&times;</span>
             </div>
             <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="new_category" required="required" placeholder="Department's name" id="department-name">
+                <input type="text" name="new_category" required="required" placeholder="Department's name"
+                    id="department-name">
                 <img id="image-preview" src="../images/departments/default.png" alt="">
-                <input type="file" id="image" name="departmentImage" id="upload-dpt-img"><br>
+                <input type="file" id="image" name="departmentImage"><br>
                 <input type="submit" value="Confirm" class="authentication-button">
             </form>
         </div>
@@ -23,9 +24,8 @@
 
     <div class="departments">
         <?php foreach ($departments as $department): ?>
-
             <a href="../pages/department.php?category=<?= $department->category ?>" class="department">
-                <img src=<?=$department->getPhoto()?> alt="department image"></img>
+                <img src=<?= $department->getPhoto() ?> alt="department image"></img>
                 <span>
                     <?= $department->category ?>
                 </span>
@@ -59,7 +59,7 @@ function drawDepartment($department, $members)
                             <?= $member->name ?>
                         </span>
                     </a>
-                <?php endforeach; ?>    
+                <?php endforeach; ?>
             </div>
             <button id="add-member-container">Add new member</button>
         </div>
