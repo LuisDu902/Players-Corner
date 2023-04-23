@@ -99,10 +99,10 @@
 }
 
 .profile-picture img{
-  max-height: 300px;
+  height: 300px;
 }
 .upload-photo img {
-  max-height: 400px;
+  height: 400px;
 }
 
 .profile-picture span {
