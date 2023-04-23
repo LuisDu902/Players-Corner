@@ -76,5 +76,17 @@ class Department
     $stmt = $db->prepare('INSERT INTO AgentDepartment (agent, department) VALUES (?, ?);');
     $stmt->execute(array($userId, $this->category));
   }
+
+  function getPhoto(): string
+  {
+    $fileName = strtolower(str_replace(" ", "_", $this->category));
+    $default = "../images/departments/default.png";
+    $attemp = "../images/departments/" . $fileName . ".png";
+    if (file_exists($attemp)) {
+      return $attemp;
+    } else
+      return $default;
+  }
+
 }
 ?>

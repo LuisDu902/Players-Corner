@@ -78,7 +78,7 @@
   <div class="dropdown">
     <button class="dropbtn">
       <a href="../pages/profile.php" class="buttons">
-        <img src=<?= $session->getPhoto() ?> alt="user-profile">
+        <img src=<?=$session->getPhoto() ?> alt="user-profile">
         <span class="username"><?= $session->getName() ?></span>
       </a></button>
     <div class="dropdown-content">

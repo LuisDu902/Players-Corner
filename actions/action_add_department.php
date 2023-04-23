@@ -8,8 +8,14 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../classes/department.class.php');
 
 $db = getDatabaseConnection();
-
-Department::addDepartment($db, $_POST['new_category']);
-
+if ($_FILES['departmentImage']['tmp_name'][0] == "") {
+    Department::addDepartment($db, $_POST['new_category']);
+    die(header("Location: ../pages/departments.php"));
+} else {
+    $department_name = strtolower(str_replace(" ", "_", $_POST['new_category']));
+    $fileName = "../images/departments/" . $department_name . ".png";
+    move_uploaded_file($_FILES['departmentImage']['tmp_name'], $fileName);
+    Department::addDepartment($db, $_POST['new_category']);
+}
 header('Location: ../pages/departments.php');
 ?>

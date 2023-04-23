@@ -6,8 +6,6 @@
     </div>
 
     <div id="myModal" class="modal">
-
-        <!-- Modal content -->
         <div class="modal-content">
             <div id="modal-title">
                 <h3>Add new Department</h3>
@@ -15,8 +13,8 @@
             </div>
             <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="new_category" required="required" placeholder="Department's name" id="department-name">
-                <img id="image-preview" src="../images/departments/image.png" alt="">
-                <input type="file" id="image" name="image" id="upload-dpt-img"><br>
+                <img id="image-preview" src="../images/departments/default.png" alt="">
+                <input type="file" id="image" name="departmentImage" id="upload-dpt-img"><br>
                 <input type="submit" value="Confirm" class="authentication-button">
             </form>
         </div>
@@ -27,7 +25,7 @@
         <?php foreach ($departments as $department): ?>
 
             <a href="../pages/department.php?category=<?= $department->category ?>" class="department">
-                <img src="../images/departments/image.png" alt="department image"></img>
+                <img src=<?=$department->getPhoto()?> alt="department image"></img>
                 <span>
                     <?= $department->category ?>
                 </span>

@@ -57,8 +57,8 @@ function createCardType(user) {
 
 function createImage(user) {
     const img = document.createElement('img')
-    img.src = '../images/profiles/profile' + user.userId + '.png'
-    img.onerror = () => { img.src = '../images/profiles/default.png' }
+    img.src = '../images/users/user' + user.userId + '.png'
+    img.onerror = () => { img.src = '../images/users/default.png' }
     img.classList.add(user.type + '-card-border')
     return img
 }

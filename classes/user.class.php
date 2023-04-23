@@ -109,8 +109,8 @@ class User
   function getPhoto(): string
   {
 
-    $default = "../images/profiles/default.png";
-    $attemp = "../images/profiles/profile" . $this->userId . ".png";
+    $default = "../images/users/default.png";
+    $attemp = "../images/users/user" . $this->userId . ".png";
     if (file_exists($attemp)) {
       return $attemp;
     } else
