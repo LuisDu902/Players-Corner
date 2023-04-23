@@ -16,6 +16,6 @@
     $user = User::getUser($db, $session->getId());
 
     drawHeader($session);
-    drawProfile($user);
+    drawEditUserForm($user);
     drawFooter();
 ?>

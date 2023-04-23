@@ -1,57 +1,163 @@
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
-
-}
-
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    width: 100%;
-    height: 100%;
     background-color: #222033;
+    font-family: sans-serif;
+    color: white;
 }
 
-html,
-body {
-    height: 100%;
+li,
+a,
+button {
+    text-decoration: none;
+    font-size: 1.1rem;
 }
 
-.menu {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1% 6% 3% 5%;
 }
 
-.menu ul {
-    display: inline-flex;
-    margin: 50px;
-}
-
-.menu ul li {
-    list-style: none;
-    margin: 0 20px;
-    color: #f7feff;
+.logo {
     cursor: pointer;
+    max-height: 100px;
+    margin-right: 40px;
 }
 
-.logo img {
-    width: 80px;
-    margin-top: -30px;
-    margin-right: 48px;
+.nav_links {
+    list-style-type: none;
+}
+
+.nav_links li {
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.nav_links li a {
+    transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+    color: #D66AE6;
 }
 
 .active a {
     color: #D66AE6 !important;
+}
+
+.sign-in,
+.sign-up, .details, .assign {
+    padding: 8px 22px;
+    display: block;
+    background-color: transparent;
+    color: white;
+    font-family: sans-serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease 0s;
+}
+
+.button-wrap {
+    max-width: 250px;
+    color: #f7feff;
+    border: 2px solid transparent;
+    border-radius: 20px;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.buttons {
+    margin-left: auto;
+    padding: auto;
+    display: flex;
+    align-items: center;
+}
+
+.two-button-wrap:first-child {
+    margin-right: 20px;
+}
+
+.buttons img {
+    max-width: 3em;
+}
+
+.buttons img {
+    color: #f7feff;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;
+}
+
+.buttons .username {
+    color: #D66AE6;
+    padding-left: 10px;
     font-weight: bold;
+}
+
+.dropbtn {
+    border: none;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: auto;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    text-align: center;
+    color: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    color: #D66AE6;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    align-items: center;
+    align-content: center;
+}
+
+.sign-out-button {
+    color: inherit;
+    text-decoration: underline;
+    cursor: pointer;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
     text-decoration: none;
 }
 
-.banner {
+.sign-out-button span{
+    padding: 12px 16px;
+}
+
+.sign-out-button span:hover{
+color:#D66AE6}
+
+
+.banner{
     width: 80%;
     height: 70%;
     top: 25%;
@@ -60,19 +166,18 @@ body {
     color: #f7feff;
 }
 
-.corner-text {
+.corner-text{
     width: 50%;
     float: left;
 }
-
-.corner-text h1 {
+.corner-text h1{
     font-size: 43px;
     width: 640px;
     position: relative;
     margin-left: 40px;
 }
 
-.corner-text p {
+.corner-text p{
     width: 650px;
     font-size: 15px;
     margin: 30px 0 30px 40px;
@@ -81,103 +186,38 @@ body {
 
 }
 
-.gif {
+.gif{
     width: 50%;
     float: right;
 }
 
-.gif img {
+.gif img{
     width: 100%;
-}
-
-.sign-up-button{
-    top: 40px;
-    right: 130px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
-
-.sign-out-button{
-    top: 50px;
-    right: 270px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-}
-
-
-.sign-in-button span,
-.sign-up-button span,
-.sign-out-button span {
-    display: block;
-    padding: 8px 22px;
-}
-
-.sign-in-button {
-    top: 40px;
-    right: 250px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
 }
 
 
 #messages article {
     margin: 1em 0;
     padding: 1em;
-}
-
-#messages article.success {
-    background-color: #DFF2BF;
-}
-
-#messages article.warning {
-    background-color: #FEEFB3;
-}
-
-#messages article.error {
-    background-color: #FFD2D2;
-}
-
-#messages article.info {
-    background-color: #BDE5F8;
-}
-.menu #profile-img {
-    width: 50px;
-    height: 50px;
-    top: 40px;
-    right: 180px;
-    position: absolute;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 50%;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
   }
   
-.menu #username {
-    top: 58px;
-    right: 120px;
-    position: absolute;
-    text-decoration: none;
-    color: #D66AE6;
-    font-weight: bold;
+  #messages article.success {
+    background-color: #DFF2BF;
+    color: black;
+  }
+  
+  #messages article.warning {
+    background-color: #FEEFB3;
+    color: black;
+  }
+  
+  #messages article.error {
+    background-color: #FFD2D2;
+    color: black;
 }
+  
+  #messages article.info {
+    background-color: #BDE5F8;
+    color: black;
+}
+ 

@@ -9,8 +9,8 @@
     align-items: center;
     display: flex;
     flex-direction: column;
-    margin-top: 20px;
     padding: 0;
+    margin-left: 30em;
   }
   
   .createTicket h2 {
@@ -41,7 +41,7 @@
   .createTicket textarea {
     margin-left: -20px;
     width: 100%;
-    padding: 25px 25px;
+    padding: 15px 15px;
     background: transparent;
     border: none;
     border-bottom: 2px solid #fff;
@@ -95,6 +95,6 @@
   }
   
   .createTicket button.create-Ticket:hover {
-    background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #222033, #222033);
+    background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #ffffff, #ffffff);
   }
   

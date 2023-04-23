@@ -1,31 +1,95 @@
-.container {
+.user-profile {
   display: flex;
   flex-direction: row;
-  width: 100%;
+  padding: 30px 5%;
+  align-items: flex-start;
+  justify-content: space-evenly;
 }
 
-.user-profile-container {
+/*first column*/
+.user-reputation {
   display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.title {
+  text-align: center;
+  font-size: 2em;
+  font-weight: bold;
+  color: #44C4D9;
+  margin-bottom: 30px;
+}
+
+.reputation-value {
+  text-align: center;
+  font-weight: bold;
+  color: #D66AE6;
+  border: 10px solid transparent;
+  border-radius: 50%;
+  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  width: 300px;
+  height: 300px;
+  margin: 30px 30px;
+  font-size: 100px;
+  line-height: 300px;
+}
+
+
+/*second column*/
+.user-details {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  border-radius: 20px;
   align-items: center;
-  justify-content: flex-end;
-  width: 25%;
-  height: 100%;
+  margin-top: 50px;
+ 
 }
 
-.user-profile {
-  text-align: left;
-  padding: 0 1.5rem;
-  width: auto;
-  margin-top: -1.5rem;
+#about {
+  grid-row: 1/2;
+  grid-column: 1/3;
+  padding: 0;
+  margin-bottom: 45px;
 }
 
-.user-avatar-container img {
-  width: 400px;
-  height: 400px;
-  top: 150px;
-  left: 100px;
-  position: absolute;
-  text-decoration: none;
+.field, .info {
+  text-align: center;
+  border: none;
+  border-radius: 20px;
+  margin-top: 40px;
+  padding: 10px 20px;
+  margin: 20px 15px;
+  font-size: 1.2em;
+}
+
+.info{
+  background-color: #44C4D9;
+  color: black;
+}
+
+
+.field{
+  background-color: #D66AE6;
+  
+}
+
+
+/*thid-column*/
+.profile-picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.profile-picture img,
+.upload-photo img {
   color: #f7feff;
   border: 2px solid transparent;
   border-radius: 50%;
@@ -34,83 +98,58 @@
   background-clip: content-box, border-box;
 }
 
-#edit-button{
-  top: 600px;
-  left: 150px;
-  position: absolute;
-  text-decoration: none;
+.profile-picture img{
+  height: 300px;
+}
+.upload-photo img {
+  height: 400px;
+}
+
+.profile-picture span {
+  margin-top: 20px;
+  font-size: 2em;
+  color: #D66AE6;
+  font-weight: bold;
+}
+
+
+#edit-button {
+  font-size: 1.5rem;
+  text-align: center;
   color: #f7feff;
   border: 2px solid transparent;
   border-radius: 20px;
   background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
   background-origin: border-box;
   background-clip: content-box, border-box;
+  width: 80%;
+  margin: 20px 30px;
 }
 
-#edit-button span{
-  display: block;
-  padding: 8px 120px;
+.upload-photo {
+  margin-left: 70px;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  align-content: center;
+  justify-content: center;
+}
+
+.upload-form {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="file"] {
+  margin-left: 50px;
 }
 
 
-.user-details{
-  position: absolute;
-  top: 700px;
-  left: 230px;
-  display: inline;
-  text-align: left;
+.edit-profile{
+  display: flex;
+  justify-content: center;
+  align-content: center;
 }
 
-.user-details th{
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  
-  color: white;
-  font-weight: bold;
-}
-
-.highlight {
-  color: #D66AE6;
-  margin-right: 10px;
-}
-
-.navbar {
-  position: fixed;
-  top: 100px;
-  left: 530px;
-  width: 100%;
-}
-
-.navbar ul {
-  display: inline-flex;
-  margin: 50px;
-  list-style: none;
-}
-
-.navbar li {
-  padding: 5px 5px 0;
-  text-decoration: none;
-  list-style: none;
-  margin: 0 20px;
-  color: #f7feff;
-  cursor: pointer;
-  font-size: 1.2em;
-  font-weight: bold;
-}
-
-.navbar li:hover {
-  color: #D66AE6;
-}
-
-.overview, .my-tickets, .stars, .messages{
-  position: fixed;
-  top: 250px;
-  left: 600px;
-  width: 63%;
-  height: 60%;
-  border: 2px solid transparent;
-  border-radius: 10px;
-  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-}

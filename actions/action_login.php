@@ -14,6 +14,8 @@
   if ($user) {
     $session->setId($user->userId);
     $session->setName($user->username);
+    $session->setRole($user->type);
+    $session->setPhoto($user->getPhoto());
     $session->addMessage('success', 'Login successful!');
     header('Location: ../pages/index.php');
   } else {
