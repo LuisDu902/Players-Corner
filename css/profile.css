@@ -2,74 +2,23 @@
   display: flex;
   flex-direction: row;
   padding: 30px 5%;
-  align-content: space-between;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: space-evenly;
 }
 
-.profile-picture {
+/*first column*/
+.user-reputation {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  align-content: center;
-  justify-content: center;
+  margin-top: 50px;
 }
 
-.profile-picture img,  .upload-photo img {
-  max-height: 400px;
-  color: #f7feff;
-  border: 2px solid transparent;
-  border-radius: 50%;
-  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-}
-
-#edit-button {
-  font-size: 1.5rem;
-  text-align: center;
-  color: #f7feff;
-  border: 2px solid transparent;
-  border-radius: 20px;
-  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-  background-origin: border-box;
-  background-clip: content-box, border-box;
-  width: 80%;
-  margin: 30px 30px;
-}
-
-.profile-picture span {
-  margin-top: 30px;
-  font-size: 2em;
-  color: #D66AE6;
-  font-weight: bold;
-}
-
-.user-details {
-  display: grid;
-  grid-template-columns: 3fr 7fr;
-  grid-template-rows: 1fr 3fr 3fr 3fr;
-  margin-left: 70px;
-  margin-right: 70px;
-  border-radius: 20px;
-  align-items: center;
-  padding: 20px;
-}
-
-#about{
-  grid-row: 1/2;
-  grid-column: 1/3;
-}
-.user-reputation{
-  display: flex;
-  flex-direction: column;
-}
-
-.title{
+.title {
   text-align: center;
   font-size: 2em;
   font-weight: bold;
   color: #44C4D9;
+  margin-bottom: 30px;
 }
 
 .reputation-value {
@@ -88,42 +37,119 @@
   line-height: 300px;
 }
 
-.field {
-  margin-top: 40px;
-  margin-right: 10px;
-  padding: 5px 5px;
-  margin: 20px 0px;
-  color: #D66AE6;
-  font-weight: bolder;
-  font-size: 1.2em;
+
+/*second column*/
+.user-details {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  border-radius: 20px;
+  align-items: center;
+  margin-top: 50px;
+ 
 }
 
-.info {
+#about {
+  grid-row: 1/2;
+  grid-column: 1/3;
+  padding: 0;
+  margin-bottom: 45px;
+}
+
+.field, .info {
   text-align: center;
   border: none;
   border-radius: 20px;
-  background-color: #44C4D9;
   margin-top: 40px;
-  padding: 5px 20px;
-  margin: 20px 0px;
+  padding: 10px 20px;
+  margin: 20px 15px;
   font-size: 1.2em;
 }
 
-.upload-photo{
+.info{
+  background-color: #44C4D9;
+  color: black;
+}
+
+
+.field{
+  background-color: #D66AE6;
+  
+}
+
+
+/*thid-column*/
+.profile-picture {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.profile-picture img,
+.upload-photo img {
+  color: #f7feff;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+.profile-picture img{
+  max-height: 300px;
+}
+.upload-photo img {
+  max-height: 400px;
+}
+
+.profile-picture span {
+  margin-top: 20px;
+  font-size: 2em;
+  color: #D66AE6;
+  font-weight: bold;
+}
+
+
+#edit-button {
+  font-size: 1.5rem;
+  text-align: center;
+  color: #f7feff;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+  width: 80%;
+  margin: 20px 30px;
+}
+
+.upload-photo {
   margin-left: 70px;
   display: flex;
   flex-direction: column;
   max-width: 400px;
+  align-content: center;
+  justify-content: center;
 }
 
-.upload-form{
+.upload-form {
   margin-top: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-
 input[type="file"] {
   margin-left: 50px;
 }
+
+
+.edit-profile{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+

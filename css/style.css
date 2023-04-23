@@ -49,7 +49,7 @@ header {
 }
 
 .sign-in,
-.sign-up, .upgrade, .assign {
+.sign-up, .details, .assign {
     padding: 8px 22px;
     display: block;
     background-color: transparent;
