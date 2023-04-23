@@ -35,7 +35,10 @@ class Department
     return $members;
   }
 
-
+  static function addDepartment(PDO $db, string $new_category){
+    $stmt = $db->prepare('INSERT INTO Department (category) VALUES (?)');
+    $stmt->execute(array($new_category));
+  }
 
   static function getDepartments(PDO $db): array
   {

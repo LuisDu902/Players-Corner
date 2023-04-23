@@ -14,7 +14,7 @@
                 <span class="close">&times;</span>
             </div>
             <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="name" required="required" placeholder="Department's name" id="department-name">
+                <input type="text" name="new_category" required="required" placeholder="Department's name" id="department-name">
                 <img id="image-preview" src="../images/departments/image.png" alt="">
                 <input type="file" id="image" name="image" id="upload-dpt-img"><br>
                 <input type="submit" value="Confirm" class="authentication-button">
