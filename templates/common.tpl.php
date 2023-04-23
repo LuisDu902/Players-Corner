@@ -14,15 +14,22 @@
         <ul>
             <li class="logo"><a href="../pages/index.php"><img src="../images/logo.png" alt=""></a></li>
             <li class="active"> <a href="../pages/index.php">Home</a></li>
-            <li>Forum</li>
+            <li class="forum"><a href="../pages/forum.php">Forum</a></li>
             <li>FAQ</li>
             <li>Help</li>
             <?php
              if ($session->isLoggedIn()) {
+              ?>
+              <li class="create"><a href="../pages/ticket.php"> Create Ticket </a> </li>
+              <?php
               drawLogoutForm($session);
               drawProfileIcon($session);
-            }
-             else drawAuthForms();
+              ?> 
+            <li> Create Ticket </li>
+            <?php 
+          
+             }
+             else drawAuthForms();;
             ?>
             </ul>
     </div>
