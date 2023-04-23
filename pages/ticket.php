@@ -7,7 +7,13 @@
     require_once(__DIR__ . '/../templates/common.tpl.php');
     require_once(__DIR__ . '/../templates/authentication.php');
     require_once(__DIR__ . '/../templates/initial.php');
+    require_once(__DIR__ . '/../templates/ticket.tpl.php');
+    require_once(__DIR__ . '/../actions/departments.php');
+    require_once(__DIR__ . '/../database/connection.db.php');
+    $db=getDatabaseConnection();
+    $department=getDepartments($db);
+    $tags=getTags($db);
     drawHeader($session);
-    drawInitial();
+    drawTicketForm($department,$tags);
     drawFooter();
 ?>
