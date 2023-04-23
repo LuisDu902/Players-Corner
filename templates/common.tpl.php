@@ -25,9 +25,7 @@
               drawLogoutForm($session);
               drawProfileIcon($session);
               ?> 
-            <li> Create Ticket </li>
-            <?php 
-          
+          <?php
              }
              else drawAuthForms();;
             ?>
