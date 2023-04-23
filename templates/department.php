@@ -10,12 +10,12 @@
         <!-- Modal content -->
         <div class="modal-content">
             <span class="close">&times;</span>
-            <form action="add_department.php" method="post" enctype="multipart/form-data">
-                <label for="name">Department Name:</label>
-                <input type="text" id="name" name="name"><br><br>
-                <label for="image">Department Image:</label>
-                <input type="file" id="image" name="image"><br><br>
-                <input type="submit" value="Add Department">
+            <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
+
+                <input type="text" name="name" required="required" placeholder="Department's name" id="department-name">
+                <img id="image-preview" src="../images/profiles/default.png" alt="">
+                <input type="file" id="image" name="image" id="upload-dpt-img"><br>
+                <input type="submit" value="Add Department" class="authentication-button">
             </form>
         </div>
 
