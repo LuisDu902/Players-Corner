@@ -1,7 +1,6 @@
 
 var upgradeModals = document.querySelectorAll(".upgrade-modal");
 
-
 if (upgradeModals) {
   var upgradeButtons = document.querySelectorAll(".upgrade");
   
@@ -18,6 +17,7 @@ if (upgradeModals) {
 
 
     upgradeButton.addEventListener('click', function () {
+
       var upgradeModal = upgradeModals[0];
      if(upgradeModal){
         upgradeModal.style.display = "block";

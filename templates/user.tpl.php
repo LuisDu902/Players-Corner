@@ -91,7 +91,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
       <input id="search-user" type="text" placeholder="search">
       <i class="gg-search"></i>
     </div>
-    <select name="" id="filter-select">
+    <select name="" class="filter-select">
       <option value="users"> All users </option>
       <option value="client"> Clients </option>
       <option value="agent"> Agents </option>
@@ -132,14 +132,14 @@ require_once(__DIR__ . '/../classes/user.class.php');
         <?= $user->username ?>
       </span>
     </div>
-    <div class="card-button">
+    <div class="card-buttons">
       <?php if ($user->type == "client") {
         drawClientCardButtons();
         drawUpgradeModal($user);
       } else if ($user->type == "agent") {
         drawAgentCardButtons($user);
         drawUpgradeModal($user);
-       // drawAssignModal($user);
+        // drawAssignModal($user);
       } else {
         drawAdminCardButtons($user);
         //drawAssignModal($user);
@@ -161,7 +161,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
       <form method="POST" action="../actions/action_upgrade_user.php">
         <div id="promote">
           <span>Upgrade to</span>
-          <select name="role" id="filter-select">
+          <select name="role" class="filter-select">
             <?php if ($user->type == 'client') { ?>
               <option value="agent"> Agent </option>
             <?php } ?>
@@ -169,7 +169,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
           </select>
         </div>
         <div class="button-wrap">
-          <button type="submit" name="upgrade_user" class="confirm-upgrade">Upgrade</button>
+          <button type="submit" name="upgrade_user" class="confirm-upgrade">upgrade</button>
         </div>
         <input type="hidden" name="userId" value="<?= $user->userId ?>">
       </form>
@@ -207,20 +207,24 @@ require_once(__DIR__ . '/../classes/user.class.php');
   <div class="two-button-wrap button-wrap">
     <button class="upgrade">upgrade</button>
   </div>
-  <div class="two-button-wrap button-wrap">
+  <div class="two-button-wrap">
     <form method="post" action="../pages/assign_departments.php">
-    <input type="hidden" name="userId" value=<?=$user->userId?>>
-      <button type="submit" class="assign">Assign</button>
+      <input type="hidden" name="userId" value=<?= $user->userId ?>>
+      <div class="button-wrap">
+        <button type="submit" class="assign">assign</button>
+      </div>
     </form>
   </div>
 <?php } ?>
 
 <?php function drawAdminCardButtons($user)
 { ?>
-  <div class="button-wrap">
-    <form method="post" action="../pages/assign_departments.php">
-    <input type="hidden" name="userId" value=<?=$user->userId?>>
-      <button type="submit" class="assign">Assign</button>
-    </form>
-  </div>
+
+  <form method="post" action="../pages/assign_departments.php">
+    <input type="hidden" name="userId" value=<?= $user->userId ?>>
+    <div class="button-wrap">
+      <button type="submit" class="assign">assign</button>
+    </div>
+  </form>
+
 <?php } ?>
