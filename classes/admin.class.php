@@ -44,12 +44,15 @@ class Admin extends User
 
   }
 
-  function getAssignableDepartments(PDO $db, int $userId): array
+  static function getAssignableDepartments(PDO $db, int $userId): array
   {
     $stmt = $db->prepare('
-      SELECT department 
-      FROM AgentDepartment
-      WHERE agent <> ?
+      SELECT DISTINCT category 
+      FROM Department
+      WHERE category NOT IN( 
+        SELECT department
+        FROM AgentDepartment
+        WHERE agent = ?)
      ');
 
     $stmt->execute(array($userId));
@@ -61,6 +64,13 @@ class Admin extends User
       );
     }
     return $departments;
+  }
+
+  static function assignToDepartment(PDO $db, int $agent, string $department)
+  {
+    $stmt = $db->prepare('INSERT INTO AgentDepartment VALUES (?, ?)');
+
+    $stmt->execute(array($agent, $department));
   }
 
 }

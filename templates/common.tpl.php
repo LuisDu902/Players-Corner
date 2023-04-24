@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/department.css">
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/search.css' rel='stylesheet'>
     <script src="../javascript/script.js" defer></script>
+    <script src="../javascript/assign_departments.js" defer></script>
     <script src="../javascript/pop_up_windows.js" defer></script>
     <script src="../javascript/preview_image.js" defer></script>
   </head>

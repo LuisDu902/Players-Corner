@@ -137,12 +137,12 @@ require_once(__DIR__ . '/../classes/user.class.php');
         drawClientCardButtons();
         drawUpgradeModal($user);
       } else if ($user->type == "agent") {
-        drawAgentCardButtons();
+        drawAgentCardButtons($user);
         drawUpgradeModal($user);
-        drawAssignModal($user);
+       // drawAssignModal($user);
       } else {
-        drawAdminCardButtons();
-        drawAssignModal($user);
+        drawAdminCardButtons($user);
+        //drawAssignModal($user);
       } ?>
     </div>
 
@@ -198,23 +198,29 @@ require_once(__DIR__ . '/../classes/user.class.php');
 <?php function drawClientCardButtons()
 { ?>
   <div class="button-wrap">
-   <button class="upgrade">upgrade</button>
+    <button class="upgrade">upgrade</button>
   </div>
 <?php } ?>
 
-<?php function drawAgentCardButtons()
+<?php function drawAgentCardButtons($user)
 { ?>
   <div class="two-button-wrap button-wrap">
     <button class="upgrade">upgrade</button>
   </div>
   <div class="two-button-wrap button-wrap">
-   <button class="assign">assign</button>
+    <form method="post" action="../pages/assign_departments.php">
+    <input type="hidden" name="userId" value=<?=$user->userId?>>
+      <button type="submit" class="assign">Assign</button>
+    </form>
   </div>
 <?php } ?>
 
-<?php function drawAdminCardButtons()
+<?php function drawAdminCardButtons($user)
 { ?>
   <div class="button-wrap">
-    <button class="assign">assign</button>
+    <form method="post" action="../pages/assign_departments.php">
+    <input type="hidden" name="userId" value=<?=$user->userId?>>
+      <button type="submit" class="assign">Assign</button>
+    </form>
   </div>
 <?php } ?>

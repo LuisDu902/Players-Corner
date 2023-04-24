@@ -87,7 +87,7 @@ function createButtons(user) {
     return createAgentButtons()
   }
   else if (user.type === "admin") {
-   return createAdminButtons()
+    return createAdminButtons()
   }
 }
 
@@ -129,12 +129,15 @@ function createAgentButtons() {
   buttonWrap1.classList.add('button-wrap')
   buttonWrap1.classList.add('two-button-wrap')
 
+  const link = document.createElement('a')
+  link.href = "../pages/assign_departments.php"
+
   const assignButton = document.createElement('button')
   assignButton.classList.add('assign')
   assignButton.textContent = 'assign'
 
-  
-  buttonWrap1.appendChild(assignButton)
+  link.appendChild(assignButton)
+  buttonWrap1.appendChild(link)
   buttons.appendChild(buttonWrap1)
 
   return buttons
@@ -148,13 +151,17 @@ function createAdminButtons() {
   const buttonWrap = document.createElement('div')
   buttonWrap.classList.add('button-wrap')
 
+  const link = document.createElement('a')
+  link.href = "../pages/assign_departments.php"
 
   const assignButton = document.createElement('button')
   assignButton.classList.add('assign')
   assignButton.textContent = 'assign'
 
-  buttonWrap.appendChild(assignButton)
+  link.appendChild(assignButton)
+  buttonWrap.appendChild(link)
   buttons.appendChild(buttonWrap)
+
 
   return buttons
 }

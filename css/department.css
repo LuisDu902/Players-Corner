@@ -24,6 +24,11 @@
     min-height: 35px;
 }
 
+.departments-bar button:hover {
+    background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #222033, #222033);
+    color: black;
+}
+
 .departments {
     margin: 3% 5% 5% 5%;
     display: grid;
@@ -188,4 +193,20 @@
     background-clip: content-box, border-box;
     width: 100%;
     min-height: 70px;
+}
+
+#assign-departments .department img.selected{
+    border: 4px solid #D66AE6;
+}
+
+#assign-department-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#assign-button{
+    width: 10%;
+    height: 10%;
+    margin-bottom: 5%;
 }

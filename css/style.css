@@ -73,6 +73,11 @@ header {
     background-clip: content-box, border-box;
 }
 
+.button-wrap:hover{
+    background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #222033, #222033);
+    color: black;
+}
+
 .buttons {
     margin-left: auto;
     padding: auto;

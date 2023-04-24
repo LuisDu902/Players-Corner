@@ -67,3 +67,24 @@ function drawDepartment($department, $members)
         </div>
     </div>
 <?php } ?>
+
+
+<?php function drawAssignableDepartments($departments, $userId)
+{ ?>
+    <form action="../actions/action_assign_departments.php" method="POST" id="assign-department-form">
+        <div class="departments" id="assign-departments">
+            <?php foreach ($departments as $department): ?>
+                <div class="department" id="department">
+                    <img src=<?= $department->getPhoto() ?> alt=<?= $department->category ?>></img>
+                    <span>
+                        <?= $department->category ?>
+                    </span>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
+        <button type="submit" name="assign" id="assign-button" class="button-wrap">Assign</button>
+        <input type="hidden" name="selected_departments" id="selected-departments">
+        <input type="hidden" name="userId" id=<?= $userId ?> value=<?= $userId ?>>
+    </form>
+<?php } ?>

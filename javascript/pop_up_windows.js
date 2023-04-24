@@ -35,7 +35,7 @@ if (upgradeModals) {
 }
 
 
-
+/*
 var assignModals = document.querySelectorAll(".assign-modal");
 
 
@@ -61,7 +61,7 @@ if (assignModals) {
     });
 
   }
-}
+}*/
 
 
 var departmentModal = document.querySelector("#department-modal");
