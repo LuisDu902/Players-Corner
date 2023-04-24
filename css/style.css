@@ -49,7 +49,8 @@ header {
 }
 
 .sign-in,
-.sign-up, .details, .assign {
+.sign-up, .upgrade,.confirm-upgrade, .assign {
+    text-align: center;
     padding: 8px 22px;
     display: block;
     background-color: transparent;
@@ -61,6 +62,8 @@ header {
 }
 
 .button-wrap {
+    text-align: center;
+    width: fit-content;
     max-width: 250px;
     color: #f7feff;
     border: 2px solid transparent;

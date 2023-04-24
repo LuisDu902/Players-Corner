@@ -33,7 +33,7 @@ function createUserCard(user) {
   userCard.appendChild(createCardType(user))
   userCard.appendChild(createImage(user))
   userCard.appendChild(createCardDetails(user))
-  userCard.appendChild(createButton(user))
+  userCard.appendChild(createButtons(user))
 
   return userCard
 }
@@ -79,85 +79,99 @@ function createCardDetails(user) {
   return cardDetails
 }
 
-function createButton(user) {
+function createButtons(user) {
+  if (user.type === "client") {
+    return createClientButtons()
+  }
+  else if (user.type === "agent") {
+    return createAgentButtons()
+  }
+  else if (user.type === "admin") {
+   return createAdminButtons()
+  }
+}
+
+function createClientButtons() {
+
+  const buttons = document.createElement('div')
+  buttons.classList.add('card-button')
+
+  const buttonWrap = document.createElement('div')
+  buttonWrap.classList.add('button-wrap')
+
+  const upgradeButton = document.createElement('button')
+  upgradeButton.classList.add('upgrade')
+  upgradeButton.textContent = 'upgrade'
+
+  buttonWrap.appendChild(upgradeButton)
+  buttons.appendChild(buttonWrap)
+
+  return buttons
+}
+
+function createAgentButtons() {
+
+  const buttons = document.createElement('div')
+  buttons.classList.add('card-button')
+
+  const buttonWrap = document.createElement('div')
+  buttonWrap.classList.add('button-wrap')
+  buttonWrap.classList.add('two-button-wrap')
+
+  const upgradeButton = document.createElement('button')
+  upgradeButton.classList.add('upgrade')
+  upgradeButton.textContent = 'upgrade'
+
+  buttonWrap.appendChild(upgradeButton)
+  buttons.appendChild(buttonWrap)
+
+  const buttonWrap1 = document.createElement('div')
+  buttonWrap1.classList.add('button-wrap')
+  buttonWrap1.classList.add('two-button-wrap')
+
+  const assignButton = document.createElement('button')
+  assignButton.classList.add('assign')
+  assignButton.textContent = 'assign'
+
+  
+  buttonWrap1.appendChild(assignButton)
+  buttons.appendChild(buttonWrap1)
+
+  return buttons
+}
+
+function createAdminButtons() {
+
+  const buttons = document.createElement('div')
+  buttons.classList.add('card-button')
+
+  const buttonWrap = document.createElement('div')
+  buttonWrap.classList.add('button-wrap')
+
+
+  const assignButton = document.createElement('button')
+  assignButton.classList.add('assign')
+  assignButton.textContent = 'assign'
+
+  buttonWrap.appendChild(assignButton)
+  buttons.appendChild(buttonWrap)
+
+  return buttons
+}
+
+function createModal(user) {
   const button = document.createElement('div')
   button.classList.add('card-button')
 
   const buttonWrap = document.createElement('div')
   buttonWrap.classList.add('button-wrap')
 
-  const link = document.createElement('a')
-  link.href = "../pages/register.php"
 
   const upgradeButton = document.createElement('button')
-  upgradeButton.classList.add('details')
-  upgradeButton.textContent = 'details'
-
-  link.appendChild(upgradeButton)
-  buttonWrap.appendChild(link)
+  upgradeButton.classList.add('upgrade')
+  upgradeButton.textContent = 'upgrade'
+  buttonWrap.appendChild(upgradeButton)
   button.append(buttonWrap)
   return button
 }
 
-const fileInput = document.querySelector('#image');
-const imagePreview = document.querySelector('#image-preview');
-
-fileInput.addEventListener('change', function (event) {
-  const file = event.target.files[0];
-  const reader = new FileReader();
-  reader.addEventListener('load', function () {
-    imagePreview.src = reader.result;
-  });
-  reader.readAsDataURL(file);
-});
-
-
-
-
-var modal1 = document.getElementById("upgrade-modal");
-
-
-if (modal1) {
-  var btn1 = document.getElementById("details");
-  var span1 = document.getElementsByClassName("close")[0];
-
-  btn1.addEventListener('click', function () {
-    modal1.style.display = "block";
-  })
-
-
-  span1.onclick = function () {
-    modal1.style.display = "none";
-  }
-
-  window.onclick = function (event) {
-    if (event.target == modal1) {
-      modal1.style.display = "none";
-    }
-  }
-}
-
-
-
-var departmentModal = document.querySelector("#department-modal");
-
-if (departmentModal) {
-  var addButton = document.querySelector("#add-department");
-  var closeButton = document.getElementsByClassName("close")[0];
-
-  addButton.addEventListener('click', function () {
-    departmentModal.style.display = "block";
-  })
-
-  closeButton.onclick = function () {
-    departmentModal.style.display = "none";
-  }
-
-  window.onclick = function (event) {
-    if (event.target == departmentModal) {
-      departmentModal.style.display = "none";
-    }
-  }
-
-
-}

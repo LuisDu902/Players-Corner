@@ -56,15 +56,12 @@ function drawDepartment($department, $members)
 { ?>
     <div id="department-modal" class="modal">
         <div class="modal-content">
-            <div id="modal-title">
-                <h3>Add new Department</h3>
-                <span class="close">&times;</span>
-            </div>
+            <span class="modal-title"> Add new Department </span>
             <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="new_category" required="required" placeholder="Department's name"
                     id="department-name">
-                <img id="image-preview" src="../images/departments/default.png" alt="">
-                <input type="file" id="image" name="departmentImage"><br>
+                <img id="dep-image-preview" src="../images/departments/default.png" alt="">
+                <input type="file" id="dep-image" name="departmentImage"><br>
                 <input type="submit" value="Confirm" class="authentication-button">
             </form>
         </div>

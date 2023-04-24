@@ -96,7 +96,7 @@ class User
     );
   }
 
-  function updateReputation(PDO $db, string $reputation)
+  function updateReputation(PDO $db, int $reputation)
   {
     $stmt = $db->prepare('
         UPDATE User SET reputation = ?
@@ -106,6 +106,7 @@ class User
     $stmt->execute(array($reputation, $this->userId));
   }
 
+ 
   function getPhoto(): string
   {
 

@@ -70,16 +70,14 @@ require_once(__DIR__ . '/../classes/user.class.php');
           <input type="password" name="new-password" required="required" placeholder="Old password">
           <img src="../images/icons/password.png" class="icon" alt="password">
         </div>
-
-
         <button type="submit" class="authentication-button">Save</button>
       </form>
     </div>
-    <div class="upload-photo ">
+    <div class="upload-photo">
       <form action="../actions/action_upload_image.php" method="post" class="upload-form round-wrap"
         enctype="multipart/form-data">
         <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview">
-        <input type="file" id="profile-image" name="imageToUpload">
+        <input type="file" id="user-image" name="imageToUpload">
         <button type="submit" id="upload" class="authentication-button">Upload photo</button>
       </form>
     </div>
@@ -135,27 +133,67 @@ require_once(__DIR__ . '/../classes/user.class.php');
       </span>
     </div>
     <div class="card-button">
-      <div class="button-wrap">
-        <button class="details" id="details">details</button>
-        
-        <div id="upgrade-modal" class="modal">
-        <div class="modal-content">
-            <div id="modal-title">
-                <h3>Add new Department</h3>
-                <span class="close">&times;</span>
-            </div>
-            <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="new_category" required="required" placeholder="Department's name"
-                    id="department-name">
-                <img id="image-preview" src="../images/departments/default.png" alt="">
-                <input type="file" id="image" name="departmentImage"><br>
-                <input type="submit" value="Confirm" class="authentication-button">
-            </form>
-        </div>
-
+      <?php if ($user->type == "client") {
+        drawClientCardButtons();
+      } else if ($user->type == "agent") {
+        drawAgentCardButtons();
+      } else {
+        drawAdminCardButtons();
+      } ?>
     </div>
+    <?= drawUserModal($user); ?>
 
+  </div>
+<?php } ?>
+
+
+<?php function drawUserModal($user)
+{ ?>
+  <div class="modal upgrade-modal">
+    <div class="modal-content">
+      <span class="modal-title">
+        <?= $user->name ?>
+      </span>
+      <img src=<?= $user->getPhoto() ?> alt="profile" class="<?= $user->type ?>-card-border"></img>
+      <form method="POST" action="../actions/action_upgrade_user.php">
+        <div id="promote">
+          <span>Upgrade to</span>
+          <select name="role" id="filter-select">
+            <?php if ($user->type == 'client') { ?>
+              <option value="agent"> Agent </option>
+            <?php } ?>
+            <option value="admin"> Admin </option>
+          </select>
+        </div>
+        <div class="button-wrap">
+          <button type="submit" name="upgrade_user" class="confirm-upgrade">Upgrade</button>
+        </div>
+        <input type="hidden" name="userId" value="<?= $user->userId ?>">
+      </form>
     </div>
   </div>
-</div>
+<?php } ?>
+
+<?php function drawClientCardButtons()
+{ ?>
+  <div class="button-wrap">
+   <button class="upgrade">upgrade</button>
+  </div>
+<?php } ?>
+
+<?php function drawAgentCardButtons()
+{ ?>
+  <div class="two-button-wrap button-wrap">
+    <button class="upgrade">upgrade</button>
+  </div>
+  <div class="two-button-wrap button-wrap">
+   <button class="assign">assign</button>
+  </div>
+<?php } ?>
+
+<?php function drawAdminCardButtons()
+{ ?>
+  <div class="button-wrap">
+    <button class="assign">assign</button>
+  </div>
 <?php } ?>

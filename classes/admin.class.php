@@ -32,14 +32,14 @@ class Admin extends User {
       return $users;
     }
 
-    static function upgradeUser(PDO $db, string $type, int $id)
+    static function upgradeUser(PDO $db, string $role, int $id)
     {
       $stmt = $db->prepare('
          UPDATE User SET type = ?
          WHERE userId = ?
         ');
   
-      $stmt->execute(array($type, $id));
+      $stmt->execute(array($role, $id));
   
     }
 

@@ -63,30 +63,22 @@
 
 .modal{
     display: none;
-    /* Hidden by default */
     position: fixed;
-    /* Stay in place */
     z-index: 1;
-    /* Sit on top */
     padding-top: 100px;
-    /* Location of the box */
     left: 0;
     top: 0;
     width: 100%;
-    /* Full width */
     height: 100%;
-    /* Full height */
     overflow: auto;
-    /* Enable scroll if needed */
     background-color: rgb(0, 0, 0);
-    /* Fallback color */
     background-color: rgba(0, 0, 0, 0.4);
-    /* Black w/ opacity */
 }
 
 .modal-content {
+    text-align: center;
     margin: auto;
-    padding: 20px;
+    padding: 20px 30px;
     border: 2px solid white;
     border-radius: 20px;
     position: absolute;
@@ -94,16 +86,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-
-
-.close:hover,
-.close:focus {
-    color: #D66AE6;
-    text-decoration: none;
-    cursor: pointer;
-}
 
 #department-name {
     text-align: center;
@@ -123,40 +110,25 @@
     outline: none;
 }
 
-.modal-content img {
+#department-modal img {
     display: block;
-    /* Make the image a block element */
     margin: auto;
-    /* Center the image */
     max-width: 100%;
-    /* Ensure the image is not wider than its container */
     border: 2px solid white;
     border-radius: 20px;
     margin-bottom: 10px;
 }
 
-form {
+#department-modal form {
     text-align: center;
     align-items: center;
 }
 
-#modal-title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 1.5rem;
+.modal-title{
+    font-size: 2em;
     font-weight: bold;
-
+    color: #D66AE6;
 }
-
-#modal-title h3 {
-    margin-left: 100px;
-}
-
-#modal-title .close {
-    cursor: pointer;
-}
-
 
 
 .department-content {
