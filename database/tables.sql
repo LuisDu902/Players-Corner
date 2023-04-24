@@ -41,7 +41,6 @@ CREATE TABLE Ticket(
    priority VARCHAR REFERENCES Priority(priority) NOT NULL,
    status VARCHAR REFERENCES Status(status) NOT NULL,
    category VARCHAR REFERENCES Department(category),
-   tag VARCHAR REFERENCES Hashtag(tag),
    frequentItem INTEGER REFERENCES FAQ(id),
    creator INTEGER REFERENCES User(userId),
    replier INTEGER REFERENCES User(userId)
@@ -55,10 +54,8 @@ CREATE TABLE TicketTag(
 
 CREATE TABLE Message(
    id INTEGER PRIMARY KEY,
-   priority VARCHAR REFERENCES Priority(priority) NOT NULL, 
    text VARCHAR NOT NULL,
    sent DATE NOT NULL,
-   status VARCHAR REFERENCES Status(status) NOT NULL,
    user INTEGER REFERENCES User(userId) NOT NULL,
    ticket INTEGER REFERENCES Ticket(id) NOT NULL
 );

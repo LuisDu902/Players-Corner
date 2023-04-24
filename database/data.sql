@@ -150,22 +150,30 @@ INSERT INTO AgentDepartment (agent, department) VALUES (89, 'Game design');
 INSERT INTO AgentDepartment (agent, department) VALUES (71, 'Account and billing');
 INSERT INTO AgentDepartment (agent, department) VALUES (73, 'Technical support');
 
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (1, 'Pokemon GO connection issue', 'I cannot connect to the Pokemon GO servers. Is anyone else having this issue?', '2023-04-24', 'public', 'high', 'open', 'Technical support', 0, 1, 71);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (2, 'Super Mario Bros. level bug', 'In world 5-2, there is a glitch where Mario gets stuck in the wall. Please fix!', '2023-04-23', 'public', 'medium', 'open', 'Gameplay issues', 0, 2, 72);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (3, 'CS:GO frame rate drop', 'My frame rate drops every time I enter a smoke grenade. How do I fix this?', '2023-04-22', 'public', 'high', 'open', 'Technical support', 0, 3, 73);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (4, 'League of Legends login issue', 'I cannot log in to League of Legends. It says my account is invalid, but I know my information is correct. Please help!', '2023-04-21', 'public', 'critical', 'open', 'Account and billing', 0, 4, 74);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (5, 'Fortnite multiplayer problem', 'I keep getting disconnected from the Fortnite servers while playing with my friends. Can you help?', '2023-04-20', 'public', 'medium', 'open', 'Technical support', 0, 5, 75);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (6, 'Crash when starting game', 'Whenever I try to start the game, it crashes immediately. I have tried uninstalling and reinstalling, but the issue persists. Any suggestions?', '2022-03-10', 'public', 'high', 'open', 'Technical support', 0, 2, 76);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (7, 'Error purchasing in-game currency', 'I tried to purchase in-game currency, but the transaction failed and I was not credited with the currency. However, the payment was still charged to my account. Can you help me resolve this issue?', '2022-04-01', 'public', 'medium', 'open', 'Account and billing', 0, 3, 77);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (8, 'Need help with game controls', 'I just started playing this game and I am having trouble with the controls. Is there a tutorial or guide that can help me learn how to play?', '2022-04-15', 'public', 'low', 'open', 'Gameplay issues', 0, 1, 78);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (9, 'Missing rewards from game event', 'I participated in a game event and completed all the challenges, but I did not receive the rewards that were promised. Can you help me get the rewards I earned?', '2022-05-01', 'public', 'high', 'open', 'Community management', 0, 1, 79);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (10, 'Suggestions for game improvement', 'I love playing this game, but there are some features that I think could be improved. Can I suggest some ideas for how to make the game even better?', '2022-05-10', 'public', 'medium', 'open', 'Game design', 0, 1, 80);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (11, 'Super Mario not loading', 'I am having trouble loading Super Mario on my Nintendo Switch. The game gets stuck on the loading screen and I cannot access the game. Can you help me?', '2022-01-01', 'public', 'high', 'open', 'Technical support', 0, 7, 76);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (12, 'CS:GO matchmaking issue', 'I am having trouble finding a match in CS:GO. Whenever I search for a game, it takes forever and I cannot find any players. This has been happening for a while now. Can you help me?', '2022-02-02', 'public', 'medium', 'open', 'Gameplay issues', 0, 5, 73);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (13, 'Billing issue', 'I have been charged twice for my subscription to World of Warcraft. I only have one account and should only be charged once. Can you refund me for the extra charge?', '2022-03-03', 'private', 'high', 'open', 'Account and billing', 0, 14, 81);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (14, 'Overwatch lagging', 'I am experiencing a lot of lag while playing Overwatch. This makes it difficult to aim and play the game. I have tried restarting my computer and internet, but it has not helped. Can you suggest a solution?', '2022-04-04', 'public', 'low', 'open', 'Technical support', 0, 23, 89);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (15, 'Gamer tag change', 'I would like to change my gamer tag in Fortnite. How do I do that?', '2022-05-05', 'private', 'medium', 'open', 'Account and billing', 0, 46, 91);
-INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (16, 'Super Smash Bros. bug', 'I have found a bug in Super Smash Bros. Whenever I try to use Pikachu''s thunderbolt move, the game crashes. This happens every time I try to use the move. Can you fix it?', '2022-06-06', 'public', 'high', 'open', 'Gameplay issues', 0, 15, 79);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (1, 'Pokemon GO connection issue', 'I cannot connect to the Pokemon GO servers. Is anyone else having this issue?', '2023-04-24', 'public', 'high', 'open', 'Technical support', NULL, 1, 71);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (2, 'Super Mario Bros. level bug', 'In world 5-2, there is a glitch where Mario gets stuck in the wall. Please fix!', '2023-04-23', 'public', 'medium', 'open', 'Gameplay issues', NULL, 2, 72);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (3, 'CS:GO frame rate drop', 'My frame rate drops every time I enter a smoke grenade. How do I fix this?', '2023-04-22', 'public', 'high', 'open', 'Technical support', NULL, 3, 73);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (4, 'League of Legends login issue', 'I cannot log in to League of Legends. It says my account is invalid, but I know my information is correct. Please help!', '2023-04-21', 'public', 'critical', 'open', 'Account and billing', NULL, 4, 74);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (5, 'Fortnite multiplayer problem', 'I keep getting disconnected from the Fortnite servers while playing with my friends. Can you help?', '2023-04-20', 'public', 'medium', 'open', 'Technical support', NULL, 5, 75);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (6, 'Crash when starting game', 'Whenever I try to start the game, it crashes immediately. I have tried uninstalling and reinstalling, but the issue persists. Any suggestions?', '2022-03-10', 'public', 'high', 'open', 'Technical support', NULL, 2, 76);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (7, 'Error purchasing in-game currency', 'I tried to purchase in-game currency, but the transaction failed and I was not credited with the currency. However, the payment was still charged to my account. Can you help me resolve this issue?', '2022-04-01', 'public', 'medium', 'open', 'Account and billing', NULL, 3, 77);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (8, 'Need help with game controls', 'I just started playing this game and I am having trouble with the controls. Is there a tutorial or guide that can help me learn how to play?', '2022-04-15', 'public', 'low', 'open', 'Gameplay issues', NULL, 1, 78);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (9, 'Missing rewards from game event', 'I participated in a game event and completed all the challenges, but I did not receive the rewards that were promised. Can you help me get the rewards I earned?', '2022-05-01', 'public', 'high', 'open', 'Community management', NULL, 1, 79);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (10, 'Suggestions for game improvement', 'I love playing this game, but there are some features that I think could be improved. Can I suggest some ideas for how to make the game even better?', '2022-05-10', 'public', 'medium', 'open', 'Game design', NULL, 1, 80);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (11, 'Super Mario not loading', 'I am having trouble loading Super Mario on my Nintendo Switch. The game gets stuck on the loading screen and I cannot access the game. Can you help me?', '2022-01-01', 'public', 'high', 'open', 'Technical support', NULL, 7, 76);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (12, 'CS:GO matchmaking issue', 'I am having trouble finding a match in CS:GO. Whenever I search for a game, it takes forever and I cannot find any players. This has been happening for a while now. Can you help me?', '2022-02-02', 'public', 'medium', 'open', 'Gameplay issues', NULL, 5, 73);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (13, 'Billing issue', 'I have been charged twice for my subscription to World of Warcraft. I only have one account and should only be charged once. Can you refund me for the extra charge?', '2022-03-03', 'private', 'high', 'open', 'Account and billing', NULL, 14, 81);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (14, 'Overwatch lagging', 'I am experiencing a lot of lag while playing Overwatch. This makes it difficult to aim and play the game. I have tried restarting my computer and internet, but it has not helped. Can you suggest a solution?', '2022-04-04', 'public', 'low', 'open', 'Technical support', NULL, 23, 89);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (15, 'Gamer tag change', 'I would like to change my gamer tag in Fortnite. How do I do that?', '2022-05-05', 'private', 'medium', 'open', 'Account and billing', NULL, 46, 91);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (16, 'Super Smash Bros. bug', 'I have found a bug in Super Smash Bros. Whenever I try to use Pikachu''s thunderbolt move, the game crashes. This happens every time I try to use the move. Can you fix it?', '2022-06-06', 'public', 'high', 'open', 'Gameplay issues', NULL, 15, 79);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (17, 'Overwatch character balance issue', 'I think some characters in Overwatch are overpowered and need to be balanced. Can you look into this?', '2023-04-19', 'public', 'medium', 'open', 'Gameplay issues', NULL, 6, 76);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (18, 'Payment not going through', "I tried to make a purchase in the game store but my payment isn't going through. What can I do?", '2023-04-18', 'public', 'high', 'open', 'Account and billing', NULL, 7, 77);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (19, 'Toxic player in chat', "There's a player in the chat who keeps using offensive language and making other players uncomfortable. Can you do something about this?", '2023-04-17', 'public', 'low', 'open', 'Community management', NULL, 8, 78);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (20, 'Valorant server lag', "I'm experiencing a lot of lag while playing Valorant. Is there something wrong with the servers?", '2023-04-16', 'public', 'medium', 'open', 'Technical support', NULL, 9, 79);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (21, 'In-game item missing', "I purchased an in-game item but it's not showing up in my inventory. Can you help me?", '2023-04-15', 'public', 'high', 'open', 'Account and billing', NULL, 10, 80);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (22, 'Overwatch server down', "I can't connect to the Overwatch servers. Is there a problem with them?", '2023-04-14', 'public', 'critical', 'open', 'Technical support', NULL, 11, 81);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (23, 'Community event suggestion', "I have an idea for a community event that I think would be really fun. Can I suggest it to you?", '2023-04-13', 'public', 'low', 'open', 'Community management', NULL, 12, 82);
+INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (24, 'Esports tournament registration issue', "I'm trying to register for an esports tournament but it's not letting me. What's going on?", '2023-04-12', 'public', 'medium', 'open', 'Esports and tournaments', NULL, 13, 83);
 
 INSERT INTO TicketTag (ticket, tag) VALUES (1, '#gamingissues');
 INSERT INTO TicketTag (ticket, tag) VALUES (1, '#onlinegamingtips');
@@ -199,3 +207,44 @@ INSERT INTO TicketTag (ticket, tag) VALUES (15, '#gamesuggestions');
 INSERT INTO TicketTag (ticket, tag) VALUES (15, '#gamedesign');
 INSERT INTO TicketTag (ticket, tag) VALUES (16, '#gamesuggestions');
 INSERT INTO TicketTag (ticket, tag) VALUES (16, '#gamedesign');
+INSERT INTO TicketTag (ticket, tag) VALUES (17, '#gamesuggestions');
+INSERT INTO TicketTag (ticket, tag) VALUES (17, '#gamedesign');
+INSERT INTO TicketTag (ticket, tag) VALUES (18, '#gamesuggestions');
+INSERT INTO TicketTag (ticket, tag) VALUES (18, '#gamedesign');
+INSERT INTO TicketTag (ticket, tag) VALUES (19, '#gamesuggestions');
+INSERT INTO TicketTag (ticket, tag) VALUES (19, '#gamedesign');
+INSERT INTO TicketTag (ticket, tag) VALUES (20, '#gamesuggestions');
+INSERT INTO TicketTag (ticket, tag) VALUES (20, '#gamedesign');
+INSERT INTO TicketTag (ticket, tag) VALUES (21, '#gamesuggestions');
+INSERT INTO TicketTag (ticket, tag) VALUES (21, '#gamedesign');
+INSERT INTO TicketTag (ticket, tag) VALUES (22, '#gamesuggestions');
+INSERT INTO TicketTag (ticket, tag) VALUES (22, '#gamedesign');
+
+INSERT INTO Message (id, text, sent, user, ticket) VALUES
+(1, "Thank you for contacting our technical support team. I'm sorry to hear that you're having trouble connecting to the Pokemon GO servers. Can you please tell me more about the issue you're experiencing?", "2023-04-25", 71,1);
+
+INSERT INTO Message (id, text, sent, user, ticket) VALUES
+(2, "Yes, whenever I try to connect to the game, it keeps saying that the servers are busy and to try again later. I've been trying for a while now and it still won't let me in.", "2023-04-25", 1, 1);
+
+INSERT INTO Message (id, text, sent, user, ticket) VALUES
+(3, "I understand. Can you please try restarting your device and your internet connection, and then try connecting to the game again?", "2023-04-25", 71, 1);
+
+
+INSERT INTO Message (id, text, sent, user, ticket) VALUES
+(4, "Okay, I've tried restarting my phone and my Wi-Fi, but it's still not working.", "2023-04-26", 1, 1);
+
+INSERT INTO Message (id, text, sent, user, ticket) VALUES
+(5, "Alright, let's try clearing the cache and data for the Pokemon GO app. This will reset the app to its default settings, but it should solve the issue. Can you please follow these steps: Go to Settings > Apps > Pokemon GO > Storage > Clear Cache and Clear Data?","2023-04-26",71, 1);
+
+INSERT INTO Message (id, text, sent, user, ticket) VALUES
+(6, "Okay, I've cleared the cache and data for the app. What should I do now?","2023-04-26", 1, 1);
+
+INSERT INTO Message (id, text, sent, user, ticket) VALUES
+(7, "Great! Now try opening the Pokemon GO app again and see if the issue has been resolved.","2023-04-26", 71, 1);
+ 
+
+INSERT INTO Message (id, text, sent, user, ticket) VALUES
+(8, "It's working now! Thank you so much for your help.", "2023-04-26", 1, 1);
+
+INSERT INTO Message (id, text, sent, user, ticket) VALUES
+(9, "You're welcome. If you have any other issues or questions, please don't hesitate to contact us again. Have a great day!", "2023-04-27", 71, 1);
