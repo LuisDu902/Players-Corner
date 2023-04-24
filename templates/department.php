@@ -2,25 +2,10 @@
 { ?>
     <div class="departments-bar">
         <span>Departments</span>
-        <button id="myBtn">Add new department</button>
+        <button id="add-department">Add new department</button>
     </div>
 
-    <div id="myModal" class="modal">
-        <div class="modal-content">
-            <div id="modal-title">
-                <h3>Add new Department</h3>
-                <span class="close">&times;</span>
-            </div>
-            <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
-                <input type="text" name="new_category" required="required" placeholder="Department's name"
-                    id="department-name">
-                <img id="image-preview" src="../images/departments/default.png" alt="">
-                <input type="file" id="image" name="departmentImage"><br>
-                <input type="submit" value="Confirm" class="authentication-button">
-            </form>
-        </div>
-
-    </div>
+    <?php drawDepartmentModal() ?>
 
     <div class="departments">
         <?php foreach ($departments as $department): ?>
@@ -65,4 +50,23 @@ function drawDepartment($department, $members)
         </div>
     </div>
 
+<?php } ?>
+
+<?php function drawDepartmentModal()
+{ ?>
+    <div id="department-modal" class="modal">
+        <div class="modal-content">
+            <div id="modal-title">
+                <h3>Add new Department</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="new_category" required="required" placeholder="Department's name"
+                    id="department-name">
+                <img id="image-preview" src="../images/departments/default.png" alt="">
+                <input type="file" id="image" name="departmentImage"><br>
+                <input type="submit" value="Confirm" class="authentication-button">
+            </form>
+        </div>
+    </div>
 <?php } ?>

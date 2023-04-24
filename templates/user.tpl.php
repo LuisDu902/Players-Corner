@@ -136,8 +136,26 @@ require_once(__DIR__ . '/../classes/user.class.php');
     </div>
     <div class="card-button">
       <div class="button-wrap">
-        <button id="details">details</button>
-      </div>
+        <button class="details" id="details">details</button>
+        
+        <div id="upgrade-modal" class="modal">
+        <div class="modal-content">
+            <div id="modal-title">
+                <h3>Add new Department</h3>
+                <span class="close">&times;</span>
+            </div>
+            <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
+                <input type="text" name="new_category" required="required" placeholder="Department's name"
+                    id="department-name">
+                <img id="image-preview" src="../images/departments/default.png" alt="">
+                <input type="file" id="image" name="departmentImage"><br>
+                <input type="submit" value="Confirm" class="authentication-button">
+            </form>
+        </div>
+
+    </div>
+
     </div>
   </div>
+</div>
 <?php } ?>
