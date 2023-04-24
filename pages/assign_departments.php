@@ -18,7 +18,13 @@
 
     $departments = Admin::getAssignableDepartments($db, intval($_POST['userId']));
 
-    drawHeader($session);
-    drawAssignableDepartments($departments, $_POST['userId']);
-    drawFooter();
+    if (count($departments) != 0){
+        drawHeader($session);
+        drawAssignableDepartments($departments, $_POST['userId']);
+        drawFooter();
+    }
+    else {
+        $session->addMessage('error', 'Already assigned to all departments');
+        header('Location: ../pages/users.php');
+    }
 ?>

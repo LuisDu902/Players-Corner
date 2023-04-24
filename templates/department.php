@@ -40,7 +40,9 @@ function drawDepartment($department, $members)
                 <?php foreach ($members as $member): ?>
                     <button class="member">
                         <img src=<?= $member->getPhoto() ?> alt="profile"></img>
-                        <span> <?= $member->name ?> </span>
+                        <span>
+                            <?= $member->name ?>
+                        </span>
                     </button>
                     <?php drawMemberModal($member); ?>
                 <?php endforeach; ?>
