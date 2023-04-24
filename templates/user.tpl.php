@@ -135,19 +135,22 @@ require_once(__DIR__ . '/../classes/user.class.php');
     <div class="card-button">
       <?php if ($user->type == "client") {
         drawClientCardButtons();
+        drawUpgradeModal($user);
       } else if ($user->type == "agent") {
         drawAgentCardButtons();
+        drawUpgradeModal($user);
+        drawAssignModal($user);
       } else {
         drawAdminCardButtons();
+        drawAssignModal($user);
       } ?>
     </div>
-    <?= drawUserModal($user); ?>
 
   </div>
 <?php } ?>
 
 
-<?php function drawUserModal($user)
+<?php function drawUpgradeModal($user)
 { ?>
   <div class="modal upgrade-modal">
     <div class="modal-content">
@@ -167,6 +170,24 @@ require_once(__DIR__ . '/../classes/user.class.php');
         </div>
         <div class="button-wrap">
           <button type="submit" name="upgrade_user" class="confirm-upgrade">Upgrade</button>
+        </div>
+        <input type="hidden" name="userId" value="<?= $user->userId ?>">
+      </form>
+    </div>
+  </div>
+<?php } ?>
+
+
+<?php function drawAssignModal($user)
+{ ?>
+  <div class="modal assign-modal">
+    <div class="modal-content">
+      <span class="modal-title">
+        Choose departments
+      </span>
+      <form method="POST" action="../actions/action_upgrade_user.php">
+        <div class="button-wrap">
+          <button type="submit" name="upgrade_user" class="confirm-upgrade">Assign</button>
         </div>
         <input type="hidden" name="userId" value="<?= $user->userId ?>">
       </form>

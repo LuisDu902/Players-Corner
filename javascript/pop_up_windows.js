@@ -35,6 +35,35 @@ if (upgradeModals) {
 }
 
 
+
+var assignModals = document.querySelectorAll(".assign-modal");
+
+
+if (assignModals) {
+  var assignButtons = document.querySelectorAll(".assign");
+  
+  for (var i = 0; i < assignModals.length; i++) {
+    
+    var assignButton = assignButtons[i];
+
+    assignButton.addEventListener('click', function () {
+      var assignModal = assignModals[0];
+     if(assignModal){
+      assignModal.style.display = "block";
+      }
+    });
+
+    window.addEventListener('click', function (event) { 
+      var assignModal = assignModals[0];
+      if (event.target == assignModal) {
+        assignModal.style.display = "none";
+      }
+    });
+
+  }
+}
+
+
 var departmentModal = document.querySelector("#department-modal");
 
 if (departmentModal) {
