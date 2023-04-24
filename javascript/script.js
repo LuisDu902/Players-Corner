@@ -57,9 +57,9 @@ function createCardType(user) {
 function createImage(user) {
   const img = document.createElement('img')
   
-  /*img.src = '../images/users/user' + user.userId + '.png'
+  img.src = '../images/users/user' + user.userId + '.png'
   img.onerror = () => { img.src = '../images/users/default.png' }
-  img.classList.add(user.type + '-card-border')*/
+  img.classList.add(user.type + '-card-border')
   img.src = '../images/users/default.png'
   return img
 }
@@ -202,11 +202,10 @@ function createUpgradeModal(user) {
 
   
   const img = document.createElement('img');
- /* img.src = '../images/users/user' + user.userId + '.png'
+  img.src = '../images/users/user' + user.userId + '.png'
   img.onerror = () => { img.src = '../images/users/default.png' }
   img.classList.add(user.type + '-card-border')
-*/
-img.src = '../images/users/default.png'
+
   const form = document.createElement('form');
   form.method = 'POST';
   form.action = '../actions/action_upgrade_user.php';
