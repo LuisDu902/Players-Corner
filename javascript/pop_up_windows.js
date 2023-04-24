@@ -80,3 +80,40 @@ if (departmentModal) {
   });
 
 }
+
+
+
+var memberModals = document.querySelectorAll(".member-modal");
+
+if (memberModals) {
+  var memberButtons = document.querySelectorAll(".member");
+  
+  for (var i = 0; i < memberModals.length; i++) {
+    
+    console.log(i);
+    console.log(memberButtons.length)
+    console.log(memberModals.length)
+   
+    var memberButton = memberButtons[i];
+
+    console.log(memberButton)
+    console.log(memberModals[i])
+
+
+    memberButton.addEventListener('click', function () {
+
+      var memberModal = memberModals[0];
+     if(memberModal){
+      memberModal.style.display = "block";
+      }
+    });
+
+    window.addEventListener('click', function (event) { 
+      var memberModal = memberModals[0];
+      if (event.target == memberModal) {
+        memberModal.style.display = "none";
+      }
+    });
+
+  }
+}

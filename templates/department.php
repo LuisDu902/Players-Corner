@@ -36,17 +36,16 @@ function drawDepartment($department, $members)
         </div>
         <div class="members-container">
             <h3>Members</h3>
-            <div class="members">
+            <div class="members buttons">
                 <?php foreach ($members as $member): ?>
-                    <a href="../pages/profile.php" class="member buttons">
-                        <img src=<?= $member->getPhoto() ?> alt="profile" class="member-img "></img>
-                        <span>
-                            <?= $member->name ?>
-                        </span>
-                    </a>
+                    <button class="member">
+                        <img src=<?= $member->getPhoto() ?> alt="profile"></img>
+                        <span> <?= $member->name ?> </span>
+                    </button>
+                    <?php drawMemberModal($member); ?>
                 <?php endforeach; ?>
             </div>
-            <button id="add-member-container">Add new member</button>
+
         </div>
     </div>
 

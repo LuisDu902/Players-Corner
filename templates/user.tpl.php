@@ -228,3 +228,29 @@ require_once(__DIR__ . '/../classes/user.class.php');
   </form>
 
 <?php } ?>
+
+
+<?php function drawMemberModal($user)
+{ ?>
+
+  <div class="modal member-modal">
+    <div class="modal-content">
+      <div class="card-type">
+        <span class="type <?= $user->type ?>-card-type"><?= $user->type ?></span>
+        <span class="rep">
+          <?= $user->reputation ?>
+        </span>
+      </div>
+      <img src=<?= $user->getPhoto() ?> alt="profile"></img>
+      <div class="card-details">
+        <span class="card-name">
+          <?= $user->name ?>
+        </span>
+        <span>
+          <?= $user->username ?>
+        </span>
+      </div>
+    </div>
+  </div>
+
+<?php } ?>

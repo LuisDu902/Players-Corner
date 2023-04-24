@@ -153,7 +153,18 @@
     width: 20%;
     align-items: center;
     align-content: center;
+    
 }
+
+.members{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+
 
 .members-container h3{
     text-align: center;
@@ -166,7 +177,11 @@
     margin-top: 15px;
     border-radius: 20px;
     border: 2px solid white;
-    padding: 10px;
+    padding: 10px 20px;
+    width: 280px;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
 }
 
 .member img{
@@ -209,4 +224,20 @@
     width: 10%;
     height: 10%;
     margin-bottom: 5%;
+}
+
+.member-modal .modal-content{
+    width: 400px;
+}
+
+.member-modal img {
+    height: 300px;
+    min-width: 300px ;
+}
+
+.member-modal .type{
+    margin-right: 50px;
+}
+.member-modal .rep{
+    margin-left: 50px;
 }
