@@ -22,13 +22,13 @@
   border-radius: 20px;
 }
 
-#search-user, #order-select, #search-ticket, .filter-criteria{
+#search-user, .order-select, #search-ticket, .filter-criteria{
   font-size: 1.1rem;
   margin-right: 10px;
   border: none;
 }
 
-#search-user:focus, #search-ticket:focus,.filter-criteria:focus, #order-select:focus, .filter-select:focus{ 
+#search-user:focus, #search-ticket:focus,.filter-criteria:focus, .order-select:focus, .filter-select:focus{ 
   outline: none;
 }
 

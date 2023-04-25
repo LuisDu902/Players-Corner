@@ -202,14 +202,14 @@ class Ticket
     return $messages;
   }
 
-  static function searchTickets(PDO $db, string $search = '', string $filter, string $order = 'title'): array
+  static function searchTickets(PDO $db, string $search = '', string $filter, string $order): array
   {
     $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
               FROM Ticket 
-              WHERE ? LIKE ? 
+              WHERE ' . $filter .  ' LIKE ? 
               ORDER BY ' . $order;
     $stmt = $db->prepare($query);
-    $stmt->execute(array($filter, $search . '%', ));
+    $stmt->execute(array($search . '%'));
 
     $tickets = array();
     while ($ticket = $stmt->fetch()) {

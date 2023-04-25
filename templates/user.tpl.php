@@ -91,7 +91,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
       <input id="search-user" type="text" placeholder="search">
       <img src="../images/icons/search.png">
     </div>
-    <select name="" class="filter-select">
+    <select name="" class="filter-select" id ="filter-user">
       <option value="users"> All users </option>
       <option value="client"> Clients </option>
       <option value="agent"> Agents </option>
@@ -99,7 +99,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
     </select>
     <div class="order-condition">
       <span> Order by </span>
-      <select name="" id="order-select">
+      <select name="" class="order-select" id="order-user">
         <option value="name"> Name </option>
         <option value="reputation"> Reputation </option>
         <option value="type"> Role </option>

@@ -1,6 +1,6 @@
 
-const userFilterSelect = document.querySelector('.filter-select')
-const userOrderSelect = document.querySelector('#order-select')
+const userFilterSelect = document.querySelector('#filter-user')
+const userOrderSelect = document.querySelector('#order-user')
 const searchUser = document.querySelector('#search-user')
 
 if (searchUser) {

@@ -10,8 +10,8 @@
     require_once(__DIR__ . '/../database/connection.db.php');
 
     $db= getDatabaseConnection();
-    $tickets = Ticket::getAllTickets($db);
-    
+   // $tickets = Ticket::getAllTickets($db);
+    $tickets = Ticket::searchTickets($db,"solved","status","title");
     drawHeader($session);
     drawTickets($tickets);
     drawFooter();

@@ -1,47 +1,48 @@
 <?php function drawTickets($tickets)
 { ?>
-        <div class="search-bar">
-            <div class="filter-condition">
-                <span> Filter by </span>
-                <select name="" class="filter-criteria">
-                    <option value="title"> Title </option>
-                    <option value="creator"> Creator </option>
-                    <option value="replier"> Assigned agent </option>
-                    <option value="status"> Status </option>
-                    <option value="priority"> Priority </option>
-                    <option value="tag"> Hashtag </option>
-                    <option value="visibility"> Visibility </option>
-                    <option value="category"> Category </option>
-                </select>
-            </div>
-            <div class="search-box">
-                <input id="search-ticket" type="text" placeholder="search">
-                <img src="../images/icons/search.png">
-            </div>
-
-            <div class="order-condition">
-                <span> Order by </span>
-                <select name="" id="order-select">
-                    <option value="title"> Title </option>
-                    <option value="category"> Category </option>
-                    <option value="status"> Status </option>
-                    <option value="priority"> Priority </option>
-                    <option value="visibility"> Visibility </option>
-                    <option value="date"> Date </option>
-                </select>
-            </div>
+    <div class="search-bar">
+        <div class="filter-condition">
+            <span> Filter by </span>
+            <select name="" class="filter-criteria" id="filter-ticket">
+                <option value="title"> Title </option>
+                <option value="creator"> Creator </option>
+                <option value="replier"> Assigned agent </option>
+                <option value="status"> Status </option>
+                <option value="priority"> Priority </option>
+                <option value="tag"> Hashtag </option>
+                <option value="visibility"> Visibility </option>
+                <option value="category"> Category </option>
+            </select>
+        </div>
+        <div class="search-box">
+            <input id="search-ticket" type="text" placeholder="search">
+            <img src="../images/icons/search.png">
         </div>
 
-        <div class="tickets">
-        <ul class="ticket-info">
-            <li>Creator</li>
-            <li>Title</li>
-            <li>Category</li>
-            <li>Status</li>
-            <li>Priority</li>
-            <li>Visibility</li>
-            <li>Date</li>
-        </ul>
+        <div class="order-condition">
+            <span> Order by </span>
+            <select name="" class="order-select" id="order-ticket">
+                <option value="title"> Title </option>
+                <option value="category"> Category </option>
+                <option value="status"> Status </option>
+                <option value="priority"> Priority </option>
+                <option value="visibility"> Visibility </option>
+                <option value="date"> Date </option>
+            </select>
+        </div>
+    </div>
+
+
+    <ul class="ticket-info">
+        <li>Creator</li>
+        <li>Title</li>
+        <li>Category</li>
+        <li>Status</li>
+        <li>Priority</li>
+        <li>Visibility</li>
+        <li>Date</li>
+    </ul>
+    <div class="tickets">
         <?php foreach ($tickets as $ticket) { ?>
             <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
                 <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">

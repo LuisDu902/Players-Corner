@@ -1,27 +1,22 @@
 
-const ticketFilterSelect = document.querySelector('.filter-criteria')
-const ticketOrderSelect = document.querySelector('#order-select')
+const ticketFilterSelect = document.querySelector('#filter-ticket')
+const ticketOrderSelect = document.querySelector('#order-ticket')
 const searchTicket = document.querySelector('#search-ticket')
 
-if (searchUser) {
-  searchUser.addEventListener('input', searchUsers)
+if (searchTicket) {
+  searchTicket.addEventListener('input', searchTickets)
 }
-if (filterSelect) {
-  filterSelect.addEventListener('change', searchUsers)
+if (ticketFilterSelect) {
+  ticketFilterSelect.addEventListener('change', searchTickets)
 }
-if (orderSelect) {
-  orderSelect.addEventListener('change', searchUsers)
+if (ticketOrderSelect) {
+  ticketOrderSelect.addEventListener('change', searchTickets)
 }
 
-async function searchUsers() {
-  const response = await fetch('../api/api_search_users.php?search=' + searchUser.value + '&role=' + filterSelect.value + '&order=' + orderSelect.value)
-  const users = await response.json()
+async function searchTickets() {
+  const response = await fetch('../api/api_search_tickets.php?search=' + searchTicket.value + '&filter=' + ticketFilterSelect.value + '&order=' + ticketOrderSelect.value)
+  const tickets = await response.json()
 
-  const section = document.querySelector('#users')
-  section.innerHTML = ''
-
-  for (const user of users) {
-    const userCard = createUserCard(user)
-    section.appendChild(userCard)
-  }
+  const section = document.querySelector('#tickets')
+  section.innerHTML = '<h1>JSAJKLDAJSL</h1>'
 }
