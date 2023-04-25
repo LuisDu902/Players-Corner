@@ -122,33 +122,6 @@ class Ticket
     $stmt->execute(array($category, $ticketId));
   }
 
-  static function getAllTickets(PDO $db): array
-  {
-    $stmt = $db->prepare(
-      'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
-       FROM Ticket '
-    );
-    $stmt->execute();
-
-    $tickets = array();
-    while ($ticket = $stmt->fetch()) {
-      $tickets[] = new Ticket(
-        intval($ticket['id']),
-        $ticket['title'],
-        $ticket['text'],
-        $ticket['createDate'],
-        $ticket['visibility'],
-        $ticket['priority'],
-        $ticket['status'],
-        $ticket['category'],
-        array(),
-        User::getUser($db, $ticket['creator']),
-        User::getUser($db, $ticket['replier'])
-      );
-    }
-
-    return $tickets;
-  }
 
   static function getUserTickets(PDO $db, int $userId): array
   {
@@ -202,12 +175,28 @@ class Ticket
     return $messages;
   }
 
-  static function searchTickets(PDO $db, string $search = '', string $filter, string $order): array
+  static function searchTickets(PDO $db, string $search = '', string $filter = 'title', string $order = 'title'): array
   {
-    $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
+
+    if ($filter == "creator" && $search != '') {
+      $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
+      FROM Ticket JOIN User ON User.userId = Ticket.creator
+      WHERE User.name LIKE ?
+      ORDER BY ' . $order;
+
+    } else if ($filter == "replier" && $search != '') {
+      $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
+      FROM Ticket JOIN User ON User.userId = Ticket.replier
+      WHERE User.name LIKE ?
+      ORDER BY ' . $order;
+
+    } else {
+      $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
               FROM Ticket 
-              WHERE ' . $filter .  ' LIKE ? 
+              WHERE ' . $filter . ' LIKE ? 
               ORDER BY ' . $order;
+    }
+
     $stmt = $db->prepare($query);
     $stmt->execute(array($search . '%'));
 

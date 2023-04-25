@@ -27,7 +27,7 @@
                 <option value="status"> Status </option>
                 <option value="priority"> Priority </option>
                 <option value="visibility"> Visibility </option>
-                <option value="date"> Date </option>
+                <option value="createDate"> Date </option>
             </select>
         </div>
     </div>
