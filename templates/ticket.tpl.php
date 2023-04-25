@@ -21,14 +21,24 @@
                 </select>
             </div>
         </div>
+        <ul class = "ticket-info">
+            <li>Creator</li>
+            <li>Title</li>
+            <li>Category</li>
+            <li>Status</li>
+            <li>Priority</li>
+            <li>Visibility</li>
+            <li>Date</li>
+        </ul>
         <?php foreach ($tickets as $ticket) { ?>
             <div class="ticket">
-                <h2>
-                    <?= $ticket->title ?>
-                </h2>
-                <h3>
-                    <?= $ticket->text ?>
-                    </h2>
+                <img src = <?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
+                <span> <?= $ticket->title ?> </span>
+                <span> <?= $ticket->category ?> </span>
+                <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
+                <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
+                <span> <?= $ticket->visibility ?> </span>
+                <span> <?= $ticket->date ?> </span>
             </div>
         <?php } ?>
     </div>

@@ -1,4 +1,6 @@
 <?php
+
+require_once(__DIR__ . "/../classes/user.class.php");
 class Ticket
 {
   public int $ticketId;
@@ -10,11 +12,11 @@ class Ticket
   public string $date;
   public string $category;
   public string $visibility;
-  public string $creator;
-  public string $replier;
+  public User $creator;
+  public User $replier;
   public int $frequentItem;
 
-  public function __construct(int $ticketId, string $title, string $text, string $date, string $visibility, string $priority, string $status, string $category, array $tags, int $frequentItem, string $creator, string $replier)
+  public function __construct(int $ticketId, string $title, string $text, string $date, string $visibility, string $priority, string $status, string $category, array $tags, User $creator, User $replier)
   {
     $this->ticketId = $ticketId;
     $this->tags = $tags;
@@ -26,7 +28,7 @@ class Ticket
     $this->visibility = $visibility;
     $this->creator = $creator;
     $this->replier = $replier;
-    $this->frequentItem = $frequentItem;
+    $this->frequentItem = 0;
     $this->category = $category;
   }
 
@@ -85,9 +87,8 @@ class Ticket
       $ticket['status'],
       $ticket['category'],
       $ticket['tags'],
-      $ticket['frequentItem'],
-      $ticket['creator'],
-      $ticket['replier'],
+      User::getUser($db, $ticket['creator']),
+      User::getUser($db, $ticket['replier'])
     );
   }
 
@@ -141,11 +142,11 @@ class Ticket
         $ticket['status'],
         $ticket['category'],
         array(),
-        $ticket['frequentItem'],
-        $ticket['creator'],
-        $ticket['replier'],
+        User::getUser($db, $ticket['creator']),
+        User::getUser($db, $ticket['replier'])
       );
     }
+    
     return $tickets;
   }
 
@@ -171,9 +172,8 @@ class Ticket
         $ticket['status'],
         $ticket['category'],
         array(),
-        $ticket['frequentItem'],
-        $ticket['creator'],
-        $ticket['replier'],
+        User::getUser($db, $ticket['creator']),
+        User::getUser($db, $ticket['replier'])
       );
     }
     return $tickets;

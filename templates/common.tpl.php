@@ -22,7 +22,7 @@
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>
         <ul class="nav_links">
-          <li class="active"> <a href="../pages/index.php">Home</a></li>
+          <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="forum"><a href="#">Forum</a></li>
           <li class="FAQ"><a href="#">FAQ</a></li>
           <li class="Help"><a href="#">Help</a></li>

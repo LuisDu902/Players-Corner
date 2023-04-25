@@ -46,6 +46,7 @@
 
 
 .user-card{
+  display: none;
   display: flex;
   flex: 0 0 auto;
   max-width: 370px;

@@ -44,7 +44,7 @@ header {
     color: #D66AE6;
 }
 
-.active a {
+.nav_links li.active {
     color: #D66AE6 !important;
 }
 

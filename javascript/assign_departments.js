@@ -8,8 +8,6 @@ if (assign) {
         image.classList.toggle('selected')
     })
   }
-
-
 }
 
 var assignButton = document.querySelector("#assign-button");

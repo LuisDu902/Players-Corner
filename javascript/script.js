@@ -263,3 +263,13 @@ function createUpgradeModal(user) {
 
   return upgradeModal;
 }
+
+
+const navbar = document.querySelectorAll('.nav_links li')
+
+for (const item of navbar) {
+  item.addEventListener('click', function(e) {
+    item.classList.toggle('active')
+    console.log('done')
+  })
+}

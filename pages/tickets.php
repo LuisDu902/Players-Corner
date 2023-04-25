@@ -10,7 +10,7 @@
     require_once(__DIR__ . '/../database/connection.db.php');
 
     $db= getDatabaseConnection();
-    $tickets = Ticket::getUserTickets($db, 2);
+    $tickets = Ticket::getAllTickets($db);
     
     drawHeader($session);
     drawUserTickets($tickets);
