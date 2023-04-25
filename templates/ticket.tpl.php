@@ -31,7 +31,8 @@
             <li>Date</li>
         </ul>
         <?php foreach ($tickets as $ticket) { ?>
-            <div class="ticket">
+            <a href="../pages/ticket.php" class="ticket">
+                
                 <img src = <?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
                 <span> <?= $ticket->title ?> </span>
                 <span> <?= $ticket->category ?> </span>
@@ -39,7 +40,7 @@
                 <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
                 <span> <?= $ticket->visibility ?> </span>
                 <span> <?= $ticket->date ?> </span>
-            </div>
+            </a>
         <?php } ?>
     </div>
 <?php } ?>

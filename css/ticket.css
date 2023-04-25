@@ -24,8 +24,8 @@
 
 .ticket img {
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
 }
 
 .ticket-info{
@@ -41,6 +41,7 @@
 
 .ticket-info li{
     font-size: 1.3em;
+    font-weight: bolder;
 }
 
 .status{
