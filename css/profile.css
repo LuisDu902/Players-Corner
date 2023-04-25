@@ -100,9 +100,11 @@
 
 .profile-picture img{
   height: 300px;
+  width: 300px;
 }
 .upload-photo img {
   height: 400px;
+  width: 400px;
 }
 
 .profile-picture span {

@@ -6,7 +6,7 @@
 
   if ($_FILES['imageToUpload']['tmp_name'][0] == "") {
     $session->addMessage('warning', 'Choose an image first!');
-    die(header("Location: ../pages/profile.edit.php"));
+    die(header("Location: ../pages/edit_profile.php"));
   }
 
   $fileName = "../images/users/user" .  $session->getId() . ".png";

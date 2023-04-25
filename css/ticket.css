@@ -1,100 +1,102 @@
-.createTicket {
-    position: relative;
-    width: 800px;
-    background-clip: padding-box, border-box;
-    background-origin: padding-box, border-box;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    border-radius: 20px;
-    border: 10px solid transparent;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    margin-left: 30em;
-  }
-  
-  .createTicket h2 {
-    text-align: center;
-    color: #fff;
-    font-size: 24px;
-    margin-top: 50px;
-    margin-bottom: 20px;
-  }
-  
-  .createTicket h3 {
-    text-align: center;
-    color: #fff;
-    font-size: 18px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  .createTicket h6 {
-    text-align:left;
-    color: #fff;
-    font-size: 14px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .createTicket input[type="text"],
-  .createTicket select,
-  .createTicket textarea {
-    margin-left: -20px;
-    width: 100%;
-    padding: 15px 15px;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #fff;
-    color: #fff;
-    font-size: 14px;
-    transition: 0.5s;
-  }
-  
-  .createTicket input[type="text"]:focus,
-  .createTicket select:focus,
-  .createTicket textarea:focus {
-    outline:#D66AE6;
-    border-color: #D66AE6;
-  }
-  
-  .createTicket select {
-    margin-left: -20px;
-    width: 100%;
-    padding: 25px 25px;
-    background: transparent;
-    border: none;
-    border-bottom: 2px solid #fff;
-    color: #fff;
-    font-size: 18px;
-    transition: 0.5s;
-    appearance: none;
-  }
-  
-  .createTicket button.create-Ticket {
-    position: relative;
-    width: 40%;
-    height: 12%;
-    text-decoration: none;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    padding: auto;
-    display: block;
-    margin: 0 auto;
-    margin-top: 40px;
-    margin-bottom: 30px;
-  }
-  
-  .createTicket button.create-Ticket span {
-    display: block;
-    padding: 5% 5%;
-    font-size: 1.5em;
-  }
-  
-  .createTicket button.create-Ticket:hover {
-    background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #ffffff, #ffffff);
-  }
-  
+.tickets{
+  display: flex;
+  flex-direction: column;
+  margin: 30px 6%;
+}
+
+.ticket{
+  border: 4px solid white;
+  border-radius: 20px;
+  display: grid;
+  grid-template-columns: 100px 4.5fr 2fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 50px;
+  text-align: center;
+  align-items: center;
+  margin: 10px 0px;
+  padding: 20px;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.ticket:hover{
+  border: 3px solid #D66AE6;
+}
+
+.ticket img {
+  border-radius: 50%;
+  width: 90px;
+  height: 90px;
+}
+
+.ticket-info{
+  display: grid;
+  grid-template-columns: 100px 4.5fr 2fr 1fr 1fr 1fr 1fr;
+  grid-column-gap: 50px;
+  text-align: center;
+  align-items: center;
+  margin: 10px 0px;
+  padding: 20px;
+  list-style-type: none;
+}
+
+.ticket-info li{
+  font-size: 1.3em;
+  font-weight: bolder;
+}
+
+.status{
+  padding: 10px;
+  border-radius: 20px;
+}
+
+#open-status{
+  background-color: #FFBD59;  
+}
+
+#new-status{ 
+  background-color: #5271FF; 
+}
+
+#solved-status{
+  background-color: #7ED957;
+}
+
+#closed-status{
+  background-color: #FF5757;
+}
+
+#low-priority{
+  color: #7ED957;
+}
+
+#medium-priority{
+  color: #FFBD59;
+}
+
+#high-priority, #critical-priority{
+  color: #FF5757;
+}
+
+#high-priority::after{
+  content: "!";
+  color: #FF5757;
+}
+
+#critical-priority::after{
+  content: "!!!";
+  color: #FF5757;
+}
+
+#ticket{
+  display: flex;
+  flex-direction: column;
+  margin: 30px 6%;
+}
+
+.filter-condition{
+  border: 2px solid white;
+  font-size: 1.2em;
+  border-radius: 20px;
+  padding: 10px 15px;
+  margin-right: 20px;
+}

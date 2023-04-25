@@ -9,13 +9,13 @@
     require_once(__DIR__ . '/../classes/admin.class.php');
     require_once(__DIR__ . '/../database/connection.db.php');
 
-    require_once(__DIR__ . '/../templates/authentication.php');
+    require_once(__DIR__ . '/../templates/authentication.tpl.php');
     require_once(__DIR__ . '/../templates/user.tpl.php');
     require_once(__DIR__ . '/../templates/common.tpl.php');
     $db = getDatabaseConnection();
 
     $users = Admin::searchUsers($db);
-   
+    
     drawHeader($session);
     drawUsers($users);
     drawFooter();

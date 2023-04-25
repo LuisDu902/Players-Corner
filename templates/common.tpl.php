@@ -9,8 +9,12 @@
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/user.css">
     <link rel="stylesheet" href="../css/department.css">
-    <link href='https://unpkg.com/css.gg@2.0.0/icons/css/search.css' rel='stylesheet'>
-    <script src="../javascript/script.js" defer></script>
+    <link rel="stylesheet" href="../css/ticket.css">
+    <script src="../javascript/search_users.js" defer></script>
+    <script src="../javascript/search_tickets.js" defer></script>
+    <script src="../javascript/assign_departments.js" defer></script>
+    <script src="../javascript/pop_up_windows.js" defer></script>
+    <script src="../javascript/preview_image.js" defer></script>
   </head>
 
   <body>
@@ -18,7 +22,7 @@
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>
         <ul class="nav_links">
-          <li class="active"> <a href="../pages/index.php">Home</a></li>
+          <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="forum"><a href="#">Forum</a></li>
           <li class="FAQ"><a href="#">FAQ</a></li>
           <?php 
@@ -61,6 +65,7 @@
 { ?>
   <li class="Users"><a href="../pages/users.php">Users</a></li>
   <li class="Users"><a href="../pages/departments.php">Departments</a></li>
+  <li class="Users"><a href="../pages/tickets.php">Tickets</a></li>
 <?php } ?>
 
 <?php function drawAuthForms()

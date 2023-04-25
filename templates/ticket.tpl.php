@@ -1,54 +1,102 @@
-<?php function drawTicketForm($departments,$tags){?>
-    <head>
-    <link rel="stylesheet" href="../css/ticket.css">
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.0/themes/smoothness/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
-    <script>
-        $(function() {
-            var availableTags = [<?php foreach($tags as $tag){ echo '"' . $tag['tag'] . '",'; } ?>];
-            $('#tags').autocomplete({
-                source: availableTags,
-                minLength: 0,
-                select: function(event, ui) {
-                    var terms = this.value.split(', ');
-                    terms.pop();
-                    terms.push(ui.item.value);
-                    terms.push('');
-                    this.value = terms.join(', ');
-                    return false;
-                }
-            });
-        });
-    </script>
-    </head>
-    
-    <div class="createTicket">
-        <form action="../actions/action_ticket.php" method="post">
-            <div class="title">
-                <h2>Title</h2>
-                <h6>Be as specific and clear as possible </h6>
-                <input type="text" name="title" required="required" placeholder="e.g. Selling item x gives more gold than its supposed to" maxlength="50">
-            </div>
-            <div class="departments-choice">
-                <h3> Department </h3>
-                <select name="department">
-                       <?php foreach($departments as $department){?>
-                            <option value="<?php echo $department['category'] ?>"> <?php echo $department['category'] ?> </option>
-                       <?php } ?>
-                </select>
-            </div>
-            <div class="tags-choice">
-                <h3> Tags </h3>
-                <input type="text" name="tags" id="tags" autocomplete="off">
-            </div>
-            <div class="description">
-                <h2> Description </h2>
-                <h6> Tell us the details of your problem.</h6>
-                <textarea id="description" name="description" required="required" rows="5" cols="40"></textarea><br>
-            </div>
-            <button type="submit" class="create-Ticket"><span>Create Ticket</span></button>
-        </form>
+<?php function drawTickets($tickets)
+{ ?>
+    <div class="search-bar">
+        <div class="filter-condition">
+            <span> Filter by </span>
+            <select name="" class="filter-criteria" id="filter-ticket">
+                <option value="title"> Title </option>
+                <option value="creator"> Creator </option>
+                <option value="replier"> Assigned agent </option>
+                <option value="status"> Status </option>
+                <option value="priority"> Priority </option>
+                <option value="tag"> Hashtag </option>
+                <option value="visibility"> Visibility </option>
+                <option value="category"> Category </option>
+            </select>
+        </div>
+        <div class="search-box">
+            <input id="search-ticket" type="text" placeholder="search">
+            <img src="../images/icons/search.png">
+        </div>
+
+        <div class="order-condition">
+            <span> Order by </span>
+            <select name="" class="order-select" id="order-ticket">
+                <option value="title"> Title </option>
+                <option value="category"> Category </option>
+                <option value="status"> Status </option>
+                <option value="priority"> Priority </option>
+                <option value="visibility"> Visibility </option>
+                <option value="createDate"> Date </option>
+            </select>
+        </div>
+    </div>
+
+    <div class="tickets">
+        <ul class="ticket-info">
+            <li>Creator</li>
+            <li>Title</li>
+            <li>Category</li>
+            <li>Status</li>
+            <li>Priority</li>
+            <li>Visibility</li>
+            <li>Date</li>
+        </ul>
+        <div id="ticket-cards">
+            <?php foreach ($tickets as $ticket) { ?>
+                <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
+                    <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
+                    <span>
+                        <?= $ticket->title ?>
+                    </span>
+                    <span>
+                        <?= $ticket->category ?>
+                    </span>
+                    <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
+                    <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
+                    <span>
+                        <?= $ticket->visibility ?>
+                    </span>
+                    <span>
+                        <?= $ticket->date ?>
+                    </span>
+                </a>
+            <?php } ?>
+        </div>
+    </div>
+<?php } ?>
+
+<?php function drawTicket($ticket, $messages)
+{ ?>
+    <div id="ticket">
+        <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
+            <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
+            <span>
+                <?= $ticket->title ?>
+            </span>
+            <span>
+                <?= $ticket->category ?>
+            </span>
+            <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
+            <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
+            <span>
+                <?= $ticket->visibility ?>
+            </span>
+            <span>
+                <?= $ticket->date ?>
+            </span>
+        </a>
+        <div class="messages">
+            <?php foreach ($messages as $message) { ?>
+                <span>
+                    <?= $message->user->name ?>:
+                </span>
+                <br><br>
+                <span>
+                    <?= $message->text ?>
+                </span>
+                <br><br>
+            <?php } ?>
+        </div>
     </div>
 <?php } ?>

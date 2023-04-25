@@ -4,8 +4,7 @@
     <div class="authentication-wrap">
       <img class="login-logo" src="../images/icons/logo.png" alt="logo"></span>
       <h2 class="login-text"> The adventure awaits!<br> Sign in now to continue your<br> journey on <span
-          class="highlight">Player's
-          Corner</span>.</h2>
+          class="highlight">Player's Corner</span>.</h2>
       <form action="../actions/action_login.php" method="post" class="authentication-form">
         <div class="input-box">
           <input type="email" name="email" required="required" placeholder="Email">

@@ -10,7 +10,6 @@ DROP TABLE IF EXISTS TicketTag;
 DROP TABLE IF EXISTS Ticket;
 DROP TABLE IF EXISTS Status;
 DROP TABLE IF EXISTS Priority;
-DROP TABLE IF EXISTS Hashtag;
 DROP TABLE IF EXISTS User;
 
 CREATE TABLE User(
@@ -22,10 +21,6 @@ CREATE TABLE User(
    reputation INTEGER NOT NULL,
    type VARCHAR NOT NULL,
    CHECK (type = "client" OR type = "agent" OR type = "admin")
-);
-
-CREATE TABLE Hashtag(
-   tag VARCHAR PRIMARY KEY
 );
 
 CREATE TABLE Priority(
@@ -46,7 +41,6 @@ CREATE TABLE Ticket(
    priority VARCHAR REFERENCES Priority(priority) NOT NULL,
    status VARCHAR REFERENCES Status(status) NOT NULL,
    category VARCHAR REFERENCES Department(category),
-   tag VARCHAR REFERENCES Hashtag(tag),
    frequentItem INTEGER REFERENCES FAQ(id),
    creator INTEGER REFERENCES User(userId),
    replier INTEGER REFERENCES User(userId)
@@ -54,16 +48,14 @@ CREATE TABLE Ticket(
 
 CREATE TABLE TicketTag(
    ticket INTEGER REFERENCES Ticket(id),
-   tag VARCHAR REFERENCES Hashtag(tag),
+   tag VARCHAR NOT NULL,
    PRIMARY KEY (ticket, tag)
 );
 
 CREATE TABLE Message(
    id INTEGER PRIMARY KEY,
-   priority VARCHAR REFERENCES Priority(priority) NOT NULL, 
    text VARCHAR NOT NULL,
    sent DATE NOT NULL,
-   status VARCHAR REFERENCES Status(status) NOT NULL,
    user INTEGER REFERENCES User(userId) NOT NULL,
    ticket INTEGER REFERENCES Ticket(id) NOT NULL
 );
@@ -88,7 +80,7 @@ CREATE TABLE FAQ(
 
 CREATE TABLE TagFAQ(
    item INTEGER REFERENCES FAQ(id),
-   tag VARCHAR REFERENCES Hashtag(tag),
+   tag VARCHAR NOT NULL,
    PRIMARY KEY (item, tag)
 );
 

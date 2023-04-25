@@ -4,6 +4,12 @@
   display: flex;
   justify-content: center;
   margin: 30px 5%;
+  align-items: center;
+}
+
+.search-bar img{
+  height: 20px;
+  width: 20px;
 }
 
 .search-box{
@@ -16,17 +22,17 @@
   border-radius: 20px;
 }
 
-#search-user, #order-select{
+#search-user, .order-select, #search-ticket, .filter-criteria{
   font-size: 1.1rem;
   margin-right: 10px;
   border: none;
 }
 
-#search-user:focus, #filter-select:focus, #order-select:focus{ 
+#search-user:focus, #search-ticket:focus,.filter-criteria:focus, .order-select:focus, .filter-select:focus{ 
   outline: none;
 }
 
-#filter-select,.order-condition{
+.filter-select,.order-condition{
   margin-left: 20px;
   border: 2px solid white;
   font-size: 1.2em;
@@ -46,6 +52,7 @@
 
 
 .user-card{
+  display: none;
   display: flex;
   flex: 0 0 auto;
   max-width: 370px;
@@ -58,7 +65,7 @@
 }
 
 .user-card:hover{
-  border: 2px solid #D66AE6;
+  border: 3px solid #D66AE6;
 }
 
 .card-type{
@@ -141,11 +148,12 @@
 }
 
 .card-details .card-name{
+  font-weight: bold;
   font-size: 1.5em;
   margin-bottom: 5px;
 }
 
-.card-button{
+.card-buttons{
   margin-top: 30px;
   display: flex;
   justify-content: center;
@@ -153,4 +161,27 @@
   align-content: center;
   align-items: center;
 }
+
+.upgrade-modal img{
+  margin-top: 20px;
+}
+
+.upgrade-modal form{
+  display: flex;
+  align-self: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 20px 0px;
+}
+#promote{
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#promote span{
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
 
