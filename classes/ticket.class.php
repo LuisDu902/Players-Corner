@@ -69,7 +69,7 @@ class Ticket
   static function getTicket(PDO $db, int $ticketId): Ticket
   {
     $stmt = $db->prepare('
-        SELECT id, title, text, createDate, visibility, priority, status, category, tag, frequentItem,creator,replier
+        SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem,creator,replier
         FROM Ticket 
         WHERE id = ?
       ');
@@ -86,7 +86,7 @@ class Ticket
       $ticket['priority'],
       $ticket['status'],
       $ticket['category'],
-      $ticket['tags'],
+      array(),
       User::getUser($db, $ticket['creator']),
       User::getUser($db, $ticket['replier'])
     );
@@ -195,7 +195,7 @@ class Ticket
         intval($message['id']),
         $message['text'],
         $message['sent'],
-        intval($message['user']),
+        User::getUser($db,intval($message['user'])),
         intval($message['ticket']),
       );
     }

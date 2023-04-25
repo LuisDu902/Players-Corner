@@ -13,6 +13,6 @@
     $tickets = Ticket::getAllTickets($db);
     
     drawHeader($session);
-    drawUserTickets($tickets);
+    drawTickets($tickets);
     drawFooter();
 ?>

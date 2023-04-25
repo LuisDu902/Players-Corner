@@ -1,4 +1,4 @@
-<?php function drawUserTickets($tickets)
+<?php function drawTickets($tickets)
 { ?>
     <div class="tickets">
         <div class="search-bar">
@@ -31,8 +31,7 @@
             <li>Date</li>
         </ul>
         <?php foreach ($tickets as $ticket) { ?>
-            <a href="../pages/ticket.php" class="ticket">
-                
+            <a href="../pages/ticket.php?id=<?=$ticket->ticketId?>" class="ticket">
                 <img src = <?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
                 <span> <?= $ticket->title ?> </span>
                 <span> <?= $ticket->category ?> </span>
@@ -42,5 +41,28 @@
                 <span> <?= $ticket->date ?> </span>
             </a>
         <?php } ?>
+    </div>
+<?php } ?>
+
+<?php function drawTicket($ticket, $messages)
+{ ?>
+    <div id="ticket">
+    <a href="../pages/ticket.php?id=<?=$ticket->ticketId?>" class="ticket">
+        <img src = <?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
+        <span> <?= $ticket->title ?> </span>
+        <span> <?= $ticket->category ?> </span>
+        <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
+        <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
+        <span> <?= $ticket->visibility ?> </span>
+        <span> <?= $ticket->date ?> </span>
+    </a>
+    <div class="messages">
+    <?php foreach ($messages as $message) { ?>
+        <span><?=$message->user->name?>:</span>
+        <br><br>
+        <span><?=$message->text?></span>
+        <br><br>
+        <?php } ?>
+    </div>
     </div>
 <?php } ?>
