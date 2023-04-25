@@ -4,6 +4,12 @@
   display: flex;
   justify-content: center;
   margin: 30px 5%;
+  align-items: center;
+}
+
+.search-bar img{
+  height: 20px;
+  width: 20px;
 }
 
 .search-box{
@@ -16,13 +22,13 @@
   border-radius: 20px;
 }
 
-#search-user, #order-select{
+#search-user, #order-select, #search-ticket, .filter-criteria{
   font-size: 1.1rem;
   margin-right: 10px;
   border: none;
 }
 
-#search-user:focus, .filter-select:focus, #order-select:focus{ 
+#search-user:focus, #search-ticket:focus,.filter-criteria:focus, #order-select:focus, .filter-select:focus{ 
   outline: none;
 }
 

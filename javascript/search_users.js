@@ -1,20 +1,20 @@
 
-const filterSelect = document.querySelector('.filter-select')
-const orderSelect = document.querySelector('#order-select')
+const userFilterSelect = document.querySelector('.filter-select')
+const userOrderSelect = document.querySelector('#order-select')
 const searchUser = document.querySelector('#search-user')
 
 if (searchUser) {
   searchUser.addEventListener('input', searchUsers)
 }
-if (filterSelect) {
-  filterSelect.addEventListener('change', searchUsers)
+if (userFilterSelect) {
+  userFilterSelect.addEventListener('change', searchUsers)
 }
-if (orderSelect) {
-  orderSelect.addEventListener('change', searchUsers)
+if (userOrderSelect) {
+  userOrderSelect.addEventListener('change', searchUsers)
 }
 
 async function searchUsers() {
-  const response = await fetch('../api/api_search_users.php?search=' + searchUser.value + '&role=' + filterSelect.value + '&order=' + orderSelect.value)
+  const response = await fetch('../api/api_search_users.php?search=' + searchUser.value + '&role=' + userFilterSelect.value + '&order=' + userOrderSelect.value)
   const users = await response.json()
 
   const section = document.querySelector('#users')
@@ -264,7 +264,7 @@ function createUpgradeModal(user) {
   return upgradeModal;
 }
 
-
+/*
 const navbar = document.querySelectorAll('.nav_links li')
 
 for (const item of navbar) {
@@ -272,4 +272,4 @@ for (const item of navbar) {
     item.classList.toggle('active')
     console.log('done')
   })
-}
+}*/

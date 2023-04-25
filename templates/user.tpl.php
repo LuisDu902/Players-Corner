@@ -89,7 +89,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
   <div class="search-bar">
     <div class="search-box">
       <input id="search-user" type="text" placeholder="search">
-      <i class="gg-search"></i>
+      <img src="../images/icons/search.png">
     </div>
     <select name="" class="filter-select">
       <option value="users"> All users </option>

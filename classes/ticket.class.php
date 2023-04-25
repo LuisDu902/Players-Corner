@@ -146,7 +146,7 @@ class Ticket
         User::getUser($db, $ticket['replier'])
       );
     }
-    
+
     return $tickets;
   }
 
@@ -195,12 +195,40 @@ class Ticket
         intval($message['id']),
         $message['text'],
         $message['sent'],
-        User::getUser($db,intval($message['user'])),
+        User::getUser($db, intval($message['user'])),
         intval($message['ticket']),
       );
     }
     return $messages;
   }
 
+  static function searchTickets(PDO $db, string $search = '', string $filter, string $order = 'title'): array
+  {
+    $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
+              FROM Ticket 
+              WHERE ? LIKE ? 
+              ORDER BY ' . $order;
+    $stmt = $db->prepare($query);
+    $stmt->execute(array($filter, $search . '%', ));
+
+    $tickets = array();
+    while ($ticket = $stmt->fetch()) {
+      $tickets[] = new Ticket(
+        intval($ticket['id']),
+        $ticket['title'],
+        $ticket['text'],
+        $ticket['createDate'],
+        $ticket['visibility'],
+        $ticket['priority'],
+        $ticket['status'],
+        $ticket['category'],
+        array(),
+        User::getUser($db, $ticket['creator']),
+        User::getUser($db, $ticket['replier'])
+      );
+    }
+
+    return $tickets;
+  }
 }
 ?>
