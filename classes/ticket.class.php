@@ -122,7 +122,6 @@ class Ticket
     $stmt->execute(array($category, $ticketId));
   }
 
-
   static function getUserTickets(PDO $db, int $userId): array
   {
 
