@@ -8,7 +8,7 @@
     require_once(__DIR__ . '/../database/connection.db.php');
 
     require_once(__DIR__ . '/../templates/common.tpl.php');
-    require_once(__DIR__ . '/../templates/department.php');
+    require_once(__DIR__ . '/../templates/department.tpl.php');
     
     $db = getDatabaseConnection();
 

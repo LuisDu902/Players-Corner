@@ -36,7 +36,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
       <span>
         <?= $user->username ?>
       </span>
-      <a href="../pages/profile.edit.php" id="edit-button"> Edit profile</a>
+      <a href="../pages/edit_profile.php" id="edit-button"> Edit profile</a>
     </div>
   </div>
 

@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="../css/profile.css">
     <link rel="stylesheet" href="../css/user.css">
     <link rel="stylesheet" href="../css/department.css">
+    <link rel="stylesheet" href="../css/ticket.css">
     <link href='https://unpkg.com/css.gg@2.0.0/icons/css/search.css' rel='stylesheet'>
     <script src="../javascript/script.js" defer></script>
     <script src="../javascript/assign_departments.js" defer></script>
@@ -60,6 +61,7 @@
 { ?>
   <li class="Users"><a href="../pages/users.php">Users</a></li>
   <li class="Users"><a href="../pages/departments.php">Departments</a></li>
+  <li class="Users"><a href="../pages/tickets.php">Tickets</a></li>
 <?php } ?>
 
 <?php function drawAuthForms()

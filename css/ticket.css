@@ -1,0 +1,19 @@
+.tickets{
+    display: flex;
+    flex-direction: column;
+    margin: 30px 5%;
+}
+
+.ticket{
+    border: 4px solid white;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+    padding: 20px;
+}
+
+.ticket:hover{
+    border: 3px solid #D66AE6;
+   
+}
