@@ -56,11 +56,11 @@ function createCardType(user) {
 
 function createImage(user) {
   const img = document.createElement('img')
-  
+  img.classList.add(user.type + '-card-border')
+
   img.src = '../images/users/user' + user.userId + '.png'
   img.onerror = () => { img.src = '../images/users/default.png' }
-  img.classList.add(user.type + '-card-border')
-  img.src = '../images/users/default.png'
+  //img.src = '../images/users/default.png'
   return img
 }
 

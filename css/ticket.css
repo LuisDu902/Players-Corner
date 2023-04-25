@@ -1,4 +1,6 @@
 .tickets{
+    display: flex;
+    flex-direction: column;
     margin: 30px 6%;
 }
 
@@ -10,7 +12,7 @@
     grid-column-gap: 50px;
     text-align: center;
     align-items: center;
-    margin: 20px 0px;
+    margin: 10px 0px;
     padding: 20px;
     font-size: 1.2em;
     font-weight: bold;
@@ -35,11 +37,10 @@
     margin: 10px 0px;
     padding: 20px;
     list-style-type: none;
-    margin: 30px 6%;
 }
 
 .ticket-info li{
-    font-size: 1.3rem;
+    font-size: 1.3em;
     font-weight: bolder;
 }
 

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../css/department.css">
     <link rel="stylesheet" href="../css/ticket.css">
     <script src="../javascript/search_users.js" defer></script>
+    <script src="../javascript/search_tickets.js" defer></script>
     <script src="../javascript/assign_departments.js" defer></script>
     <script src="../javascript/pop_up_windows.js" defer></script>
     <script src="../javascript/preview_image.js" defer></script>

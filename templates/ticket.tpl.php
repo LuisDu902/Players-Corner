@@ -32,36 +32,37 @@
         </div>
     </div>
 
-
-    <ul class="ticket-info">
-        <li>Creator</li>
-        <li>Title</li>
-        <li>Category</li>
-        <li>Status</li>
-        <li>Priority</li>
-        <li>Visibility</li>
-        <li>Date</li>
-    </ul>
     <div class="tickets">
-        <?php foreach ($tickets as $ticket) { ?>
-            <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
-                <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
-                <span>
-                    <?= $ticket->title ?>
-                </span>
-                <span>
-                    <?= $ticket->category ?>
-                </span>
-                <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
-                <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
-                <span>
-                    <?= $ticket->visibility ?>
-                </span>
-                <span>
-                    <?= $ticket->date ?>
-                </span>
-            </a>
-        <?php } ?>
+        <ul class="ticket-info">
+            <li>Creator</li>
+            <li>Title</li>
+            <li>Category</li>
+            <li>Status</li>
+            <li>Priority</li>
+            <li>Visibility</li>
+            <li>Date</li>
+        </ul>
+        <div id="ticket-cards">
+            <?php foreach ($tickets as $ticket) { ?>
+                <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
+                    <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
+                    <span>
+                        <?= $ticket->title ?>
+                    </span>
+                    <span>
+                        <?= $ticket->category ?>
+                    </span>
+                    <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
+                    <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
+                    <span>
+                        <?= $ticket->visibility ?>
+                    </span>
+                    <span>
+                        <?= $ticket->date ?>
+                    </span>
+                </a>
+            <?php } ?>
+        </div>
     </div>
 <?php } ?>
 
