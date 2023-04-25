@@ -25,6 +25,10 @@
           <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="forum"><a href="#">Forum</a></li>
           <li class="FAQ"><a href="#">FAQ</a></li>
+          <?php 
+          if ($session->isLoggedIn()){?>
+          	<li class="tickets"><a href="../pages/ticket.php">Create Tickets</a></li> <?php 
+          }?>
           <li class="Help"><a href="#">Help</a></li>
           <?php if ($session->isLoggedIn() && $session->getRole() === "admin") {
             drawAdminButtons();
