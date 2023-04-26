@@ -51,7 +51,7 @@ class Ticket
   static function updateReplier(PDO $db, int $ticketId, string $replier)
   {
     $stmt = $db->prepare('
-        UPDATE TIcket SET replier=? , status="assigned"
+        UPDATE Ticket SET replier=? , status="assigned"
         WHERE id=?
       ');
 
@@ -86,7 +86,7 @@ class Ticket
       $ticket['priority'],
       $ticket['status'],
       $ticket['category'],
-      array(),
+      Ticket::getTicketTags($db, $ticket['id']),
       User::getUser($db, $ticket['creator']),
       User::getUser($db, $ticket['replier'])
     );
@@ -103,6 +103,22 @@ class Ticket
 
   }
 
+  static function getTicketTags(PDO $db, int $ticketId): array
+  {
+    $stmt = $db->prepare('
+    SELECT tag
+    FROM TicketTag 
+    WHERE ticket = ?
+  ');
+
+    $stmt->execute(array($ticketId));
+    $tags = array();
+
+    while ($tag = $stmt->fetchColumn()){
+      $tags[] = $tag;
+    }
+    return $tags;
+  }
   function updateFrequentItem(PDO $db, int $ticketId, string $frequentItem)
   {
     $stmt = $db->prepare('
@@ -143,7 +159,7 @@ class Ticket
         $ticket['priority'],
         $ticket['status'],
         $ticket['category'],
-        array(),
+        Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
         User::getUser($db, $ticket['replier'])
       );
@@ -188,8 +204,17 @@ class Ticket
       FROM Ticket JOIN User ON User.userId = Ticket.replier
       WHERE User.name LIKE ?
       ORDER BY ' . $order;
-
-    } else {
+    }
+    else if ($filter == 'tag'){
+      $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
+      FROM Ticket 
+      WHERE id IN 
+        (SELECT ticket
+        FROM TicketTag
+        WHERE tag LIKE ?)
+      ORDER BY ' . $order;
+    }
+    else {
       $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
               FROM Ticket 
               WHERE ' . $filter . ' LIKE ? 
@@ -210,7 +235,7 @@ class Ticket
         $ticket['priority'],
         $ticket['status'],
         $ticket['category'],
-        array(),
+        Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
         User::getUser($db, $ticket['replier'])
       );

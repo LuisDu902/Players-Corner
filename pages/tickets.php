@@ -12,6 +12,7 @@
     $db= getDatabaseConnection();
    
     $tickets = Ticket::searchTickets($db);
+  
     drawHeader($session);
     drawTickets($tickets);
     drawFooter();
