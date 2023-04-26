@@ -36,6 +36,7 @@
         <ul class="ticket-info">
             <li>Creator</li>
             <li>Title</li>
+            <li>Tags</li>
             <li>Category</li>
             <li>Status</li>
             <li>Priority</li>
@@ -49,6 +50,11 @@
                     <span>
                         <?= $ticket->title ?>
                     </span>
+                    <div class="ticket-tags">
+                        <?php foreach ($ticket->tags as $tag) { ?>
+                            <span> #<?= $tag ?></span>
+                        <?php } ?>
+                    </div>
                     <span>
                         <?= $ticket->category ?>
                     </span>
@@ -96,6 +102,14 @@
                     <?= $message->text ?>
                 </span>
                 <br><br>
+            <?php } ?>
+        </div>
+        <div class="tags">
+            <?php foreach ($ticket->tags as $tag) { ?>
+                <span>
+                    <?= $tag ?>
+                </span>
+                <br>
             <?php } ?>
         </div>
     </div>

@@ -41,6 +41,14 @@ function createTicketCard(ticket){
   const title = document.createElement('span')
   title.textContent = ticket.title
 
+  const tags = document.createElement('div')
+  tags.classList.add('ticket-tags')
+  for (const tag of ticket.tags){
+    const hashtag = document.createElement('span')
+    hashtag.textContent = '#' + tag
+    tags.appendChild(hashtag)
+  }
+
   const category = document.createElement('span')
   category.textContent = ticket.category
 
@@ -62,6 +70,7 @@ function createTicketCard(ticket){
 
   link.appendChild(creator)
   link.appendChild(title)
+  link.appendChild(tags)
   link.appendChild(category)
   link.appendChild(status)
   link.appendChild(priority)
