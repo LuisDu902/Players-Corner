@@ -4,6 +4,7 @@ DROP TABLE IF EXISTS DepartmentFAQ;
 DROP TABLE IF EXISTS TagFAQ;
 DROP TABLE IF EXISTS FAQ;
 DROP TABLE IF EXISTS AgentDepartment;
+DROP TABLE IF EXISTS Hashtag;
 DROP TABLE IF EXISTS Department;
 DROP TABLE IF EXISTS Message;
 DROP TABLE IF EXISTS TicketTag;
@@ -64,6 +65,10 @@ CREATE TABLE Department(
    category VARCHAR PRIMARY KEY
 );
 
+CREATE TABLE Hashtag(
+   tag VARCHAR PRIMARY KEY
+);
+
 CREATE TABLE AgentDepartment(
    agent INTEGER REFERENCES User(userId),
    department VARCHAR REFERENCES Department(category), 
@@ -89,3 +94,4 @@ CREATE TABLE DepartmentFAQ(
    category VARCHAR REFERENCES Department(category),
    PRIMARY KEY (item, category)
 );
+

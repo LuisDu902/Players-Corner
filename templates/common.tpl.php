@@ -25,11 +25,14 @@
           <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="forum"><a href="#">Forum</a></li>
           <li class="FAQ"><a href="#">FAQ</a></li>
-          <li class="Help"><a href="#">Help</a></li>
+          <?php 
+          if ($session->isLoggedIn()){?>
+          	<li class="create-Ticket"><a href="../pages/create_ticket.php">Create Tickets</a></li> <?php 
+          }?>
           <?php if ($session->isLoggedIn() && $session->getRole() === "admin") {
             drawAdminButtons();
           } ?>
-
+          <li class="Help"><a href="#">Help</a></li>
         </ul>
       </nav>
       <?php

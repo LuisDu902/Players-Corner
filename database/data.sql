@@ -253,3 +253,26 @@ INSERT INTO Message (id, text, sent, user, ticket) VALUES
 
 INSERT INTO Message (id, text, sent, user, ticket) VALUES
 (9, "You're welcome. If you have any other issues or questions, please don't hesitate to contact us again. Have a great day!", "2023-04-27", 71, 1);
+
+
+
+
+INSERT INTO Hashtag(tag) VALUES ("#gamingissues");
+INSERT INTO Hashtag(tag) VALUES ("#gamebugs");
+INSERT INTO Hashtag(tag) VALUES ("#gamecrashes");
+INSERT INTO Hashtag(tag) VALUES ("#gameperformance");
+INSERT INTO Hashtag(tag) VALUES ("#gameplaytips");
+INSERT INTO Hashtag(tag) VALUES ("#gamercommunity");
+INSERT INTO Hashtag(tag) VALUES ("#esportsnews");
+INSERT INTO Hashtag(tag) VALUES ("#onlinegamingtips");
+INSERT INTO Hashtag(tag) VALUES ("#gaminghardware");
+INSERT INTO Hashtag(tag) VALUES ("#gamingsoftware");
+INSERT INTO Hashtag(tag) VALUES ("#gamingsupport");
+INSERT INTO Hashtag(tag) VALUES ("#multiplayergames");
+INSERT INTO Hashtag(tag) VALUES ("#PCgaming");
+INSERT INTO Hashtag(tag) VALUES ("#consolegaming");
+INSERT INTO Hashtag(tag) VALUES ("#gamerlifestyle");
+INSERT INTO Hashtag(tag) VALUES ("#gamingindustry");
+INSERT INTO Hashtag(tag) VALUES ("#gameupdates");
+INSERT INTO Hashtag(tag) VALUES ("#gamedevelopment");
+
