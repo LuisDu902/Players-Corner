@@ -10,10 +10,13 @@
     <link rel="stylesheet" href="../css/user.css">
     <link rel="stylesheet" href="../css/department.css">
     <link rel="stylesheet" href="../css/ticket.css">
+    <link rel="stylesheet" href="../css/create_ticket.css">
+    <link rel="stylesheet" href="../css/token-input.css">
+    <script src="../javascript/add_new_department.js" defer></script>
+    <script src="../javascript/assign_to_departments.js" defer></script>
+    <script src="../javascript/upgrade_user.js" defer></script>
     <script src="../javascript/search_users.js" defer></script>
     <script src="../javascript/search_tickets.js" defer></script>
-    <script src="../javascript/assign_departments.js" defer></script>
-    <script src="../javascript/pop_up_windows.js" defer></script>
     <script src="../javascript/preview_image.js" defer></script>
   </head>
 
@@ -23,16 +26,17 @@
       <nav>
         <ul class="nav_links">
           <li class="home"> <a href="../pages/index.php">Home</a></li>
-          <li class="forum"><a href="#">Forum</a></li>
+          <li class="Users"><a href="../pages/tickets.php">Forum</a></li>
           <li class="FAQ"><a href="#">FAQ</a></li>
           <?php 
           if ($session->isLoggedIn()){?>
           	<li class="create-Ticket"><a href="../pages/create_ticket.php">Create Tickets</a></li> <?php 
           }?>
+          <li class="Help"><a href="#">Help</a></li>
           <?php if ($session->isLoggedIn() && $session->getRole() === "admin") {
             drawAdminButtons();
           } ?>
-          <li class="Help"><a href="#">Help</a></li>
+
         </ul>
       </nav>
       <?php
@@ -64,7 +68,7 @@
 { ?>
   <li class="Users"><a href="../pages/users.php">Users</a></li>
   <li class="Users"><a href="../pages/departments.php">Departments</a></li>
-  <li class="Users"><a href="../pages/tickets.php">Tickets</a></li>
+ 
 <?php } ?>
 
 <?php function drawAuthForms()

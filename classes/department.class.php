@@ -4,9 +4,12 @@ class Department
 {
   public string $category;
 
+  public bool $hasPhoto;
+
   public function __construct(string $category)
   {
     $this->category = $category;
+    $this->hasPhoto = $this->getPhoto() != '../images/departments/default.png';
   }
 
   function getMembers(PDO $db): array
@@ -87,6 +90,34 @@ class Department
     } else
       return $default;
   }
+
+  function getTickets(PDO $db) : array{
+    $stmt = $db->prepare(
+      'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
+             FROM Ticket 
+             WHERE category = ?'
+    );
+    $stmt->execute(array($this->category));
+
+    $tickets = array();
+    while ($ticket = $stmt->fetch()) {
+      $tickets[] = new Ticket(
+        intval($ticket['id']),
+        $ticket['title'],
+        $ticket['text'],
+        $ticket['createDate'],
+        $ticket['visibility'],
+        $ticket['priority'],
+        $ticket['status'],
+        $ticket['category'],
+        Ticket::getTicketTags($db, $ticket['id']),
+        User::getUser($db, $ticket['creator']),
+        User::getUser($db, $ticket['replier'])
+      );
+    }
+    return $tickets;
+  }
+
 
 }
 ?>

@@ -14,28 +14,34 @@ if (ticketOrderSelect) {
 }
 
 async function searchTickets() {
-  const response = await fetch('../api/api_search_tickets.php?search=' + searchTicket.value + '&filter=' + ticketFilterSelect.value + '&order=' + ticketOrderSelect.value)
+
+  const response = await fetch('../api/api_search_tickets.php?' + encodeForAjax({search: searchTicket.value}) + "&" + encodeForAjax({filter: ticketFilterSelect.value}) + "&" + encodeForAjax({order: ticketOrderSelect.value}))
+
   const tickets = await response.json()
 
   const section = document.querySelector('#ticket-cards')
   section.innerHTML = ''
 
-  for (const ticket of tickets){
+  for (const ticket of tickets) {
     const ticketCard = createTicketCard(ticket)
     section.appendChild(ticketCard)
   }
 
 }
 
-function createTicketCard(ticket){
+function createTicketCard(ticket) {
+
   const link = document.createElement('a')
   link.href = "../pages/ticket.php?id=" + ticket.ticketId
   link.classList.add('ticket')
 
   const creator = document.createElement('img')
   creator.src = ticket
-  creator.src = '../images/users/user' + ticket.creator.userId + '.png'
-  creator.onerror = () => { creator.src = '../images/users/default.png' }
+  if (ticket.creator.hasPhoto) {
+    creator.src = '../images/users/user' + ticket.creator.userId + '.png'
+  } else{
+    creator.src = '../images/users/default.png'
+  }
   creator.classList.add(ticket.creator.type + '-card-border')
 
   const title = document.createElement('span')
@@ -43,9 +49,9 @@ function createTicketCard(ticket){
 
   const tags = document.createElement('div')
   tags.classList.add('ticket-tags')
-  for (const tag of ticket.tags){
+  for (const tag of ticket.tags) {
     const hashtag = document.createElement('span')
-    hashtag.textContent = '#' + tag
+    hashtag.textContent = tag
     tags.appendChild(hashtag)
   }
 

@@ -106,9 +106,9 @@ class Ticket
   static function getTicketTags(PDO $db, int $ticketId): array
   {
     $stmt = $db->prepare('
-    SELECT tag
-    FROM TicketTag 
-    WHERE ticket = ?
+      SELECT tag
+      FROM TicketTag 
+      WHERE ticket = ?
   ');
 
     $stmt->execute(array($ticketId));
@@ -138,13 +138,13 @@ class Ticket
     $stmt->execute(array($category, $ticketId));
   }
 
-  static function getUserTickets(PDO $db, int $userId): array
+    static function getUserTickets(PDO $db, int $userId): array
   {
 
     $stmt = $db->prepare(
       'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
-             FROM Ticket 
-             WHERE creator = ?'
+       FROM Ticket 
+       WHERE creator = ?'
     );
     $stmt->execute(array($userId));
 

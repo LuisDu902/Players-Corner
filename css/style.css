@@ -49,7 +49,7 @@ header {
 }
 
 .sign-in,
-.sign-up, .upgrade,.confirm-upgrade, .assign {
+.sign-up, .upgrade,.assign-dep,.confirm-upgrade, .assign {
     text-align: center;
     padding: 8px 22px;
     display: block;

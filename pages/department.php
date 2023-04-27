@@ -4,6 +4,7 @@
     require_once(__DIR__ . '/../classes/session.class.php');
     $session = new Session();
 
+    require_once(__DIR__ . '/../classes/ticket.class.php');
     require_once(__DIR__ . '/../classes/department.class.php');
     require_once(__DIR__ . '/../classes/user.class.php');
     require_once(__DIR__ . '/../database/connection.db.php');
@@ -16,8 +17,8 @@
 
     $department = Department::getDepartment($db, $_GET['category']);
     $members = $department->getMembers($db);
-
+    $tickets = $department->getTickets($db);
     drawHeader($session);
-    drawDepartment($department, $members);
+    drawDepartment($department, $tickets, $members);
     drawFooter();
 ?>

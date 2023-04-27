@@ -52,7 +52,7 @@
                     </span>
                     <div class="ticket-tags">
                         <?php foreach ($ticket->tags as $tag) { ?>
-                            <span> #<?= $tag ?></span>
+                            <span> <?= $tag ?></span>
                         <?php } ?>
                     </div>
                     <span>

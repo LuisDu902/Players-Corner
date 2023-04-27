@@ -22,7 +22,7 @@
 
 
 <?php
-function drawDepartment($department, $members)
+function drawDepartment($department, $tickets, $members)
 { ?>
     <div class="departments-bar">
         <span>
@@ -32,7 +32,15 @@ function drawDepartment($department, $members)
     <div class="department-content">
         <div class="tickets-container">
             <h3>Trouble Tickets</h3>
-            <div class="tickets"></div>
+            <div class="tickets">
+
+            <?php foreach ($tickets as $ticket): ?>
+                         <span>
+                            <?= $ticket->title ?>
+                        </span>
+                <?php endforeach; ?>
+            </div>
+
         </div>
         <div class="members-container">
             <h3>Members</h3>
@@ -40,25 +48,21 @@ function drawDepartment($department, $members)
                 <?php foreach ($members as $member): ?>
                     <button class="member">
                         <img src=<?= $member->getPhoto() ?> alt="profile"></img>
-                        <span>
-                            <?= $member->name ?>
-                        </span>
+                        <span><?= $member->name ?></span>
                     </button>
-                    <?php drawMemberModal($member); ?>
                 <?php endforeach; ?>
             </div>
-
+            <div class="modal member-modal"></div>
         </div>
     </div>
-
 <?php } ?>
 
 <?php function drawDepartmentModal()
 { ?>
     <div id="department-modal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content" id="department-modal-content">
             <span class="modal-title"> Add new Department </span>
-            <form action="../actions/action_add_department.php" method="post" enctype="multipart/form-data">
+            <form action="../actions/action_add_new_department.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="new_category" required="required" placeholder="Department's name"
                     id="department-name">
                 <img id="dep-image-preview" src="../images/departments/default.png" alt="">
@@ -67,25 +71,4 @@ function drawDepartment($department, $members)
             </form>
         </div>
     </div>
-<?php } ?>
-
-
-<?php function drawAssignableDepartments($departments, $userId)
-{ ?>
-    <form action="../actions/action_assign_departments.php" method="POST" id="assign-department-form">
-        <div class="departments" id="assign-departments">
-            <?php foreach ($departments as $department): ?>
-                <div class="department" id="department">
-                    <img src=<?= $department->getPhoto() ?> alt=<?= $department->category ?>></img>
-                    <span>
-                        <?= $department->category ?>
-                    </span>
-                </div>
-            <?php endforeach; ?>
-        </div>
-
-        <button type="submit" name="assign" id="assign-button" class="button-wrap">Assign</button>
-        <input type="hidden" name="selected_departments" id="selected-departments">
-        <input type="hidden" name="userId" id=<?= $userId ?> value=<?= $userId ?>>
-    </form>
 <?php } ?>

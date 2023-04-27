@@ -5,12 +5,13 @@
   $session = new Session();
 
   require_once(__DIR__ . '/../database/connection.db.php');
+  require_once(__DIR__ . '/../classes/department.class.php');
   require_once(__DIR__ . '/../classes/user.class.php');
 
   $db = getDatabaseConnection();
 
-  $users = User::searchUsers($db, $_GET['search'], $_GET['role'], $_GET['order']);
+  $departments = User::getAssignableDepartments($db, $_GET['userId']);
 
-  echo json_encode($users);
+  echo json_encode($departments);
 
 ?>
