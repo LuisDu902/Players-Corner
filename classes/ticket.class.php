@@ -77,6 +77,12 @@ class Ticket
     $stmt->execute(array($ticketId));
     $ticket = $stmt->fetch();
 
+    if ($ticket['replier'] == null){
+      $replier = 0;
+    }
+    else{
+      $replier = $ticket['replier'];
+    }
     return new Ticket(
       $ticket['id'],
       $ticket['title'],
@@ -88,7 +94,7 @@ class Ticket
       $ticket['category'],
       Ticket::getTicketTags($db, $ticket['id']),
       User::getUser($db, $ticket['creator']),
-      User::getUser($db, $ticket['replier'])
+      User::getUser($db, $replier)
     );
   }
 
@@ -150,6 +156,12 @@ class Ticket
 
     $tickets = array();
     while ($ticket = $stmt->fetch()) {
+      if ($ticket['replier'] == null){
+        $replier = 0;
+      }
+      else{
+        $replier = $ticket['replier'];
+      }
       $tickets[] = new Ticket(
         intval($ticket['id']),
         $ticket['title'],
@@ -161,7 +173,7 @@ class Ticket
         $ticket['category'],
         Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
-        User::getUser($db, $ticket['replier'])
+        User::getUser($db, $replier)
       );
     }
     return $tickets;
@@ -226,6 +238,12 @@ class Ticket
 
     $tickets = array();
     while ($ticket = $stmt->fetch()) {
+      if ($ticket['replier'] == null){
+        $replier = 0;
+      }
+      else{
+        $replier = $ticket['replier'];
+      }
       $tickets[] = new Ticket(
         intval($ticket['id']),
         $ticket['title'],
@@ -237,7 +255,7 @@ class Ticket
         $ticket['category'],
         Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
-        User::getUser($db, $ticket['replier'])
+        User::getUser($db, $replier)
       );
     }
 

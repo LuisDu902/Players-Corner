@@ -80,6 +80,11 @@ class User
   }
   static function getUser(PDO $db, int $id): User
   {
+
+    if ($id == null){
+      return new User(0,'','','','',0,'');
+    }
+
     $stmt = $db->prepare('
         SELECT userId, name, username, email, password, reputation, type
         FROM User 
@@ -95,7 +100,7 @@ class User
       $user['username'],
       $user['email'],
       $user['password'],
-      $user['reputation'],
+      intval($user['reputation']),
       $user['type'],
     );
   }
