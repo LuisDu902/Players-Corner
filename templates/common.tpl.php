@@ -32,10 +32,11 @@
           if ($session->isLoggedIn()){?>
           	<li class="create-Ticket"><a href="../pages/create_ticket.php">Create Tickets</a></li> <?php 
           }?>
-          <li class="Help"><a href="#">Help</a></li>
+        
           <?php if ($session->isLoggedIn() && $session->getRole() === "admin") {
             drawAdminButtons();
           } ?>
+            <li class="Help"><a href="#">Help</a></li>
 
         </ul>
       </nav>
