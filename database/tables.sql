@@ -1,7 +1,6 @@
 PRAGMA foreign_keys = ON;
 
 DROP TABLE IF EXISTS DepartmentFAQ;
-DROP TABLE IF EXISTS TagFAQ;
 DROP TABLE IF EXISTS FAQ;
 DROP TABLE IF EXISTS AgentDepartment;
 DROP TABLE IF EXISTS Department;
@@ -23,11 +22,6 @@ CREATE TABLE User(
    CHECK (type = "client" OR type = "agent" OR type = "admin")
 );
 
-CREATE TABLE Priority(
-   priority VARCHAR PRIMARY KEY,
-   CHECK (priority = "critical" OR priority = "high" OR priority = "medium" OR priority = "low")
-);
-
 CREATE TABLE Status(
    status VARCHAR PRIMARY KEY
 );
@@ -38,12 +32,13 @@ CREATE TABLE Ticket(
    text VARCHAR NOT NULL,
    createDate DATE NOT NULL,
    visibility VARCHAR NOT NULL,
-   priority VARCHAR REFERENCES Priority(priority) NOT NULL,
+   priority VARCHAR NOT NULL,
    status VARCHAR REFERENCES Status(status) NOT NULL,
    category VARCHAR REFERENCES Department(category),
    frequentItem INTEGER REFERENCES FAQ(id),
    creator INTEGER REFERENCES User(userId),
    replier INTEGER REFERENCES User(userId)
+   CHECK (priority = "critical" OR priority = "high" OR priority = "medium" OR priority = "low")
 );
 
 CREATE TABLE TicketTag(
@@ -76,12 +71,6 @@ CREATE TABLE FAQ(
    content VARCHAR NOT NULL,
    popularity INTEGER NOT NULL,
    createDate DATE NOT NULL
-);
-
-CREATE TABLE TagFAQ(
-   item INTEGER REFERENCES FAQ(id),
-   tag VARCHAR NOT NULL,
-   PRIMARY KEY (item, tag)
 );
 
 CREATE TABLE DepartmentFAQ(

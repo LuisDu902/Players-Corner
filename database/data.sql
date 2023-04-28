@@ -110,11 +110,6 @@ INSERT INTO Department(category) VALUES ('Game development');
 INSERT INTO Department(category) VALUES ('Game design');
 INSERT INTO Department(category) VALUES ('Marketing and promotions');
 
-INSERT INTO Priority(priority) VALUES ('critical');
-INSERT INTO Priority(priority) VALUES ('high');
-INSERT INTO Priority(priority) VALUES ('medium');
-INSERT INTO Priority(priority) VALUES ('low');
-
 INSERT INTO Status(status) VALUES ('new');
 INSERT INTO Status(status) VALUES ('assigned');
 INSERT INTO Status(status) VALUES ('open');
@@ -170,6 +165,7 @@ INSERT INTO AgentDepartment (agent, department) VALUES (86, 'Marketing and promo
 INSERT INTO AgentDepartment (agent, department) VALUES (90, 'Marketing and promotions');
 INSERT INTO AgentDepartment (agent, department) VALUES (100, 'Marketing and promotions');
 
+
 INSERT INTO FAQ (id, title, content, popularity, createDate) VALUES (1, "Game client not launching", "This is a very common issue that can be caused by a variety of factors, including outdated drivers, missing game files, or conflicting software. One potential solution is to try running the game in compatibility mode or as an administrator. It may also be helpful to verify the game files or reinstall the game entirely.", 80,'2023-04-20');
 INSERT INTO FAQ (id, title, content, popularity, createDate) VALUES (2, "Connection issues", "Connection issues can be caused by a variety of factors, including network problems, server issues, or software conflicts. One potential solution is to check your internet connection and router settings. You may also want to try restarting your modem or router. If the issue persists, you may need to contact your ISP or the game's support team.", 90, '2023-04-20');
 INSERT INTO FAQ (id, title, content, popularity, createDate) VALUES (3, "Game crashes every time I try to load it", "Game crashes can be caused by a variety of factors, including outdated drivers, conflicting software, or corrupt game files. One potential solution is to update your drivers and make sure your system meets the game's minimum requirements. You may also want to try running the game in compatibility mode or reinstalling the game entirely.", 85,'2023-04-20');
@@ -206,6 +202,30 @@ INSERT INTO FAQ (id, title, content, popularity, createDate) VALUES (33, "Reques
 INSERT INTO FAQ (id, title, content, popularity, createDate) VALUES (34, "Certain weapons or abilities are overpowered", "If you believe that certain weapons or abilities are overpowered in a game, you can report them to the game developers through the game's official forums or social media pages. Provide evidence and explain why you think they are overpowered.", 80, '2023-04-20');
 INSERT INTO FAQ (id, title, content, popularity, createDate) VALUES (35, "Event page not loading", "If the event page is not loading, try refreshing the page or clearing your browser cache and cookies. If that doesn't work, try accessing the page from a different browser or device. If the problem persists, contact the event organizers for assistance.", 75, '2023-04-20');
 INSERT INTO FAQ (id, title, content, popularity, createDate) VALUES (36, "Need help promoting my Twitch channel", "To promote your Twitch channel, you can start by creating quality content and engaging with your viewers. Utilize social media platforms to share your content and interact with your audience. Collaborate with other streamers and participate in Twitch communities. You can also consider using paid advertising or sponsorships to reach a wider audience.", 85, '2023-04-20');
+
+INSERT INTO DepartmentFAQ (item, category) VALUES (1, 'Technical support');
+INSERT INTO DepartmentFAQ (item, category) VALUES (2, 'Technical support');
+INSERT INTO DepartmentFAQ (item, category) VALUES (7, 'Technical support');
+INSERT INTO DepartmentFAQ (item, category) VALUES (12, 'Gameplay issues');
+INSERT INTO DepartmentFAQ (item, category) VALUES (8, 'Gameplay issues');
+INSERT INTO DepartmentFAQ (item, category) VALUES (9, 'Account and billing');
+INSERT INTO DepartmentFAQ (item, category) VALUES (16, 'Account and billing');
+INSERT INTO DepartmentFAQ (item, category) VALUES (10, 'Community management');
+INSERT INTO DepartmentFAQ (item, category) VALUES (11, 'Community management');
+INSERT INTO DepartmentFAQ (item, category) VALUES (13, 'Community management');
+INSERT INTO DepartmentFAQ (item, category) VALUES (14, 'Community management');
+INSERT INTO DepartmentFAQ (item, category) VALUES (15, 'Community management');
+INSERT INTO DepartmentFAQ (item, category) VALUES (31, 'Esports and tournaments');
+INSERT INTO DepartmentFAQ (item, category) VALUES (32, 'Esports and tournaments');
+INSERT INTO DepartmentFAQ (item, category) VALUES (3, 'Game development');
+INSERT INTO DepartmentFAQ (item, category) VALUES (4, 'Game development');
+INSERT INTO DepartmentFAQ (item, category) VALUES (5, 'Game development');
+INSERT INTO DepartmentFAQ (item, category) VALUES (17, 'Game development');
+INSERT INTO DepartmentFAQ (item, category) VALUES (33, 'Game development');
+INSERT INTO DepartmentFAQ (item, category) VALUES (34, 'Game design');
+INSERT INTO DepartmentFAQ (item, category) VALUES (35, 'Marketing and promotions');
+INSERT INTO DepartmentFAQ (item, category) VALUES (36, 'Marketing and promotions');
+
 
 INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (1, 'Pokemon GO connection issue', 'I cannot connect to the Pokemon GO servers. Is anyone else having this issue?', '2023-04-24', 'public', 'high', 'closed', 'Technical support', NULL, 1, 73);
 INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (2, 'Game client not launching', 'I am having an issue with the game client not launching. I have tried running it as administrator and reinstalling it, but it still won''t launch. What can I do to fix this issue?', '2022-02-18', 'public', 'high', 'solved', 'Technical support', 1, 3, 74);
@@ -547,3 +567,38 @@ INSERT INTO Message (id, user, ticket, text, date) VALUES (63, 6, 61, "I see. Is
 INSERT INTO Message (id, user, ticket, text, date) VALUES (64, 73, 61, "It's difficult to say at this point, but we'll definitely consider it for future updates. Thank you for your suggestion and feedback, and we hope you continue to enjoy playing the game.", "2023-04-27");
 
 INSERT INTO Message (id, user, ticket, text, date) VALUES (65, 74, 71, "I'm sorry to hear that you're having trouble with the promotion. Our team is currently investigating the issue, and we'll do our best to resolve it as soon as possible. In the meantime, please try again later or contact us again if the issue persists.", '2023-04-28');
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (66, 79, 14, "Thank you for reaching out to us about this issue. We're sorry to hear that you're having trouble completing the quest. Let's see if we can help you out! Can you provide a little more information about the quest and where you've looked so far?", '2023-04-25');
+INSERT INTO Message (id, user, ticket, text, date) VALUES (67, 14, 14, "The 'Retrieve the Lost Artifact' quest is located in the Cursed Ruins area. I've searched around the ruins, but I can't seem to find the artifact anywhere.", '2023-04-25');
+INSERT INTO Message (id, user, ticket, text, date) VALUES (68, 79, 14, "Okay, that's a good start. Have you checked all the areas around the ruins, including any hidden paths or side passages?", '2023-04-25');
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (69, 77, 15, "Hello, I'm sorry to hear that. Can you provide me with some more information? What type of phone are you using and which version of the game do you have installed?", "2022-03-02");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (70, 15, 15, "I'm using an iPhone XS and the latest version of the game.", "2022-03-03");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (71, 77, 15, "Thanks for letting me know. Have you tried clearing the game's cache or reinstalling the app?", "2022-03-03");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (72, 15, 15, "Yes, I've tried both of those things but the issue still persists.", "2022-03-04");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (73, 77, 15, "I'm sorry to hear that. I will escalate this issue to our technical support team for further investigation. In the meantime, is there anything else I can help you with?", "2022-03-04");
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (74, 25, 25, "Hello, I am having trouble making a payment in the game store. Can you please help me?", "2023-04-18");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (75, 81, 25, "Hi there, sorry to hear that. Can you please provide me with your account ID and the payment method you are trying to use?", "2023-04-18");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (76, 25, 25, "My account ID is 123456 and I am trying to use my Visa credit card to make the payment.", "2023-04-19");
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (77, 84, 26, "Hi there, sorry to hear that. Can you please provide me with your account ID and the name of the item you purchased?", "2023-04-28");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (78, 26, 26, "My account ID is 789012 and I purchased the 'Golden Sword' item.", "2023-04-29");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (79, 84, 26, "Thank you for the information. Can you please check if you received any confirmation email or receipt for the purchase?", "2023-04-29");
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (80, 87, 45, "Sure, what's your question?", "2022-02-16");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (81, 45, 45, "The rule in question is about the use of custom skins for the characters. Is it allowed or not?", "2022-02-17");
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (82, 71, 46, "Sure, we'll look into it. Can you provide us with more details about the discrepancy?", "2022-03-01");
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (83, 85, 64, "Thank you for bringing this to our attention. We understand your concern and will pass it on to the game design team for review. In the meantime, can you provide us with some more details about the specific areas of the game where you feel the progression is too slow?", "2023-04-28");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (84, 4, 64, "Sure, it seems to take a long time to level up and unlock new items and features. It would be great if there were other ways to speed up the process or if the rate of progression could be increased.", "2023-04-29");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (85, 85, 64, "Thank you for the feedback. We'll pass it on to the game design team for review and see what can be done to improve the level progression.", "2023-04-29");
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (86, 81, 66, "Hi there! Thank you for reaching out to us about your concern. We understand that having more diverse character designs in the game is important to many of our players. Our game design team is currently looking into this and considering options to introduce more diverse characters to the game. We appreciate your feedback and will keep you updated on any developments. Thank you for playing our game!", "2023-04-28");
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (87, 82, 74, "I'm sorry, but the offer has already expired and we cannot extend it. However, we have other promotions available. Can I interest you in any of those?", "2023-04-25");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (88, 50, 74, "I'm only interested in the offer that just expired. Is there any way you can make an exception for me?", "2023-04-26");
+
+INSERT INTO Message (id, user, ticket, text, date) VALUES (89, 45, 76, "I'm sorry to hear that. It could be an issue with the video or your browser. Could you please try clearing your browser cache and cookies and then try playing the video again?", "2023-04-23");
+INSERT INTO Message (id, user, ticket, text, date) VALUES (90, 90, 76, "I just cleared my browser cache and cookies, but the video still isn't playing.", "2023-04-24");
