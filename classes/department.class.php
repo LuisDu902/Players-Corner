@@ -124,6 +124,5 @@ class Department
     return $tickets;
   }
 
-
 }
 ?>

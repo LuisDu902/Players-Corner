@@ -182,7 +182,7 @@ class Ticket
   function getMessages($db): array
   {
     $stmt = $db->prepare(
-      'SELECT id, text, sent, user, ticket
+      'SELECT id, user, ticket, text, date
          FROM Message 
          WHERE ticket = ?'
     );
@@ -193,10 +193,10 @@ class Ticket
     while ($message = $stmt->fetch()) {
       $messages[] = new Message(
         intval($message['id']),
-        $message['text'],
-        $message['sent'],
         User::getUser($db, intval($message['user'])),
-        intval($message['ticket']),
+        Ticket::getTicket($db, $message['ticket']),
+        $message['text'],
+        $message['date'],
       );
     }
     return $messages;

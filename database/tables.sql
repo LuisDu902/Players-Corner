@@ -54,10 +54,10 @@ CREATE TABLE TicketTag(
 
 CREATE TABLE Message(
    id INTEGER PRIMARY KEY,
-   text VARCHAR NOT NULL,
-   sent DATE NOT NULL,
    user INTEGER REFERENCES User(userId) NOT NULL,
-   ticket INTEGER REFERENCES Ticket(id) NOT NULL
+   ticket INTEGER REFERENCES Ticket(id) NOT NULL,
+   text VARCHAR NOT NULL,
+   date DATE NOT NULL
 );
 
 CREATE TABLE Department(
