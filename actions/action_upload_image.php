@@ -6,7 +6,6 @@
   $session = new Session();
 
   if (!valid_token($_POST['csrf'])){
-    $session->addMessage('error', 'Request does not appear to be legitimate!');
     die(header("Location: ../pages/edit_profile.php"));
   }
 

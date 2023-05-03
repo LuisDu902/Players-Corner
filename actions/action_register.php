@@ -1,25 +1,20 @@
 <?php
-declare(strict_types=1);
+    declare(strict_types=1);
 
-require_once(__DIR__ . '/../classes/session.class.php');
-$session = new Session();
+    require_once(__DIR__ . '/../classes/session.class.php');
+    $session = new Session();
 
-require_once(__DIR__ . '/../database/connection.db.php');
-require_once(__DIR__ . '/../classes/user.class.php');
-require_once(__DIR__ . '/../utils/security.php');
+    require_once(__DIR__ . '/../database/connection.db.php');
+    require_once(__DIR__ . '/../classes/user.class.php');
+    require_once(__DIR__ . '/../utils/security.php');
 
 
-$db = getDatabaseConnection();
+    $db = getDatabaseConnection();
 
-if (!valid_token($_POST['csrf'])){
-    $session->addMessage('error', 'Request does not appear to be legitimate!');
-    die(header("Location: ../pages/register.php"));
-  }
+    if (!valid_token($_POST['csrf']) || !valid_name($_POST['name']) || !valid_email($_POST['email'])){
+        die(header("Location: ../pages/register.php"));
+    }
 
-if (!valid_name($_POST['name'])){
-    $session->addMessage('error','Name can only contain letter and spaces');
-    die(header("Location: ../pages/register.php"));
-}
 
 /*
     User::registerUser($db, $_POST['name'], $_POST['username'], $_POST['email'], $_POST['password']);

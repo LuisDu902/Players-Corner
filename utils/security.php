@@ -7,68 +7,33 @@
     }
 
     function valid_token(String $attemp) : bool {
-        return ($_SESSION['csrf'] === $attemp);
-    }
-
-    function valid_name(String $attemp) : bool {
-        if (! preg_match("/^[a-zA-Z\s]+$/", $attemp)) return false;
-        return true;
-    }
-
-    function valid_email(String $attemp) : bool {
-        if (filter_var($attemp, FILTER_VALIDATE_EMAIL) == NULL) {
+        if ($_SESSION['csrf'] !== $attemp){
             $session = new Session();
-            $session->addMessage('warning', "Formato de email inválido");
+            $session->addMessage('error', 'Request does not appear to be legitimate!');
             return false;
         }
         return true;
     }
 
-    function valid_address(String $attemp) : bool {
-        if (!preg_match ('/[A-Za-z0-9\-\\,.]+/', $attemp)) {
+    function valid_name(String $name) : bool {
+        if (!preg_match("/^[a-zA-Z\s]+$/", $name)) {
             $session = new Session();
-            $session->addMessage('warning', "Formato de morada inválido");
+            $session->addMessage('error','Name can only contain letter and spaces!');
             return false;
         }
         return true;
     }
 
-    function valid_phone(String $attemp) : bool {
-        if (!preg_match ('/^[0-9]{9}+$/', $attemp)) {
+    function valid_email(String $email) : bool {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL) == null){
             $session = new Session();
-            $session->addMessage('warning', "Número de telemóvel inválido");
+            $session->addMessage('error','Invalid email address format!');
             return false;
         }
         return true;
     }
 
-    function valid_type(String $attemp) : bool {
-        if (!preg_match ("/^[a-zA-Z\s]+$/", $attemp)) {
-            $session = new Session();
-            $session->addMessage('warning', "Formato de tipo inválido");
-            return false;
-        }
-        return true;
-    }
-
-    function valid_category(String $attemp) : bool {
-        if (!preg_match ("/^[a-zA-Z\s]+$/", $attemp)) {
-            $session = new Session();
-            $session->addMessage('warning', "Formato de categoria inválido");
-            return false;
-        }
-        return true;
-    }
-
-    function valid_price(String $attemp) : bool {
-        if (!preg_match ('/^\d+(\.\d{2})?$/', $attemp)) {
-            $session = new Session();
-            $session->addMessage('warning', "Formato de preço inválido");
-            return false;
-        }
-        return true;
-    }
-
+   
     function valid_text(String $attemp) : bool {
         if (!preg_match ("/^[a-zA-Z\s]+$/", $attemp)) {
             $session = new Session();
