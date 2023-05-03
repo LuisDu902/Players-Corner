@@ -2,12 +2,10 @@
     declare(strict_types = 1);
     require_once(__DIR__ . '/../classes/session.class.php');
 
-    function generate_random_token(){
-        return bin2hex(openssl_random_pseudo_bytes(32));
-    }
 
-    function valid_token(String $attemp) : bool {
-        if ($_SESSION['csrf'] !== $attemp){
+
+    function valid_token(String $token) : bool {
+        if ($_SESSION['csrf'] !== $token){
             $session = new Session();
             $session->addMessage('error', 'Request does not appear to be legitimate!');
             return false;
@@ -19,6 +17,22 @@
         if (!preg_match("/^[a-zA-Z\s]+$/", $name)) {
             $session = new Session();
             $session->addMessage('error','Name can only contain letter and spaces!');
+            return false;
+        }
+        return true;
+    }
+
+    function valid_new_username(PDO $db, string $username): bool{
+        $stmt = $db->prepare('
+            SELECT userId, name, username, email, password, reputation, type
+            FROM User 
+            WHERE username = ?
+        ');
+
+        $stmt->execute(array($username));
+        if ($stmt->fetch()){
+            $session = new Session();
+            $session->addMessage('error', 'Username already in use. Please choose a different one!');
             return false;
         }
         return true;
@@ -42,6 +56,23 @@
         }
         return true;
     }
+
+    function valid_new_email(PDO $db, String $email) : bool {
+        $stmt = $db->prepare('
+            SELECT userId, name, username, email, password, reputation, type
+            FROM User 
+            WHERE email = ?
+        ');
+
+        $stmt->execute(array($email));
+        if ($stmt->fetch()){
+            $session = new Session();
+            $session->addMessage('error', 'Email already in use. Please try a different one!');
+            return false;
+        }
+        return true;
+    }
+
 
     function valid_password(string $password): bool {
         $uppercase = preg_match('@[A-Z]@', $password);

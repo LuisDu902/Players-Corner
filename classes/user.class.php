@@ -33,18 +33,13 @@ class User
 
     $stmt->execute(array($this->name, $this->username, $this->email, $this->password, $this->userId));
   }
+  static function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
 
-  static function getUserWithPassword(PDO $db, string $email, string $password): ?User
-  {
-    $stmt = $db->prepare('
-        SELECT userId, name, username, email, password, reputation, type
-        FROM user 
-        WHERE lower(email) = ? AND password = ?
-      ');
-
-    $stmt->execute(array(strtolower($email), ($password)));
-
-    if ($user = $stmt->fetch()) {
+    $stmt = $db->prepare('SELECT * FROM User WHERE email = ?');
+    $stmt->execute(array($email));
+    $user = $stmt->fetch();
+    
+    if ($user !== false && password_verify($password, $user['password'])) {
       return new User(
         intval($user['userId']),
         $user['name'],
@@ -53,18 +48,29 @@ class User
         $user['password'],
         intval($user['reputation']),
         $user['type'],
-        
       );
-    } else
-      return null;
+    } else return null;
   }
-
   static function registerUser(PDO $db, string $name, string $username, string $email, string $password)
   {
+    $options = ['cost' => 12];
     $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (NULL, ?, ?, ?, ?,0,"client")');
-    $stmt->execute(array($name, $username, $email, $password));
+    $stmt->execute(array($name, $username, $email, password_hash($password, PASSWORD_DEFAULT, $options)));
   }
 
+  static function validEmail(PDO $db, string $email)
+  {
+    $stmt = $db->prepare('
+        SELECT userId, name, username, email, password, reputation, type
+        FROM User 
+        WHERE email = ?
+      ');
+
+    $stmt->execute(array($email));
+    if ($stmt->fetch())
+      return false;
+    return true;
+  }
   static function getUser(PDO $db, int $id): User
   {
 

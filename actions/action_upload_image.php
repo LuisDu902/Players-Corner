@@ -2,7 +2,7 @@
   declare(strict_types=1);
 
   require_once(__DIR__ . '/../classes/session.class.php');
-  require_once(__DIR__ . '/../utils/security.php');
+  require_once(__DIR__ . '/../utils/validation.php');
   $session = new Session();
 
   if (!valid_token($_POST['csrf'])){

@@ -64,7 +64,7 @@ INSERT INTO User(userId, name, username, email, password, reputation, type) VALU
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (64, "Maxwell Young", "maxwellyoung", "maxwellyoung@email.com", "password123", 25, "client");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (65, "Hazel Turner", "hazelturner", "hazelturner@email.com", "password123", 50, "client");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (66, "Miles Mitchell", "milesmitchell", "milesmitchell@email.com", "password123", 100, "client");
-INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (67, "Aria Scott", "ariascott", "ariascott@email.com", "password123", 75, "client");
+INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (67, "Ariana Scott", "arianascott", "arianascott@email.com", "password123", 75, "client");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (68, "Samantha Allen", "samanthaallen", "samanthaallen@email.com", "password123", 25, "client");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (69, "Landon Green", "landongreen", "landongreen@email.com", "password123", 50, "client");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (70, "Nora Baker", "norabaker", "norabaker@email.com", "password123", 100, "client");
@@ -99,7 +99,7 @@ INSERT INTO User(userId, name, username, email, password, reputation, type) VALU
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (97, "Brooklyn Lewis", "brooklynlewis", "brooklynlewis@email.com", "adminpassword", 140, "admin");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (98, "Jacob Green", "jacobgreen", "jacobgreen@email.com", "adminpassword", 99, "admin");
 INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (99, "Chloe Hall", "chloehall", "chloehall@email.com", "adminpassword", 99, "admin");
-INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (100, "Mia Davis", "miadavis", "miadavis@email.com", "adminpassword", 100, "admin");
+INSERT INTO User(userId, name, username, email, password, reputation, type) VALUES (100, "Miala Davis", "mialadavis", "mialadavis@email.com", "adminpassword", 100, "admin");
 
 INSERT INTO Department(category) VALUES ('Technical support');
 INSERT INTO Department(category) VALUES ('Gameplay issues');
