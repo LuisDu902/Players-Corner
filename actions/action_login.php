@@ -8,11 +8,11 @@
   require_once(__DIR__ . '/../classes/user.class.php');
   require_once(__DIR__ . '/../utils/validation.php');
 
-  $db = getDatabaseConnection();
-
   if (!valid_token($_POST['csrf']) || !valid_email($_POST['email']) || !valid_password($_POST["password"])){
     die(header("Location: ../pages/login.php"));
-}
+  }
+
+  $db = getDatabaseConnection();
 
   $user = User::getUserWithPassword($db, $_POST['email'], $_POST['password']);
   

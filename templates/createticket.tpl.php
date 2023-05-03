@@ -41,6 +41,7 @@
                 <h6> Tell us the details of your problem.</h6>
                 <textarea id="description" name="description" required="required" rows="4" cols="40"></textarea><br>
             </div>
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
             <button type="submit" class="create-Ticket"><span>Create Ticket</span></button>
         </form>
     </div>

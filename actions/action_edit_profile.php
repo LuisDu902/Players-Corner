@@ -6,22 +6,24 @@
 
   require_once(__DIR__ . '/../database/connection.db.php');
   require_once(__DIR__ . '/../classes/user.class.php');
+  require_once(__DIR__ . '/../utils/validation.php'); 
+
+  if (!valid_token($_POST['csrf']) || !valid_name($_POST['name']) || !valid_email($_POST['email']) || !valid_username($_POST['username']) || !valid_password($_POST["old-password"]) || !valid_password($_POST["new-password"])){
+    die(header("Location: ../pages/edit_profile.php"));
+  }
 
   $db = getDatabaseConnection();
 
   $user = User::getUser($db, $session->getId());
 
-  if ($user) {
-    $user->name = $_POST['name'];
-    $user->username = $_POST['username'];
-    $user->email = $_POST['email'];
-    $user->password = $_POST['password'];
-    
-    $user->editProfile($db);
+  if (!password_verify($_POST["old-password"], $user->password)){
+    $session->addMessage('error', 'Current password doesn\'t match!');
+    die(header("Location: ../pages/edit_profile.php"));
+  }
 
+  else if ($user) {
+    $user->editProfile($db, $_POST['name'], $_POST['username'], $_POST['email'], $_POST['new-password']);
     $session->setName($user->username);
-    $session->setId($user->userId);
-   
   }
 
   header('Location: ../pages/profile.php');

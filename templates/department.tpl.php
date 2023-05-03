@@ -67,6 +67,7 @@ function drawDepartment($department, $tickets, $members)
                     id="department-name">
                 <img id="dep-image-preview" src="../images/departments/default.png" alt="">
                 <input type="file" id="dep-image" name="departmentImage"><br>
+                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
                 <input type="submit" value="Confirm" class="authentication-button">
             </form>
         </div>

@@ -47,13 +47,14 @@
           <img src="../images/icons/email.png" class="icon" alt="email">
         </div>
         <div class="input-box">
-          <input type="password" name="old-password" required="required" placeholder="New password">
+          <input type="password" name="old-password" required="required" placeholder="Old password">
           <img src="../images/icons/password.png" class="icon" alt="password">
         </div>
         <div class="input-box">
-          <input type="password" name="new-password" required="required" placeholder="Old password">
+          <input type="password" name="new-password" required="required" placeholder="New password">
           <img src="../images/icons/password.png" class="icon" alt="password">
         </div>
+        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         <button type="submit" class="authentication-button">Save</button>
       </form>
     </div>

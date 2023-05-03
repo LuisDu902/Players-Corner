@@ -8,6 +8,5 @@
   require_once(__DIR__ . '/../classes/ticket.class.php');
 
   $db = getDatabaseConnection();
-
   
 ?>

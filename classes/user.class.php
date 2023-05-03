@@ -9,7 +9,6 @@ class User
   public string $password;
   public int $reputation;
   public string $type;
-
   public bool $hasPhoto;
 
   public function __construct(int $userId, string $name, string $username, string $email, string $password, int $reputation, string $type)
@@ -24,14 +23,20 @@ class User
     $this->hasPhoto = $this->getPhoto() != '../images/users/default.png';
   }
 
-  function editProfile(PDO $db)
+  function editProfile(PDO $db, string $name, string $username, string $email, string $password)
   {
+    $options = ['cost' => 12];
     $stmt = $db->prepare('
         UPDATE User SET name = ?, username = ?, email = ?, password = ?
         WHERE userId = ?
       ');
 
-    $stmt->execute(array($this->name, $this->username, $this->email, $this->password, $this->userId));
+    $stmt->execute(array($name, $username, $email, password_hash($password, PASSWORD_DEFAULT, $options), $this->userId));
+
+    $this->name = $name;
+    $this->email = $email;
+    $this->username = $username;
+    $this->password = password_hash($password, PASSWORD_DEFAULT, $options);
   }
   static function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
 
@@ -58,19 +63,7 @@ class User
     $stmt->execute(array($name, $username, $email, password_hash($password, PASSWORD_DEFAULT, $options)));
   }
 
-  static function validEmail(PDO $db, string $email)
-  {
-    $stmt = $db->prepare('
-        SELECT userId, name, username, email, password, reputation, type
-        FROM User 
-        WHERE email = ?
-      ');
-
-    $stmt->execute(array($email));
-    if ($stmt->fetch())
-      return false;
-    return true;
-  }
+ 
   static function getUser(PDO $db, int $id): User
   {
 

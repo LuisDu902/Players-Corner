@@ -2,8 +2,6 @@
     declare(strict_types = 1);
     require_once(__DIR__ . '/../classes/session.class.php');
 
-
-
     function valid_token(String $token) : bool {
         if ($_SESSION['csrf'] !== $token){
             $session = new Session();
