@@ -43,58 +43,19 @@
         return true;
     }
 
-   
-    function valid_text(String $attemp) : bool {
-        if (!preg_match ("/^[a-zA-Z\s]+$/", $attemp)) {
+    function valid_password(string $password): bool {
+        $uppercase = preg_match('@[A-Z]@', $password);
+        $lowercase = preg_match('@[a-z]@', $password);
+        $number = preg_match('@[0-9]@', $password);
+        $special = preg_match('/[!@#$%^&*(),.?":{}|<>]/', $password);
+    
+        if (!$uppercase || !$lowercase || !$number || !$special || strlen($password) < 10) {
             $session = new Session();
-            $session->addMessage('warning', "Formato de texto inválido");
-            return false;
-        }
-        return true;
-    }
-
-    function valid_state(String $attemp) : bool {
-        if (!preg_match ("/^[a-zA-Z\s]+$/", $attemp)) {
-            $session = new Session();
-            $session->addMessage('warning', "Formato de texto inválido");
-            return false;
-        }
-        return true;
-    }
-
-    function valid_stars(String $attemp) : bool {
-        if (!preg_match ('/[1-5]/', $attemp)) {
-            $session = new Session();
-            $session->addMessage('warning', "Número de estrelas inválido");
-            return false;
-        }
-        return true;
-    }
-
-    function valid_password(String $attemp) : bool {
-
-        $uppercase = preg_match('@[A-Z]@', $attemp);
-        $lowercase = preg_match('@[a-z]@', $attemp);
-        $number = preg_match('@[0-9]@', $attemp);
-
-        if (!$uppercase || !$lowercase || !$number || strlen(($_POST['password2'])) < 8) {
-            $session = new Session();
-            $session->addMessage('warning', "A nova palavra passe deve conter pelo menos 8 caracteres, ter uma letra maiúscula, uma letra minúscula e um número");
+            $session->addMessage('error', 'The password must be at least 10 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.');
             return false; 
         }
         return true;
     }
+    
 
-    function valid_CSRF(String $attemp) : bool {
-        if ($_SESSION['csrf'] !== $attemp) {
-            $session = new Session();
-            $session->addMessage('error', "Operação inválida");
-            return false;
-        }
-        return true;
-    }
-
-    function filter_text(String $text) : String {
-        return preg_replace ("/[^a-zA-Z0-9\s]/", '', $text);
-    }
 ?>

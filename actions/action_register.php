@@ -11,7 +11,7 @@
 
     $db = getDatabaseConnection();
 
-    if (!valid_token($_POST['csrf']) || !valid_name($_POST['name']) || !valid_email($_POST['email']) || !valid_username($_POST['username'])){
+    if (!valid_token($_POST['csrf']) || !valid_name($_POST['name']) || !valid_email($_POST['email']) || !valid_username($_POST['username']) || !valid_password($_POST["password"])){
         die(header("Location: ../pages/register.php"));
     }
 
