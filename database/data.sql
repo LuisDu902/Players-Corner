@@ -602,3 +602,5 @@ INSERT INTO Message (id, user, ticket, text, date) VALUES (88, 50, 74, "I'm only
 
 INSERT INTO Message (id, user, ticket, text, date) VALUES (89, 45, 76, "I'm sorry to hear that. It could be an issue with the video or your browser. Could you please try clearing your browser cache and cookies and then try playing the video again?", "2023-04-23");
 INSERT INTO Message (id, user, ticket, text, date) VALUES (90, 90, 76, "I just cleared my browser cache and cookies, but the video still isn't playing.", "2023-04-24");
+
+INSERT INTO TicketHistory(id, ticketId, date, changes) VALUES (1, 1, "2023-04-24", "Change status");

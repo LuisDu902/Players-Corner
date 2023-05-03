@@ -14,6 +14,7 @@
           <input type="password" name="password" required="required" placeholder="Password">
           <img src="../images/icons/password.png" class="icon" alt="password">
         </div>
+        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         <button type="submit" class="authentication-button">Sign In</button>
       </form>
     </div>
@@ -47,6 +48,7 @@
           <input type="username" name="username" required="required" placeholder="Username">
           <img src="../images/icons/username.png" class="icon" alt="username">
         </div>
+        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         <button type="submit" class="authentication-button">Register</button>
       </form>
     </div>

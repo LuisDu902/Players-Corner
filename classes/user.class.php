@@ -65,19 +65,6 @@ class User
     $stmt->execute(array($name, $username, $email, $password));
   }
 
-  static function validEmail(PDO $db, string $email)
-  {
-    $stmt = $db->prepare('
-        SELECT userId, name, username, email, password, reputation, type
-        FROM User 
-        WHERE email = ?
-      ');
-
-    $stmt->execute(array($email));
-    if ($stmt->fetch())
-      return false;
-    return true;
-  }
   static function getUser(PDO $db, int $id): User
   {
 

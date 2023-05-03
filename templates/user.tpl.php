@@ -61,6 +61,7 @@
       <form action="../actions/action_upload_image.php" method="post" class="upload-form round-wrap" enctype="multipart/form-data">
         <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview">
         <input type="file" id="user-image" name="imageToUpload">
+        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         <button type="submit" id="upload" class="authentication-button">Upload photo</button>
       </form>
     </div>

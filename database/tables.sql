@@ -5,6 +5,7 @@ DROP TABLE IF EXISTS FAQ;
 DROP TABLE IF EXISTS AgentDepartment;
 DROP TABLE IF EXISTS Department;
 DROP TABLE IF EXISTS Message;
+DROP TABLE IF EXISTS TicketHistory;
 DROP TABLE IF EXISTS TicketTag;
 DROP TABLE IF EXISTS Ticket;
 DROP TABLE IF EXISTS Status;
@@ -40,6 +41,14 @@ CREATE TABLE Ticket(
    replier INTEGER REFERENCES User(userId)
    CHECK (priority = "critical" OR priority = "high" OR priority = "medium" OR priority = "low")
 );
+
+CREATE TABLE TicketHistory(
+   id INTEGER PRIMARY KEY,
+   ticketId INTEGER REFERENCES Ticket(id),
+   date DATE NOT NULL,
+   changes VARCHAR NOT NULL 
+);
+
 
 CREATE TABLE TicketTag(
    ticket INTEGER REFERENCES Ticket(id),
