@@ -24,6 +24,16 @@
         return true;
     }
 
+    function valid_username(string $username): bool {
+        if (!preg_match("/^[a-zA-Z\d]+$/", $username)) {
+            $session = new Session();
+            $session->addMessage('error', 'Username can only contain letters and numbers!');
+            return false;
+        }
+        return true;
+    }
+    
+
     function valid_email(String $email) : bool {
         if (filter_var($email, FILTER_VALIDATE_EMAIL) == null){
             $session = new Session();
