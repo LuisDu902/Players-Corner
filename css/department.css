@@ -165,8 +165,7 @@
 }
 
 
-.members-container h3{
-    text-align: center;
+.department-content h3{
     font-size: 2em;
     color: #44C4D9;
     margin-bottom: 30px;
@@ -183,12 +182,15 @@
     align-items: center;
 }
 
+.member img{
+    margin-right: 10px;
+}
+
 .assignable-departments{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     grid-auto-rows: minmax(300px, max-content);
 }
-
 
 #assign-modal-content{
     min-width: 80%;

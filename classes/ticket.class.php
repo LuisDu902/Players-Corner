@@ -32,48 +32,28 @@ class Ticket
     $this->category = $category;
   }
 
-
-  function getTicketId()
+  function changeStatus(PDO $db, string $status)
   {
-    return $this->ticketId;
+    $stmt = $db->prepare('UPDATE Ticket SET status = ? WHERE id = ?');
+    $stmt->execute(array($this->ticketId, $status));
   }
 
-  function updateTicketStatus(PDO $db, int $ticketId, string $status)
+  function assignTicket(PDO $db, string $replier)
   {
-    $stmt = $db->prepare('
-        UPDATE Ticket SET status = ?
-        WHERE id = ?
-      ');
-
-    $stmt->execute(array($ticketId, $status));
+    $stmt = $db->prepare("UPDATE Ticket SET replier=? , status='assigned' WHERE id=?");
+    $stmt->execute(array($replier, $this->ticketId));
   }
 
-  static function updateReplier(PDO $db, int $ticketId, string $replier)
+  static function registerTicket(PDO $db, array $tags, string $title, string $text, string $priority, string $category, string $date, string $visibility, string $creator)
   {
-    $stmt = $db->prepare('
-        UPDATE Ticket SET replier=? , status="assigned"
-        WHERE id=?
-      ');
-
-    $stmt->execute(array($replier, $ticketId));
-
-  }
-
-  static function registerTicket(PDO $db, int $ticketId, array $tags, string $title, string $text, string $priority, string $category, string $status, string $date, string $visibility, string $creator)
-  {
-    $stmt = $db->prepare('INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem,creator,replier) VALUES (?,?,?,?,?, ?, ?, ?,NULL,?,NULL)');
-    $stmt->execute(array($ticketId, $title, $text, $date, $visibility, $priority, $status, $category, $creator));
+    $stmt = $db->prepare("INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem,creator,replier) VALUES (NULL,?,?,?,?, ?, 'new', ?,NULL,?,NULL)");
+    $stmt->execute(array($title, $text, $date, $visibility, $priority, $category, $creator));
   }
 
 
   static function getTicket(PDO $db, int $ticketId): Ticket
   {
-    $stmt = $db->prepare('
-        SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem,creator,replier
-        FROM Ticket 
-        WHERE id = ?
-      ');
-
+    $stmt = $db->prepare('SELECT * FROM Ticket WHERE id = ?');
     $stmt->execute(array($ticketId));
     $ticket = $stmt->fetch();
 
@@ -98,24 +78,9 @@ class Ticket
     );
   }
 
-  function assignTicket(PDO $db, int $ticketId, string $replier)
+  static function getTicketTags(PDO $db,  $ticketId): array
   {
-    $stmt = $db->prepare('
-       UPDATE Ticket SET replier = ?
-       WHERE id = ?
-      ');
-
-    $stmt->execute(array($replier, $ticketId));
-
-  }
-
-  static function getTicketTags(PDO $db, int $ticketId): array
-  {
-    $stmt = $db->prepare('
-      SELECT tag
-      FROM TicketTag 
-      WHERE ticket = ?
-  ');
+    $stmt = $db->prepare('SELECT tag FROM TicketTag WHERE ticket = ?');
 
     $stmt->execute(array($ticketId));
     $tags = array();
@@ -127,31 +92,21 @@ class Ticket
   }
   function updateFrequentItem(PDO $db, int $ticketId, string $frequentItem)
   {
-    $stmt = $db->prepare('
-        UPDATE Ticket SET frequentItem = ?
-        WHERE id = ?
-       ');
+    $stmt = $db->prepare('UPDATE Ticket SET frequentItem = ? WHERE id = ?');
 
     $stmt->execute(array($frequentItem + 1, $ticketId));
 
   }
-  function updateDepartement(PDO $db, int $ticketId, string $category)
+  function changeDepartment(PDO $db, string $category)
   {
-    $stmt = $db->prepare('
-        UPDATE Ticket SET category=?
-        WHERE id=?
-      ');
-    $stmt->execute(array($category, $ticketId));
+    $stmt = $db->prepare('UPDATE Ticket SET category=? WHERE id=?');
+    $stmt->execute(array($category, $this->ticketId));
   }
 
     static function getUserTickets(PDO $db, int $userId): array
   {
 
-    $stmt = $db->prepare(
-      'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
-       FROM Ticket 
-       WHERE creator = ?'
-    );
+    $stmt = $db->prepare('SELECT * FROM Ticket WHERE creator = ?');
     $stmt->execute(array($userId));
 
     $tickets = array();
@@ -218,7 +173,7 @@ class Ticket
       ORDER BY ' . $order;
     }
     else if ($filter == 'tag'){
-      $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
+      $query = 'SELECT *
       FROM Ticket 
       WHERE id IN 
         (SELECT ticket
@@ -227,7 +182,7 @@ class Ticket
       ORDER BY ' . $order;
     }
     else {
-      $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
+      $query = 'SELECT *
               FROM Ticket 
               WHERE ' . $filter . ' LIKE ? 
               ORDER BY ' . $order;
@@ -261,5 +216,16 @@ class Ticket
 
     return $tickets;
   }
+
+  function removeTag(PDO $db, String $tag){
+    $stmt = $db->prepare('DELETE FROM TicketTag WHERE ticket=? AND tag=?');
+    $stmt->execute(array($this->ticketId, $tag));
+  }
+
+  function addTag(PDO $db, String $tag){
+    $stmt = $db->prepare('INSERT INTO TicketTag (ticket, tag) VALUES (?,?)');
+    $stmt->execute(array($this->ticketId, $tag));
+  }
+
 }
 ?>

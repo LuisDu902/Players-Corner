@@ -99,7 +99,7 @@ async function assignModal() {
 
         const form = document.createElement('form')
         form.method = 'POST'
-        form.action = '../actions/action_assign_to_departments.php'
+        form.action = '../actions/user_actions/action_assign_to_departments.php'
 
         const buttonWrap = document.createElement('div')
         buttonWrap.classList.add('button-wrap')

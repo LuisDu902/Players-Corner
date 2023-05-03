@@ -29,7 +29,7 @@ function upgradeModal() {
 
     const form = document.createElement('form')
     form.method = 'POST'
-    form.action = '../actions/action_upgrade_user.php'
+    form.action = '../actions/user_actions/action_upgrade_user.php'
 
     const promote = document.createElement('div')
     promote.id = 'promote'

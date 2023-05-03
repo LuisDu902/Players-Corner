@@ -5,7 +5,7 @@
       <img class="login-logo" src="../images/icons/logo.png" alt="logo"></span>
       <h2 class="login-text"> The adventure awaits!<br> Sign in now to continue your<br> journey on <span
           class="highlight">Player's Corner</span>.</h2>
-      <form action="../actions/action_login.php" method="post" class="authentication-form">
+      <form action="../actions/user_actions/action_login.php" method="post" class="authentication-form">
         <div class="input-box">
           <input type="email" name="email" required="required" placeholder="Email">
           <img src="../images/icons/email.png" class="icon" alt="email">
@@ -27,7 +27,7 @@
     <div class="authentication-wrap">
       <h2 class="register-text">Welcome to <span class="highlight">Player's Corner</span>! <br>Let's begin the adventure.
       </h2>
-      <form action="../actions/action_register.php" method="post" class="authentication-form">
+      <form action="../actions/user_actions/action_register.php" method="post" class="authentication-form">
 
         <div class="input-box">
           <input type="text" name="name" required="required" placeholder="Name">

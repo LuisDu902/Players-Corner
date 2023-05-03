@@ -1,15 +1,15 @@
 <?php
   declare(strict_types = 1);
 
-  require_once(__DIR__ . '/../classes/session.class.php');
+  require_once(__DIR__ . '/../../classes/session.class.php');
   $session = new Session();
 
-  require_once(__DIR__ . '/../database/connection.db.php');
-  require_once(__DIR__ . '/../classes/user.class.php');
-  require_once(__DIR__ . '/../utils/validation.php');
+  require_once(__DIR__ . '/../../database/connection.db.php');
+  require_once(__DIR__ . '/../../classes/user.class.php');
+  require_once(__DIR__ . '/../../utils/validation.php');
 
   if (!valid_token($_POST['csrf']) || !valid_email($_POST['email']) || !valid_password($_POST["password"])){
-    die(header("Location: ../pages/login.php"));
+    die(header("Location: ../../pages/login.php"));
   }
 
   $db = getDatabaseConnection();
@@ -22,11 +22,11 @@
     $session->setRole($user->type);
     $session->setPhoto($user->getPhoto());
     $session->addMessage('success', 'Login successful!');
-    header('Location: ../pages/index.php');
+    header('Location: ../../pages/index.php');
   } 
   else {
     $session->addMessage('error', 'Please try again!');
-    die(header('Location: ../pages/login.php'));  
+    die(header('Location: ../../pages/login.php'));  
   }
 
 ?>

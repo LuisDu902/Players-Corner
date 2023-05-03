@@ -33,7 +33,7 @@
     <div class="edit-fields">
       <h2 class="register-text">Edit profile</h2>
       </h2>
-      <form action="../actions/action_edit_profile.php" method="post" class="authentication-form">
+      <form action="../actions/user_actions/action_edit_profile.php" method="post" class="authentication-form">
         <div class="input-box">
           <input type="text" name="name" required="required" placeholder="Name">
           <img src="../images/icons/user.png" class="icon" alt="user">
@@ -59,7 +59,7 @@
       </form>
     </div>
     <div class="upload-photo">
-      <form action="../actions/action_upload_image.php" method="post" class="upload-form round-wrap" enctype="multipart/form-data">
+      <form action="../actions/user_actions/action_upload_image.php" method="post" class="upload-form round-wrap" enctype="multipart/form-data">
         <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview">
         <input type="file" id="user-image" name="imageToUpload">
         <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
@@ -95,9 +95,7 @@
       drawUserCard($user);
     endforeach; ?>
   </div>
-  <div class="modal"> 
-  
-</div>
+  <div class="modal"> </div>
 <?php } ?>
 
 
@@ -122,17 +120,6 @@
   </div>
 <?php } ?>
 
-<?php function drawAssignModal($user) { ?>
-  <div class="modal assign-modal">
-    <div class="modal-content">
-      <span class="modal-title"> Choose departments </span>
-      <form method="POST" action="../actions/action_upgrade_user.php">
-        <div class="button-wrap"> <button type="submit" name="upgrade_user" class="confirm-upgrade">Assign</button> </div>
-        <input type="hidden" name="userId" value="<?= $user->userId ?>">
-      </form>
-    </div>
-  </div>
-<?php } ?>
 
 <?php function drawClientCardButtons() { ?>
   <div class="button-wrap"> <button class="upgrade">upgrade</button> </div>

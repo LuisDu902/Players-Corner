@@ -35,24 +35,41 @@ function drawDepartment($department, $tickets, $members)
             <div class="tickets">
 
             <?php foreach ($tickets as $ticket): ?>
-                         <span>
-                            <?= $ticket->title ?>
-                        </span>
+                <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
+                    <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
+                    <span>
+                        <?= $ticket->title ?>
+                    </span>
+                    <div class="ticket-tags">
+                        <?php foreach ($ticket->tags as $tag) { ?>
+                            <span> <?= $tag ?></span>
+                        <?php } ?>
+                    </div>
+                    <span>
+                        <?= $ticket->category ?>
+                    </span>
+                    <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
+                    <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
+                    <span>
+                        <?= $ticket->visibility ?>
+                    </span>
+                    <span>
+                        <?= $ticket->date ?>
+                    </span>
+                </a>
                 <?php endforeach; ?>
             </div>
-
         </div>
         <div class="members-container">
             <h3>Members</h3>
-            <div class="members buttons">
+            <ul class="members buttons">
                 <?php foreach ($members as $member): ?>
-                    <button class="member">
+                    <li class="member">
                         <img src=<?= $member->getPhoto() ?> alt="profile"></img>
                         <span><?= $member->name ?></span>
-                    </button>
+                    </li>
                 <?php endforeach; ?>
-            </div>
-            <div class="modal member-modal"></div>
+            </ul>
         </div>
     </div>
 <?php } ?>
@@ -62,7 +79,7 @@ function drawDepartment($department, $tickets, $members)
     <div id="department-modal" class="modal">
         <div class="modal-content" id="department-modal-content">
             <span class="modal-title"> Add new Department </span>
-            <form action="../actions/action_add_new_department.php" method="post" enctype="multipart/form-data">
+            <form action="../actions/department_actions/action_add_new_department.php" method="post" enctype="multipart/form-data">
                 <input type="text" name="new_category" required="required" placeholder="Department's name"
                     id="department-name">
                 <img id="dep-image-preview" src="../images/departments/default.png" alt="">

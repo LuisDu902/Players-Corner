@@ -70,8 +70,6 @@
         }
         return true;
     }
-
-
     function valid_password(string $password): bool {
         $uppercase = preg_match('@[A-Z]@', $password);
         $lowercase = preg_match('@[a-z]@', $password);
@@ -85,6 +83,5 @@
         }
         return true;
     }
-    
 
 ?>

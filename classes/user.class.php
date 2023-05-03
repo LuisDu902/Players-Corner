@@ -26,10 +26,7 @@ class User
   function editProfile(PDO $db, string $name, string $username, string $email, string $password)
   {
     $options = ['cost' => 12];
-    $stmt = $db->prepare('
-        UPDATE User SET name = ?, username = ?, email = ?, password = ?
-        WHERE userId = ?
-      ');
+    $stmt = $db->prepare('UPDATE User SET name = ?, username = ?, email = ?, password = ? WHERE userId = ?');
 
     $stmt->execute(array($name, $username, $email, password_hash($password, PASSWORD_DEFAULT, $options), $this->userId));
 
@@ -71,11 +68,7 @@ class User
       return new User(0,'','','','',0,'');
     }
 
-    $stmt = $db->prepare('
-        SELECT userId, name, username, email, password, reputation, type
-        FROM User 
-        WHERE userId = ?
-      ');
+    $stmt = $db->prepare('SELECT * FROM User WHERE userId = ?');
 
     $stmt->execute(array($id));
     $user = $stmt->fetch();
@@ -93,10 +86,7 @@ class User
 
   function updateReputation(PDO $db, int $reputation)
   {
-    $stmt = $db->prepare('
-        UPDATE User SET reputation = ?
-        WHERE userId = ?
-       ');
+    $stmt = $db->prepare('UPDATE User SET reputation = ? WHERE userId = ?');
 
     $stmt->execute(array($reputation, $this->userId));
   }
@@ -116,12 +106,12 @@ class User
   {
 
     if ($filter === "users") {
-      $query = 'SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ? ORDER BY ' . $order;
+      $query = 'SELECT * FROM User WHERE name LIKE ? ORDER BY ' . $order;
       $stmt = $db->prepare($query);
       $stmt->execute(array($search . '%'));
 
     } else {
-      $query = 'SELECT userId, name, username, email, password, reputation, type FROM User WHERE name LIKE ? and type = ? ORDER BY ' . $order;
+      $query = 'SELECT * FROM User WHERE name LIKE ? and type = ? ORDER BY ' . $order;
       $stmt = $db->prepare($query);
       $stmt->execute(array($search . '%', $filter));
     }
@@ -175,11 +165,10 @@ class User
     return $departments;
   }
 
-  static function assignToDepartment(PDO $db, int $agent, string $department)
+  function assignToDepartment(PDO $db, string $department)
   {
     $stmt = $db->prepare('INSERT INTO AgentDepartment VALUES (?, ?)');
-
-    $stmt->execute(array($agent, $department));
+    $stmt->execute(array($this->userId, $department));
   }
 }
 ?>

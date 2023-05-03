@@ -17,7 +17,7 @@
     </head>
     
     <div class="createTicket">
-        <form action="../actions/action_ticket.php" method="post">
+        <form action="../actions/user_actions/action_ticket.php" method="post">
             <div class="title">
                 <h2>Title</h2>
                 <h6>Be as specific and clear as possible </h6>
