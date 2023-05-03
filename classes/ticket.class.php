@@ -90,11 +90,11 @@ class Ticket
     }
     return $tags;
   }
-  function updateFrequentItem(PDO $db, int $ticketId, string $frequentItem)
+  function answerWithFrequentItem(PDO $db, string $frequentItem)
   {
     $stmt = $db->prepare('UPDATE Ticket SET frequentItem = ? WHERE id = ?');
 
-    $stmt->execute(array($frequentItem + 1, $ticketId));
+    $stmt->execute(array($frequentItem, $this->ticketId));
 
   }
   function changeDepartment(PDO $db, string $category)
@@ -225,6 +225,11 @@ class Ticket
   function addTag(PDO $db, String $tag){
     $stmt = $db->prepare('INSERT INTO TicketTag (ticket, tag) VALUES (?,?)');
     $stmt->execute(array($this->ticketId, $tag));
+  }
+
+  function addMessage(PDO $db, int $userId, String $text){
+    $stmt = $db->prepare('INSERT INTO Message (id, user, ticket, text, date) VALUES (NULL, ?,?, ?, "2023-04-05")');
+    $stmt->execute(array($userId, $this->ticketId));
   }
 
 }
