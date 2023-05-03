@@ -22,6 +22,7 @@
 
   <body>
     <header>
+      <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>" id="csrf">
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>
         <ul class="nav_links">

@@ -20,5 +20,5 @@
   $session->setPhoto($fileName);
 
   $session->addMessage('success', 'Profile photo sucessfully updated');
-  header("Location: ../pages/profile.php");
+  header("Location: ../pages/edit_profile.php");
 ?>

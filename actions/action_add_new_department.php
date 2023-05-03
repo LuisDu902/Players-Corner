@@ -8,6 +8,7 @@ require_once(__DIR__ . '/../database/connection.db.php');
 require_once(__DIR__ . '/../classes/department.class.php');
 require_once(__DIR__ . '/../utils/validation.php');
 
+
 if (!valid_token($_POST['csrf'])){
   die(header('Location: ../pages/departments.php'));
 }

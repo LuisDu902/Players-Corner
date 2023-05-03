@@ -75,9 +75,15 @@ function upgradeModal() {
     userId.name = 'userId'
     userId.value = card.querySelector('#card-userId').value
 
+    const token = document.createElement('input')
+    token.type = 'hidden'
+    token.name = 'csrf'
+    token.value = document.querySelector('#csrf').value
+
     form.appendChild(promote)
     form.appendChild(buttonWrap)
     form.appendChild(userId)
+    form.appendChild(token)
 
     content.appendChild(title)
     content.appendChild(img)

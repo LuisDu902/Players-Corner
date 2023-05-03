@@ -95,7 +95,9 @@
       drawUserCard($user);
     endforeach; ?>
   </div>
-  <div class="modal"></div>
+  <div class="modal"> 
+  
+</div>
 <?php } ?>
 
 

@@ -26,5 +26,5 @@
     $session->setName($user->username);
   }
 
-  header('Location: ../pages/profile.php');
+  header('Location: ../pages/edit_profile.php');
 ?>

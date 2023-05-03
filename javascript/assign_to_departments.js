@@ -122,9 +122,15 @@ async function assignModal() {
         selectedDepartments.name = 'selected_departments'
         selectedDepartments.id = 'selected-departments'
 
+        const token = document.createElement('input')
+        token.type = 'hidden'
+        token.name = 'csrf'
+        token.value = document.querySelector('#csrf').value    
+
         form.appendChild(buttonWrap)
         form.appendChild(userId)
         form.appendChild(selectedDepartments)
+        form.appendChild(token)
 
         content.appendChild(assignableDepartments)
         content.appendChild(form)
