@@ -13,8 +13,8 @@
     $db= getDatabaseConnection();
     $ticket = Ticket::getTicket($db, intval($_GET['id']));
     $messages = $ticket->getMessages($db);
-
+    $history = $ticket->getTicketHistory($db);
     drawHeader($session);
-    drawTicket($ticket, $messages);
+    drawTicket($ticket, $messages, $history);
     drawFooter();
 ?>

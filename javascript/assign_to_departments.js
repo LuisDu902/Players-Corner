@@ -125,7 +125,7 @@ async function assignModal() {
         const token = document.createElement('input')
         token.type = 'hidden'
         token.name = 'csrf'
-        token.value = document.querySelector('#csrf').value    
+        token.value = document.querySelector('body').getAttribute('data-value')    
 
         form.appendChild(buttonWrap)
         form.appendChild(userId)

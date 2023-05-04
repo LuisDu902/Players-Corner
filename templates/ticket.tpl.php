@@ -72,7 +72,7 @@
     </div>
 <?php } ?>
 
-<?php function drawTicket($ticket, $messages)
+<?php function drawTicket($ticket, $messages, $history)
 { ?>
     <div id="ticket">
         <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
@@ -100,6 +100,18 @@
                 <br><br>
                 <span>
                     <?= $message->text ?>
+                </span>
+                <br><br>
+            <?php } ?>
+        </div>
+        <div class="history">
+            <?php foreach ($history as $change) { ?>
+                <span>
+                <?= $change->changes?> : <?= $change->old_field ?> -> <?= $change->new_field ?>
+                </span>
+                <br><br>
+                <span>
+                    <?= $change->date ?>
                 </span>
                 <br><br>
             <?php } ?>

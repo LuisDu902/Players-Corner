@@ -5,11 +5,11 @@ DROP TABLE IF EXISTS FAQ;
 DROP TABLE IF EXISTS AgentDepartment;
 DROP TABLE IF EXISTS Department;
 DROP TABLE IF EXISTS Message;
+DROP TABLE IF EXISTS FieldChange;
 DROP TABLE IF EXISTS TicketHistory;
 DROP TABLE IF EXISTS TicketTag;
 DROP TABLE IF EXISTS Ticket;
 DROP TABLE IF EXISTS Status;
-DROP TABLE IF EXISTS Priority;
 DROP TABLE IF EXISTS User;
 
 CREATE TABLE User(
@@ -39,14 +39,22 @@ CREATE TABLE Ticket(
    frequentItem INTEGER REFERENCES FAQ(id),
    creator INTEGER REFERENCES User(userId),
    replier INTEGER REFERENCES User(userId)
-   CHECK (priority = "critical" OR priority = "high" OR priority = "medium" OR priority = "low")
 );
 
 CREATE TABLE TicketHistory(
    id INTEGER PRIMARY KEY,
    ticketId INTEGER REFERENCES Ticket(id),
+   user INTEGER REFERENCES User(userId),
    date DATE NOT NULL,
-   changes VARCHAR NOT NULL 
+   changes VARCHAR NOT NULL,
+   field INTEGER REFERENCES FieldChange(id)
+);
+
+
+CREATE TABLE FieldChange(
+   id INTEGER PRIMARY KEY,
+   old_field VARCHAR NOT NULL,
+   new_field VARCHAR NOT NULL
 );
 
 

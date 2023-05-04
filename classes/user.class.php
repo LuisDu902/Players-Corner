@@ -87,7 +87,6 @@ class User
   function updateReputation(PDO $db, int $reputation)
   {
     $stmt = $db->prepare('UPDATE User SET reputation = ? WHERE userId = ?');
-
     $stmt->execute(array($reputation, $this->userId));
   }
 
@@ -104,7 +103,9 @@ class User
 
   static function searchUsers(PDO $db, string $search = '', string $filter = 'users', string $order = 'name'): array
   {
-
+    //prevent SQL injection attacks
+    if ($order != 'reputation' && $order != 'type') $order = 'name';
+    
     if ($filter === "users") {
       $query = 'SELECT * FROM User WHERE name LIKE ? ORDER BY ' . $order;
       $stmt = $db->prepare($query);

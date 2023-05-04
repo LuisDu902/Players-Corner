@@ -38,9 +38,15 @@ class Ticket
     $stmt->execute(array($this->ticketId, $status));
   }
 
+  function changePriority(PDO $db, string $priority)
+  {
+    $stmt = $db->prepare('UPDATE Ticket SET priority = ? WHERE id = ?');
+    $stmt->execute(array($this->ticketId, $priority));
+  }
+
   function assignTicket(PDO $db, string $replier)
   {
-    $stmt = $db->prepare("UPDATE Ticket SET replier=? , status='assigned' WHERE id=?");
+    $stmt = $db->prepare("UPDATE Ticket SET replier = ? , status='assigned' WHERE id = ?");
     $stmt->execute(array($replier, $this->ticketId));
   }
 
@@ -57,35 +63,29 @@ class Ticket
     $stmt->execute(array($ticketId));
     $ticket = $stmt->fetch();
 
-    if ($ticket['replier'] == null){
-      $replier = 0;
-    }
-    else{
-      $replier = $ticket['replier'];
-    }
     return new Ticket(
       $ticket['id'],
       $ticket['title'],
       $ticket['text'],
       $ticket['createDate'],
       $ticket['visibility'],
-      $ticket['priority'],
+      substr($ticket['priority'], 2),
       $ticket['status'],
       $ticket['category'],
       Ticket::getTicketTags($db, $ticket['id']),
       User::getUser($db, $ticket['creator']),
-      User::getUser($db, $replier)
+      User::getUser($db, $ticket['replier'])
     );
   }
 
-  static function getTicketTags(PDO $db,  $ticketId): array
+  static function getTicketTags(PDO $db, $ticketId): array
   {
     $stmt = $db->prepare('SELECT tag FROM TicketTag WHERE ticket = ?');
 
     $stmt->execute(array($ticketId));
     $tags = array();
 
-    while ($tag = $stmt->fetchColumn()){
+    while ($tag = $stmt->fetchColumn()) {
       $tags[] = $tag;
     }
     return $tags;
@@ -93,9 +93,7 @@ class Ticket
   function answerWithFrequentItem(PDO $db, string $frequentItem)
   {
     $stmt = $db->prepare('UPDATE Ticket SET frequentItem = ? WHERE id = ?');
-
     $stmt->execute(array($frequentItem, $this->ticketId));
-
   }
   function changeDepartment(PDO $db, string $category)
   {
@@ -103,43 +101,60 @@ class Ticket
     $stmt->execute(array($category, $this->ticketId));
   }
 
-    static function getUserTickets(PDO $db, int $userId): array
+  function getTicketHistory(PDO $db) : array{
+    $stmt = $db->prepare(
+      'SELECT TicketHistory.id, ticketId, user, date, changes, old_field, new_field 
+      FROM TicketHistory JOIN FieldChange ON TicketHistory.field = FieldChange.id
+      WHERE ticketId = ?'
+    );
+    $stmt->execute(array($this->ticketId));
+
+    $history = array();
+    while ($change = $stmt->fetch()) {
+      $history[] = new Change(
+        intval($change['id']),
+        User::getUser($db, intval($change['user'])),
+        $this,
+        $change['date'],
+        $change['changes'],
+        $change['old_field'],
+        $change['new_field'],
+      );
+    }
+    return $history;
+  }
+
+  static function getUserTickets(PDO $db, int $userId): array
   {
 
     $stmt = $db->prepare('SELECT * FROM Ticket WHERE creator = ?');
     $stmt->execute(array($userId));
-
     $tickets = array();
+
     while ($ticket = $stmt->fetch()) {
-      if ($ticket['replier'] == null){
-        $replier = 0;
-      }
-      else{
-        $replier = $ticket['replier'];
-      }
       $tickets[] = new Ticket(
         intval($ticket['id']),
         $ticket['title'],
         $ticket['text'],
         $ticket['createDate'],
         $ticket['visibility'],
-        $ticket['priority'],
+        substr($ticket['priority'], 2),
         $ticket['status'],
         $ticket['category'],
         Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
-        User::getUser($db, $replier)
+        User::getUser($db, $ticket['replier'])
       );
     }
     return $tickets;
   }
 
-  function getMessages($db): array
+  function getMessages(PDO $db): array
   {
     $stmt = $db->prepare(
       'SELECT id, user, ticket, text, date
-         FROM Message 
-         WHERE ticket = ?'
+       FROM Message 
+       WHERE ticket = ?'
     );
 
     $stmt->execute(array($this->ticketId));
@@ -149,7 +164,7 @@ class Ticket
       $messages[] = new Message(
         intval($message['id']),
         User::getUser($db, intval($message['user'])),
-        Ticket::getTicket($db, $message['ticket']),
+        $this,
         $message['text'],
         $message['date'],
       );
@@ -159,75 +174,59 @@ class Ticket
 
   static function searchTickets(PDO $db, string $search = '', string $filter = 'title', string $order = 'title'): array
   {
-
+    //prevent SQL injection attacks
+    if ($order!='createDate' && $order!='visibility' && $order!='priority' && $order!='status' && $order!='category') $order = 'title';
+  
     if ($filter == "creator" && $search != '') {
-      $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
-      FROM Ticket JOIN User ON User.userId = Ticket.creator
-      WHERE User.name LIKE ?
-      ORDER BY ' . $order;
-
-    } else if ($filter == "replier" && $search != '') {
-      $query = 'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
-      FROM Ticket JOIN User ON User.userId = Ticket.replier
-      WHERE User.name LIKE ?
-      ORDER BY ' . $order;
-    }
-    else if ($filter == 'tag'){
-      $query = 'SELECT *
-      FROM Ticket 
-      WHERE id IN 
-        (SELECT ticket
-        FROM TicketTag
-        WHERE tag LIKE ?)
-      ORDER BY ' . $order;
-    }
+      $query = 'SELECT * FROM Ticket JOIN User ON User.userId = Ticket.creator WHERE User.name LIKE ? ORDER BY ' . $order;
+    } 
+    else if ($filter == "replier" && $search != '') {
+      $query = 'SELECT * FROM Ticket JOIN User ON User.userId = Ticket.replier WHERE User.name LIKE ? ORDER BY ' . $order;
+    } 
+    else if ($filter == 'tag') {
+      $query = 'SELECT * FROM Ticket WHERE id IN (SELECT ticket FROM TicketTag WHERE tag LIKE ?) ORDER BY ' . $order;
+    } 
     else {
-      $query = 'SELECT *
-              FROM Ticket 
-              WHERE ' . $filter . ' LIKE ? 
-              ORDER BY ' . $order;
+      if ($filter != 'category' && $filter != 'visibility' && $filter != 'status' && $filter != 'priority') $filter = 'title';
+      $query = 'SELECT * FROM Ticket WHERE ' . $filter . ' LIKE ? ORDER BY ' . $order;
     }
-
     $stmt = $db->prepare($query);
     $stmt->execute(array($search . '%'));
-
     $tickets = array();
+
     while ($ticket = $stmt->fetch()) {
-      if ($ticket['replier'] == null){
-        $replier = 0;
-      }
-      else{
-        $replier = $ticket['replier'];
-      }
       $tickets[] = new Ticket(
         intval($ticket['id']),
         $ticket['title'],
         $ticket['text'],
         $ticket['createDate'],
         $ticket['visibility'],
-        $ticket['priority'],
+        substr($ticket['priority'], 2),
         $ticket['status'],
         $ticket['category'],
         Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
-        User::getUser($db, $replier)
+        User::getUser($db, $ticket['replier'])
       );
     }
 
     return $tickets;
   }
 
-  function removeTag(PDO $db, String $tag){
+  function removeTag(PDO $db, string $tag)
+  {
     $stmt = $db->prepare('DELETE FROM TicketTag WHERE ticket=? AND tag=?');
     $stmt->execute(array($this->ticketId, $tag));
   }
 
-  function addTag(PDO $db, String $tag){
+  function addTag(PDO $db, string $tag)
+  {
     $stmt = $db->prepare('INSERT INTO TicketTag (ticket, tag) VALUES (?,?)');
     $stmt->execute(array($this->ticketId, $tag));
   }
 
-  function addMessage(PDO $db, int $userId, String $text){
+  function addMessage(PDO $db, int $userId, string $text)
+  {
     $stmt = $db->prepare('INSERT INTO Message (id, user, ticket, text, date) VALUES (NULL, ?,?, ?, "2023-04-05")');
     $stmt->execute(array($userId, $this->ticketId));
   }

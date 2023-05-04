@@ -6,8 +6,10 @@
         if ($_SESSION['csrf'] !== $token){
             $session = new Session();
             $session->addMessage('error', 'Request does not appear to be legitimate!');
+            unset($_SESSION['csrf']);
             return false;
         }
+        unset($_SESSION['csrf']);
         return true;
     }
 
