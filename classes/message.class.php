@@ -40,6 +40,24 @@ class Change
         $this->new_field = $new_field;
     }
 
+    static function addFieldChange(PDO $db, String $old_field, String $new_field){
+        $stmt = $db->prepare('INSERT INTO FieldChange(id, old_field, new_field) VALUES (NULL, ?, ?)');
+        $stmt->execute(array($old_field, $new_field));
+      }
+
+    static function fieldChangeExists(PDO $db, String $old_field, String $new_field) : bool{
+        $stmt = $db->prepare('SELECT * FROM FieldChange WHERE old_field = ? AND new_field = ?');
+        $stmt->execute(array($old_field, $new_field));
+        return (bool) $stmt->fetch();
+    }
+
+    static function getChangeId(PDO $db, String $old_field, String $new_field) : int{
+        $stmt = $db->prepare('SELECT id FROM FieldChange WHERE old_field = ? AND new_field = ?');
+        $stmt->execute(array($old_field, $new_field));
+        $change =  $stmt->fetchColumn();
+        return $change;
+      }
+
 }
 
 ?>

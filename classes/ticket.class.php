@@ -231,5 +231,11 @@ class Ticket
     $stmt->execute(array($userId, $this->ticketId));
   }
 
+  function addHistory(PDO $db, int $userId, String $changes, int $field){
+    $stmt = $db->prepare('INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (NULL, ?, ?, "2023-04-05", ?, ?)');
+    $stmt->execute(array($this->ticketId, $userId, $changes, $field));
+  }
+
+
 }
 ?>
