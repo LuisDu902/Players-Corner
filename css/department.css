@@ -18,28 +18,28 @@
     grid-gap: 30px;
 }
 
-.department {
+.department-card {
     position: relative;
     text-align: center;
     margin: 20px;
     margin-top: 0;
 }
 
-.department img {
+.department-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.department img.selected{
+.department-card img.selected{
     border: 4px solid #D66AE6;
 }
 
-.department img:hover {
+.department-card img:hover {
     border: 3px solid #D66AE6;
 }
 
-.department span {
+.department-card span {
     font-size: 2.5em;
     background-color: transparent;
     font-weight: bold;
@@ -47,4 +47,73 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+
+
+.department header{
+    font-size: 2em;
+    color: #D66AE6;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
+
+#department-stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 50px;
+}
+
+#department-stats article {
+    background-color: #282948;
+    padding: 20px;
+    width: 400px;
+    height: 400px;
+}
+
+#department-stats article h3 {
+    font-size: 1.5em;
+    margin: 10px 10px 20px 10px;
+    background-color: transparent;
+}
+
+#department-stats article h3::before {
+    content: '';
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    background-color: #814FED;
+    margin-right: 15px;
+}
+
+#dpt-members {
+    max-height: 400px;
+    overflow: auto;
+    overflow-y: auto;
+}
+
+#dpt-members img {
+    height: 60px;
+    width: 60px;
+    position: relative;
+    left: 35px;
+}
+
+.dpt-member{
+    display: flex;
+    margin: 10px 20px 10px 0px;
+    background-color: transparent;
+    align-items: center;
+}
+
+.dpt-member span{
+    background-color: #434A74;
+    padding: 17px 50px;
+    width: 400px;
+    font-weight: bold;
+    border-radius: 0px 50px 50px 0px;
+}
+
+#department-tickets header{
+    margin-bottom: 10px;
 }

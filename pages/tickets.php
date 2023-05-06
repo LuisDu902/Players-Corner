@@ -14,6 +14,7 @@
     $tickets = Ticket::searchTickets($db);
   
     drawHeader($session);
+    drawTicketSearchBar();
     drawTickets($tickets);
     drawFooter();
 ?>

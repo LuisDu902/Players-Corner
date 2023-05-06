@@ -23,7 +23,7 @@
   </head>
 
   <body data-value="<?=$_SESSION['csrf']?>">
-    <header>
+    <header id="header">
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>
         <ul class="nav_links">

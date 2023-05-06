@@ -1,5 +1,4 @@
-<?php function drawTickets($tickets)
-{ ?>
+<?php function drawTicketSearchBar(){ ?>
     <div class="search-bar center">
         <div class="filter-condition round-border white-border">
             <span> Filter by </span>
@@ -31,7 +30,10 @@
             </select>
         </div>
     </div>
+<?php } ?>
 
+<?php function drawTickets($tickets)
+{ ?>
     <div class="tickets vert-flex">
         <ul class="ticket-info center">
             <li>Creator</li>
