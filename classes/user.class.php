@@ -63,7 +63,9 @@ class User
  
   static function getUser(PDO $db, int $id): User
   {
-
+    if ($id == 0){
+      return new User(0,'','','','',0,'');
+    }
     $stmt = $db->prepare('SELECT * FROM User WHERE userId = ?');
 
     $stmt->execute(array($id));

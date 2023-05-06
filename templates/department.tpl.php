@@ -24,54 +24,8 @@
 <?php
 function drawDepartment($department, $tickets, $members)
 { ?>
-    <div class="departments-bar">
-        <span>
-            <?= $department->category ?>
-        </span>
-    </div>
-    <div class="department-content">
-        <div class="tickets-container">
-            <h3>Trouble Tickets</h3>
-            <div class="tickets">
-
-            <?php foreach ($tickets as $ticket): ?>
-                <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
-                    <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
-                    <span>
-                        <?= $ticket->title ?>
-                    </span>
-                    <div class="ticket-tags">
-                        <?php foreach ($ticket->tags as $tag) { ?>
-                            <span> <?= $tag ?></span>
-                        <?php } ?>
-                    </div>
-                    <span>
-                        <?= $ticket->category ?>
-                    </span>
-                    <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
-                    <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
-                    <span>
-                        <?= $ticket->visibility ?>
-                    </span>
-                    <span>
-                        <?= $ticket->date ?>
-                    </span>
-                </a>
-                <?php endforeach; ?>
-            </div>
-        </div>
-        <div class="members-container">
-            <h3>Members</h3>
-            <ul class="members buttons">
-                <?php foreach ($members as $member): ?>
-                    <li class="member">
-                        <img src=<?= $member->getPhoto() ?> alt="profile"></img>
-                        <span><?= $member->name ?></span>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    </div>
+    <span class="department-title"> <?= $department->category ?> </span>
+            
 <?php } ?>
 
 <?php function drawDepartmentModal()

@@ -1,7 +1,6 @@
 .tickets{
   display: flex;
   flex-direction: column;
-  margin: 30px 6%;
 }
 
 .ticket{
@@ -90,7 +89,6 @@
 #ticket{
   display: flex;
   flex-direction: column;
-  margin: 30px 6%;
 }
 
 .filter-condition{
