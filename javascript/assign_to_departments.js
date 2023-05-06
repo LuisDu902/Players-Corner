@@ -2,7 +2,7 @@ function selectDepartments() {
     const assign = document.querySelector(".assignable-departments");
 
     if (assign) {
-        const images = document.querySelectorAll(".department img");
+        const images = document.querySelectorAll(".department-card img");
 
         for (const image of images) {
             image.addEventListener('click', function () {
@@ -20,7 +20,7 @@ function assignToDepartments() {
 
         assignButton.addEventListener('click', function () {
 
-            const selectedDepartments = document.querySelectorAll(".department img.selected");
+            const selectedDepartments = document.querySelectorAll(".department-card img.selected");
 
             const selectedDepartmentsArray = [];
 
