@@ -5,31 +5,33 @@
 
 <?php function drawProfile(User $user) { ?>
   <div class="user-profile">
-    <div class="user-reputation">
-      <span id="reputation" class="title">Reputation</span>
-      <span class="reputation-value"> <?= $user->reputation ?>% </span>
+    <div class="user-reputation vert-flex">
+      <span id="reputation" class="title center">Reputation</span>
+      <span class="reputation-value circle-border gradient center"> <?= $user->reputation ?>% </span>
     </div>
-    <div class="user-details">
+    <div class="user-details center">
       <span id="about" class="title">About me</span>
-      <span class="field"> Name </span>
-      <span class="info"> <?= $user->name ?> </span>
-      <span class="field"> Username </span>
-      <span class="info"> <?= $user->username ?> </span>
-      <span class="field"> Email </span>
-      <span class="info">  <?= $user->email ?> </span>
-      <span class="field"> Role </span>
-      <span class="info"> <?= $user->type ?> </span>
+      <span class="field round-border center"> Name </span>
+      <span class="info round-border center"> <?= $user->name ?> </span>
+      <span class="field round-border center"> Username </span>
+      <span class="info round-border center"> <?= $user->username ?> </span>
+      <span class="field round-border center"> Email </span>
+      <span class="info round-border center">  <?= $user->email ?> </span>
+      <span class="field round-border center"> Role </span>
+      <span class="info round-border center"> <?= $user->type ?> </span>
     </div>
-    <div class="profile-picture round-wrap">
-      <img src=<?= $user->getPhoto() ?> alt="user-profile">
+    <div class="profile-picture round-wrap vert-flex center">
+      <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
       <span> <?= $user->username ?> </span>
-      <a href="../pages/edit_profile.php" id="edit-button"> Edit profile</a>
+      <div class="button-wrap gradient round-border">
+      <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
+    </div>
     </div>
   </div>
 <?php } ?>
 
 <?php function drawEditUserForm(User $user) { ?>
-  <div class="edit-profile">
+  <div class="edit-profile center">
     <div class="edit-fields">
       <h2 class="auth-text">Edit profile</h2>
       </h2>
@@ -58,9 +60,9 @@
         <div class="button-wrap gradient round-border auth-button"> <button type="submit">Save</button> </div>       
       </form>
     </div>
-    <div class="upload-photo">
-      <form action="../actions/user_actions/action_upload_image.php" method="post" class="upload-form round-wrap" enctype="multipart/form-data">
-        <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview">
+    <div class="profile-picture center vert-flex">
+      <form action="../actions/user_actions/action_upload_image.php" method="post" class="upload-form round-wrap center vert-flex" enctype="multipart/form-data">
+        <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview" class="circle-border">
         <input type="file" id="user-image" name="imageToUpload">
         <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
         <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload photo</button> </div>

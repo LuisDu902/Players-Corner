@@ -4,10 +4,6 @@
     align-items: center;
 }
 
-.highlight {
-    color: #D66AE6;
-}
-
 .authentication-form {
     margin: 0 50px 30px;
 }
@@ -59,4 +55,3 @@
     margin-top: 0;
     padding-top: 0;
 }
-

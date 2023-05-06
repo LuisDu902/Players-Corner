@@ -11,9 +11,7 @@ main{
     margin: 30px 6%;
 }
 
-li,
-a,
-button {
+li,a, button {
     text-decoration: none;
     font-size: 1.1rem;
 }
@@ -32,6 +30,16 @@ button {
 
 .round-border{
     border-radius: 20px;
+}
+
+.circle-border{
+    border-radius: 50%;
+}
+
+.center{
+    align-items: center;
+    text-align: center;
+    justify-content: center; 
 }
 
 header {
@@ -60,12 +68,8 @@ header {
     transition: all 0.3s ease 0s;
 }
 
-.nav_links li a:hover {
+.nav_links li a:hover, .highlight, .dropdown-content a:hover {
     color: #D66AE6;
-}
-
-.nav_links li.active {
-    color: #D66AE6 !important;
 }
 
 .button-wrap button{
@@ -144,9 +148,7 @@ header {
     display: block;
 }
 
-.dropdown-content a:hover {
-    color: #D66AE6;
-}
+
 
 .dropdown:hover .dropdown-content {
     display: block;
