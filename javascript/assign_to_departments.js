@@ -1,8 +1,8 @@
 function selectDepartments() {
-    var assign = document.querySelector(".assignable-departments");
+    const assign = document.querySelector(".assignable-departments");
 
     if (assign) {
-        var images = document.querySelectorAll(".department img");
+        const images = document.querySelectorAll(".department img");
 
         for (const image of images) {
             image.addEventListener('click', function () {
@@ -14,23 +14,23 @@ function selectDepartments() {
 
 function assignToDepartments() {
 
-    var assignButton = document.querySelector(".confirm-upgrade");
+    const assignButton = document.querySelector(".confirm-upgrade");
 
     if (assignButton) {
 
         assignButton.addEventListener('click', function (e) {
 
-            var selectedDepartments = document.querySelectorAll(".department img.selected");
+            const selectedDepartments = document.querySelectorAll(".department img.selected");
 
-            var selectedDepartmentsArray = [];
+            const selectedDepartmentsArray = [];
 
             for (const department of selectedDepartments) {
-                var parent = department.parentElement
-                var category = parent.querySelector('span').textContent
+                const parent = department.parentElement
+                const category = parent.querySelector('span').textContent
                 selectedDepartmentsArray.push(category);
             }
 
-            var selectedDepartmentsInput = document.querySelector("#selected-departments");
+            const selectedDepartmentsInput = document.querySelector("#selected-departments");
             selectedDepartmentsInput.value = selectedDepartmentsArray.join(',');
 
             this.form.submit();

@@ -19,6 +19,7 @@
     <script src="../javascript/search_users.js" defer></script>
     <script src="../javascript/search_tickets.js" defer></script>
     <script src="../javascript/preview_image.js" defer></script>
+    <script src="../javascript/dropdown.js" defer></script>
   </head>
 
   <body data-value="<?=$_SESSION['csrf']?>">
@@ -43,7 +44,7 @@
       </nav>
       <?php
       if ($session->isLoggedIn()) {
-        drawProfileIcon($session);
+        drawProfileButton($session);
       } else
         drawAuthForms(); ?>
     </header>
@@ -86,15 +87,14 @@
 <?php } ?>
 
 
-<?php function drawProfileIcon(Session $session)
+<?php function drawProfileButton(Session $session)
 { ?>
 
   <div class="dropdown">
-    <button class="dropbtn">
-      <a href="../pages/profile.php" class="buttons">
-        <img src=<?=$session->getPhoto() ?> alt="user-profile">
+    <button class="dropbtn center">
+        <img src=<?=$session->getPhoto() ?> alt="user-profile" class="gradient circle-border">
         <span class="username"><?= $session->getName() ?></span>
-      </a></button>
+    </button>
     <div class="dropdown-content">
       <a href="../pages/profile.php">Profile</a>
       <a href="../actions/user_actions/action_logout.php">Sign out</a>
