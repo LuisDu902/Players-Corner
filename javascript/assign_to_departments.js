@@ -18,7 +18,7 @@ function assignToDepartments() {
 
     if (assignButton) {
 
-        assignButton.addEventListener('click', function (e) {
+        assignButton.addEventListener('click', function () {
 
             const selectedDepartments = document.querySelectorAll(".department img.selected");
 

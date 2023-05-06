@@ -107,7 +107,7 @@ class Department
         $ticket['text'],
         $ticket['createDate'],
         $ticket['visibility'],
-        $ticket['priority'],
+        substr($ticket['priority'], 2),
         $ticket['status'],
         $ticket['category'],
         Ticket::getTicketTags($db, $ticket['id']),

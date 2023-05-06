@@ -67,8 +67,8 @@
 #department-stats article {
     background-color: #282948;
     padding: 20px;
-    width: 400px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
 }
 
 #department-stats article h3 {
@@ -87,14 +87,14 @@
 }
 
 #dpt-members {
-    max-height: 400px;
+    max-height: 500px;
     overflow: auto;
     overflow-y: auto;
 }
 
 #dpt-members img {
-    height: 60px;
-    width: 60px;
+    height: 85px;
+    width: 85px;
     position: relative;
     left: 35px;
 }
@@ -108,10 +108,11 @@
 
 .dpt-member span{
     background-color: #434A74;
-    padding: 17px 50px;
+    padding: 25px 50px;
     width: 400px;
     font-weight: bold;
     border-radius: 0px 50px 50px 0px;
+    font-size: 1.3em;
 }
 
 #department-tickets header{
