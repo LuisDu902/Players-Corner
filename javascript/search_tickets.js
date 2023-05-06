@@ -33,7 +33,7 @@ function createTicketCard(ticket) {
 
   const link = document.createElement('a')
   link.href = "../pages/ticket.php?id=" + ticket.ticketId
-  link.classList.add('ticket')
+  link.classList.add('ticket', 'round-border', 'white-border', 'center')
 
   const creator = document.createElement('img')
   creator.src = ticket
@@ -42,13 +42,13 @@ function createTicketCard(ticket) {
   } else{
     creator.src = '../images/users/default.png'
   }
-  creator.classList.add(ticket.creator.type + '-card-border')
+  creator.classList.add(ticket.creator.type + '-card-border', 'circle-border')
 
   const title = document.createElement('span')
   title.textContent = ticket.title
 
   const tags = document.createElement('div')
-  tags.classList.add('ticket-tags')
+  tags.classList.add('vert-flex')
   for (const tag of ticket.tags) {
     const hashtag = document.createElement('span')
     hashtag.textContent = tag
