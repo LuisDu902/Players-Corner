@@ -77,7 +77,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
     <div class="profile-picture center vert-flex">
       <form action="../actions/user_actions/action_upload_image.php" method="post"
         class="upload-form round-wrap center vert-flex" enctype="multipart/form-data">
-        <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview" class="circle-border">
+        <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview" class="gradient circle-border">
         <input type="file" id="user-image" name="imageToUpload">
         <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
         <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload
@@ -139,10 +139,12 @@ require_once(__DIR__ . '/../classes/user.class.php');
     <div class="card-buttons center">
       <?php if ($user->type != "admin") { ?>
         <div class="button-wrap gradient round-border"> <button id="upgrade">upgrade</button> </div>
-      <?php } if ($user->type != "client") { ?>
-          <div class="button-wrap gradient round-border"> <button id="assign-dep">assign</button> </div>
+      <?php }
+      if ($user->type != "client") { ?>
+        <div class="button-wrap gradient round-border"> <button id="assign-dep">assign</button> </div>
       <?php } ?>
     </div>
     <input type='hidden' value=<?= $user->userId ?> id='card-userId'>
   </div>
 <?php } ?>
+

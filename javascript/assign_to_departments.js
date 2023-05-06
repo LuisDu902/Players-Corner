@@ -79,7 +79,7 @@ async function assignModal() {
         for (const department of departments) {
 
             const dep = document.createElement('div')
-            dep.classList.add('department')
+            dep.classList.add('department-card')
 
             const img = document.createElement('img')
             if (department.hasPhoto) {
