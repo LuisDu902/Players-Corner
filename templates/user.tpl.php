@@ -31,31 +31,31 @@
 <?php function drawEditUserForm(User $user) { ?>
   <div class="edit-profile">
     <div class="edit-fields">
-      <h2 class="register-text">Edit profile</h2>
+      <h2 class="auth-text">Edit profile</h2>
       </h2>
       <form action="../actions/user_actions/action_edit_profile.php" method="post" class="authentication-form">
-        <div class="input-box">
+        <div class="input-box round-border">
           <input type="text" name="name" required="required" placeholder="Name">
           <img src="../images/icons/user.png" class="icon" alt="user">
         </div>
-        <div class="input-box">
+        <div class="input-box round-border">
           <input type="username" name="username" required="required" placeholder="Username">
           <img src="../images/icons/username.png" class="icon" alt="username">
         </div>
-        <div class="input-box">
+        <div class="input-box round-border">
           <input type="email" name="email" required="required" placeholder="Email">
           <img src="../images/icons/email.png" class="icon" alt="email">
         </div>
-        <div class="input-box">
+        <div class="input-box round-border">
           <input type="password" name="old-password" required="required" placeholder="Old password">
           <img src="../images/icons/password.png" class="icon" alt="password">
         </div>
-        <div class="input-box">
+        <div class="input-box round-border">
           <input type="password" name="new-password" required="required" placeholder="New password">
           <img src="../images/icons/password.png" class="icon" alt="password">
         </div>
         <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-        <button type="submit" class="authentication-button">Save</button>
+        <div class="button-wrap gradient round-border auth-button"> <button type="submit">Save</button> </div>       
       </form>
     </div>
     <div class="upload-photo">
@@ -63,7 +63,7 @@
         <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview">
         <input type="file" id="user-image" name="imageToUpload">
         <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-        <button type="submit" id="upload" class="authentication-button">Upload photo</button>
+        <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload photo</button> </div>
       </form>
     </div>
   </div>
@@ -122,14 +122,14 @@
 
 
 <?php function drawClientCardButtons() { ?>
-  <div class="button-wrap"> <button class="upgrade">upgrade</button> </div>
+  <div class="button-wrap gradient round-border"> <button>upgrade</button> </div>
 <?php } ?>
 
 <?php function drawAgentCardButtons($user) { ?>
-  <div class="two-button-wrap button-wrap"> <button class="upgrade">upgrade</button> </div>
-  <div class="two-button-wrap button-wrap"> <button class="assign-dep">assign</button> </div>
+  <div class="two-button-wrap button-wrap gradient round-border"> <button> upgrade </button> </div>
+  <div class="two-button-wrap button-wrap gradient round-border"> <button> assign </button> </div>
 <?php } ?>
 
 <?php function drawAdminCardButtons($user) { ?>
-  <div class="button-wrap"> <button class="assign-dep">assign</button> </div>
+  <div class="button-wrap gradient"> <button>assign</button> </div>
 <?php } ?>

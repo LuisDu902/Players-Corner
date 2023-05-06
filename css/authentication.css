@@ -1,23 +1,7 @@
-.authentication {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #f7feff;
-    padding: 30px 5%;
-}
-
 .authentication-wrap {
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
+    display: flex;
     justify-content: center;
     align-items: center;
-    display: flex;
-    flex-direction: column;
-    padding: 0;
 }
 
 .highlight {
@@ -25,20 +9,13 @@
 }
 
 .authentication-form {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    margin-bottom: 35px;
-   }
+    margin: 0 50px 30px;
+}
 
 .input-box {
-    font-size: 1.3em;
     display: flex;
     align-items: flex-end;
     border: 2px solid white;
-    border-radius: 20px;
     margin-bottom: 30px;
     padding: 5px;
 }
@@ -48,8 +25,6 @@
     width: 100%;
     padding: 20px;
     border: none;
-    color: white;
-    transition: 0.5s;
 }
 
 .input-box .icon {
@@ -57,41 +32,31 @@
     width: 2rem;
     padding-bottom: 20px;
     padding-right: 10px;
-    color: white;
 }
 
 .input-box input:focus {
     outline: none;
 }
 
-.authentication-button {
-    font-size: 1.2rem;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
-    min-width: 35%;
-    min-height: 35px;
-    margin-top: 20px;
+.auth-button {
+    margin: 0 auto;
 }
 
 .login-logo {
     max-height: 250px;
+    display: block;
+    margin: 0 auto;
 }
 
-.login-text, .register-text {
+.auth-text {
+    margin: 12px;
+    padding: 20px 50px;
     display: block;
     text-align: center;
 }
 
-.login-text {
-    margin: 30px 12px 12px;
-    padding: 0px 50px 25px;
+#login-text {
+    margin-top: 0;
+    padding-top: 0;
 }
 
-.register-text {
-    margin: 30px 12px 12px;
-    padding: 20px 50px;
-}

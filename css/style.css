@@ -18,6 +18,22 @@ button {
     font-size: 1.1rem;
 }
 
+.vert-flex{
+    display: flex;
+    flex-direction: column;
+}
+
+.gradient{
+    border: 2px solid transparent;
+    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
+    background-origin: border-box;
+    background-clip: content-box, border-box;    
+}
+
+.round-border{
+    border-radius: 20px;
+}
+
 header {
     display: flex;
     justify-content: space-between;
@@ -52,29 +68,18 @@ header {
     color: #D66AE6 !important;
 }
 
-.sign-in,
-.sign-up, .upgrade,.assign-dep,.confirm-upgrade, .assign {
-    text-align: center;
+.button-wrap button{
     padding: 8px 22px;
     display: block;
     background-color: transparent;
-    color: white;
-    font-family: sans-serif;
     border: none;
     cursor: pointer;
-    transition: all 0.3s ease 0s;
 }
 
 .button-wrap {
     text-align: center;
     width: fit-content;
     max-width: 250px;
-    color: #f7feff;
-    border: 2px solid transparent;
-    border-radius: 20px;
-    background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
-    background-origin: border-box;
-    background-clip: content-box, border-box;
 }
 
 .button-wrap:hover{
@@ -98,7 +103,6 @@ header {
 }
 
 .buttons img {
-    color: #f7feff;
     border: 2px solid transparent;
     border-radius: 50%;
     background-image: linear-gradient(#222033, #222033), radial-gradient(circle at top left, #D66AE6, #44C4D9);
@@ -166,7 +170,8 @@ header {
 }
 
 .sign-out-button span:hover{
-color:#D66AE6}
+color:#D66AE6
+}
 
 
 .banner{
