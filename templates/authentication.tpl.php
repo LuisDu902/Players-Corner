@@ -1,9 +1,9 @@
 <?php function drawLogin()
 { ?>
-  <div class="authentication-wrap vert-flex">
+  <div class="vert-flex center">
     <div class="gradient round-border">
-      <img class="login-logo" src="../images/icons/logo.png" alt="logo"></span>
-      <h2 id="login-text" class="auth-text"> The adventure awaits!<br> Sign in now to continue your<br> journey on <span
+      <img class="login-logo block" src="../images/icons/logo.png" alt="logo"></span>
+      <h2 id="login-text" class="auth-text center"> The adventure awaits!<br> Sign in now to continue your<br> journey on <span
           class="highlight">Player's Corner</span>.</h2>
       <form action="../actions/user_actions/action_login.php" method="post" class="authentication-form vert-flex">
         <div class="input-box round-border">
@@ -23,9 +23,9 @@
 
 <?php function drawRegister()
 { ?>
-  <div class="authentication-wrap vert-flex">
+  <div class="vert-flex center">
     <div class="gradient round-border">
-      <h2 class="auth-text">Welcome to <span class="highlight">Player's Corner</span>! <br>Let's begin the adventure.
+      <h2 class="auth-text center">Welcome to <span class="highlight">Player's Corner</span>! <br>Let's begin the adventure.
       </h2>
       <form action="../actions/user_actions/action_register.php" method="post" class="authentication-form vert-flex">
 

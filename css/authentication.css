@@ -1,9 +1,3 @@
-.authentication-wrap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .authentication-form {
     margin: 0 50px 30px;
 }
@@ -20,38 +14,36 @@
     font-size: 1.1rem;
     width: 100%;
     padding: 20px;
-    border: none;
 }
 
 .input-box .icon {
     max-height: 3rem;
     width: 2rem;
-    padding-bottom: 20px;
-    padding-right: 10px;
+    padding: 0px 10px 20px 0px;
 }
 
-.input-box input:focus {
-    outline: none;
-}
-
-.auth-button {
+.auth-button, .login-logo {
     margin: 0 auto;
 }
 
 .login-logo {
     max-height: 250px;
-    display: block;
-    margin: 0 auto;
 }
 
 .auth-text {
     margin: 12px;
     padding: 20px 50px;
-    display: block;
-    text-align: center;
 }
 
 #login-text {
     margin-top: 0;
     padding-top: 0;
 }
+
+.no-border{
+    border: none;
+}
+
+.white-border{
+    border: 2px solid white;
+  }

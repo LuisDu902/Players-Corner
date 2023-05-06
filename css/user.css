@@ -1,23 +1,21 @@
 .search-bar{
   display: flex;
-  justify-content: center;
-  align-items: center;
   margin-bottom: 30px;
+}
+
+.search-box, .filter-select, .order-condition{
+  padding: 10px 15px;
+  font-size: 1.2em;
+} 
+
+.search-box{
+  display: flex;
+  justify-content: space-between;
 }
 
 .search-bar img{
   height: 20px;
   width: 20px;
-}
-
-.search-box{
-  display: flex;
-  border: 2px solid white;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 15px;
-  font-size: 1.2em;
-  border-radius: 20px;
 }
 
 #search-user, .order-select, #search-ticket, .filter-criteria{
@@ -26,18 +24,11 @@
   border: none;
 }
 
-#search-user:focus, #search-ticket:focus,.filter-criteria:focus, .order-select:focus, .filter-select:focus{ 
-  outline: none;
+.filter-select, .order-condition{
+  margin-left: 20px;
 }
 
-.filter-select,.order-condition{
-  margin-left: 20px;
-  border: 2px solid white;
-  font-size: 1.2em;
-  border-radius: 20px;
-  padding: 10px 15px;
-  text-align: center;
-}
+
 
 
 .user-cards{
@@ -47,18 +38,10 @@
   grid-gap: 20px;
 }
 
-
 .user-card{
-  display: none;
-  display: flex;
-  flex: 0 0 auto;
   max-width: 370px;
-  flex-direction: column;
   padding: 10px 20px;
-  border: 4px solid #d9d9d9;
-  border-radius: 20px;
   overflow-x: auto;
-  width: 100%; 
 }
 
 .user-card:hover{
@@ -78,12 +61,11 @@
 
 .type {
   display: flex;
-  justify-content: center;
-  align-items: center;
   font-size: 1.3em;
-  font-weight: bold;
+  max-height: 2.7em;
   border-radius: 10px;
-  padding: 5px 20px 5px 20px;
+  padding: 5px 20px;
+  margin: 15px 0px 0px 15px;
 }
 
 .client-card-type{
@@ -116,31 +98,23 @@
   margin-top: 10px;
   margin-right: 20px;
   border-radius: 50%;
-  text-align: center;
   display: flex;
-  justify-content: center;
-  align-items: center;
   height: 2.5em;
   width: 2.5em;
   line-height: 30px;
   font-size: 2em;
-  font-weight: bolder;
 }
 
 .user-card img{
   background-color: #0D0721;
   max-height: 300px;
   object-fit: cover;
-  border-radius: 50%;
   margin: 10px;
   padding: 10px;
 }
 
 .card-details{
   margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .card-details .card-name{
@@ -150,13 +124,13 @@
 }
 
 .card-buttons{
-  margin-top: 30px;
+  margin: 30px 0px;
   display: flex;
-  justify-content: center;
-  margin-bottom: 30px;
-  align-content: center;
-  align-items: center;
 }
+
+
+
+
 
 .upgrade-modal img{
   margin-top: 20px;
@@ -176,6 +150,7 @@
   align-items: center;
   margin: 20px 0px;
 }
+
 #promote{
   display: flex;
   align-items: center;

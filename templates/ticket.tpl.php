@@ -1,7 +1,7 @@
 <?php function drawTickets($tickets)
 { ?>
-    <div class="search-bar">
-        <div class="filter-condition">
+    <div class="search-bar center">
+        <div class="filter-condition white-border">
             <span> Filter by </span>
             <select name="" class="filter-criteria" id="filter-ticket">
                 <option value="title"> Title </option>
@@ -14,12 +14,12 @@
                 <option value="category"> Category </option>
             </select>
         </div>
-        <div class="search-box">
+        <div class="search-box center round-border white-border">
             <input id="search-ticket" type="text" placeholder="search">
             <img src="../images/icons/search.png">
         </div>
 
-        <div class="order-condition">
+        <div class="order-condition round-border white-border">
             <span> Order by </span>
             <select name="" class="order-select" id="order-ticket">
                 <option value="title"> Title </option>

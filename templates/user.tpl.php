@@ -7,10 +7,10 @@
   <div class="user-profile">
     <div class="user-reputation vert-flex">
       <span id="reputation" class="title center">Reputation</span>
-      <span class="reputation-value circle-border gradient center"> <?= $user->reputation ?>% </span>
+      <span class="reputation-value circle-border gradient center bold"> <?= $user->reputation ?>% </span>
     </div>
     <div class="user-details center">
-      <span id="about" class="title">About me</span>
+      <span id="about" class="title bold">About me</span>
       <span class="field round-border center"> Name </span>
       <span class="info round-border center"> <?= $user->name ?> </span>
       <span class="field round-border center"> Username </span>
@@ -22,7 +22,7 @@
     </div>
     <div class="profile-picture round-wrap vert-flex center">
       <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
-      <span> <?= $user->username ?> </span>
+      <span class="bold"> <?= $user->username ?> </span>
       <div class="button-wrap gradient round-border">
       <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
     </div>
@@ -33,7 +33,7 @@
 <?php function drawEditUserForm(User $user) { ?>
   <div class="edit-profile center">
     <div class="edit-fields">
-      <h2 class="auth-text">Edit profile</h2>
+      <h2 class="auth-text center">Edit profile</h2>
       </h2>
       <form action="../actions/user_actions/action_edit_profile.php" method="post" class="authentication-form">
         <div class="input-box round-border">
@@ -72,26 +72,26 @@
 <?php } ?>
 
 <?php function drawUsers($users) { ?>
-  <div class="search-bar">
-    <div class="search-box">
+  <nav class="search-bar center">
+    <div class="search-box center round-border white-border">
       <input id="search-user" type="text" placeholder="search">
       <img src="../images/icons/search.png">
     </div>
-    <select name="" class="filter-select" id="filter-user">
+    <select class="filter-select round-border white-border" id="filter-user">
       <option value="users"> All users </option>
       <option value="client"> Clients </option>
       <option value="agent"> Agents </option>
       <option value="admin"> Admins </option>
     </select>
-    <div class="order-condition">
+    <div class="order-condition round-border white-border">
       <span> Order by </span>
-      <select name="" class="order-select" id="order-user">
+      <select class="order-select" id="order-user">
         <option value="name"> Name </option>
         <option value="reputation"> Reputation </option>
         <option value="type"> Role </option>
       </select>
     </div>
-  </div>
+</nav>
   <div class="user-cards" id="users">
     <?php foreach ($users as $user):
       drawUserCard($user);
@@ -102,18 +102,17 @@
 
 
 <?php function drawUserCard($user) { ?>
-  <div class="user-card" data-name="<?= $user->name ?>" data-type="<?= $user->type ?>"
-    data-username="<?= $user->username ?>">
+  <div class="user-card vert-flex round-border white-border">
     <div class="card-type">
-      <span class="type <?= $user->type ?>-card-type"><?= $user->type ?></span>
-      <span class="rep"> <?= $user->reputation ?> </span>
+      <span class="type <?= $user->type ?>-card-type bold center"><?= $user->type ?></span>
+      <span class="rep center bold"> <?= $user->reputation ?> </span>
     </div>
-    <img src="<?= $user->getPhoto() ?>" alt="profile" class="<?= $user->type ?>-card-border card-img"></img>
-    <div class="card-details">
+    <img src="<?= $user->getPhoto() ?>" alt="profile" class="<?= $user->type ?>-card-border card-img circle-border"></img>
+    <div class="card-details vert-flex center">
       <span class="card-name"> <?= $user->name ?> </span>
       <span class="span-username"> <?= $user->username ?> </span>
     </div>
-    <div class="card-buttons">
+    <div class="card-buttons center">
       <?php if ($user->type == "client") { drawClientCardButtons();} 
             else if ($user->type == "agent") { drawAgentCardButtons($user);} 
             else { drawAdminCardButtons($user);} ?>
@@ -133,5 +132,5 @@
 <?php } ?>
 
 <?php function drawAdminCardButtons($user) { ?>
-  <div class="button-wrap gradient"> <button>assign</button> </div>
+  <div class="button-wrap gradient round-border"> <button>assign</button> </div>
 <?php } ?>
