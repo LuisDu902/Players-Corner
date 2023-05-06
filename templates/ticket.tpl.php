@@ -1,7 +1,7 @@
 <?php function drawTickets($tickets)
 { ?>
     <div class="search-bar center">
-        <div class="filter-condition white-border">
+        <div class="filter-condition round-border white-border">
             <span> Filter by </span>
             <select name="" class="filter-criteria" id="filter-ticket">
                 <option value="title"> Title </option>
@@ -32,8 +32,8 @@
         </div>
     </div>
 
-    <div class="tickets">
-        <ul class="ticket-info">
+    <div class="tickets vert-flex">
+        <ul class="ticket-info center">
             <li>Creator</li>
             <li>Title</li>
             <li>Tags</li>
@@ -45,12 +45,12 @@
         </ul>
         <div id="ticket-cards">
             <?php foreach ($tickets as $ticket) { ?>
-                <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
-                    <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
+                <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket round-border white-border center">
+                    <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border circle-border">
                     <span>
                         <?= $ticket->title ?>
                     </span>
-                    <div class="ticket-tags">
+                    <div class="vert-flex">
                         <?php foreach ($ticket->tags as $tag) { ?>
                             <span> <?= $tag ?></span>
                         <?php } ?>

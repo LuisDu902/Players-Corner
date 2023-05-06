@@ -1,36 +1,50 @@
 <?php
-  declare(strict_type = 1);
-  require_once(__DIR__ . '/../classes/user.class.php');
+declare(strict_type=1);
+require_once(__DIR__ . '/../classes/user.class.php');
 ?>
 
-<?php function drawProfile(User $user) { ?>
+<?php function drawProfile(User $user)
+{ ?>
   <div class="user-profile">
     <div class="user-reputation vert-flex">
       <span id="reputation" class="title center">Reputation</span>
-      <span class="reputation-value circle-border gradient center bold"> <?= $user->reputation ?>% </span>
+      <span class="reputation-value circle-border gradient center bold">
+        <?= $user->reputation ?>%
+      </span>
     </div>
     <div class="user-details center">
       <span id="about" class="title bold">About me</span>
       <span class="field round-border center"> Name </span>
-      <span class="info round-border center"> <?= $user->name ?> </span>
+      <span class="info round-border center">
+        <?= $user->name ?>
+      </span>
       <span class="field round-border center"> Username </span>
-      <span class="info round-border center"> <?= $user->username ?> </span>
+      <span class="info round-border center">
+        <?= $user->username ?>
+      </span>
       <span class="field round-border center"> Email </span>
-      <span class="info round-border center">  <?= $user->email ?> </span>
+      <span class="info round-border center">
+        <?= $user->email ?>
+      </span>
       <span class="field round-border center"> Role </span>
-      <span class="info round-border center"> <?= $user->type ?> </span>
+      <span class="info round-border center">
+        <?= $user->type ?>
+      </span>
     </div>
     <div class="profile-picture round-wrap vert-flex center">
       <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
-      <span class="bold"> <?= $user->username ?> </span>
+      <span class="bold">
+        <?= $user->username ?>
+      </span>
       <div class="button-wrap gradient round-border">
-      <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
-    </div>
+        <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
+      </div>
     </div>
   </div>
 <?php } ?>
 
-<?php function drawEditUserForm(User $user) { ?>
+<?php function drawEditUserForm(User $user)
+{ ?>
   <div class="edit-profile center">
     <div class="edit-fields">
       <h2 class="auth-text center">Edit profile</h2>
@@ -56,22 +70,25 @@
           <input type="password" name="new-password" required="required" placeholder="New password">
           <img src="../images/icons/password.png" class="icon" alt="password">
         </div>
-        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-        <div class="button-wrap gradient round-border auth-button"> <button type="submit">Save</button> </div>       
+        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
+        <div class="button-wrap gradient round-border auth-button"> <button type="submit">Save</button> </div>
       </form>
     </div>
     <div class="profile-picture center vert-flex">
-      <form action="../actions/user_actions/action_upload_image.php" method="post" class="upload-form round-wrap center vert-flex" enctype="multipart/form-data">
+      <form action="../actions/user_actions/action_upload_image.php" method="post"
+        class="upload-form round-wrap center vert-flex" enctype="multipart/form-data">
         <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview" class="circle-border">
         <input type="file" id="user-image" name="imageToUpload">
-        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-        <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload photo</button> </div>
+        <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
+        <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload
+            photo</button> </div>
       </form>
     </div>
   </div>
 <?php } ?>
 
-<?php function drawUsers($users) { ?>
+<?php function drawUsers($users)
+{ ?>
   <nav class="search-bar center">
     <div class="search-box center round-border white-border">
       <input id="search-user" type="text" placeholder="search">
@@ -91,7 +108,7 @@
         <option value="type"> Role </option>
       </select>
     </div>
-</nav>
+  </nav>
   <div class="user-cards" id="users">
     <?php foreach ($users as $user):
       drawUserCard($user);
@@ -101,36 +118,31 @@
 <?php } ?>
 
 
-<?php function drawUserCard($user) { ?>
+<?php function drawUserCard($user)
+{ ?>
   <div class="user-card vert-flex round-border white-border">
     <div class="card-type">
       <span class="type <?= $user->type ?>-card-type bold center"><?= $user->type ?></span>
-      <span class="rep center bold"> <?= $user->reputation ?> </span>
+      <span class="rep center bold">
+        <?= $user->reputation ?>
+      </span>
     </div>
     <img src="<?= $user->getPhoto() ?>" alt="profile" class="<?= $user->type ?>-card-border card-img circle-border"></img>
     <div class="card-details vert-flex center">
-      <span class="card-name"> <?= $user->name ?> </span>
-      <span class="span-username"> <?= $user->username ?> </span>
+      <span class="card-name">
+        <?= $user->name ?>
+      </span>
+      <span class="span-username">
+        <?= $user->username ?>
+      </span>
     </div>
     <div class="card-buttons center">
-      <?php if ($user->type == "client") { drawClientCardButtons();} 
-            else if ($user->type == "agent") { drawAgentCardButtons($user);} 
-            else { drawAdminCardButtons($user);} ?>
+      <?php if ($user->type != "admin") { ?>
+        <div class="button-wrap gradient round-border"> <button id="upgrade">upgrade</button> </div>
+      <?php } if ($user->type != "client") { ?>
+          <div class="button-wrap gradient round-border"> <button id="assign-dep">assign</button> </div>
+      <?php } ?>
     </div>
     <input type='hidden' value=<?= $user->userId ?> id='card-userId'>
   </div>
-<?php } ?>
-
-
-<?php function drawClientCardButtons() { ?>
-  <div class="button-wrap gradient round-border"> <button>upgrade</button> </div>
-<?php } ?>
-
-<?php function drawAgentCardButtons($user) { ?>
-  <div class="two-button-wrap button-wrap gradient round-border"> <button> upgrade </button> </div>
-  <div class="two-button-wrap button-wrap gradient round-border"> <button> assign </button> </div>
-<?php } ?>
-
-<?php function drawAdminCardButtons($user) { ?>
-  <div class="button-wrap gradient round-border"> <button>assign</button> </div>
 <?php } ?>

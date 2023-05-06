@@ -1,0 +1,85 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    margin: auto;
+    padding: 20px 30px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.upgrade-modal .modal-content {
+    max-width: 400px;
+}
+
+.upgrade-modal form {
+    margin: 20px 0px;
+}
+
+#promote {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#promote span {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+#upload {
+    margin-top: 30px;
+}
+
+#department-modal img {
+    width: 400px;
+    height: 400px;
+}
+
+#department-name {
+    font-size: 1.1rem;
+    width: 100%;
+    padding: 10px;
+    margin: 25px auto;
+   
+}
+
+#department-modal .button-wrap{
+    margin-top: 20px;
+}
+
+#department-name:focus {
+    border: 2px solid #D66AE6;
+    outline: none;
+}
+
+.modal-title {
+    font-size: 2em;
+    font-weight: bold;
+    color: #D66AE6;
+}
+
+.assignable-departments {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: minmax(auto, max-content);
+}
+
+#assign-modal-content {
+    min-width: 80%;
+}
+
+#department-modal-content {
+    max-width: 500px;
+}

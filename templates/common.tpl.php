@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="../css/user.css">
     <link rel="stylesheet" href="../css/department.css">
     <link rel="stylesheet" href="../css/ticket.css">
+    <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/create_ticket.css">
     <link rel="stylesheet" href="../css/token-input.css">
     <script src="../javascript/add_new_department.js" defer></script>
@@ -75,10 +76,10 @@
 <?php function drawAuthForms()
 { ?>
   <div class="buttons">
-    <div class="two-button-wrap button-wrap gradient round-border">
+    <div class="button-wrap gradient round-border">
       <a href="../pages/login.php"><button>Sign In</button></a>
     </div>
-    <div class="two-button-wrap button-wrap gradient round-border">
+    <div class="button-wrap gradient round-border">
       <a href="../pages/register.php"><button>Sign Up</button></a>
     </div>
   </div>

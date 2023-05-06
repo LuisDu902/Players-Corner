@@ -1,5 +1,5 @@
 function showUpgradeModal() {
-    const upgradeButtons = document.querySelectorAll(".upgrade");
+    const upgradeButtons = document.querySelectorAll("#upgrade");
     if (upgradeButtons) {
         for (const upgradeButton of upgradeButtons) {
             upgradeButton.addEventListener('click', upgradeModal)
@@ -17,7 +17,7 @@ function upgradeModal() {
     const card = this.closest('.user-card')
 
     const content = document.createElement('div')
-    content.classList.add('modal-content')
+    content.classList.add('modal-content', 'white-border','round-border','vert-flex','center')
 
     const title = document.createElement('span')
     title.classList.add('modal-title')
@@ -28,18 +28,20 @@ function upgradeModal() {
     img.classList = card.querySelector('.card-img').classList
 
     const form = document.createElement('form')
+    form.classList.add('center', 'vert-flex')
     form.method = 'POST'
     form.action = '../actions/user_actions/action_upgrade_user.php'
 
     const promote = document.createElement('div')
     promote.id = 'promote'
+    promote.classList.add('center')
 
     const text = document.createElement('span')
     text.textContent = 'Upgrade to'
 
     const select = document.createElement('select')
     select.name = 'role'
-    select.classList.add('filter-select')
+    select.classList.add('filter-select', 'white-border', 'round-border')
 
     const role = card.querySelector('.type').textContent
     if (role == "client") {
@@ -60,7 +62,7 @@ function upgradeModal() {
     promote.appendChild(select)
 
     const buttonWrap = document.createElement('div')
-    buttonWrap.classList.add('button-wrap')
+    buttonWrap.classList.add('button-wrap', 'round-border', 'gradient')
 
     const button = document.createElement('button')
     button.type = 'submit'

@@ -14,6 +14,7 @@
     font-size: 1.1rem;
     width: 100%;
     padding: 20px;
+    border: none;
 }
 
 .input-box .icon {
@@ -38,10 +39,6 @@
 #login-text {
     margin-top: 0;
     padding-top: 0;
-}
-
-.no-border{
-    border: none;
 }
 
 .white-border{

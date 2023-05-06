@@ -39,7 +39,7 @@ function assignToDepartments() {
 }
 
 function showAssignModal() {
-    const assignButtons = document.querySelectorAll(".assign-dep");
+    const assignButtons = document.querySelectorAll("#assign-dep");
     if (assignButtons) {
         for (const assignButton of assignButtons) {
             assignButton.addEventListener('click', assignModal)
@@ -62,7 +62,8 @@ async function assignModal() {
     assignModal.innerHTML = ''
 
     const content = document.createElement('div')
-    content.classList.add('modal-content')
+    content.classList.add('modal-content', 'white-border','round-border','vert-flex','center')
+    
     content.id = 'assign-modal-content'
     
     const assignableDepartments = document.createElement('div')
@@ -87,6 +88,7 @@ async function assignModal() {
             } else {
                 img.src = '../images/departments/default.png'
             }
+            img.classList.add('round-border', 'white-border')
 
             const category = document.createElement('span')
             category.textContent = department.category
@@ -102,7 +104,7 @@ async function assignModal() {
         form.action = '../actions/user_actions/action_assign_to_departments.php'
 
         const buttonWrap = document.createElement('div')
-        buttonWrap.classList.add('button-wrap')
+        buttonWrap.classList.add('button-wrap' , 'gradient', 'round-border')
 
         const button = document.createElement('button')
         button.type = 'submit'
