@@ -114,7 +114,7 @@ header {
     align-items: center;
 }
 
-.buttons,
+.buttons div:nth-child(2),
 .card-buttons div:nth-child(2) {
     margin-left: 20px;
 }
