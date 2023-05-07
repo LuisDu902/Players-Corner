@@ -35,10 +35,9 @@
 
 <?php function drawTickets($tickets)
 { ?>
-
     <table class="tickets">
         <thead>
-            <tr class="ticket-info center">
+            <tr class="ticket-info ">
                 <th>Creator</th>
                 <th>Title</th>
                 <th>Tags</th>
@@ -54,7 +53,7 @@
                 <tr class="ticket white-border round-border center">
                     <td><img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border circle-border"></td>
                     <td><a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>"><?= $ticket->title ?></a></td>
-                    <td>
+                    <td class="vert-flex">
                         <?php foreach ($ticket->tags as $tag) { ?>
                             <span> <?= $tag ?> </span>
                         <?php } ?>

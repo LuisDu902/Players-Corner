@@ -123,7 +123,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
   <div class="user-card vert-flex round-border white-border">
     <div class="card-type">
       <span class="type <?= $user->type ?>-card-type bold center"><?= $user->type ?></span>
-      <span class="rep center bold">
+      <span class="rep center bold circle-border">
         <?= $user->reputation ?>
       </span>
     </div>

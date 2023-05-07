@@ -35,10 +35,6 @@
     border: 4px solid #D66AE6;
 }
 
-.department-card img:hover {
-    border: 3px solid #D66AE6;
-}
-
 .department-card span {
     font-size: 2.5em;
     background-color: transparent;

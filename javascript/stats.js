@@ -1,6 +1,5 @@
 async function getStatus() {
-  const category = document.querySelector('#department-title').textContent
-  const response = await fetch('../api/api_get_status.php?' + encodeForAjax({ department: category }))
+  const response = await fetch('../api/api_get_status.php?' + encodeForAjax({ department: category.textContent }))
   const statuses = await response.json()
   const ctx = document.querySelector('#dpt-status')
   const labels = statuses.map(status => status[0])
@@ -27,7 +26,7 @@ async function getStatus() {
         }
       },
       plugins: {
-        legend: false 
+        legend: false
       },
     }
   });
@@ -35,8 +34,7 @@ async function getStatus() {
 }
 
 async function getPriority() {
-  const category = document.querySelector('#department-title').textContent
-  const response = await fetch('../api/api_get_priority.php?' + encodeForAjax({ department: category }))
+  const response = await fetch('../api/api_get_priority.php?' + encodeForAjax({ department: category.textContent }))
   const priorities = await response.json()
   const ctx = document.querySelector('#dpt-priority')
   const labels = priorities.map(status => status[0])
@@ -44,11 +42,9 @@ async function getPriority() {
 
   new Chart(ctx, {
     type: 'bar',
-
     data: {
       labels: labels,
       datasets: [{
-        
         data: data,
         backgroundColor: ['#FF5757', '#FF5757', '#FFBD59', '#7ED957'],
       }],
@@ -65,12 +61,14 @@ async function getPriority() {
         }
       },
       plugins: {
-        legend: false 
+        legend: false
       },
     }
   });
 
 }
-
-getStatus()
-getPriority()
+const category = document.querySelector('#department-title')
+if (category) {
+  getStatus()
+  getPriority()
+}

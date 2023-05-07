@@ -19,7 +19,7 @@ async function searchTickets() {
 
   const tickets = await response.json()
 
-  const section = document.querySelector('#ticket-cards')
+  const section = document.querySelector('.tickets tbody')
   section.innerHTML = ''
 
   for (const ticket of tickets) {
@@ -31,57 +31,58 @@ async function searchTickets() {
 
 function createTicketCard(ticket) {
 
-  const link = document.createElement('a')
-  link.href = "../pages/ticket.php?id=" + ticket.ticketId
-  link.classList.add('ticket', 'round-border', 'white-border', 'center')
+  const ticketRow = document.createElement('tr');
+  ticketRow.classList.add('ticket', 'white-border', 'round-border', 'center');
 
-  const creator = document.createElement('img')
-  creator.src = ticket
+  const creatorCell = document.createElement('td');
+  const creatorImg = document.createElement('img');
   if (ticket.creator.hasPhoto) {
-    creator.src = '../images/users/user' + ticket.creator.userId + '.png'
+    creatorImg.src = '../images/users/user' + ticket.creator.userId + '.png'
   } else{
-    creator.src = '../images/users/default.png'
+    creatorImg.src = '../images/users/default.png'
   }
-  creator.classList.add(ticket.creator.type + '-card-border', 'circle-border')
+  creatorImg.classList.add(ticket.creator.type + '-card-border', 'circle-border');
+  creatorCell.appendChild(creatorImg);
+  ticketRow.appendChild(creatorCell);
 
-  const title = document.createElement('span')
-  title.textContent = ticket.title
+  const titleCell = document.createElement('td');
+  const titleLink = document.createElement('a');
+  titleLink.href = '../pages/ticket.php?id=' + ticket.ticketId;
+  titleLink.textContent = ticket.title;
+  titleCell.appendChild(titleLink);
+  ticketRow.appendChild(titleCell);
 
-  const tags = document.createElement('div')
-  tags.classList.add('vert-flex')
+  const tagsCell = document.createElement('td');
+  tagsCell.classList.add('vert-flex')
   for (const tag of ticket.tags) {
-    const hashtag = document.createElement('span')
-    hashtag.textContent = tag
-    tags.appendChild(hashtag)
+    const tagSpan = document.createElement('span');
+    tagSpan.textContent = tag;
+    tagsCell.appendChild(tagSpan);
   }
+  ticketRow.appendChild(tagsCell);
 
-  const category = document.createElement('span')
-  category.textContent = ticket.category
+  const categoryCell = document.createElement('td');
+  categoryCell.textContent = ticket.category;
+  ticketRow.appendChild(categoryCell);
 
-  const status = document.createElement('span')
-  status.textContent = ticket.status
-  status.classList.add('status')
-  status.id = ticket.status + "-status"
+  const statusCell = document.createElement('td');
+  statusCell.textContent = ticket.status;
+  statusCell.classList.add('round-border', 'status');
+  statusCell.id = ticket.status + '-status';
+  ticketRow.appendChild(statusCell);
 
-  const priority = document.createElement('span')
-  priority.textContent = ticket.priority
-  priority.classList.add('priority')
-  priority.id = ticket.priority + "-priority"
+  const priorityCell = document.createElement('td');
+  priorityCell.textContent = ticket.priority;
+  priorityCell.id = ticket.priority + '-priority';
+  ticketRow.appendChild(priorityCell);
 
-  const visibility = document.createElement('span')
-  visibility.textContent = ticket.visibility
+  const visibilityCell = document.createElement('td');
+  visibilityCell.textContent = ticket.visibility;
+  ticketRow.appendChild(visibilityCell);
 
-  const date = document.createElement('span')
-  date.textContent = ticket.date
+  const dateCell = document.createElement('td');
+  dateCell.textContent = ticket.date;
+  ticketRow.appendChild(dateCell);
 
-  link.appendChild(creator)
-  link.appendChild(title)
-  link.appendChild(tags)
-  link.appendChild(category)
-  link.appendChild(status)
-  link.appendChild(priority)
-  link.appendChild(visibility)
-  link.appendChild(date)
-
-  return link
+  return ticketRow
 }
