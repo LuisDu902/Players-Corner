@@ -23,15 +23,15 @@
 function drawDepartment($department, $tickets, $members)
 { ?>
     <section class="department">
-    <header id="department-title"> <?= $department->category ?> </header>
+    <header id="department-title"><?= $department->category ?></header>
     <section id="department-stats">
         <article class="round-border" id="dpt-ticket-status">
             <h3>Tickets by status</h3>
-            //...a graphic showing status
+            <canvas id="dpt-status" class="graphics"></canvas>
         </article>
         <article class="round-border" id="dpt-ticket-priority">
             <h3>Tickets by priority</h3>
-            //...a graphic showing priority
+            <canvas id="dpt-priority" class="graphics"></canvas>
         </article>
         <article class="round-border vert-flex" id="dpt-members">
             <h3>Members</h3>  

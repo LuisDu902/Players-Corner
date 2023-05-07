@@ -121,3 +121,8 @@
 #department-tickets header{
     margin-bottom: 10px;
 }
+
+.graphics{
+    background-color: transparent;
+    max-height: 380px;
+}

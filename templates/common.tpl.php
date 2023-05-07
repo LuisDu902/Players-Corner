@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/create_ticket.css">
     <link rel="stylesheet" href="../css/token-input.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../javascript/add_new_department.js" defer></script>
     <script src="../javascript/assign_to_departments.js" defer></script>
     <script src="../javascript/upgrade_user.js" defer></script>
@@ -20,6 +21,7 @@
     <script src="../javascript/search_tickets.js" defer></script>
     <script src="../javascript/preview_image.js" defer></script>
     <script src="../javascript/dropdown.js" defer></script>
+ <script src="../javascript/stats.js" defer></script>
   </head>
 
   <body data-value="<?=$_SESSION['csrf']?>">
