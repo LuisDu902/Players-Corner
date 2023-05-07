@@ -69,59 +69,71 @@
     </table>
 <?php } ?>
 
-<?php function drawTicket($ticket, $messages, $history)
-{ ?>
+<?php
+function drawTicket($ticket, $messages, $history)
+{ 
+?>
+    <head>
+        <link rel="stylesheet" href="../css/ticket_form.css">
+        <link rel="stylesheet" href="../css/style.css">
+    </head>
     <div id="ticket">
         <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
             <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
-            <span>
-                <?= $ticket->title ?>
-            </span>
-            <span>
-                <?= $ticket->category ?>
-            </span>
-            <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
-            <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
-            <span>
-                <?= $ticket->visibility ?>
-            </span>
-            <span>
-                <?= $ticket->date ?>
-            </span>
+            <span><?= $ticket->title ?></span>
+            <span><?= $ticket->category ?></span>
+            <span class="status" id="<?= $ticket->status ?>-status"><?= $ticket->status ?></span>
+            <span class="priority" id="<?= $ticket->priority ?>-priority"><?= $ticket->priority ?></span>
+            <span><?= $ticket->visibility ?></span>
+            <span><?= $ticket->date ?></span>
         </a>
+        <div class="description">
+            <span><?= $ticket->text?> </span>
+            </br></br>
+</div>
         <div class="messages">
-            <?php foreach ($messages as $message) { ?>
-                <span>
-                    <?= $message->user->name ?>:
-                </span>
-                <br><br>
-                <span>
-                    <?= $message->text ?>
-                </span>
-                <br><br>
-            <?php } ?>
+            <?php 
+            $sender = NULL;
+            foreach ($messages as $message) {
+                if ($message->user->name !== $ticket->creator->name) {
+                    echo '<div class="message-container-replier">';
+                } else {
+                    echo '<div class="message-container-creator">';
+                }
+            ?>
+                <div class="message">
+                    <span class="sender"><?= $message->user->name ?></span>
+                    <br>
+                    <span class="text"><?= $message->text ?></span>
+                    <br>
+                    <span class="time"><?= $message->date ?></span>
+                    <br>
+                </div>
+            <?php
+                if ($message->user->name !== $sender) {
+                    echo '</div>';
+                    ?> 
+                    <br>
+                    <?php
+                    $sender = $message->user->name;
+                }
+            }
+            ?>
         </div>
         <div class="history">
             <?php foreach ($history as $change) { ?>
-                <span>
-                    <?= $change->changes ?> :
-                    <?= $change->old_field ?> ->
-                    <?= $change->new_field ?>
-                </span>
+                <span><?= $change->changes ?> : <?= $change->old_field ?> -> <?= $change->new_field ?></span>
                 <br><br>
-                <span>
-                    <?= $change->date ?>
-                </span>
+                <span><?= $change->date ?></span>
                 <br><br>
             <?php } ?>
         </div>
         <div class="tags">
             <?php foreach ($ticket->tags as $tag) { ?>
-                <span>
-                    <?= $tag ?>
-                </span>
-                <br>
+                <span><?= $tag ?></span>
             <?php } ?>
         </div>
     </div>
-<?php } ?>
+<?php 
+}
+?>
