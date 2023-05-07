@@ -11,7 +11,6 @@ async function getStatus() {
     data: {
       labels: labels,
       datasets: [{
-        label: 'Number of Tickets',
         data: data,
         backgroundColor: ['#FFFFFF', '#FF5757', '#5271FF', '#FFBD59', '#7ED957'],
         borderWidth: 0
@@ -26,7 +25,10 @@ async function getStatus() {
             stepSize: 1
           }
         }
-      }
+      },
+      plugins: {
+        legend: false 
+      },
     }
   });
 
@@ -42,10 +44,11 @@ async function getPriority() {
 
   new Chart(ctx, {
     type: 'bar',
+
     data: {
       labels: labels,
       datasets: [{
-        label: 'Number of Tickets',
+        
         data: data,
         backgroundColor: ['#FF5757', '#FF5757', '#FFBD59', '#7ED957'],
       }],
@@ -57,9 +60,13 @@ async function getPriority() {
         y: {
           ticks: {
             stepSize: 1,
+            fontColor: 'white'
           }
         }
-      }
+      },
+      plugins: {
+        legend: false 
+      },
     }
   });
 
