@@ -13,7 +13,7 @@
     die(header("Location: ../../pages/create_ticket.php"));
   }
 
-  Ticket::registerTicket($db, $_POST['tags'], $_POST['title'], $_POST['text'], $_POST['priority'], $_POST['category'], $_POST['date'], $_POST['visibility'], $_POST['userId']);
+  Ticket::registerTicket($db, $_POST['tags'], $_POST['title'], $_POST['text'], $_POST['priority'], $_POST['category'], $_POST['visibility'], intval($_POST['userId']));
   $session->addMessage('success', 'Ticket successfully created!');
   header("Location: ../../pages/tickets.php");
 ?>

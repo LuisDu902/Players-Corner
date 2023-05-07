@@ -14,7 +14,7 @@
   $db = getDatabaseConnection();
 
   $ticket = Ticket::getTicket($db, $_POST['id']);
-  $ticket->assignTicket($db, $_POST['department']);
+  $ticket->assignTicket($db, $session->getId(), $_POST['department']);
 
   $session->addMessage('success', 'Ticket assigned!');
   header("Location: ../../pages/tickets.php");

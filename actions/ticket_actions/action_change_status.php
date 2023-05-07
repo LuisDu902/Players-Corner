@@ -15,7 +15,7 @@ if (!valid_token($_POST['csrf'])){
 
 $db = getDatabaseConnection();
 $ticket = Ticket::getTicket($db, $_POST['id']);
-$ticket->changeStatus($db, $_POST['status']);
+$ticket->changeStatus($db, $session->getId(), $_POST['status']);
 
 $session->addMessage('success', 'Ticket status changed!');
 header("Location: ../../pages/tickets.php");

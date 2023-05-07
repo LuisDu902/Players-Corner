@@ -15,7 +15,7 @@ if (!valid_token($_POST['csrf'])){
 
 $db = getDatabaseConnection();
 $ticket = Ticket::getTicket($db, $_POST['id']);
-$ticket->changeDepartment($db, $_POST['department']);
+$ticket->changeDepartment($db, $session->getId(), $_POST['department']);
 
 $session->addMessage('success', 'Ticket department changed!');
 header("Location: ../../pages/tickets.php");
