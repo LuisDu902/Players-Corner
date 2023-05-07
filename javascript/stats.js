@@ -65,8 +65,8 @@ async function getPriority() {
       },
     }
   });
-
 }
+
 const category = document.querySelector('#department-title')
 if (category) {
   getStatus()
