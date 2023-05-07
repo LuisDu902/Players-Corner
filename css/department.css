@@ -59,8 +59,9 @@
 }
 
 #department-stats {
-    display: flex;
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 30px;
     margin-bottom: 50px;
 }
 
@@ -69,7 +70,7 @@
     padding: 20px;
     width: 500px;
     height: 500px;
-    margin-right: 20px;
+    justify-self: center;
 }
 
 
@@ -90,7 +91,7 @@
 
 #dpt-members {
     max-height: 500px;
-    overflow: auto;
+    float: left;
     overflow-y: auto;
     margin-right: 0;
 }
