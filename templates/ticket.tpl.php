@@ -1,4 +1,5 @@
-<?php function drawTicketSearchBar(){ ?>
+<?php function drawTicketSearchBar()
+{ ?>
     <div class="search-bar center">
         <div class="filter-condition round-border white-border">
             <span> Filter by </span>
@@ -34,44 +35,39 @@
 
 <?php function drawTickets($tickets)
 { ?>
-    <div class="tickets vert-flex">
-        <ul class="ticket-info center">
-            <li>Creator</li>
-            <li>Title</li>
-            <li>Tags</li>
-            <li>Category</li>
-            <li>Status</li>
-            <li>Priority</li>
-            <li>Visibility</li>
-            <li>Date</li>
-        </ul>
-        <div id="ticket-cards">
+
+    <table class="tickets">
+        <thead>
+            <tr class="ticket-info center">
+                <th>Creator</th>
+                <th>Title</th>
+                <th>Tags</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Visibility</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
             <?php foreach ($tickets as $ticket) { ?>
-                <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket round-border white-border center">
-                    <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border circle-border">
-                    <span>
-                        <?= $ticket->title ?>
-                    </span>
-                    <div class="vert-flex">
+                <tr class="ticket white-border round-border center">
+                    <td><img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border circle-border"></td>
+                    <td><a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>"><?= $ticket->title ?></a></td>
+                    <td>
                         <?php foreach ($ticket->tags as $tag) { ?>
-                            <span> <?= $tag ?></span>
+                            <span> <?= $tag ?> </span>
                         <?php } ?>
-                    </div>
-                    <span>
-                        <?= $ticket->category ?>
-                    </span>
-                    <span class="status" id="<?= $ticket->status ?>-status"> <?= $ticket->status ?> </span>
-                    <span class="priority" id="<?= $ticket->priority ?>-priority"> <?= $ticket->priority ?> </span>
-                    <span>
-                        <?= $ticket->visibility ?>
-                    </span>
-                    <span>
-                        <?= $ticket->date ?>
-                    </span>
-                </a>
+                    </td>
+                    <td> <?= $ticket->category ?></td>
+                    <td id="<?= $ticket->status ?>-status" class="round-border status"><?= $ticket->status ?></td>
+                    <td id="<?= $ticket->priority ?>-priority"><?= $ticket->priority ?></td>
+                    <td> <?= $ticket->visibility ?> </td>
+                    <td> <?= $ticket->date ?> </td>
+                </tr>
             <?php } ?>
-        </div>
-    </div>
+        </tbody>
+    </table>
 <?php } ?>
 
 <?php function drawTicket($ticket, $messages, $history)
@@ -109,7 +105,9 @@
         <div class="history">
             <?php foreach ($history as $change) { ?>
                 <span>
-                <?= $change->changes?> : <?= $change->old_field ?> -> <?= $change->new_field ?>
+                    <?= $change->changes ?> :
+                    <?= $change->old_field ?> ->
+                    <?= $change->new_field ?>
                 </span>
                 <br><br>
                 <span>
