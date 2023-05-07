@@ -3,8 +3,7 @@
 
     require_once(__DIR__ . '/../classes/session.class.php');
     $session = new Session();
-
-
+    
     require_once(__DIR__ . '/../classes/user.class.php');
     require_once(__DIR__ . '/../database/connection.db.php');
 

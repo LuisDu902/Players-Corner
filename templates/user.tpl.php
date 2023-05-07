@@ -40,8 +40,8 @@ require_once(__DIR__ . '/../classes/user.class.php');
       </table>
     </article>
     <article class="round-border center">
-      <h3>Tickets</h3>
-      <canvas id="reputation" data-rep ="<?=$user->reputation?>"></canvas>
+      <h3>Created tickets</h3>
+      <canvas id="user-tkt" class="graphics"></canvas>
     </article>
 
   </section>
