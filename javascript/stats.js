@@ -12,7 +12,7 @@ async function getStatus() {
       labels: labels,
       datasets: [{
         data: data,
-        backgroundColor: ['#FFFFFF', '#FF5757', '#5271FF', '#FFBD59', '#7ED957'],
+        backgroundColor: ['#D66AE6', '#FF5757', '#5271FF', '#FFBD59', '#7ED957'],
         borderWidth: 0
       }]
     },

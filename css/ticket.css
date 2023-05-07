@@ -38,6 +38,10 @@
   background-color: #5271FF; 
 }
 
+#assigned-status{ 
+  background-color: #D66AE6; 
+}
+
 #solved-status{
   background-color: #7ED957;
 }

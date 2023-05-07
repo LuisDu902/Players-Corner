@@ -31,7 +31,7 @@ CREATE TABLE Ticket(
    id INTEGER PRIMARY KEY,
    title VARCHAR NOT NULL,
    text VARCHAR NOT NULL,
-   createDate DATE NOT NULL,
+   createDate DATETIME NOT NULL,
    visibility VARCHAR NOT NULL,
    priority VARCHAR NOT NULL,
    status VARCHAR REFERENCES Status(status) NOT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE TicketHistory(
    id INTEGER PRIMARY KEY,
    ticketId INTEGER REFERENCES Ticket(id),
    user INTEGER REFERENCES User(userId),
-   date DATE NOT NULL,
+   date DATETIME NOT NULL,
    changes VARCHAR NOT NULL,
    field INTEGER REFERENCES FieldChange(id)
 );
@@ -69,7 +69,7 @@ CREATE TABLE Message(
    user INTEGER REFERENCES User(userId) NOT NULL,
    ticket INTEGER REFERENCES Ticket(id) NOT NULL,
    text VARCHAR NOT NULL,
-   date DATE NOT NULL
+   date DATETIME NOT NULL
 );
 
 CREATE TABLE Department(
@@ -87,7 +87,7 @@ CREATE TABLE FAQ(
    title VARCHAR NOT NULL,
    content VARCHAR NOT NULL,
    popularity INTEGER NOT NULL,
-   createDate DATE NOT NULL
+   createDate DATETIME NOT NULL
 );
 
 CREATE TABLE DepartmentFAQ(

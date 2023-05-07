@@ -50,10 +50,15 @@ class Ticket
     $stmt->execute(array($replier, $this->ticketId));
   }
 
-  static function registerTicket(PDO $db, array $tags, string $title, string $text, string $priority, string $category, string $date, string $visibility, string $creator)
+  static function registerTicket(PDO $db, array $tags, string $title, string $text, string $priority, string $category, string $visibility, int $creator)
   {
-    $stmt = $db->prepare("INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem,creator,replier) VALUES (NULL,?,?,?,?, ?, 'new', ?,NULL,?,NULL)");
-    $stmt->execute(array($title, $text, $date, $visibility, $priority, $category, $creator));
+    $stmt = $db->prepare("INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?, 'new', ?, NULL, ?, 0)");
+    $stmt->execute(array($title, $text, $visibility, $priority, $category, $creator));   
+    $ticketId = $db->lastInsertId();
+    foreach ($tags as $tag){
+      $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
+      $stmt->execute(array($ticketId, $tag));   
+    }
   }
 
 
