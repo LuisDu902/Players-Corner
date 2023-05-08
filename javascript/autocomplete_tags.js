@@ -47,4 +47,8 @@ async function get_tags(event) {
             event.target.blur();
         }
     }
+
+    const tagsString = tags.join(',');
+    const chosenTags = document.querySelector('#chosen_tags');
+    chosenTags.value = tagsString;
 }
