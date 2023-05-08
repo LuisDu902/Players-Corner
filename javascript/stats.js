@@ -72,7 +72,8 @@ if (category) {
   getStatus()
   getPriority()
 }
-async function show_user_tickets() {
+
+async function show_ticket_stats() {
   const response = await fetch('../api/api_get_user_tickets.php');
   const tickets = await response.json();
   const ctx = document.querySelector('#user-tkt');
@@ -83,14 +84,6 @@ async function show_user_tickets() {
     data: {
       labels: labels,
       datasets: [{
-        type: 'line',
-        data: data,
-        borderColor: '#D66AE6',
-        fill: false,
-        borderWidth: 2,
-        pointRadius: 4,
-        pointBackgroundColor: '#FFFFFF'
-      }, {
         type: 'bar',
         data: data,
         backgroundColor: 'rgba(68,196,217, 0.5)',
@@ -105,8 +98,7 @@ async function show_user_tickets() {
       scales: {
         y: {
           ticks: {
-            stepSize: 1,
-            beginAtZero: true
+            stepSize: 1
           }
         }
       },
@@ -120,5 +112,5 @@ async function show_user_tickets() {
 
 const profile = document.querySelector('#profile');
 if (profile){
-  show_user_tickets()
+  show_ticket_stats()
 }

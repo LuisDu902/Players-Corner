@@ -1,6 +1,6 @@
 <?php function drawLogin()
 { ?>
-  <div class="vert-flex center">
+  <section class="vert-flex center">
     <div class="gradient round-border">
       <img class="login-logo block" src="../images/icons/logo.png" alt="logo"></span>
       <h2 id="login-text" class="auth-text center"> The adventure awaits!<br> Sign in now to continue your<br> journey on <span
@@ -18,7 +18,7 @@
         <div class="button-wrap gradient round-border auth-button"> <button type="submit">Sign In</button> </div>
       </form>
     </div>
-  </div>
+  </section>
 <?php } ?>
 
 <?php function drawRegister()
