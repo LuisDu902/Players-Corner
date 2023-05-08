@@ -101,7 +101,7 @@ class Department
 
     $tickets = array();
     while ($ticket = $stmt->fetch()) {
-      $replier =  ($ticket['creator'] == NULL) ? $ticket['replier'] : 0;
+      $replier =  ($ticket['replier']) ? $ticket['replier'] : 0;
       $tickets[] = new Ticket(
         intval($ticket['id']),
         $ticket['title'],

@@ -63,7 +63,7 @@ class Ticket
     $tickets = array();
 
     while ($ticket = $stmt->fetch()) {
-      $replier =  ($ticket['creator'] == NULL) ? $ticket['replier'] : 0;
+      $replier =  ($ticket['replier']) ? $ticket['replier'] : 0;
       $tickets[] = new Ticket(
         intval($ticket['id']),
         $ticket['title'],
@@ -109,7 +109,7 @@ class Ticket
     $stmt = $db->prepare('SELECT * FROM Ticket WHERE id = ?');
     $stmt->execute(array($ticketId));
     $ticket = $stmt->fetch();
-    $replier =  ($ticket['creator'] == NULL) ? $ticket['replier'] : 0;
+    $replier =  ($ticket['replier']) ? $ticket['replier'] : 0;
     return new Ticket(
       $ticket['id'],
       $ticket['title'],
@@ -161,7 +161,7 @@ class Ticket
     $tickets = array();
 
     while ($ticket = $stmt->fetch()) {
-      $replier =  ($ticket['creator'] == NULL) ? $ticket['replier'] : 0;
+      $replier =  ($ticket['replier']) ? $ticket['replier'] : 0;
       $tickets[] = new Ticket(
         intval($ticket['id']),
         $ticket['title'],
