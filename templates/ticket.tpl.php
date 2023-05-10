@@ -34,7 +34,8 @@
 <?php } ?>
 
 <?php function drawTickets($tickets)
-{ ?>
+{ 
+    if (!empty($tickets)){ ?>  
     <table class="tickets">
         <thead>
             <tr class="ticket-info ">
@@ -67,7 +68,11 @@
             <?php } ?>
         </tbody>
     </table>
-<?php } ?>
+    <?php } else { ?>
+        <span>No tickets</span>
+    <?php }
+}
+?>
 
 <?php
 function drawTicket($ticket, $messages, $history)

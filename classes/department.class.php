@@ -146,7 +146,7 @@ class Department
     $stmt = $db->prepare('SELECT status, COUNT(*) as count FROM Ticket WHERE category = ? GROUP BY status;');
     $stmt->execute(array($this->category));
 
-    $status = array();
+    $status_stats = array();
     while ($status = $stmt->fetch()) {
       $status_stats[] = array($status['status'], $status['count']);
     }

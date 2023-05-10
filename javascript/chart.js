@@ -1,9 +1,29 @@
 async function getStatus() {
-  const response = await fetch('../api/api_dpt_status_stats.php?' + encodeForAjax({ department: category.textContent }))
+  const response = await fetch('../api/api_dept_status_stats.php?' + encodeForAjax({ department: category.textContent }))
   const statuses = await response.json()
-  const ctx = document.querySelector('#dpt-status')
+  const ctx = document.querySelector('#dept-status')
   const labels = statuses.map(status => status[0])
   const data = statuses.map(status => status[1])
+
+  if (statuses.length == 0){
+    const article = document.querySelector('#dept-ticket-status')
+    article.innerHTML = ''
+    
+    const title = document.createElement('h3')
+    title.textContent = 'Tickets by status'
+    
+    const text = document.createElement('h4')
+    text.textContent = 'No tickets yet'
+    text.classList.add('center', 'warning', 'no-background')
+
+    const img = document.createElement('img')
+    img.classList.add('no-tickets', 'center', 'no-background')
+    img.src = '../images/icons/warning.png'
+    
+    article.appendChild(title)
+    article.appendChild(img)
+    article.appendChild(text)
+  }
 
   new Chart(ctx, {
     type: 'bar',
@@ -34,12 +54,33 @@ async function getStatus() {
 }
 
 async function getPriority() {
-  const response = await fetch('../api/api_dpt_priority_stats.php?' + encodeForAjax({ department: category.textContent }))
+  const response = await fetch('../api/api_dept_priority_stats.php?' + encodeForAjax({ department: category.textContent }))
   const priorities = await response.json()
-  const ctx = document.querySelector('#dpt-priority')
+  const ctx = document.querySelector('#dept-priority')
   const labels = priorities.map(priority => priority[0])
   const data = priorities.map(priority => priority[1])
 
+  if (priorities.length == 0){
+    const article = document.querySelector('#dept-ticket-priority')
+    
+    article.innerHTML = ''
+    
+    const title = document.createElement('h3')
+    title.textContent = 'Tickets by priority'
+    
+    const text = document.createElement('h4')
+    text.textContent = 'No tickets yet'
+    text.classList.add('center', 'warning', 'no-background')
+
+    const img = document.createElement('img')
+    img.classList.add('no-tickets', 'center', 'no-background')
+    img.src = '../images/icons/warning.png'
+    
+    article.appendChild(title)
+    article.appendChild(img)
+    article.appendChild(text)
+   
+  }
   new Chart(ctx, {
     type: 'bar',
     data: {
@@ -79,7 +120,21 @@ async function show_ticket_stats() {
   const ctx = document.querySelector('#user-tkt');
   const labels = tickets.map(day => day[0]);
   const data = tickets.map(day => day[1]);
-  
+ 
+  if (tickets.length === 0) {
+    user_ticket_stats.innerHTML = ''
+    
+    const text = document.createElement('h3')
+    text.textContent = 'No tickets yet'
+    const img = document.createElement('img')
+    img.classList.add('no-tickets', 'no-background')
+    img.src = '../images/icons/warning.png'
+   
+    user_ticket_stats.appendChild(img)
+    user_ticket_stats.appendChild(text)
+    return;
+  }
+
   new Chart(ctx, {
     data: {
       labels: labels,
@@ -110,7 +165,7 @@ async function show_ticket_stats() {
 }
 
 
-const profile = document.querySelector('#profile');
-if (profile){
+const user_ticket_stats = document.querySelector('#ticket-stats');
+if (user_ticket_stats){
   show_ticket_stats()
 }

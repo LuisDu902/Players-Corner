@@ -87,28 +87,28 @@
     margin-right: 15px;
 }
 
-#dpt-members {
+#dept-members {
     max-height: 500px;
     float: left;
     overflow-y: auto;
     margin-right: 0;
 }
 
-#dpt-members img {
+#dept-members-img {
     height: 85px;
     width: 85px;
     position: relative;
     left: 35px;
 }
 
-.dpt-member{
+.dept-member{
     display: flex;
     margin: 10px 20px 10px 0px;
     background-color: transparent;
     align-items: center;
 }
 
-.dpt-member span{
+.dept-member span{
     background-color: #434A74;
     padding: 25px 50px;
     width: 400px;
@@ -124,4 +124,12 @@
 .graphics{
     background-color: transparent;
     max-height: 380px;
+}
+
+.warning{
+    font-size: 1.2em;
+    margin-top: 30px;
+}
+.no-members{
+    margin: 0 auto;
 }

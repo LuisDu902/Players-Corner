@@ -39,7 +39,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
         </tr>
       </table>
     </article>
-    <article class="round-border center">
+    <article class="round-border center vert-flex" id="ticket-stats">
       <h3>Created tickets</h3>
       <canvas id="user-tkt" class="graphics"></canvas>
     </article>
