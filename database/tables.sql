@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS Message;
 DROP TABLE IF EXISTS TicketTag;
 DROP TABLE IF EXISTS FieldChange;
 DROP TABLE IF EXISTS TicketHistory;
+DROP TABLE IF EXISTS Hashtag;
 DROP TABLE IF EXISTS Ticket;
 DROP TABLE IF EXISTS Status;
 DROP TABLE IF EXISTS User;
@@ -25,6 +26,10 @@ CREATE TABLE User(
 
 CREATE TABLE Status(
    status VARCHAR PRIMARY KEY
+);
+
+CREATE TABLE Hashtag(
+   tag VARCHAR PRIMARY KEY
 );
 
 CREATE TABLE Ticket(
@@ -60,7 +65,7 @@ CREATE TABLE FieldChange(
 
 CREATE TABLE TicketTag(
    ticket INTEGER REFERENCES Ticket(id),
-   tag VARCHAR NOT NULL,
+   tag VARCHAR REFERENCES Hashtag(tag),
    PRIMARY KEY (ticket, tag)
 );
 

@@ -116,6 +116,32 @@ INSERT INTO Status(status) VALUES ('open');
 INSERT INTO Status(status) VALUES ('solved');
 INSERT INTO Status(status) VALUES ('closed');
 
+
+INSERT INTO Hashtag(tag) VALUES ("#PCgaming");
+INSERT INTO Hashtag(tag) VALUES ("#audioissues");
+INSERT INTO Hashtag(tag) VALUES ("#consolegaming");
+INSERT INTO Hashtag(tag) VALUES ("#esportsnews");
+INSERT INTO Hashtag(tag) VALUES ("#gamebalance");
+INSERT INTO Hashtag(tag) VALUES ("#gamebugs");
+INSERT INTO Hashtag(tag) VALUES ("#gamecrashes");
+INSERT INTO Hashtag(tag) VALUES ("#gamedevelopment");
+INSERT INTO Hashtag(tag) VALUES ("#gameoptimization");
+INSERT INTO Hashtag(tag) VALUES ("#gameperformance");
+INSERT INTO Hashtag(tag) VALUES ("#gameplaytips");
+INSERT INTO Hashtag(tag) VALUES ("#gamercommunity");
+INSERT INTO Hashtag(tag) VALUES ("#gamerlifestyle");
+INSERT INTO Hashtag(tag) VALUES ("#gamerscommunity");
+INSERT INTO Hashtag(tag) VALUES ("#gamersuggestions");
+INSERT INTO Hashtag(tag) VALUES ("#gameupdates");
+INSERT INTO Hashtag(tag) VALUES ("#gaminghardware");
+INSERT INTO Hashtag(tag) VALUES ("#gamingindustry");
+INSERT INTO Hashtag(tag) VALUES ("#gamingissues");
+INSERT INTO Hashtag(tag) VALUES ("#gamingperformance");
+INSERT INTO Hashtag(tag) VALUES ("#gamingsoftware");
+INSERT INTO Hashtag(tag) VALUES ("#gamingsupport");
+INSERT INTO Hashtag(tag) VALUES ("#multiplayergames");
+INSERT INTO Hashtag(tag) VALUES ("#onlinegamingtips");
+
 INSERT INTO AgentDepartment (agent, department) VALUES (71, 'Technical support');
 INSERT INTO AgentDepartment (agent, department) VALUES (72, 'Technical support');
 INSERT INTO AgentDepartment (agent, department) VALUES (73, 'Technical support');

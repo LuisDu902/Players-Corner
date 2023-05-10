@@ -20,11 +20,12 @@
 
 
 <?php
-function drawDepartment($department)
+function drawDepartment(Session $session, Department $department)
 { ?>
     <section class="department">
     <header id="department-title"><?= $department->category ?></header>
-    <section id="department-stats">
+    <?php if ($session->getRole() !== 'client') { ?>
+        <section id="department-stats">
         <article class="round-border" id="dpt-ticket-status">
             <h3>Tickets by status</h3>
             <canvas id="dpt-status" class="graphics"></canvas>
@@ -44,6 +45,7 @@ function drawDepartment($department)
         </article>
 
     </section>
+    <?php } ?>
     <section id="department-tickets">
         <header> Tickets </header>
         <?php drawTickets($department->tickets); ?>

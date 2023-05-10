@@ -1,5 +1,5 @@
 async function getStatus() {
-  const response = await fetch('../api/api_get_status.php?' + encodeForAjax({ department: category.textContent }))
+  const response = await fetch('../api/api_dpt_status_stats.php?' + encodeForAjax({ department: category.textContent }))
   const statuses = await response.json()
   const ctx = document.querySelector('#dpt-status')
   const labels = statuses.map(status => status[0])
@@ -34,7 +34,7 @@ async function getStatus() {
 }
 
 async function getPriority() {
-  const response = await fetch('../api/api_get_priority.php?' + encodeForAjax({ department: category.textContent }))
+  const response = await fetch('../api/api_dpt_priority_stats.php?' + encodeForAjax({ department: category.textContent }))
   const priorities = await response.json()
   const ctx = document.querySelector('#dpt-priority')
   const labels = priorities.map(priority => priority[0])

@@ -7,13 +7,10 @@
   require_once(__DIR__ . '/../database/connection.db.php');
   $db = getDatabaseConnection();
 
-  $stmt = $db->prepare('SELECT tag FROM TicketTag GROUP BY tag');
+  $stmt = $db->prepare('SELECT tag FROM Hashtag');
   $stmt->execute();
   
-  $tags = array();
-  while ($tag = $stmt->fetch()) {
-   $tags[] = $tag['tag'];
-  }
+  $tags = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
   echo json_encode($tags);
 

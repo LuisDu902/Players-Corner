@@ -21,10 +21,10 @@
     <script src="../javascript/preview_image.js" defer></script>
     <script src="../javascript/dropdown.js" defer></script>
     <script src="../javascript/autocomplete_tags.js" defer></script>
-    <script src="../javascript/stats.js" defer></script>
+    <script src="../javascript/chart.js" defer></script>
   </head>
 
-  <body data-csrf="<?=$_SESSION['csrf']?>">>
+  <body data-csrf="<?=$_SESSION['csrf']?>">
     <header id="header">
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>

@@ -18,6 +18,6 @@
 
     $department = Department::getDepartment($db, $_GET['category']);
     drawHeader($session);
-    drawDepartment($department);
+    drawDepartment($session, $department);
     drawFooter();
 ?>
