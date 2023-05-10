@@ -15,6 +15,6 @@
     $messages = $ticket->getMessages($db);
     $history = $ticket->getTicketHistory($db);
     drawHeader($session);
-    drawTicket($ticket, $messages, $history);
+    drawTicket($session,$ticket, $messages, $history);
     drawFooter();
 ?>

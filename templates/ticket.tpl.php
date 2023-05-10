@@ -70,7 +70,7 @@
 <?php } ?>
 
 <?php
-function drawTicket($ticket, $messages, $history)
+function drawTicket($_session,$ticket, $messages, $history)
 { 
 ?>
     <head>
@@ -88,12 +88,11 @@ function drawTicket($ticket, $messages, $history)
             <span><?= $ticket->date ?></span>
         </a>
         <div class="description">
-            <span><?= $ticket->text?> </span>
+            <span class="desc"><?= $ticket->text?> </span>
             </br></br>
 </div>
         <div class="messages">
             <?php 
-            $sender = NULL;
             foreach ($messages as $message) {
                 if ($message->user->name !== $ticket->creator->name) {
                     echo '<div class="message-container-replier">';
@@ -110,21 +109,31 @@ function drawTicket($ticket, $messages, $history)
                     <br>
                 </div>
             <?php
-                if ($message->user->name !== $sender) {
-                    echo '</div>';
-                    ?> 
-                    <br>
-                    <?php
-                    $sender = $message->user->name;
-                }
+                echo '</div>';
+                ?> 
+                <br>
+                <?php
             }
             ?>
         </div>
+
+
+        <?php if(($_session->getId()=== $ticket->creator->id || $_session->getId()=== $ticket->replier->id) && $_session->isL) {?>
+        <div id="respond">
+            <form action="../actions/ticket_actions/action_add_message.php" method="post" id="reply">
+                <textarea name="text" id="text" rows="10" tabindex="4"  required="required"></textarea>
+                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+                <input type="hidden" name="id" value="<?=$ticket->ticketId?>">
+                <input name="submit" type="submit" value="Submit reply" />
+            </form>
+
+        </div>
+        <?php }?>
         <div class="history">
+            <br><br>
             <?php foreach ($history as $change) { ?>
                 <span><?= $change->changes ?> : <?= $change->old_field ?> -> <?= $change->new_field ?></span>
-                <br><br>
-                <span><?= $change->date ?></span>
+                <span class="status_date"><?= $change->date ?></span>
                 <br><br>
             <?php } ?>
         </div>

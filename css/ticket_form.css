@@ -29,10 +29,13 @@
 }
 
 #ticket .description {
-    margin-top: 10px;
-    font-size: 1.1em;
-    color: #333;
+    padding-top: 10px;
     border: 2px solid #D66AE6;
+}
+#ticket .desc{
+    margin-top: 10px;
+    margin-left: 10px;
+    font-size: 1.1em;
 }
 
 #ticket .messages {
@@ -102,4 +105,12 @@
     color: #fff;
     font-weight: bold;
     font-size: 0.9em;
+}
+#ticket .status-date span{
+    text-align: left;
+}
+
+.same-sender {
+    margin-top: -10px;
+    padding-top: 10px;
 }
