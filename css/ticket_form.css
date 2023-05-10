@@ -5,28 +5,47 @@
     padding: 10px;
     
 }
-
-#ticket a.ticket {
-    display: grid;
-    grid-template-columns: 0.5fr 3.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
-    grid-column-gap: 50px;
-    margin: 10px 0;
-    padding: 20px;
-    font-weight: bold;
-    font-size: 1.2em;
-    text-decoration: none;
-    color: black;
+.ticket-header {
+    display: flex;
+    justify-content:space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+.edit{
+    max-height: 40px;
 }
+.ticket-info{
+    display: flex;
+    align-items:center;
+}
+.ticket-title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+.assigned{
+    font-size: 20px;
+    font-weight: bold;
+}
+  .ticket-creator-small {
+    font-size: 20px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .ticket-dep, .round-border status, .ticket-priority, .ticket-visibility{
+    margin-left: 20px;
+    font-weight: bold;
+  }
+  
+  .ticket-date {
+    font-weight: bold;
+  }
+  
 
 #ticket a.ticket:hover {
     border: 3px solid #D66AE6;
 }
 
-#ticket a.ticket img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-}
 
 #ticket .description {
     padding-top: 10px;

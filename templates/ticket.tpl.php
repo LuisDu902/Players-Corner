@@ -76,21 +76,35 @@ function drawTicket($_session,$ticket, $messages, $history)
     <head>
         <link rel="stylesheet" href="../css/ticket_form.css">
         <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/ticket.css">
     </head>
     <div id="ticket">
-        <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
-            <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
-            <span><?= $ticket->title ?></span>
-            <span><?= $ticket->category ?></span>
-            <span class="status" id="<?= $ticket->status ?>-status"><?= $ticket->status ?></span>
-            <span class="priority" id="<?= $ticket->priority ?>-priority"><?= $ticket->priority ?></span>
-            <span><?= $ticket->visibility ?></span>
-            <span><?= $ticket->date ?></span>
-        </a>
+        <div class="ticket-header">
+            <span class="ticket-title"><?= $ticket->title ?></span>
+            <?php 
+                if($_session->getRole() === "admin" || $_session->getRole() === "agent"){
+                    ?>
+                    <span class="assigned">Assigned to: <?= $ticket->replier->name ?> </span> 
+                    <span class="ticket-date"><?= $ticket->date ?></span>
+                    <a href="../pages/edit_ticket.php"><img class="edit" src="../images/icons/edit.png" alt="edit"> </a>
+                    <?php
+                } else{ ?>
+                    <span class="ticket-date"><?= $ticket->date ?></span> <?php
+                }
+            ?>
+        </div>
+        <br>
+        <span class="ticket-creator-small">Created by: <?= $ticket->creator->name ?></span>
+        <div class="ticket-info">
+            <span class="ticket-dep"><?= $ticket->category ?></span>
+            <span id="<?= $ticket->status ?>-status" class="round-border status"><?= $ticket->status ?></span>
+            <span id="<?= $ticket->priority ?>-priority" class="ticket-priority"><?= $ticket->priority ?></span>
+            <span class="ticket-visibility"><?= $ticket->visibility ?></span>
+        </div>
         <div class="description">
             <span class="desc"><?= $ticket->text?> </span>
             </br></br>
-</div>
+        </div>
         <div class="messages">
             <?php 
             foreach ($messages as $message) {
