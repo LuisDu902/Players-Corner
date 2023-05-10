@@ -5,42 +5,46 @@ require_once(__DIR__ . '/../classes/user.class.php');
 
 <?php function drawProfile(User $user)
 { ?>
-  <div class="user-profile">
-    <div class="user-reputation vert-flex">
-      <span id="reputation" class="title center">Reputation</span>
-      <span class="reputation-value circle-border gradient center bold">
-        <?= $user->reputation ?>%
-      </span>
-    </div>
-    <div class="user-details center">
-      <span id="about" class="title bold">About me</span>
-      <span class="field round-border center"> Name </span>
-      <span class="info round-border center">
-        <?= $user->name ?>
-      </span>
-      <span class="field round-border center"> Username </span>
-      <span class="info round-border center">
-        <?= $user->username ?>
-      </span>
-      <span class="field round-border center"> Email </span>
-      <span class="info round-border center">
-        <?= $user->email ?>
-      </span>
-      <span class="field round-border center"> Role </span>
-      <span class="info round-border center">
-        <?= $user->type ?>
-      </span>
-    </div>
-    <div class="profile-picture round-wrap vert-flex center">
-      <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
-      <span class="bold">
-        <?= $user->username ?>
-      </span>
-      <div class="button-wrap gradient round-border">
-        <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
-      </div>
-    </div>
-  </div>
+  <header id="profile">Profile page</header>
+  <section class="container" id="user-profile">
+    <article class="round-border profile-picture round-wrap vert-flex center">
+       <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
+        <h4 class="bold highlight"> <?= $user->username ?> </h4>
+        <div class="button-wrap gradient round-border">
+          <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
+        </div>
+    </article>
+    <article class="round-border user-details" id="about">
+      <h3 class="center">About me</h3>
+      <table class="center">
+        <tr>
+          <th class="field round-border">Name</th>
+          <td class="info round-border"> <?= $user->name ?></td>
+        </tr>
+        <tr>
+          <th class="field round-border">Username</th>
+          <td class="info round-border"> <?= $user->username ?></td>
+        </tr>
+        <tr>
+          <th class="field round-border">Email</th>
+          <td class="info round-border"> <?= $user->email ?></td>
+        </tr>
+        <tr>
+          <th class="field round-border">Role</th>
+          <td class="info round-border"><?= $user->type ?></td>
+        </tr>
+        <tr>
+          <th class="field round-border">Reputation</th>
+          <td class="info round-border"><?= $user->reputation ?></td>
+        </tr>
+      </table>
+    </article>
+    <article class="round-border center">
+      <h3>Created tickets</h3>
+      <canvas id="user-tkt" class="graphics"></canvas>
+    </article>
+
+  </section>
 <?php } ?>
 
 <?php function drawEditUserForm(User $user)
@@ -147,4 +151,3 @@ require_once(__DIR__ . '/../classes/user.class.php');
     <input type='hidden' value=<?= $user->userId ?> id='card-userId'>
   </div>
 <?php } ?>
-

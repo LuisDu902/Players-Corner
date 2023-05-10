@@ -37,8 +37,8 @@ async function getPriority() {
   const response = await fetch('../api/api_get_priority.php?' + encodeForAjax({ department: category.textContent }))
   const priorities = await response.json()
   const ctx = document.querySelector('#dpt-priority')
-  const labels = priorities.map(status => status[0])
-  const data = priorities.map(status => status[1])
+  const labels = priorities.map(priority => priority[0])
+  const data = priorities.map(priority => priority[1])
 
   new Chart(ctx, {
     type: 'bar',
@@ -65,10 +65,52 @@ async function getPriority() {
       },
     }
   });
-
 }
+
 const category = document.querySelector('#department-title')
 if (category) {
   getStatus()
   getPriority()
+}
+
+async function show_ticket_stats() {
+  const response = await fetch('../api/api_get_user_tickets.php');
+  const tickets = await response.json();
+  const ctx = document.querySelector('#user-tkt');
+  const labels = tickets.map(day => day[0]);
+  const data = tickets.map(day => day[1]);
+  
+  new Chart(ctx, {
+    data: {
+      labels: labels,
+      datasets: [{
+        type: 'bar',
+        data: data,
+        backgroundColor: 'rgba(68,196,217, 0.5)',
+        barPercentage: 0.7,
+        borderColor: 'rgba(68,196,217,1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      scales: {
+        y: {
+          ticks: {
+            stepSize: 1
+          }
+        }
+      },
+      plugins: {
+        legend: false
+      },
+    }
+  });
+}
+
+
+const profile = document.querySelector('#profile');
+if (profile){
+  show_ticket_stats()
 }

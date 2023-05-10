@@ -6,6 +6,7 @@
 
   require_once(__DIR__ . '/../../database/connection.db.php');
   require_once(__DIR__ . '/../../classes/ticket.class.php');
+  require_once(__DIR__ . '/../../utils/validation.php');
 
   $db = getDatabaseConnection();
   
@@ -13,7 +14,8 @@
     die(header("Location: ../../pages/create_ticket.php"));
   }
 
-  Ticket::registerTicket($db, $_POST['tags'], $_POST['title'], $_POST['text'], $_POST['priority'], $_POST['category'], $_POST['visibility'], intval($_POST['userId']));
+  $tags = explode(',' , $_POST['chosen_tags']);
+  Ticket::registerTicket($db, $tags, $_POST['title'], $_POST['text'], "4-low", $_POST['category'], "public", $session->getId());
   $session->addMessage('success', 'Ticket successfully created!');
   header("Location: ../../pages/tickets.php");
 ?>
