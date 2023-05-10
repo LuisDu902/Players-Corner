@@ -74,7 +74,7 @@ if (category) {
 }
 
 async function show_ticket_stats() {
-  const response = await fetch('../api/api_get_user_tickets.php');
+  const response = await fetch('../api/api_get_user_tickets_stats.php');
   const tickets = await response.json();
   const ctx = document.querySelector('#user-tkt');
   const labels = tickets.map(day => day[0]);

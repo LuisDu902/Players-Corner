@@ -116,7 +116,6 @@ INSERT INTO Status(status) VALUES ('open');
 INSERT INTO Status(status) VALUES ('solved');
 INSERT INTO Status(status) VALUES ('closed');
 
-
 INSERT INTO AgentDepartment (agent, department) VALUES (71, 'Technical support');
 INSERT INTO AgentDepartment (agent, department) VALUES (72, 'Technical support');
 INSERT INTO AgentDepartment (agent, department) VALUES (73, 'Technical support');

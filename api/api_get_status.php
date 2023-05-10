@@ -5,16 +5,12 @@
   $session = new Session();
 
   require_once(__DIR__ . '/../database/connection.db.php');
+  require_once(__DIR__ . '/../classes/department.class.php');
   $db = getDatabaseConnection();
 
-  $stmt = $db->prepare('SELECT status, COUNT(*) as count FROM Ticket WHERE category = ? GROUP BY status;');
-  $stmt->execute(array($_GET['department']));
+  $department = Department::getDepartment($db, $_GET['department']);
+  $status_stats = $department->getStatusStats($db);
   
-  $statuses = array();
-  while ($status = $stmt->fetch()) {
-   $statuses[] = array($status['status'], $status['count']);
-  }
-
-  echo json_encode($statuses);
+  echo json_encode($status_stats);
 
 ?>

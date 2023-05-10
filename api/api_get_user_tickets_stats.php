@@ -5,13 +5,12 @@
   $session = new Session();
 
   require_once(__DIR__ . '/../database/connection.db.php');
-  require_once(__DIR__ . '/../classes/ticket.class.php');
   require_once(__DIR__ . '/../classes/user.class.php');
-
   $db = getDatabaseConnection();
 
-  $tickets = Ticket::searchTickets($db, $session->getId(), $_GET['search'], $_GET['filter'], $_GET['order']);
+  $user = User::getUser($db, $session->getId());
+  $ticket_stats = $user->getTicketStats($db);
 
-  echo json_encode($tickets);
+  echo json_encode($ticket_stats);
 
 ?>

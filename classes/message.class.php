@@ -1,4 +1,8 @@
 <?php
+  declare(strict_types = 1);
+  require_once( __DIR__ . '/user.class.php');
+  require_once( __DIR__ . '/ticket.class.php');
+
 class Message
 {
     public int $messageId;

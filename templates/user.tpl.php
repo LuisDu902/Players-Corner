@@ -84,8 +84,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
         <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview" class="gradient circle-border">
         <input type="file" id="user-image" name="imageToUpload">
         <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
-        <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload
-            photo</button> </div>
+        <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload photo</button> </div>
       </form>
     </div>
   </div>

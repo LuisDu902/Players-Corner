@@ -24,7 +24,7 @@
     <script src="../javascript/stats.js" defer></script>
   </head>
 
-  <body data-value="<?=$_SESSION['csrf']?>">
+  <body data-csrf="<?=$_SESSION['csrf']?>">>
     <header id="header">
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>

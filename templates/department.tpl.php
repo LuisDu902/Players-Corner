@@ -20,7 +20,7 @@
 
 
 <?php
-function drawDepartment($department, $tickets, $members)
+function drawDepartment($department)
 { ?>
     <section class="department">
     <header id="department-title"><?= $department->category ?></header>
@@ -35,7 +35,7 @@ function drawDepartment($department, $tickets, $members)
         </article>
         <article class="round-border vert-flex" id="dpt-members">
             <h3>Members</h3>  
-            <?php foreach ($members as $member): ?>
+            <?php foreach ($department->members as $member): ?>
                 <div class="dpt-member">
                     <img src=<?= $member->getPhoto() ?> alt="member image" class="gradient circle-border"></img>
                     <span class="center"> <?= $member->name?> </span>
@@ -46,7 +46,7 @@ function drawDepartment($department, $tickets, $members)
     </section>
     <section id="department-tickets">
         <header> Tickets </header>
-        <?php drawTickets($tickets); ?>
+        <?php drawTickets($department->tickets); ?>
     </section>
 
     </section>
