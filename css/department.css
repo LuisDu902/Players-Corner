@@ -47,21 +47,21 @@
 
 
 
-.department header, #profile{
+.department header, #profile, .stats header{
     font-size: 2em;
     color: #D66AE6;
     font-weight: bold;
     margin-bottom: 50px;
 }
 
-#department-stats, .container {
+.container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 30px;
     margin-bottom: 50px;
 }
 
-#department-stats article, .container article {
+.container article {
     background-color: #282948;
     padding: 20px;
     width: 500px;
@@ -70,7 +70,7 @@
 }
 
 
-#department-stats article h3{
+.container article h3{
     font-size: 1.5em;
     margin: 10px 10px 20px 10px;
     background-color: transparent;
@@ -78,7 +78,7 @@
 
 
 
-#department-stats article h3::before {
+.container article h3::before {
     content: '';
     display: inline-block;
     width: 0.7em;

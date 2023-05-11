@@ -275,6 +275,72 @@ class Ticket
     $stmt->execute(array($this->ticketId, $userId, $changes, $field));
   }
 
+  static function getStats(PDO $db): array{
+    $stats = array();
+    $total_tickets_query = $db->query("SELECT COUNT(*) AS total_tickets FROM Ticket");
+    $total_tickets = $total_tickets_query->fetch()['total_tickets'];
+    $stats['total_tickets'] = $total_tickets;
+    $tickets_created_today_query = $db->query("SELECT COUNT(*) AS tickets_created_today FROM Ticket WHERE date(createDate) = date('now')");
+    $tickets_created_today = $tickets_created_today_query->fetch()['tickets_created_today'];
+    $stats['tickets_created_today'] = $tickets_created_today;
+    $tickets_created_this_week_query = $db->query("SELECT COUNT(*) AS tickets_created_this_week FROM Ticket WHERE strftime('%Y-%W', createDate) = strftime('%Y-%W', 'now')");
+    $tickets_created_this_week = $tickets_created_this_week_query->fetch()['tickets_created_this_week'];
+    $stats['tickets_created_this_week'] = $tickets_created_this_week;
+    $tickets_created_this_month_query = $db->query("SELECT COUNT(*) AS tickets_created_this_month FROM Ticket WHERE strftime('%Y-%m', createDate) = strftime('%Y-%m', 'now')");
+    $tickets_created_this_month = $tickets_created_this_month_query->fetch()['tickets_created_this_month'];
+    $stats['tickets_created_this_month'] = $tickets_created_this_month;
+    return $stats;
+}
+
+static function getTicketCounts($db) : array{
+
+  $stmt = $db->prepare('SELECT DATE(createDate) AS creation_date, COUNT(*) AS ticket_count FROM Ticket GROUP BY creation_date');
+  $stmt->execute();
+
+  $ticketCounts = array();
+
+  while ($ticketCount = $stmt->fetch()){
+    $ticketCounts[] = array($ticketCount['creation_date'],$ticketCount['ticket_count']);
+  }
+  return $ticketCounts;
+
+}
+
+static function getStatusStats($db) : array{
+
+  $stmt = $db->prepare('SELECT status, COUNT(*) as count FROM Ticket GROUP BY status');
+  $stmt->execute();
+
+  $statusStats = array();
+  while ($status = $stmt->fetch()) {
+    $statusStats[] = array($status['status'], $status['count']);
+  }
+  return $statusStats;
+}
+
+static function getPriorityStats($db) : array{
+
+  $stmt = $db->prepare('SELECT priority, COUNT(*) as count FROM Ticket GROUP BY priority');
+  $stmt->execute();
+
+  $priorityStats = array();
+  while ($priority = $stmt->fetch()) {
+    $priorityStats[] = array($priority['priority'], $priority['count']);
+  }
+  return $priorityStats;
+}
+
+static function getDeptStats($db) : array{
+
+  $stmt = $db->prepare('SELECT category, COUNT(*) as count FROM Ticket GROUP BY category');
+  $stmt->execute();
+
+  $deptStats = array();
+  while ($department = $stmt->fetch()) {
+    $deptStats[] = array($department['category'], $department['count']);
+  }
+  return $deptStats;
+}
 
 }
 ?>

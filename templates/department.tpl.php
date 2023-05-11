@@ -25,7 +25,7 @@ function drawDepartment(Session $session, Department $department)
     <section class="department">
     <header id="department-title"><?= $department->category ?></header>
     <?php if ($session->getRole() !== 'client') { ?>
-        <section id="department-stats">
+        <section id="department-stats" class="container">
         <article class="round-border" id="dept-ticket-status">
             <h3>Tickets by status</h3>
             <canvas id="dept-status" class="graphics"></canvas>

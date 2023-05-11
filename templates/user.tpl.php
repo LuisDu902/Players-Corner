@@ -15,7 +15,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
         </div>
     </article>
     <article class="round-border user-details" id="about">
-      <h3 class="center">About me</h3>
+      <h2 class="center">About me</h2>
       <table class="center">
         <tr>
           <th class="field round-border">Name</th>
@@ -40,7 +40,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
       </table>
     </article>
     <article class="round-border center vert-flex" id="ticket-stats">
-      <h3>Created tickets</h3>
+      <h2>Created tickets</h2>
       <canvas id="user-tkt" class="graphics"></canvas>
     </article>
 

@@ -1,0 +1,16 @@
+#overview table {
+    width: 100%;
+}
+#overview th{
+    padding:20px;
+}
+#overview thead{
+    font-size: 1.5em;
+}
+#overview tbody{
+    font-size: 3em;
+    font-weight: bolder;
+}
+#overview table, #ticket-counts{
+    margin-bottom: 50px;
+}
