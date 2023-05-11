@@ -17,9 +17,7 @@
     $db = getDatabaseConnection();
 
     $department = Department::getDepartment($db, $_GET['category']);
-    $members = $department->getMembers($db);
-    $tickets = $department->getTickets($db);
     drawHeader($session);
-    drawDepartment($department, $tickets, $members);
+    drawDepartment($session, $department);
     drawFooter();
 ?>

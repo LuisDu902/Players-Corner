@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="../css/ticket.css">
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/create_ticket.css">
-    <link rel="stylesheet" href="../css/token-input.css">
+    <link rel="stylesheet" href="../css/reports.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../javascript/add_new_department.js" defer></script>
     <script src="../javascript/assign_to_departments.js" defer></script>
@@ -21,10 +21,11 @@
     <script src="../javascript/search_tickets.js" defer></script>
     <script src="../javascript/preview_image.js" defer></script>
     <script src="../javascript/dropdown.js" defer></script>
-    <script src="../javascript/stats.js" defer></script>
+    <script src="../javascript/autocomplete_tags.js" defer></script>
+    <script src="../javascript/chart.js" defer></script>
   </head>
 
-  <body data-value="<?=$_SESSION['csrf']?>">
+  <body data-csrf="<?=$_SESSION['csrf']?>">
     <header id="header">
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>
@@ -73,6 +74,7 @@
 { ?>
   <li class="Users"><a href="../pages/users.php">Users</a></li>
   <li class="Users"><a href="../pages/departments.php">Departments</a></li>
+  <li class="Users"><a href="../pages/reports.php">Reports</a></li>
  
 <?php } ?>
 
@@ -91,7 +93,6 @@
 
 <?php function drawProfileButton(Session $session)
 { ?>
-
   <div class="dropdown">
     <button class="dropbtn center">
         <img src=<?=$session->getPhoto() ?> alt="user-profile" class="gradient circle-border">
