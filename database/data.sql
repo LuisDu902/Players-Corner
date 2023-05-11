@@ -110,38 +110,6 @@ INSERT INTO Department(category) VALUES ('Game development');
 INSERT INTO Department(category) VALUES ('Game design');
 INSERT INTO Department(category) VALUES ('Marketing and promotions');
 
-INSERT INTO Status(status) VALUES ('new');
-INSERT INTO Status(status) VALUES ('assigned');
-INSERT INTO Status(status) VALUES ('open');
-INSERT INTO Status(status) VALUES ('solved');
-INSERT INTO Status(status) VALUES ('closed');
-
-
-INSERT INTO Hashtag(tag) VALUES ("#PCgaming");
-INSERT INTO Hashtag(tag) VALUES ("#audioissues");
-INSERT INTO Hashtag(tag) VALUES ("#consolegaming");
-INSERT INTO Hashtag(tag) VALUES ("#esportsnews");
-INSERT INTO Hashtag(tag) VALUES ("#gamebalance");
-INSERT INTO Hashtag(tag) VALUES ("#gamebugs");
-INSERT INTO Hashtag(tag) VALUES ("#gamecrashes");
-INSERT INTO Hashtag(tag) VALUES ("#gamedevelopment");
-INSERT INTO Hashtag(tag) VALUES ("#gameoptimization");
-INSERT INTO Hashtag(tag) VALUES ("#gameperformance");
-INSERT INTO Hashtag(tag) VALUES ("#gameplaytips");
-INSERT INTO Hashtag(tag) VALUES ("#gamercommunity");
-INSERT INTO Hashtag(tag) VALUES ("#gamerlifestyle");
-INSERT INTO Hashtag(tag) VALUES ("#gamerscommunity");
-INSERT INTO Hashtag(tag) VALUES ("#gamersuggestions");
-INSERT INTO Hashtag(tag) VALUES ("#gameupdates");
-INSERT INTO Hashtag(tag) VALUES ("#gaminghardware");
-INSERT INTO Hashtag(tag) VALUES ("#gamingindustry");
-INSERT INTO Hashtag(tag) VALUES ("#gamingissues");
-INSERT INTO Hashtag(tag) VALUES ("#gamingperformance");
-INSERT INTO Hashtag(tag) VALUES ("#gamingsoftware");
-INSERT INTO Hashtag(tag) VALUES ("#gamingsupport");
-INSERT INTO Hashtag(tag) VALUES ("#multiplayergames");
-INSERT INTO Hashtag(tag) VALUES ("#onlinegamingtips");
-
 INSERT INTO AgentDepartment (agent, department) VALUES (71, 'Technical support');
 INSERT INTO AgentDepartment (agent, department) VALUES (72, 'Technical support');
 INSERT INTO AgentDepartment (agent, department) VALUES (73, 'Technical support');
@@ -250,7 +218,6 @@ INSERT INTO DepartmentFAQ (item, category) VALUES (33, 'Game development');
 INSERT INTO DepartmentFAQ (item, category) VALUES (34, 'Game design');
 INSERT INTO DepartmentFAQ (item, category) VALUES (35, 'Marketing and promotions');
 INSERT INTO DepartmentFAQ (item, category) VALUES (36, 'Marketing and promotions');
-
 
 INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (1, 'Pokemon GO connection issue', 'I cannot connect to the Pokemon GO servers. Is anyone else having this issue?', '2023-04-24 09:27:43', 'public', '2-high', 'closed', 'Technical support', NULL, 1, 73);
 INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (2, 'Game client not launching', 'I am having an issue with the game client not launching. I have tried running it as administrator and reinstalling it, but it still won''t launch. What can I do to fix this issue?', '2022-02-18 15:12:57', 'public', '2-high', 'solved', 'Technical support', 1, 3, 74);
@@ -630,25 +597,32 @@ INSERT INTO Message (id, user, ticket, text, date) VALUES (90, 90, 76, "I just c
 INSERT INTO FieldChange(id, old_field, new_field) VALUES (1, 'new', 'assigned');
 INSERT INTO FieldChange(id, old_field, new_field) VALUES (2, 'assigned', 'open');
 INSERT INTO FieldChange(id, old_field, new_field) VALUES (3, 'assigned', 'solved');
-INSERT INTO FieldChange(id, old_field, new_field) VALUES (4, 'open', 'solved');
-INSERT INTO FieldChange(id, old_field, new_field) VALUES (5, 'open', 'closed');
-INSERT INTO FieldChange(id, old_field, new_field) VALUES (6, 'solved', 'closed');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (4, 'assigned', 'closed');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (5, 'open', 'solved');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (6, 'open', 'closed');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (7, 'solved', 'closed');
 
-INSERT INTO FieldChange(id, old_field, new_field) VALUES (7, '4-low', '2-high');
-INSERT INTO FieldChange(id, old_field, new_field) VALUES (8, '3-medium', '1-critical');
-INSERT INTO FieldChange(id, old_field, new_field) VALUES (9, '1-critical', '4-low');
-INSERT INTO FieldChange(id, old_field, new_field) VALUES (10, '4-low', '2-high');
-
-
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (8, '1-critical', '2-high');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (9, '1-critical', '3-medium');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (10, '1-critical', '4-low');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (11, '2-high', '1-critical');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (12, '2-high', '3-medium');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (13, '2-high', '4-low');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (14, '3-medium', '1-critical');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (15, '3-medium', '2-high');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (16, '3-medium', '4-low');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (17, '4-low', '1-critical');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (18, '4-low', '2-high');
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (19, '4-low', '3-medium');
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (1, 1, 73, '2023-04-25 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (2, 1, 73, '2023-04-26 18:12:34', 'Status changed', 3);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (3, 1, 73, '2023-04-27 18:12:34', 'Status changed', 6);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (3, 1, 73, '2023-04-27 18:12:34', 'Status changed', 7);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (4, 2, 73, '2022-02-18 18:12:34', 'Status changed', 1);
 /*INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (6, 2, 74, '2022-02-19', 'Agent changed', );*/
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (5, 2, 73, '2022-02-19 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (6, 2, 73, '2022-02-19 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (6, 2, 73, '2022-02-19 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (7, 4, 71, '2023-04-22 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (8, 4, 71, '2023-04-23 18:12:34', 'Status changed', 2);
@@ -667,15 +641,15 @@ INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (14, 
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (15, 11, 77, '2023-04-23 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (16, 11, 77, '2023-04-24 18:12:34', 'Status changed', 3);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (17, 11, 77, '2023-04-25 18:12:34', 'Status changed', 6);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (17, 11, 77, '2023-04-25 18:12:34', 'Status changed', 7);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (18, 12, 80, '2022-04-15 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (19, 12, 80, '2022-04-16 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (20, 12, 80, '2022-04-17 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (20, 12, 80, '2022-04-17 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (21, 13, 79, '2023-04-19 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (22, 13, 79, '2023-04-19 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (23, 13, 79, '2023-04-19 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (23, 13, 79, '2023-04-19 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (24, 14, 79, '2023-04-25 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (25, 14, 79, '2023-04-26 18:12:34', 'Status changed', 2);
@@ -693,15 +667,15 @@ INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (31, 
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (32, 21, 83, '2023-04-21 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (33, 21, 83, '2023-04-22 18:12:34', 'Status changed', 3);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (34, 21, 83, '2023-04-23 18:12:34', 'Status changed', 6);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (34, 21, 83, '2023-04-23 18:12:34', 'Status changed', 7);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (35, 22, 84, '2022-04-01 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (36, 22, 84, '2022-04-02 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (37, 22, 84, '2022-04-03 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (37, 22, 84, '2022-04-03 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (38, 23, 85, '2022-03-03 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (39, 23, 85, '2022-03-04 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (40, 23, 85, '2022-03-05 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (40, 23, 85, '2022-03-05 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (41, 24, 82, '2022-05-05 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (42, 24, 82, '2022-05-06 18:12:34', 'Status changed', 2);
@@ -719,15 +693,15 @@ INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (48, 
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (49, 31, 86, '2023-04-21 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (50, 31, 86, '2023-04-22 18:12:34', 'Status changed', 3);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (51, 31, 86, '2023-04-23 18:12:34', 'Status changed', 6);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (51, 31, 86, '2023-04-23 18:12:34', 'Status changed', 7);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (52, 32, 87, '2022-04-01 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (53, 32, 87, '2022-04-02 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (54, 32, 87, '2022-04-03 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (54, 32, 87, '2022-04-03 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (55, 33, 88, '2022-03-03 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (56, 33, 88, '2022-03-04 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (57, 33, 88, '2022-03-05 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (57, 33, 88, '2022-03-05 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (58, 34, 89, '2022-05-05 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (59, 34, 89, '2022-05-06 18:12:34', 'Status changed', 2);
@@ -745,15 +719,15 @@ INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (65, 
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (66, 41, 71, '2023-04-21 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (67, 41, 71, '2023-04-22 18:12:34', 'Status changed', 3);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (68, 41, 71, '2023-04-23 18:12:34', 'Status changed', 6);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (68, 41, 71, '2023-04-23 18:12:34', 'Status changed', 7);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (69, 42, 75, '2022-04-01 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (70, 42, 75, '2022-04-02 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (71, 42, 75, '2022-04-03 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (71, 42, 75, '2022-04-03 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (72, 43, 79, '2022-03-03 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (73, 43, 79, '2022-03-04 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (74, 43, 79, '2022-03-05 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (74, 43, 79, '2022-03-05 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (75, 44, 83, '2022-05-05 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (76, 44, 83, '2022-05-06 18:12:34', 'Status changed', 2);
@@ -771,15 +745,15 @@ INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (82, 
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (83, 51, 72, '2023-04-21 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (84, 51, 72, '2023-04-22 18:12:34', 'Status changed', 3);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (85, 51, 72, '2023-04-23 18:12:34', 'Status changed', 6);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (85, 51, 72, '2023-04-23 18:12:34', 'Status changed', 7);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (86, 54, 80, '2022-04-01 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (87, 54, 80, '2022-04-02 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (88, 54, 80, '2022-04-03 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (88, 54, 80, '2022-04-03 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (89, 53, 76, '2022-03-03 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (90, 53, 76, '2022-03-04 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (91, 53, 76, '2022-03-05 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (91, 53, 76, '2022-03-05 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (92, 52, 76, '2022-05-05 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (93, 52, 76, '2022-05-06 18:12:44', 'Status changed', 2);
@@ -797,15 +771,15 @@ INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (99, 
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (100, 61, 73, '2023-04-21 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (101, 61, 73, '2023-04-22 18:12:34', 'Status changed', 3);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (102, 61, 73, '2023-04-23 18:12:34', 'Status changed', 6);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (102, 61, 73, '2023-04-23 18:12:34', 'Status changed', 7);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (103, 62, 77, '2022-04-01 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (104, 62, 77, '2022-04-02 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (105, 62, 77, '2022-04-03 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (105, 62, 77, '2022-04-03 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (106, 63, 81, '2022-03-03 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (107, 63, 81, '2022-03-04 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (108, 63, 81, '2022-03-05 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (108, 63, 81, '2022-03-05 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (109, 64, 85, '2022-05-05 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (110, 64, 85, '2022-05-06 18:12:34', 'Status changed', 2);
@@ -823,15 +797,15 @@ INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (116,
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (117, 71, 74, '2023-04-21 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (118, 71, 74, '2023-04-22 18:12:34', 'Status changed', 3);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (119, 71, 74, '2023-04-23 18:12:34', 'Status changed', 6);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (119, 71, 74, '2023-04-23 18:12:34', 'Status changed', 7);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (120, 72, 78, '2022-04-01 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (121, 72, 78, '2022-04-02 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (122, 72, 78, '2022-04-03 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (122, 72, 78, '2022-04-03 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (123, 73, 82, '2022-03-03 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (124, 73, 82, '2022-03-04 18:12:34', 'Status changed', 2);
-INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (125, 73, 82, '2022-03-05 18:12:34', 'Status changed', 4);
+INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (125, 73, 82, '2022-03-05 18:12:34', 'Status changed', 5);
 
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (126, 74, 82, '2022-05-05 18:12:34', 'Status changed', 1);
 INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (127, 74, 82, '2022-05-06 18:12:34', 'Status changed', 2);
