@@ -30,7 +30,22 @@ class Ticket
     $this->replier = $replier;
     $this->frequentItem = 0;
     $this->category = $category;
+
   }
+
+  function getAttachedFiles(): array
+  {
+    $ticketFiles = array();
+    $files = scandir('../files');
+    foreach ($files as $file) {
+      if (strpos($file, 'ticket' . $this->ticketId . '_') === 0) {
+        $filename = explode('_', $file, 2)[1];
+        $ticketFiles[] = $filename;
+      }
+    }
+    return $ticketFiles;
+  }
+
 
   function getTicketHistory(PDO $db): array
   {
@@ -141,6 +156,7 @@ class Ticket
 
   static function searchTickets(PDO $db, int $userId, string $search = '', string $filter = 'title', string $order = 'title'): array
   {
+    $search = strtolower($search);
     //prevent SQL injection attacks
     if ($order != 'createDate' && $order != 'visibility' && $order != 'priority' && $order != 'status' && $order != 'category')
       $order = 'title';
@@ -151,6 +167,22 @@ class Ticket
       $query = 'SELECT * FROM Ticket JOIN User ON User.userId = Ticket.replier WHERE User.name LIKE ? ORDER BY ' . $order;
     } else if ($filter == 'tag') {
       $query = 'SELECT * FROM Ticket WHERE id IN (SELECT ticket FROM TicketTag WHERE tag LIKE ?) ORDER BY ' . $order;
+    } else if ($filter == 'priority') {
+      switch ($search[0]) {
+        case 'c':
+          $search = '1-' . $search;
+          break;
+        case 'h':
+          $search = '2-' . $search;
+          break;
+        case 'm':
+          $search = '3-' . $search;
+          break;
+        case 'l':
+          $search = '4-' . $search;
+          break;
+      }
+      $query = 'SELECT * FROM Ticket WHERE id IN (SELECT ticket FROM TicketTag WHERE priority LIKE ?) ORDER BY ' . $order;
     } else {
       if ($filter != 'category' && $filter != 'visibility' && $filter != 'status' && $filter != 'priority')
         $filter = 'title';
@@ -161,11 +193,12 @@ class Ticket
     $tickets = array();
 
     $user = User::getUser($db, $userId);
-    if ($user->type === 'agent') $agentDepartments = $user->getAgentDepartments($db);
-    
+    if ($user->type === 'agent')
+      $agentDepartments = $user->getAgentDepartments($db);
+
     while ($ticket = $stmt->fetch()) {
       $replier = ($ticket['replier']) ? $ticket['replier'] : 0;
-      if ($ticket['visibility'] === 'public' || $user->type === 'admin' || ($user->type === 'agent' && in_array($ticket['category'], $agentDepartments)) || ($ticket['creator'] === $userId) ) {
+      if ($ticket['visibility'] === 'public' || $user->type === 'admin' || ($user->type === 'agent' && in_array($ticket['category'], $agentDepartments)) || ($ticket['creator'] === $userId)) {
         $tickets[] = new Ticket(
           intval($ticket['id']),
           $ticket['title'],
@@ -275,7 +308,8 @@ class Ticket
     $stmt->execute(array($this->ticketId, $userId, $changes, $field));
   }
 
-  static function getStats(PDO $db): array{
+  static function getStats(PDO $db): array
+  {
     $stats = array();
     $total_tickets_query = $db->query("SELECT COUNT(*) AS total_tickets FROM Ticket");
     $total_tickets = $total_tickets_query->fetch()['total_tickets'];
@@ -290,57 +324,61 @@ class Ticket
     $tickets_created_this_month = $tickets_created_this_month_query->fetch()['tickets_created_this_month'];
     $stats['tickets_created_this_month'] = $tickets_created_this_month;
     return $stats;
-}
-
-static function getTicketCounts($db) : array{
-
-  $stmt = $db->prepare('SELECT DATE(createDate) AS creation_date, COUNT(*) AS ticket_count FROM Ticket GROUP BY creation_date');
-  $stmt->execute();
-
-  $ticketCounts = array();
-
-  while ($ticketCount = $stmt->fetch()){
-    $ticketCounts[] = array($ticketCount['creation_date'],$ticketCount['ticket_count']);
   }
-  return $ticketCounts;
 
-}
+  static function getTicketCounts($db): array
+  {
 
-static function getStatusStats($db) : array{
+    $stmt = $db->prepare('SELECT DATE(createDate) AS creation_date, COUNT(*) AS ticket_count FROM Ticket GROUP BY creation_date');
+    $stmt->execute();
 
-  $stmt = $db->prepare('SELECT status, COUNT(*) as count FROM Ticket GROUP BY status');
-  $stmt->execute();
+    $ticketCounts = array();
 
-  $statusStats = array();
-  while ($status = $stmt->fetch()) {
-    $statusStats[] = array($status['status'], $status['count']);
+    while ($ticketCount = $stmt->fetch()) {
+      $ticketCounts[] = array($ticketCount['creation_date'], $ticketCount['ticket_count']);
+    }
+    return $ticketCounts;
+
   }
-  return $statusStats;
-}
 
-static function getPriorityStats($db) : array{
+  static function getStatusStats($db): array
+  {
 
-  $stmt = $db->prepare('SELECT priority, COUNT(*) as count FROM Ticket GROUP BY priority');
-  $stmt->execute();
+    $stmt = $db->prepare('SELECT status, COUNT(*) as count FROM Ticket GROUP BY status');
+    $stmt->execute();
 
-  $priorityStats = array();
-  while ($priority = $stmt->fetch()) {
-    $priorityStats[] = array($priority['priority'], $priority['count']);
+    $statusStats = array();
+    while ($status = $stmt->fetch()) {
+      $statusStats[] = array($status['status'], $status['count']);
+    }
+    return $statusStats;
   }
-  return $priorityStats;
-}
 
-static function getDeptStats($db) : array{
+  static function getPriorityStats($db): array
+  {
 
-  $stmt = $db->prepare('SELECT category, COUNT(*) as count FROM Ticket GROUP BY category');
-  $stmt->execute();
+    $stmt = $db->prepare('SELECT priority, COUNT(*) as count FROM Ticket GROUP BY priority');
+    $stmt->execute();
 
-  $deptStats = array();
-  while ($department = $stmt->fetch()) {
-    $deptStats[] = array($department['category'], $department['count']);
+    $priorityStats = array();
+    while ($priority = $stmt->fetch()) {
+      $priorityStats[] = array($priority['priority'], $priority['count']);
+    }
+    return $priorityStats;
   }
-  return $deptStats;
-}
+
+  static function getDeptStats($db): array
+  {
+
+    $stmt = $db->prepare('SELECT category, COUNT(*) as count FROM Ticket GROUP BY category');
+    $stmt->execute();
+
+    $deptStats = array();
+    while ($department = $stmt->fetch()) {
+      $deptStats[] = array($department['category'], $department['count']);
+    }
+    return $deptStats;
+  }
 
 }
 ?>
