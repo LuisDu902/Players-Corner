@@ -7,7 +7,7 @@
   require_once(__DIR__ . '/../database/connection.db.php');
   $db = getDatabaseConnection();
 
-  $stmt = $db->prepare('SELECT tag FROM Hashtag');
+  $stmt = $db->prepare('SELECT tag FROM TicketTag GROUP BY tag');
   $stmt->execute();
   
   $tags = $stmt->fetchAll(PDO::FETCH_COLUMN);

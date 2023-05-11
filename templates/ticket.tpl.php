@@ -75,13 +75,7 @@
 ?>
 
 <?php
-function drawTicket($ticket, $messages, $history)
-{ 
-?>
-    <head>
-        <link rel="stylesheet" href="../css/ticket_form.css">
-        <link rel="stylesheet" href="../css/style.css">
-    </head>
+function drawTicket($ticket, $messages, $history) {  ?>
     <div id="ticket">
         <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
             <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
@@ -138,6 +132,7 @@ function drawTicket($ticket, $messages, $history)
                 <span><?= $tag ?></span>
             <?php } ?>
         </div>
+        
     </div>
 <?php 
 }
