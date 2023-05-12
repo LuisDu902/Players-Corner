@@ -39,10 +39,10 @@ function drawDepartment(Session $session, Department $department)
             
             <?php if (!empty($department->members)){
                 foreach ($department->members as $member): ?>
-                <div class="dept-member">
+                <a href="../pages/profile.php?userId=<?=$member->userId?>" class="dept-member">
                     <img src=<?= $member->getPhoto() ?> alt="member image" class="gradient circle-border" id="dept-members-img"> 
                     <span class="center"> <?= $member->name?> </span>
-                </div>
+                </a>
                 <?php endforeach; }
             else { ?>
                 <img src="../images/icons/not-found.png" class="no-background no-members">

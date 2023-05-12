@@ -3,19 +3,21 @@ declare(strict_type=1);
 require_once(__DIR__ . '/../classes/user.class.php');
 ?>
 
-<?php function drawProfile(User $user)
+<?php function drawProfile(Session $session, User $user)
 { ?>
   <header id="profile">Profile page</header>
   <section class="container" id="user-profile">
     <article class="round-border profile-picture round-wrap vert-flex center">
        <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
         <h4 class="bold highlight"> <?= $user->username ?> </h4>
-        <div class="button-wrap gradient round-border">
-          <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
-        </div>
+        <?php if ($session->getId() === $user->userId) {?>
+          <div class="button-wrap gradient round-border">
+            <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
+          </div>
+        <?php } ?>
     </article>
     <article class="round-border user-details" id="about">
-      <h2 class="center">About me</h2>
+      <h2 class="center">General information</h2>
       <table class="center">
         <tr>
           <th class="field round-border">Name</th>
@@ -123,7 +125,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
 
 <?php function drawUserCard($user)
 { ?>
-  <div class="user-card vert-flex round-border white-border">
+  <article class="user-card vert-flex round-border white-border">
     <div class="card-type">
       <span class="type <?= $user->type ?>-card-type bold center"><?= $user->type ?></span>
       <span class="rep center bold circle-border">
@@ -148,5 +150,5 @@ require_once(__DIR__ . '/../classes/user.class.php');
       <?php } ?>
     </div>
     <input type='hidden' value=<?= $user->userId ?> id='card-userId'>
-  </div>
+      </article>
 <?php } ?>
