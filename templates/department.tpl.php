@@ -1,24 +1,3 @@
-<?php function drawDepartments($departments)
-{ ?>
-    <div class="departments-bar">
-        <span>Departments</span>
-        <div class="button-wrap round-border gradient"><button id="add-department">Add new department</button></div>
-    </div>
-
-    <?php drawDepartmentModal() ?>
-
-    <div class="departments">
-        <?php foreach ($departments as $department): ?>
-            <a href="../pages/department.php?category=<?= $department->category ?>" class="department-card">
-                <img src=<?= $department->getPhoto() ?> alt="department image" class="white-border round-border"></img>
-                <span> <?= $department->category ?> </span>
-            </a>
-        <?php endforeach; ?>
-    </div>
-
-<?php } ?>
-
-
 <?php
 function drawDepartment(Session $session, Department $department)
 { ?>

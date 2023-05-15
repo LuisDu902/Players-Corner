@@ -73,9 +73,7 @@
 <?php function drawAdminButtons()
 { ?>
   <li class="Users"><a href="../pages/users.php">Users</a></li>
-  <li class="Users"><a href="../pages/departments.php">Departments</a></li>
   <li class="Users"><a href="../pages/reports.php">Reports</a></li>
- 
 <?php } ?>
 
 <?php function drawAuthForms()

@@ -85,8 +85,6 @@ CREATE TABLE FAQ(
    id INTEGER PRIMARY KEY,
    title VARCHAR NOT NULL,
    content VARCHAR NOT NULL,
-   popularity INTEGER NOT NULL,
-   createDate DATETIME NOT NULL
 );
 
 CREATE TABLE DepartmentFAQ(

@@ -8,6 +8,6 @@
     require_once(__DIR__ . '/../templates/authentication.tpl.php');
     require_once(__DIR__ . '/../templates/initial.php');
     drawHeader($session);
-    drawInitial();
+    drawInitial($session);
     drawFooter();
 ?>

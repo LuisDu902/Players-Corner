@@ -12,7 +12,7 @@
   $db = getDatabaseConnection();
 
   if (!valid_token($_POST['csrf']) || !valid_new_department($db, $_POST['new_category'])){
-    die(header('Location: ../../pages/departments.php'));
+    die(header('Location: ../../pages/index.php'));
   }
 
   $department_name = strtolower(str_replace(" ", "_", $_POST['new_category']));
@@ -20,5 +20,5 @@
   move_uploaded_file($_FILES['departmentImage']['tmp_name'], $fileName);
   Department::addDepartment($db, $_POST['new_category']);
 
-  header('Location: ../../pages/departments.php');
+  header('Location: ../../pages/index.php');
 ?>
