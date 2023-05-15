@@ -104,11 +104,7 @@ class Department
   }
 
   static function getTickets(PDO $db, string $category): array{
-    $stmt = $db->prepare(
-      'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
-             FROM Ticket 
-             WHERE category = ?'
-    );
+    $stmt = $db->prepare('SELECT * FROM Ticket WHERE category = ?');
     $stmt->execute(array($category));
 
     $tickets = array();

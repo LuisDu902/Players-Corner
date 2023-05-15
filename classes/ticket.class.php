@@ -14,7 +14,6 @@ class Ticket
   public string $visibility;
   public User $creator;
   public User $replier;
-  public int $frequentItem;
 
   public function __construct(int $ticketId, string $title, string $text, string $date, string $visibility, string $priority, string $status, string $category, array $tags, User $creator, User $replier)
   {
@@ -28,9 +27,7 @@ class Ticket
     $this->visibility = $visibility;
     $this->creator = $creator;
     $this->replier = $replier;
-    $this->frequentItem = 0;
     $this->category = $category;
-
   }
 
   function getAttachedFiles(): array
@@ -228,7 +225,7 @@ class Ticket
 
   static function registerTicket(PDO $db, array $tags, string $title, string $text, string $priority, string $category, string $visibility, int $creator)
   {
-    $stmt = $db->prepare("INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?, 'new', ?, NULL, ?, 0)");
+    $stmt = $db->prepare("INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, creator, replier) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?, 'new', ?, ?, 0)");
     $stmt->execute(array($title, $text, $visibility, $priority, $category, $creator));
     $ticketId = $db->lastInsertId();
     foreach ($tags as $tag) {
@@ -237,65 +234,32 @@ class Ticket
     }
   }
 
+  function changeProperties(PDO $db, int $userId, array $new_tags, string $new_category, string $new_priority, string $new_status){
 
-  function answerWithFrequentItem(PDO $db, string $frequentItem)
-  {
-    $stmt = $db->prepare('UPDATE Ticket SET frequentItem = ? WHERE id = ?');
-    $stmt->execute(array($frequentItem, $this->ticketId));
-  }
-  function changeDepartment(PDO $db, int $userId, string $category)
-  {
-    $stmt = $db->prepare('UPDATE Ticket SET category=? WHERE id=?');
-    $stmt->execute(array($category, $this->ticketId));
-
-    if (!Change::fieldChangeExists($db, $this->category, $category)) {
-      Change::addFieldChange($db, $this->category, $category);
+    if ($new_category !== $this->category){
+      $this->updateField($db, $userId, 'category', $new_category);
     }
-
-    $field = Change::getChangeId($db, $this->category, $category);
-
-    $this->addHistory($db, $userId, "Department changed", $field);
-  }
-  function changeStatus(PDO $db, int $userId, string $status)
-  {
-    $stmt = $db->prepare('UPDATE Ticket SET status = ? WHERE id = ?');
-    $stmt->execute(array($status, $this->ticketId));
-
-    if (!Change::fieldChangeExists($db, $this->status, $status)) {
-      Change::addFieldChange($db, $this->status, $status);
+    if ($new_status !== $this->status){
+      $this->updateField($db, $userId, 'status', $new_status);
     }
-
-    $field = Change::getChangeId($db, $this->status, $status);
-
-    $this->addHistory($db, $userId, "Status changed", $field);
-  }
-
-  function changePriority(PDO $db, int $userId, string $priority)
-  {
-    $stmt = $db->prepare('UPDATE Ticket SET priority = ? WHERE id = ?');
-    $stmt->execute(array($priority, $this->ticketId));
-
-    if (!Change::fieldChangeExists($db, $this->priority, $priority)) {
-      Change::addFieldChange($db, $this->priority, $priority);
+    if ($new_priority !== $this->priority){
+      $this->updateField($db, $userId, 'priority', $new_priority);
     }
-
-    $field = Change::getChangeId($db, $this->priority, $priority);
-
-    $this->addHistory($db, $userId, "Priority changed", $field);
   }
 
-  function addTag(PDO $db, string $tag)
-  {
-    $stmt = $db->prepare('INSERT INTO TicketTag (ticket, tag) VALUES (?,?)');
-    $stmt->execute(array($this->ticketId, $tag));
-  }
+  function updateField(PDO $db, int $userId, string $field, string $value) {
+    $stmt = $db->prepare("UPDATE Ticket SET $field = ? WHERE id = ?");
+    $stmt->execute(array($value, $this->ticketId));
 
-  function removeTag(PDO $db, string $tag)
-  {
-    $stmt = $db->prepare('DELETE FROM TicketTag WHERE ticket=? AND tag=?');
-    $stmt->execute(array($this->ticketId, $tag));
-  }
+    if (!Change::fieldChangeExists($db, $this->{$field}, $value)){
+      Change::addFieldChange($db, $this->{$field}, $value);      
+    } 
 
+    $change = Change::getChangeId($db, $this->{$field}, $value);
+
+    $this->addHistory($db, $userId, $field . " changed", $change);
+  }
+  
   function addMessage(PDO $db, int $userId, string $text)
   {
     $stmt = $db->prepare('INSERT INTO Message (id, user, ticket, text, date) VALUES (NULL, ?,?, ?, CURRENT_TIMESTAMP)');
@@ -341,44 +305,16 @@ class Ticket
 
   }
 
-  static function getStatusStats($db): array
-  {
-
-    $stmt = $db->prepare('SELECT status, COUNT(*) as count FROM Ticket GROUP BY status');
+  static function getFieldStats($db, $field): array {
+    $stmt = $db->prepare("SELECT $field, COUNT(*) as count FROM Ticket GROUP BY $field");
     $stmt->execute();
 
-    $statusStats = array();
-    while ($status = $stmt->fetch()) {
-      $statusStats[] = array($status['status'], $status['count']);
+    $stats = array();
+    while ($row = $stmt->fetch()) {
+        $stats[] = array($row[$field], $row['count']);
     }
-    return $statusStats;
-  }
-
-  static function getPriorityStats($db): array
-  {
-
-    $stmt = $db->prepare('SELECT priority, COUNT(*) as count FROM Ticket GROUP BY priority');
-    $stmt->execute();
-
-    $priorityStats = array();
-    while ($priority = $stmt->fetch()) {
-      $priorityStats[] = array($priority['priority'], $priority['count']);
-    }
-    return $priorityStats;
-  }
-
-  static function getDeptStats($db): array
-  {
-
-    $stmt = $db->prepare('SELECT category, COUNT(*) as count FROM Ticket GROUP BY category');
-    $stmt->execute();
-
-    $deptStats = array();
-    while ($department = $stmt->fetch()) {
-      $deptStats[] = array($department['category'], $department['count']);
-    }
-    return $deptStats;
-  }
+    return $stats;
+}
 
 }
 ?>

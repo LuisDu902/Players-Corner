@@ -8,7 +8,7 @@
   require_once(__DIR__ . '/../classes/ticket.class.php');
   $db = getDatabaseConnection();
 
-  $priorityStats = Ticket::getPriorityStats($db);
+  $priorityStats = Ticket::getFieldStats($db, 'priority');
 
   echo json_encode($priorityStats);
 

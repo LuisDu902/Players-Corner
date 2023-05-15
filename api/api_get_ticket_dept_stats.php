@@ -8,7 +8,7 @@
   require_once(__DIR__ . '/../classes/ticket.class.php');
   $db = getDatabaseConnection();
 
-  $deptStats = Ticket::getDeptStats($db);
+  $deptStats = Ticket::getFieldStats($db, 'category');
 
   echo json_encode($deptStats);
 

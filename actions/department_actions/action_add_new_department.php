@@ -1,28 +1,24 @@
 <?php
-declare(strict_types=1);
+  declare(strict_types=1);
 
-require_once(__DIR__ . '/../../classes/session.class.php');
-$session = new Session();
+  require_once(__DIR__ . '/../../classes/session.class.php');
+  $session = new Session();
 
-require_once(__DIR__ . '/../../database/connection.db.php');
-require_once(__DIR__ . '/../../classes/department.class.php');
-require_once(__DIR__ . '/../../utils/validation.php');
+  require_once(__DIR__ . '/../../database/connection.db.php');
+  require_once(__DIR__ . '/../../classes/department.class.php');
+  require_once(__DIR__ . '/../../utils/validation.php');
 
 
-$db = getDatabaseConnection();
+  $db = getDatabaseConnection();
 
-if (!valid_token($_POST['csrf']) || !valid_new_department($db, $_POST['new_category'])){
-  die(header('Location: ../../pages/departments.php'));
-}
+  if (!valid_token($_POST['csrf']) || !valid_new_department($db, $_POST['new_category'])){
+    die(header('Location: ../../pages/departments.php'));
+  }
 
-if ($_FILES['departmentImage']['tmp_name'][0] == "" || !getimagesize($_FILES["departmentImage"]["tmp_name"])) {
-    $session->addMessage('warning', 'Choose an image first!');
-    die(header("Location: ../../pages/departments.php"));
-} else {
-    $department_name = strtolower(str_replace(" ", "_", $_POST['new_category']));
-    $fileName = "../../images/departments/" . $department_name . ".png";
-    move_uploaded_file($_FILES['departmentImage']['tmp_name'], $fileName);
-    Department::addDepartment($db, $_POST['new_category']);
-}
-header('Location: ../../pages/departments.php');
+  $department_name = strtolower(str_replace(" ", "_", $_POST['new_category']));
+  $fileName = "../../images/departments/" . $department_name . ".png";
+  move_uploaded_file($_FILES['departmentImage']['tmp_name'], $fileName);
+  Department::addDepartment($db, $_POST['new_category']);
+
+  header('Location: ../../pages/departments.php');
 ?>
