@@ -32,7 +32,7 @@
         <ul class="nav_links">
           <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="Users"><a href="../pages/tickets.php">Forum</a></li>
-          <li class="FAQ"><a href="#">FAQ</a></li>
+          <li class="FAQ"><a href="../pages/faq.php">FAQ</a></li>
           <?php 
           if ($session->isLoggedIn()){?>
           	<li class="create-Ticket"><a href="../pages/create_ticket.php">Create Tickets</a></li> <?php 
