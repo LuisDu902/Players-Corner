@@ -1,4 +1,7 @@
 <?php
+  declare(strict_types = 1);
+  require_once( __DIR__ . '/ticket.class.php');
+  require_once( __DIR__ . '/user.class.php');
 
 class Department
 {
@@ -6,13 +9,19 @@ class Department
 
   public bool $hasPhoto;
 
-  public function __construct(string $category)
+  public array $tickets;
+
+  public array $members;
+
+  public function __construct(string $category, array $tickets, array $members)
   {
     $this->category = $category;
+    $this->tickets = $tickets;
+    $this->members = $members;
     $this->hasPhoto = $this->getPhoto() != '../images/departments/default.png';
   }
 
-  function getMembers(PDO $db): array
+  static function getMembers(PDO $db, string $category): array
   {
     $stmt = $db->prepare('
         SELECT userId, name, username, email, password, reputation, type
@@ -20,7 +29,7 @@ class Department
         WHERE AgentDepartment.department = ?
       ');
 
-    $stmt->execute(array($this->category));
+    $stmt->execute(array($category));
 
     $members = array();
     while ($member = $stmt->fetch()) {
@@ -38,7 +47,8 @@ class Department
     return $members;
   }
 
-  static function addDepartment(PDO $db, string $new_category){
+  static function addDepartment(PDO $db, string $new_category)
+  {
     $stmt = $db->prepare('INSERT INTO Department (category) VALUES (?)');
     $stmt->execute(array($new_category));
   }
@@ -51,7 +61,9 @@ class Department
     $departments = array();
     while ($department = $stmt->fetch()) {
       $departments[] = new Department(
-        $department['category']
+        $department['category'],
+        Department::getTickets($db, $department['category']),
+        Department::getMembers($db, $department['category'])
       );
     }
 
@@ -71,17 +83,17 @@ class Department
 
     return new Department(
       $department['category'],
+      Department::getTickets($db, $department['category']),
+      Department::getMembers($db, $department['category'])
     );
   }
 
-  function addMember(PDO $db, int $userId)
-  {
+  function addMember(PDO $db, int $userId){
     $stmt = $db->prepare('INSERT INTO AgentDepartment (agent, department) VALUES (?, ?);');
     $stmt->execute(array($userId, $this->category));
   }
 
-  function getPhoto(): string
-  {
+  function getPhoto(): string {
     $fileName = strtolower(str_replace(" ", "_", $this->category));
     $default = "../images/departments/default.png";
     $attemp = "../images/departments/" . $fileName . ".png";
@@ -91,16 +103,13 @@ class Department
       return $default;
   }
 
-  function getTickets(PDO $db) : array{
-    $stmt = $db->prepare(
-      'SELECT id, title, text, createDate, visibility, priority, status, category, frequentItem, creator, replier
-             FROM Ticket 
-             WHERE category = ?'
-    );
-    $stmt->execute(array($this->category));
+  static function getTickets(PDO $db, string $category): array{
+    $stmt = $db->prepare('SELECT * FROM Ticket WHERE category = ?');
+    $stmt->execute(array($category));
 
     $tickets = array();
     while ($ticket = $stmt->fetch()) {
+      $replier = ($ticket['replier']) ? $ticket['replier'] : 0;
       $tickets[] = new Ticket(
         intval($ticket['id']),
         $ticket['title'],
@@ -112,11 +121,32 @@ class Department
         $ticket['category'],
         Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
-        User::getUser($db, $ticket['replier'])
+        User::getUser($db, $replier)
       );
     }
     return $tickets;
   }
 
+  function getPriorityStats($db) : array{
+    $stmt = $db->prepare('SELECT priority, COUNT(*) as count FROM Ticket WHERE category = ? GROUP BY priority;');
+    $stmt->execute(array($this->category));
+
+    $priority_stats = array();
+    while ($priority = $stmt->fetch()) {
+      $priority_stats[] = array(substr($priority['priority'], 2), $priority['count']);
+    }
+    return $priority_stats;
+  }
+
+  function getStatusStats($db) : array{
+    $stmt = $db->prepare('SELECT status, COUNT(*) as count FROM Ticket WHERE category = ? GROUP BY status;');
+    $stmt->execute(array($this->category));
+
+    $status_stats = array();
+    while ($status = $stmt->fetch()) {
+      $status_stats[] = array($status['status'], $status['count']);
+    }
+    return $status_stats;
+  }
 }
 ?>

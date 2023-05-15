@@ -12,10 +12,10 @@
     require_once(__DIR__ . '/../templates/user.tpl.php');
     
     $db = getDatabaseConnection();
-
-    $user = User::getUser($db, $session->getId());
+    
+    $user = User::getUser($db, intval($_GET['userId']));
 
     drawHeader($session);
-    drawProfile($user);
+    drawProfile($session, $user);
     drawFooter();
 ?>

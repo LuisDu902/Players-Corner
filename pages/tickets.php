@@ -11,7 +11,7 @@
 
     $db= getDatabaseConnection();
     
-    $tickets = Ticket::searchTickets($db);
+    $tickets = Ticket::searchTickets($db, $session->getId());
   
     drawHeader($session);
     drawTicketSearchBar();

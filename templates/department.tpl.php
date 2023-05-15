@@ -20,33 +20,42 @@
 
 
 <?php
-function drawDepartment($department, $tickets, $members)
+function drawDepartment(Session $session, Department $department)
 { ?>
     <section class="department">
     <header id="department-title"><?= $department->category ?></header>
-    <section id="department-stats">
-        <article class="round-border" id="dpt-ticket-status">
+    <?php if ($session->getRole() !== 'client') { ?>
+        <section id="department-stats" class="container">
+        <article class="round-border" id="dept-ticket-status">
             <h3>Tickets by status</h3>
-            <canvas id="dpt-status" class="graphics"></canvas>
+            <canvas id="dept-status" class="graphics"></canvas>
         </article>
-        <article class="round-border" id="dpt-ticket-priority">
+        <article class="round-border" id="dept-ticket-priority">
             <h3>Tickets by priority</h3>
-            <canvas id="dpt-priority" class="graphics"></canvas>
+            <canvas id="dept-priority" class="graphics"></canvas>
         </article>
-        <article class="round-border vert-flex" id="dpt-members">
+        <article class="round-border vert-flex" id="dept-members">
             <h3>Members</h3>  
-            <?php foreach ($members as $member): ?>
-                <div class="dpt-member">
-                    <img src=<?= $member->getPhoto() ?> alt="member image" class="gradient circle-border"></img>
+            
+            <?php if (!empty($department->members)){
+                foreach ($department->members as $member): ?>
+                <a href="../pages/profile.php?userId=<?=$member->userId?>" class="dept-member">
+                    <img src=<?= $member->getPhoto() ?> alt="member image" class="gradient circle-border" id="dept-members-img"> 
                     <span class="center"> <?= $member->name?> </span>
-                </div>
-            <?php endforeach; ?>
+                </a>
+                <?php endforeach; }
+            else { ?>
+                <img src="../images/icons/not-found.png" class="no-background no-members">
+                <h4 class="center warning no-background">No members yet</h4>
+            <?php }
+                ?>
         </article>
 
     </section>
+    <?php } ?>
     <section id="department-tickets">
         <header> Tickets </header>
-        <?php drawTickets($tickets); ?>
+        <?php drawTickets($department->tickets); ?>
     </section>
 
     </section>

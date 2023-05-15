@@ -52,7 +52,7 @@ function createCardType(user) {
   cardType.appendChild(typeSpan);
 
   const repSpan = document.createElement('span');
-  repSpan.classList.add('rep', 'center', 'bold');
+  repSpan.classList.add('rep', 'center', 'bold', 'circle-border');
   repSpan.textContent = user.reputation;
   cardType.appendChild(repSpan);
 

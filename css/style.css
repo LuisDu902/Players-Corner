@@ -64,7 +64,7 @@ li,a, button {
     padding: 1% 6% 1% 5%;
 }
 
-.logo, button{
+.logo, button, #fileUploadForm img{
     cursor: pointer;
 }
 

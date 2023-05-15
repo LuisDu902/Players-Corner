@@ -47,21 +47,21 @@
 
 
 
-.department header{
+.department header, #profile, .stats header{
     font-size: 2em;
     color: #D66AE6;
     font-weight: bold;
     margin-bottom: 50px;
 }
 
-#department-stats {
+.container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 30px;
     margin-bottom: 50px;
 }
 
-#department-stats article {
+.container article {
     background-color: #282948;
     padding: 20px;
     width: 500px;
@@ -70,13 +70,15 @@
 }
 
 
-#department-stats article h3 {
+.container article h3{
     font-size: 1.5em;
     margin: 10px 10px 20px 10px;
     background-color: transparent;
 }
 
-#department-stats article h3::before {
+
+
+.container article h3::before {
     content: '';
     display: inline-block;
     width: 0.7em;
@@ -85,28 +87,28 @@
     margin-right: 15px;
 }
 
-#dpt-members {
+#dept-members {
     max-height: 500px;
     float: left;
     overflow-y: auto;
     margin-right: 0;
 }
 
-#dpt-members img {
+#dept-members-img {
     height: 85px;
     width: 85px;
     position: relative;
     left: 35px;
 }
 
-.dpt-member{
+.dept-member{
     display: flex;
     margin: 10px 20px 10px 0px;
     background-color: transparent;
     align-items: center;
 }
 
-.dpt-member span{
+.dept-member span{
     background-color: #434A74;
     padding: 25px 50px;
     width: 400px;
@@ -122,4 +124,12 @@
 .graphics{
     background-color: transparent;
     max-height: 380px;
+}
+
+.warning{
+    font-size: 1.2em;
+    margin-top: 30px;
+}
+.no-members{
+    margin: 0 auto;
 }

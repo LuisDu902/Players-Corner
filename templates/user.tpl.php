@@ -3,44 +3,50 @@ declare(strict_type=1);
 require_once(__DIR__ . '/../classes/user.class.php');
 ?>
 
-<?php function drawProfile(User $user)
+<?php function drawProfile(Session $session, User $user)
 { ?>
-  <div class="user-profile">
-    <div class="user-reputation vert-flex">
-      <span id="reputation" class="title center">Reputation</span>
-      <span class="reputation-value circle-border gradient center bold">
-        <?= $user->reputation ?>%
-      </span>
-    </div>
-    <div class="user-details center">
-      <span id="about" class="title bold">About me</span>
-      <span class="field round-border center"> Name </span>
-      <span class="info round-border center">
-        <?= $user->name ?>
-      </span>
-      <span class="field round-border center"> Username </span>
-      <span class="info round-border center">
-        <?= $user->username ?>
-      </span>
-      <span class="field round-border center"> Email </span>
-      <span class="info round-border center">
-        <?= $user->email ?>
-      </span>
-      <span class="field round-border center"> Role </span>
-      <span class="info round-border center">
-        <?= $user->type ?>
-      </span>
-    </div>
-    <div class="profile-picture round-wrap vert-flex center">
-      <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
-      <span class="bold">
-        <?= $user->username ?>
-      </span>
-      <div class="button-wrap gradient round-border">
-        <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
-      </div>
-    </div>
-  </div>
+  <header id="profile">Profile page</header>
+  <section class="container" id="user-profile">
+    <article class="round-border profile-picture round-wrap vert-flex center">
+       <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
+        <h4 class="bold highlight"> <?= $user->username ?> </h4>
+        <?php if ($session->getId() === $user->userId) {?>
+          <div class="button-wrap gradient round-border">
+            <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
+          </div>
+        <?php } ?>
+    </article>
+    <article class="round-border user-details" id="about">
+      <h2 class="center">General information</h2>
+      <table class="center">
+        <tr>
+          <th class="field round-border">Name</th>
+          <td class="info round-border"> <?= $user->name ?></td>
+        </tr>
+        <tr>
+          <th class="field round-border">Username</th>
+          <td class="info round-border"> <?= $user->username ?></td>
+        </tr>
+        <tr>
+          <th class="field round-border">Email</th>
+          <td class="info round-border"> <?= $user->email ?></td>
+        </tr>
+        <tr>
+          <th class="field round-border">Role</th>
+          <td class="info round-border"><?= $user->type ?></td>
+        </tr>
+        <tr>
+          <th class="field round-border">Reputation</th>
+          <td class="info round-border"><?= $user->reputation ?></td>
+        </tr>
+      </table>
+    </article>
+    <article class="round-border center vert-flex" id="ticket-stats">
+      <h2>Created tickets</h2>
+      <canvas id="user-tkt" class="graphics"></canvas>
+    </article>
+
+  </section>
 <?php } ?>
 
 <?php function drawEditUserForm(User $user)
@@ -80,8 +86,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
         <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview" class="gradient circle-border">
         <input type="file" id="user-image" name="imageToUpload">
         <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
-        <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload
-            photo</button> </div>
+        <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload photo</button> </div>
       </form>
     </div>
   </div>
@@ -120,7 +125,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
 
 <?php function drawUserCard($user)
 { ?>
-  <div class="user-card vert-flex round-border white-border">
+  <article class="user-card vert-flex round-border white-border">
     <div class="card-type">
       <span class="type <?= $user->type ?>-card-type bold center"><?= $user->type ?></span>
       <span class="rep center bold circle-border">
@@ -145,6 +150,5 @@ require_once(__DIR__ . '/../classes/user.class.php');
       <?php } ?>
     </div>
     <input type='hidden' value=<?= $user->userId ?> id='card-userId'>
-  </div>
+      </article>
 <?php } ?>
-

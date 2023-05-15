@@ -36,7 +36,6 @@ CREATE TABLE Ticket(
    priority VARCHAR NOT NULL,
    status VARCHAR REFERENCES Status(status) NOT NULL,
    category VARCHAR REFERENCES Department(category),
-   frequentItem INTEGER REFERENCES FAQ(id),
    creator INTEGER REFERENCES User(userId),
    replier INTEGER REFERENCES User(userId)
 );

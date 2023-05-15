@@ -11,11 +11,11 @@
   $db = getDatabaseConnection();
   
   if (!valid_token($_POST['csrf'])){
-    die(header("Location: ../../pages/create_ticket.php"));
+    die(header("Location: ../../pages/index.php"));
   }
 
-  $tags = explode(',' , $_POST['chosen_tags']);
-  Ticket::registerTicket($db, $tags, $_POST['title'], $_POST['text'], "4-low", $_POST['category'], "public", $session->getId());
-  $session->addMessage('success', 'Ticket successfully created!');
-  header("Location: ../../pages/tickets.php");
+  $ticket = Ticket::getTicket($db,intval($_POST['id']));
+  $ticket->changeProperties($db, $session->getId(), array(), $_POST['category'], $_POST['priority'], $_POST['status']);
+  $session->addMessage('success', 'Ticket properties changed!');
+  header("Location: ../../pages/ticket.php?id=" . $_POST['id']);
 ?>
