@@ -3,6 +3,9 @@ const ticketFilterSelect = document.querySelector('#filter-ticket')
 const ticketOrderSelect = document.querySelector('#order-ticket')
 const searchTicket = document.querySelector('#search-ticket')
 
+let current_page = 1;
+let rows = 10;
+
 if (searchTicket) {
   searchTicket.addEventListener('input', searchTickets)
 }
@@ -86,3 +89,4 @@ function createTicketCard(ticket) {
 
   return ticketRow
 }
+

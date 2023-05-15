@@ -84,7 +84,7 @@ CREATE TABLE AgentDepartment(
 CREATE TABLE FAQ(
    id INTEGER PRIMARY KEY,
    title VARCHAR NOT NULL,
-   content VARCHAR NOT NULL,
+   content VARCHAR NOT NULL
 );
 
 CREATE TABLE DepartmentFAQ(
