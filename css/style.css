@@ -129,6 +129,7 @@ li,a, button {
 .dropbtn {
     border: none;
     display: flex;
+    background-color: #222033;
 }
 
 .dropdown {
@@ -177,13 +178,16 @@ li,a, button {
 }
 .corner-text h1{
     font-size: 43px;
-    width: 320px;
+    width: 340px;
     position: relative;
     margin-left: 40px;
     align-items: center;
     margin-top: 30px;
 }
 
+.auto-type{
+  color: #44C4D9;
+}
 .corner-text p{
     width: 650px;
     font-size: 16px;
@@ -332,3 +336,23 @@ li,a, button {
 .load-more{
   padding: auto;
 }
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  height: 70%;
+  margin: 4rem auto;
+}
+
+.categories .heading-title {
+  font-size: 43px;
+  width: 340px;
+  margin: 30px 0 40px 40px;
+}
+
+.categories .button-wrap.round-border.gradient{
+  margin: 30px 0 30px 40px;
+}
+
