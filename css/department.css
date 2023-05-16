@@ -13,23 +13,25 @@
 
 .departments {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-    grid-auto-rows: minmax(350px, max-content);
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-auto-rows: minmax(250px, max-content); 
     grid-gap: 30px;
-}
-
-.department-card {
+  }
+  
+  .department-card {
     position: relative;
     text-align: center;
     margin: 20px;
     margin-top: 0;
-}
-
-.department-card img {
-    width: 100%;
-    height: 100%;
+  }
+  
+  .department-card img {
+    width: 100%; 
+    height: auto;
+    max-height: 100%; 
     object-fit: cover;
-}
+  }
+  
 
 .department-card img.selected{
     border: 4px solid #D66AE6;

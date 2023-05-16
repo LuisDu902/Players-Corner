@@ -1,3 +1,5 @@
+
+
 <?php
 function drawDepartment(Session $session, Department $department)
 { ?>

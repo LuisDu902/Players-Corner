@@ -1,6 +1,6 @@
 <?php require_once(__DIR__ . '/../templates/department.tpl.php'); ?>
 
-<?php function drawInitial($session){ ?>
+<?php function drawInitial($session, $departments){ ?>
     <section id="container">
         <article class="corner-text">
             <h1>
@@ -18,12 +18,17 @@
          <h1 class="heading-title">Categories</h1>
          <?php if ($session->getRole() === "admin") { ?>
             <div class="button-wrap round-border gradient"><button id="add-department">Add new department</button></div>
-            
-        <?php  drawDepartmentModal() ;
-    } ?>
-         
+            <?php  drawDepartmentModal() ;
+        } ?>
+         <div class="departments">
+            <?php foreach ($departments as $department): ?>
+            <a href="../pages/department.php?category=<?= $department->category ?>" class="department-card">
+                <img src=<?= $department->getPhoto() ?> alt="department image" class="white-border round-border"></img>
+                <span> <?= $department->category ?> </span>
+            </a>
+        <?php endforeach; ?>
+    </div>
     </section>
-</body>
 <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
 <script>
         var typed = new Typed('.auto-type', {
@@ -33,5 +38,4 @@
       loop: true
     });
 </script>
-<?php
-}
+<?php } ?>

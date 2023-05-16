@@ -129,6 +129,7 @@ li,a, button {
 .dropbtn {
     border: none;
     display: flex;
+    background-color: #222033;
 }
 
 .dropdown {
@@ -335,3 +336,24 @@ li,a, button {
 .load-more{
   padding: auto;
 }
+
+.categories {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  height: 70%;
+  margin: auto;
+}
+
+.categories .heading-title {
+  font-size: 43px;
+  width: 340px;
+  margin-left: 40px;
+  margin-top: 30px;
+}
+
+.categories .button-wrap.round-border.gradient{
+  margin: 30px 0 30px 40px;
+}
+
