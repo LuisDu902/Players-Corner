@@ -51,7 +51,7 @@
             </thead>
             <tbody></tbody>
         </table>
-        <div class="pagenumbers center" id="pagination"></div>
+        <div class="pagination-bar center"></div>
     <?php } else { ?>
         <span>No tickets</span>
     <?php }

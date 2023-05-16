@@ -4,6 +4,7 @@ const ticketOrderSelect = document.querySelector('#order-ticket')
 const searchTicket = document.querySelector('#search-ticket')
 const tickets = document.querySelector('.tickets')
 const departmentPage = document.querySelector('.department')
+const pagination_element = document.querySelector('.pagination-bar');
 
 if (tickets) {
   if (searchTicket) {
@@ -11,7 +12,6 @@ if (tickets) {
   }
   else if (departmentPage){
     const category = document.querySelector('#department-title')
-
     searchTickets(category.textContent, 'category', 'title');
   }
 }
@@ -34,14 +34,58 @@ if (ticketOrderSelect) {
   });
 }
 
-const pagination_element = document.getElementById('pagination');
-
 async function searchTickets(searchValue, filterValue, orderValue) {
   const response = await fetch('../api/api_search_tickets.php?' + encodeForAjax({ search: searchValue }) + "&" + encodeForAjax({ filter: filterValue }) + "&" + encodeForAjax({ order: orderValue }))
   const tickets = await response.json()
   current_page = 1
   displayTickets(tickets, current_page)
   setupPagination(tickets, pagination_element)
+}
+
+
+function displayTickets(tickets, page) {
+  console.log(page)
+  page--;
+  let start = 5 * page;
+  let end = start + 5;
+  let paginatedItems = tickets.slice(start, end);
+  console.log(paginatedItems)
+  const section = document.querySelector('.tickets tbody')
+  section.innerHTML = ''
+
+  for (const ticket of paginatedItems) {
+    const ticketCard = createTicketCard(ticket)
+    section.appendChild(ticketCard)
+  }
+}
+
+function setupPagination(items, wrapper) {
+  wrapper.innerHTML = "";
+
+  let page_count = Math.ceil(items.length / 5);
+  for (let i = 1; i < page_count + 1; i++) {
+    let btn = paginationButton(i, items);
+    wrapper.appendChild(btn);
+  }
+}
+
+function paginationButton(page, items) {
+  let button = document.createElement('button');
+  button.innerText = page;
+
+  if (current_page == page) button.classList.add('active');
+
+  button.addEventListener('click', function () {
+    current_page = page;
+    displayTickets(items, page)
+
+    let current_btn = document.querySelector('.pagination-bar button.active');
+    current_btn.classList.remove('active');
+
+    button.classList.add('active');
+  });
+
+  return button;
 }
 
 function createTicketCard(ticket) {
@@ -100,50 +144,4 @@ function createTicketCard(ticket) {
   ticketRow.appendChild(dateCell);
 
   return ticketRow
-}
-
-
-function displayTickets(tickets, page) {
-  console.log(page)
-  page--;
-  let start = 5 * page;
-  let end = start + 5;
-  let paginatedItems = tickets.slice(start, end);
-  console.log(paginatedItems)
-  const section = document.querySelector('.tickets tbody')
-  section.innerHTML = ''
-
-  for (const ticket of paginatedItems) {
-    const ticketCard = createTicketCard(ticket)
-    section.appendChild(ticketCard)
-  }
-}
-
-function setupPagination(items, wrapper) {
-  wrapper.innerHTML = "";
-
-  let page_count = Math.ceil(items.length / 5);
-  for (let i = 1; i < page_count + 1; i++) {
-    let btn = paginationButton(i, items);
-    wrapper.appendChild(btn);
-  }
-}
-
-function paginationButton(page, items) {
-  let button = document.createElement('button');
-  button.innerText = page;
-
-  if (current_page == page) button.classList.add('active');
-
-  button.addEventListener('click', function () {
-    current_page = page;
-    displayTickets(items, page)
-
-    let current_btn = document.querySelector('.pagenumbers button.active');
-    current_btn.classList.remove('active');
-
-    button.classList.add('active');
-  });
-
-  return button;
 }

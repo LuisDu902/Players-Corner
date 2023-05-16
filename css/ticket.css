@@ -73,27 +73,20 @@
 }
 
 
-.pagenumbers {
+.pagination-bar {
 	display: flex;
 }
 
-.pagenumbers button {
+.pagination-bar button {
 	width: 50px;
 	height: 50px;
 	border: none;
-
 	margin: 5px;
 	transition: 0.4s;
-
   font-weight: bolder;
 }
 
-.pagenumbers button:hover {
-  color: #D66AE6;
-  font-weight: bolder;
-}
-
-.pagenumbers button.active {
+.pagination-bar button:hover, .pagination-bar button.active {
   color: #D66AE6;
   font-weight: bolder;
 }
