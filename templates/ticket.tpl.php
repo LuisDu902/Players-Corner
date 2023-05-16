@@ -49,34 +49,9 @@
                     <th>Date</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php foreach ($tickets as $ticket) { ?>
-                    <tr class="ticket white-border round-border center">
-                        <td><img src=<?= $ticket->creator->getPhoto() ?>
-                                class="<?= $ticket->creator->type ?>-card-border circle-border"></td>
-                        <td><a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>"><?= $ticket->title ?></a></td>
-                        <td class="vert-flex">
-                            <?php foreach ($ticket->tags as $tag) { ?>
-                                <span>
-                                    <?= $tag ?>
-                                </span>
-                            <?php } ?>
-                        </td>
-                        <td>
-                            <?= $ticket->category ?>
-                        </td>
-                        <td id="<?= $ticket->status ?>-status" class="round-border status"><?= $ticket->status ?></td>
-                        <td id="<?= $ticket->priority ?>-priority"><?= $ticket->priority ?></td>
-                        <td>
-                            <?= $ticket->visibility ?>
-                        </td>
-                        <td>
-                            <?= $ticket->date ?>
-                        </td>
-                    </tr>
-                <?php } ?>
-            </tbody>
+            <tbody></tbody>
         </table>
+        <div class="pagenumbers center" id="pagination"></div>
     <?php } else { ?>
         <span>No tickets</span>
     <?php }
