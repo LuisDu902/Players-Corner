@@ -2,6 +2,7 @@
 declare(strict_types=1);
 
 require_once(__DIR__ . '/../../classes/session.class.php');
+
 $session = new Session();
 
 require_once(__DIR__ . '/../../database/connection.db.php');
@@ -13,7 +14,7 @@ $db = getDatabaseConnection();
 // Check if the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Validate form data
-    if (!valid_token($_POST['csrf']) || !valid_new_faq($_POST['problem'], $_POST['answer'])) {
+    if (!valid_token($_POST['csrf']) || !valid_new_faq($db, $_POST['problem'])) {
         die(header('Location: ../../pages/index.php'));
     }
 

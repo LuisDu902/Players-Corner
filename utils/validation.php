@@ -104,9 +104,9 @@
 
     function valid_new_faq(PDO $db, string $problem): bool {
         $stmt = $db->prepare('
-            SELECT problem
+            SELECT FAQ.title
             FROM FAQ 
-            WHERE problem = ?
+            WHERE FAQ.title = ?
         ');
     
         $stmt->execute([$problem]);

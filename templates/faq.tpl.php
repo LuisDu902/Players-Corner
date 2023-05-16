@@ -39,7 +39,7 @@
         <div class="modal-content white-border round-border vert-flex center" id="faq-modal-content">
             <span class="modal-title"> Add new FAQ </span>
             <form action="../actions/faq_actions/action_add_new_faq.php" method="post">
-                <input type="text" name="question" required="required" placeholder="Question" id="faq-question" class="white-border round-border">
+                <input type="text" name="problem" required="required" placeholder="Question" id="faq-problem" class="white-border round-border">
                 <textarea name="answer" required="required" placeholder="Answer" id="faq-answer" class="white-border round-border"></textarea>
                 <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
                 <div class="button-wrap gradient round-border auth-button">
