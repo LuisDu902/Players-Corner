@@ -35,10 +35,12 @@ require_once(__DIR__ . '/../classes/user.class.php');
           <th class="field round-border">Role</th>
           <td class="info round-border"><?= $user->type ?></td>
         </tr>
+        <?php if ($user->type !== 'client'){ ?>
         <tr>
           <th class="field round-border">Reputation</th>
           <td class="info round-border"><?= $user->reputation ?></td>
         </tr>
+        <?php } ?>
       </table>
     </article>
     <article class="round-border center vert-flex" id="ticket-stats">
