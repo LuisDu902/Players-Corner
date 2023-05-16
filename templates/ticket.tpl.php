@@ -90,7 +90,7 @@ function drawTicket($ticket, $messages, $history, $attachedFiles)
             <?php
             $sender = NULL;
             foreach ($messages as $message) {
-                if ($message->user->name !== $ticket->creator->name) {
+                if ($message['user']->name !== $ticket->creator->name) {
                     echo '<div class="message-container-replier">';
                 } else {
                     echo '<div class="message-container-creator">';
@@ -98,25 +98,25 @@ function drawTicket($ticket, $messages, $history, $attachedFiles)
                 ?>
                 <div class="message">
                     <span class="sender">
-                        <?= $message->user->name ?>
+                        <?= $message['user']->name ?>
                     </span>
                     <br>
                     <span class="text">
-                        <?= $message->text ?>
+                        <?= $message['text'] ?>
                     </span>
                     <br>
                     <span class="time">
-                        <?= $message->date ?>
+                        <?= $message['date'] ?>
                     </span>
                     <br>
                 </div>
                 <?php
-                if ($message->user->name !== $sender) {
+                if ($messag['user']->name !== $sender) {
                     echo '</div>';
                     ?>
                     <br>
                     <?php
-                    $sender = $message->user->name;
+                    $sender = $message['user']->name;
                 }
             }
             ?>
@@ -144,31 +144,15 @@ function drawTicket($ticket, $messages, $history, $attachedFiles)
         </div>
         <form action="../actions/ticket_actions/action_attach_file.php" id="fileUploadForm" method="post" enctype="multipart/form-data">
             <label for="fileToUpload">
-                <img src="../images/icons/upload.png" alt="Upload icon">
+                <img src="../images/icons/upload.png" alt="Upload icon" id="uploadFile">
             </label>
             <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
-            <input type="hidden" name="id" value="<?= $ticket->ticketId ?>">
+            <input type="hidden" name="id" value="<?=$ticket->ticketId?>">
             <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
         </form>
         <?php foreach ($attachedFiles as $filename) { ?>
              <a href="../files/ticket<?=$ticket->ticketId?>_<?=$filename?>" download><?=$filename?></a>
             <?php } ?>
-            
-        <script>
-            const form = document.querySelector('#fileUploadForm');
-            const fileInput = document.querySelector('#fileToUpload');
-            const uploadIcon = document.querySelector('img');
-
-            // Trigger the file input dialog when the icon is clicked
-            uploadIcon.addEventListener('click', () => {
-                fileInput.click();
-            });
-
-            // Submit the form when a file is selected
-            fileInput.addEventListener('change', () => {
-                form.submit();
-            });
-        </script>
     </div>
     <?php
 }

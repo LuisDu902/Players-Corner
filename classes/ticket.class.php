@@ -96,22 +96,16 @@ class Ticket
 
   function getMessages(PDO $db): array
   {
-    $stmt = $db->prepare(
-      'SELECT id, user, ticket, text, date
-       FROM Message 
-       WHERE ticket = ?'
-    );
+    $stmt = $db->prepare('SELECT * FROM Message WHERE ticket = ?');
 
     $stmt->execute(array($this->ticketId));
 
     $messages = array();
     while ($message = $stmt->fetch()) {
       $messages[] = array(
-        intval($message['id']),
-        User::getUser($db, intval($message['user'])),
-        $this,
-        $message['text'],
-        $message['date'],
+        'user' => User::getUser($db, intval($message['user'])),
+        'text' => $message['text'],
+        'date' => $message['date'],
       );
     }
     return $messages;
@@ -143,11 +137,7 @@ class Ticket
     $stmt = $db->prepare('SELECT tag FROM TicketTag WHERE ticket = ?');
 
     $stmt->execute(array($ticketId));
-    $tags = array();
-
-    while ($tag = $stmt->fetchColumn()) {
-      $tags[] = $tag;
-    }
+    $tags = $stmt->fetchAll(PDO::FETCH_COLUMN);
     return $tags;
   }
 
