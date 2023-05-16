@@ -290,7 +290,7 @@ li,a, button {
   overflow: hidden;
   position: relative;
   background-color: #12101a;
-  transition: 
+  transition: max-height .5s;
 }
 
 .faq-item-checkbox {
@@ -318,7 +318,7 @@ li,a, button {
 }
 
 .faq-item-checkbox:checked ~ .faq-item-answer {
-  max-height: 50rem;
+  max-height: 20rem;
 }
 
 .faq-item-checkbox:checked ~ .faq-item-header ion-icon[name="add-outline"]{
