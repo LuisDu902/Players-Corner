@@ -106,7 +106,7 @@ class Ticket
 
     $messages = array();
     while ($message = $stmt->fetch()) {
-      $messages[] = new Message(
+      $messages[] = array(
         intval($message['id']),
         User::getUser($db, intval($message['user'])),
         $this,
