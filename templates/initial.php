@@ -18,38 +18,7 @@
             
         <?php  drawDepartmentModal() ;
     } ?>
-         <div class="container">
-            <div class="product">
-                <div class="effect-1"></div>
-                <div class="effect-2"></div>
-                <div class="content">
-                    <i class='bx bxl-dev-to' ></i>
-                </div>
-                <span class="title">
-                    Game Development
-                </span>
-            </div>
-            <div class="product">
-                <div class="effect-1"></div>
-                <div class="effect-2"></div>
-                <div class="content">
-                    <i class='bx bxl-dev-to' ></i>
-                </div>
-                <span class="title">
-                Tech Support
-                </span>
-            </div>
-            <div class="product">
-                <div class="effect-1"></div>
-                <div class="effect-2"></div>
-                <div class="content">
-                    <i class='bx bxl-dev-to' ></i>
-                </div>
-                <span class="title">
-                    Game Design
-                </span>
-            </div>
-        </div>
+         
     </section>
 <?php
 }

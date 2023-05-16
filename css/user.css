@@ -17,6 +17,7 @@
   font-size: 1.1rem;
   margin-right: 10px;
   border: none;
+  background-color: #222033;
 }
 
 .filter-select, .order-condition{

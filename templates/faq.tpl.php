@@ -1,5 +1,4 @@
 <?php function drawFAQList($faqs) { ?>
-    <main>
         <div id="faq-page">
             <h1>Frequently Asked Questions</h1>
             <ul id="faq-list">
@@ -7,24 +6,24 @@
                     drawFAQ($faq);
                 ?>
             </ul>
-            <button type="button" class="fetch-more">
-                Fetch more
-            </button>
+            <div class="button-wrap gradient round-border">
+                <button type="button" class="load-more">
+                    Load more
+                </button>
+            </div>
         </div>
-    </main>
 <?php } ?>
 
 <?php function drawFAQ($faq) { ?>
-    <li class="faq-element">
-        <input id="cb<?=$faq->id?>" type="checkbox" class="faq-element-checkbox">
-        <label class="faq-element-header" for="cb<?=$faq->id?>">
-            <i class="fa-solid fa-chevron-down"></i>
-            <h2 class="faq-element-question">
-                <?=$faq->problem?>
-            </h2>
+    <li class="faq-item">
+        <input id="cb<?=$faq->id?>" type="checkbox" class="faq-item-checkbox">
+        <label class="faq-item-header" for="cb<?=$faq->id?>">
+            <?=$faq->problem?>
+            <ion-icon name="add-outline"></ion-icon>
+            <ion-icon name="remove-outline"></ion-icon>
         </label>
-        <p class="faq-element-answer">
-            <?=$faq->answer?>
-        </p>
+        <div class="faq-item-answer">
+            <p><?=$faq->answer?></p>
+        </div>
     </li>
 <?php } ?>
