@@ -86,7 +86,6 @@ function drawTicket($_session,$ticket, $messages, $history)
                     ?>
                     <span class="assigned">Assigned to: <?= $ticket->replier->name ?> </span> 
                     <span class="ticket-date"><?= $ticket->date ?></span>
-                    <a href="../pages/edit_ticket.php"><img class="edit" src="../images/icons/edit.png" alt="edit"> </a>
                     <?php
                 } else{ ?>
                     <span class="ticket-date"><?= $ticket->date ?></span> <?php
@@ -132,7 +131,7 @@ function drawTicket($_session,$ticket, $messages, $history)
         </div>
 
 
-        <?php if(($_session->getId()=== $ticket->creator->id || $_session->getId()=== $ticket->replier->id) && $_session->isL) {?>
+        <?php if(($_session->getId()=== $ticket->creator->userId || $_session->getId()=== $ticket->replier->userId)) {?>
         <div id="respond">
             <form action="../actions/ticket_actions/action_add_message.php" method="post" id="reply">
                 <textarea name="text" id="text" rows="10" tabindex="4"  required="required"></textarea>
@@ -160,3 +159,4 @@ function drawTicket($_session,$ticket, $messages, $history)
 <?php 
 }
 ?>
+
