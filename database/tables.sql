@@ -35,7 +35,7 @@ CREATE TABLE Ticket(
    visibility VARCHAR NOT NULL,
    priority VARCHAR NOT NULL,
    status VARCHAR REFERENCES Status(status) NOT NULL,
-   category VARCHAR REFERENCES Department(category),
+   category VARCHAR REFERENCES Department(category) ON DELETE SET NULL,
    creator INTEGER REFERENCES User(userId),
    replier INTEGER REFERENCES User(userId)
 );
@@ -77,7 +77,7 @@ CREATE TABLE Department(
 
 CREATE TABLE AgentDepartment(
    agent INTEGER REFERENCES User(userId),
-   department VARCHAR REFERENCES Department(category), 
+   department VARCHAR REFERENCES Department(category) ON DELETE CASCADE, 
    PRIMARY KEY (agent, department)
 );
 
@@ -89,6 +89,16 @@ CREATE TABLE FAQ(
 
 CREATE TABLE DepartmentFAQ(
    item INTEGER REFERENCES FAQ(id),
-   category VARCHAR REFERENCES Department(category),
+   category VARCHAR REFERENCES Department(category) ON DELETE SET NULL,
    PRIMARY KEY (item, category)
 );
+
+
+CREATE TRIGGER delete_tickets_on_department_delete
+AFTER DELETE ON Department
+FOR EACH ROW
+BEGIN
+   UPDATE Ticket SET category = 'none' WHERE category = OLD.category;
+   UPDATE DepartmentFAQ SET category = 'none' WHERE category = OLD.category;
+   DELETE FROM AgentDepartment WHERE department = OLD.category;
+END;
