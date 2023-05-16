@@ -50,7 +50,7 @@
 .type {
   display: flex;
   font-size: 1.3em;
-  max-height: 2.7em;
+  height: 2.5em;
   border-radius: 10px;
   padding: 5px 20px;
   margin: 15px 0px 0px 15px;

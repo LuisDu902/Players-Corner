@@ -9,29 +9,20 @@ const pagination_element = document.querySelector('.pagination-bar');
 if (tickets) {
   if (searchTicket) {
     searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
+    searchTicket.addEventListener('input', function () {
+      searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
+    });
+    ticketFilterSelect.addEventListener('change', function () {
+      searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
+    });
+    ticketOrderSelect.addEventListener('change', function () {
+      searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
+    });
   }
   else if (departmentPage){
     const category = document.querySelector('#department-title')
     searchTickets(category.textContent, 'category', 'title');
   }
-}
-
-if (searchTicket) {
-  searchTicket.addEventListener('input', function () {
-    searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
-  });
-}
-
-if (ticketFilterSelect) {
-  ticketFilterSelect.addEventListener('change', function () {
-    searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
-  });
-}
-
-if (ticketOrderSelect) {
-  ticketOrderSelect.addEventListener('change', function () {
-    searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
-  });
 }
 
 async function searchTickets(searchValue, filterValue, orderValue) {
@@ -41,7 +32,6 @@ async function searchTickets(searchValue, filterValue, orderValue) {
   displayTickets(tickets, current_page)
   setupPagination(tickets, pagination_element)
 }
-
 
 function displayTickets(tickets, page) {
   console.log(page)

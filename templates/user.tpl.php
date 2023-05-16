@@ -92,8 +92,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
   </div>
 <?php } ?>
 
-<?php function drawUsers($users)
-{ ?>
+<?php function drawUserSearchBar(){ ?>
   <nav class="search-bar center">
     <div class="search-box center round-border white-border">
       <input id="search-user" type="text" placeholder="search">
@@ -114,41 +113,11 @@ require_once(__DIR__ . '/../classes/user.class.php');
       </select>
     </div>
   </nav>
-  <div class="user-cards" id="users">
-    <?php foreach ($users as $user):
-      drawUserCard($user);
-    endforeach; ?>
-  </div>
-  <div class="modal"> </div>
 <?php } ?>
 
-
-<?php function drawUserCard($user)
-{ ?>
-  <article class="user-card vert-flex round-border white-border">
-    <div class="card-type">
-      <span class="type <?= $user->type ?>-card-type bold center"><?= $user->type ?></span>
-      <span class="rep center bold circle-border">
-        <?= $user->reputation ?>
-      </span>
-    </div>
-    <img src="<?= $user->getPhoto() ?>" alt="profile" class="<?= $user->type ?>-card-border card-img circle-border"></img>
-    <div class="card-details vert-flex center">
-      <span class="card-name">
-        <?= $user->name ?>
-      </span>
-      <span class="span-username">
-        <?= $user->username ?>
-      </span>
-    </div>
-    <div class="card-buttons center">
-      <?php if ($user->type != "admin") { ?>
-        <div class="button-wrap gradient round-border"> <button id="upgrade">upgrade</button> </div>
-      <?php }
-      if ($user->type != "client") { ?>
-        <div class="button-wrap gradient round-border"> <button id="assign-dep">assign</button> </div>
-      <?php } ?>
-    </div>
-    <input type='hidden' value=<?= $user->userId ?> id='card-userId'>
-      </article>
+<?php function drawUsers($users)
+{ 
+  drawUserSearchBar(); ?>
+  <div class="user-cards" id="users"> </div>
+  <div class="modal"> </div>
 <?php } ?>
