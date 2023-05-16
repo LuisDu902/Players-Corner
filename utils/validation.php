@@ -102,4 +102,20 @@
         return true;
     }
 
+    function valid_new_faq(PDO $db, string $problem): bool {
+        $stmt = $db->prepare('
+            SELECT problem
+            FROM FAQ 
+            WHERE problem = ?
+        ');
+    
+        $stmt->execute([$problem]);
+        if ($stmt->fetch()) {
+            $session = new Session();
+            $session->addMessage('error', 'FAQ problem already exists. Please provide a unique problem!');
+            return false;
+        }
+        return true;
+    }
+    
 ?>

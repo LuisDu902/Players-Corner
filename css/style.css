@@ -254,6 +254,10 @@ li,a, button {
   padding: 2em;
 }
 
+#faq-page h1{
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
 #faq-list {
   width: 100%;
   max-width: 80rem;

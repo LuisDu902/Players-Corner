@@ -13,6 +13,6 @@
 
     drawHeader($session);
     $faqs = FAQ::getFAQs($db, 5, 1);
-    drawFAQList($faqs);
+    drawFAQList($faqs, $session);
     drawFooter();
 ?>
