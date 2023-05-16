@@ -10,7 +10,9 @@ if (tickets) {
     searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
   }
   else if (departmentPage){
-    searchTickets('Account', 'category', 'title');
+    const category = document.querySelector('#department-title')
+
+    searchTickets(category.textContent, 'category', 'title');
   }
 }
 
