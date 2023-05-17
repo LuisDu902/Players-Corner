@@ -2,10 +2,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    background-color: #222033;
     font-family: sans-serif;
     color: white;
 }
+body{
+    background-color: #222033;
+}
+
 
 main {
     margin: 30px 6%;

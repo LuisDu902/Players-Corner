@@ -78,22 +78,15 @@ function drawTicket($_session,$ticket, $messages, $history)
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/ticket.css">
     </head>
+    <div id="ticket-page">
     <div id="ticket">
         <div class="ticket-header">
             <span class="ticket-title"><?= $ticket->title ?></span>
-            <?php 
-                if($_session->getRole() === "admin" || $_session->getRole() === "agent"){
-                    ?>
-                    <span class="assigned">Assigned to: <?= $ticket->replier->name ?> </span> 
-                    <span class="ticket-date"><?= $ticket->date ?></span>
-                    <?php
-                } else{ ?>
-                    <span class="ticket-date"><?= $ticket->date ?></span> <?php
-                }
-            ?>
+            <span class="ticket-date"><?= $ticket->date ?></span> 
         </div>
         <br>
         <span class="ticket-creator-small">Created by: <?= $ticket->creator->name ?></span>
+        <span class="assigned">Assigned to: <?= $ticket->replier->name ?> </span>
         <div class="ticket-info">
             <span class="ticket-dep"><?= $ticket->category ?></span>
             <span id="<?= $ticket->status ?>-status" class="round-border status"><?= $ticket->status ?></span>
@@ -156,6 +149,18 @@ function drawTicket($_session,$ticket, $messages, $history)
             <?php } ?>
         </div>
     </div>
+    <?php if($_session->getRole()=='admin' || $_session->getRole()== 'agent'){
+        ?>
+            <div class="sidebar">
+                <h1>Edit Ticket</h1>
+                <div class="sidebar-content">
+                    <!-- Sidebar content goes here -->
+                    <p>Welcome, <?= $_session->getRole() ?></p>
+                </div>
+            </div>
+            <?php
+    }?>
+            </div>
 <?php 
 }
 ?>
