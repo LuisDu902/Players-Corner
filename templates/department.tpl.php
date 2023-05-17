@@ -38,7 +38,11 @@ function drawDepartment(Session $session, Department $department)
         <header> Tickets </header>
         <?php drawTickets($department->tickets); ?>
     </section>
-
+    <form action="../actions/department_actions/action_remove_department.php" method="POST">
+        <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+        <input type="hidden" id="category" name="category" value="<?=$department->category?>" required>
+        <div class="button-wrap gradient round-border"> <button type="submit">Remove department</button> </div>
+    </form>
     </section>
 <?php } ?>
 

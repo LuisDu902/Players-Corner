@@ -53,6 +53,12 @@ class Department
     $stmt->execute(array($new_category));
   }
 
+  static function removeDepartment(PDO $db, string $category)
+  {
+    $stmt = $db->prepare('DELETE FROM Department WHERE category = ?');
+    $stmt->execute(array($category));
+  }
+
   static function getDepartments(PDO $db): array
   {
     $stmt = $db->prepare('SELECT category FROM Department');

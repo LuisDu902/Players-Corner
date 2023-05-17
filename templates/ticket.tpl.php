@@ -111,7 +111,7 @@ function drawTicket($ticket, $messages, $history, $attachedFiles)
                     <br>
                 </div>
                 <?php
-                if ($messag['user']->name !== $sender) {
+                if ($message['user']->name !== $sender) {
                     echo '</div>';
                     ?>
                     <br>
