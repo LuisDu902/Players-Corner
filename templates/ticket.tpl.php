@@ -87,11 +87,17 @@ function drawTicket($_session,$ticket, $messages, $history)
         <br>
         <span class="ticket-creator-small">Created by: <?= $ticket->creator->name ?></span>
         <span class="assigned">Assigned to: <?= $ticket->replier->name ?> </span>
-        <div class="ticket-info">
+        <br>
+        <div class="ticket-info-details">
             <span class="ticket-dep"><?= $ticket->category ?></span>
             <span id="<?= $ticket->status ?>-status" class="round-border status"><?= $ticket->status ?></span>
             <span id="<?= $ticket->priority ?>-priority" class="ticket-priority"><?= $ticket->priority ?></span>
             <span class="ticket-visibility"><?= $ticket->visibility ?></span>
+        </div>
+        <div class="tags">
+            <?php foreach ($ticket->tags as $tag) { ?>
+                <span><?= $tag ?></span>
+            <?php } ?>
         </div>
         <div class="description">
             <span class="desc"><?= $ticket->text?> </span>
@@ -141,11 +147,6 @@ function drawTicket($_session,$ticket, $messages, $history)
                 <span><?= $change->changes ?> : <?= $change->old_field ?> -> <?= $change->new_field ?></span>
                 <span class="status_date"><?= $change->date ?></span>
                 <br><br>
-            <?php } ?>
-        </div>
-        <div class="tags">
-            <?php foreach ($ticket->tags as $tag) { ?>
-                <span><?= $tag ?></span>
             <?php } ?>
         </div>
     </div>

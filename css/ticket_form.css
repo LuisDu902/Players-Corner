@@ -9,6 +9,9 @@
     border-radius: 5px;
     margin-bottom: 20px;
     padding: 10px;
+    flex: 1;
+    margin-right: 20px;
+    position: relative;
     
 }
 .ticket-header {
@@ -16,12 +19,13 @@
     justify-content:space-between;
     align-items: center;
     margin-bottom: 20px;
-  }
+}
 .edit{
     max-height: 40px;
 }
-.ticket-info{
+.ticket-info-details{
     display: flex;
+    justify-content: space-between;
     align-items:center;
 }
 .ticket-title {
@@ -43,13 +47,13 @@
     float: right;
     margin-right: 5px;
   }
-  .ticket-dep, .round-border status, .ticket-priority, .ticket-visibility{
+  .ticket-dep, .round-border status, .ticket-priority, .ticket-visibility, .tags{
     margin-left: 20px;
     font-weight: bold;
-  }
-  .round-border{
     text-align: center;
+    margin-right: 20px;
   }
+
   .ticket-date {
     font-weight: bold;
   }
@@ -158,11 +162,6 @@
 }
 .ticket-page {
     display: flex;
-}
-
-#ticket {
-    flex: 1;
-    margin-right: 20px;
 }
 
 .sidebar {
