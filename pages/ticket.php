@@ -18,6 +18,7 @@
     $attachedFiles = $ticket->getAttachedFiles();
 
     drawHeader($session);
-    drawTicket($ticket, $messages, $history, $attachedFiles);
+
+    drawTicket($session,$ticket, $messages, $history, $attachedFiles);
     drawFooter();
 ?>

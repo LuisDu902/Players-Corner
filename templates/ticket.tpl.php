@@ -59,89 +59,85 @@
 ?>
 
 <?php
-function drawTicket($ticket, $messages, $history, $attachedFiles)
-{
+function drawTicket($_session,$ticket, $messages, $history,$attachedFiles)
+{ 
     ?>
+    <head>
+        <link rel="stylesheet" href="../css/ticket_form.css">
+        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="../css/ticket.css">
+    </head>
+    <div id="ticket-page">
     <div id="ticket">
-        <a href="../pages/ticket.php?id=<?= $ticket->ticketId ?>" class="ticket">
-            <img src=<?= $ticket->creator->getPhoto() ?> class="<?= $ticket->creator->type ?>-card-border">
-            <span>
-                <?= $ticket->title ?>
-            </span>
-            <span>
-                <?= $ticket->category ?>
-            </span>
-            <span class="status" id="<?= $ticket->status ?>-status"><?= $ticket->status ?></span>
-            <span class="priority" id="<?= $ticket->priority ?>-priority"><?= $ticket->priority ?></span>
-            <span>
-                <?= $ticket->visibility ?>
-            </span>
-            <span>
-                <?= $ticket->date ?>
-            </span>
-        </a>
+        <div class="ticket-header">
+            <span class="ticket-title"><?= $ticket->title ?></span>
+            <span class="ticket-date"><?= $ticket->date ?></span> 
+        </div>
+        <br>
+        <span class="ticket-creator-small">Created by: <?= $ticket->creator->name ?></span>
+        <span class="assigned">Assigned to: <?= $ticket->replier->name ?> </span>
+        <br>
+        <div class="ticket-info-details">
+            <span class="ticket-dep"><?= $ticket->category ?></span>
+            <span id="<?= $ticket->status ?>-status" class="round-border status"><?= $ticket->status ?></span>
+            <span id="<?= $ticket->priority ?>-priority" class="ticket-priority"><?= $ticket->priority ?></span>
+            <span class="ticket-visibility"><?= $ticket->visibility ?></span>
+        </div>
+        <div class="tags-info">
+            <?php foreach ($ticket->tags as $tag) { ?>
+                <span><?= $tag ?></span>
+            <?php } ?>
+        </div>
         <div class="description">
-            <span>
-                <?= $ticket->text ?>
-            </span>
+            <span class="desc"><?= $ticket->text?> </span>
             </br></br>
         </div>
-        <div class="messages">
-            <?php
-            $sender = NULL;
+        <div class="messages-ticket">
+            <?php 
             foreach ($messages as $message) {
-                if ($message['user']->name !== $ticket->creator->name) {
+                if ($message['user']->userId !== $ticket->creator->userId) {
                     echo '<div class="message-container-replier">';
                 } else {
                     echo '<div class="message-container-creator">';
                 }
-                ?>
-                <div class="message">
-                    <span class="sender">
-                        <?= $message['user']->name ?>
-                    </span>
+            ?>
+                <div class="message-ticket">
+                    <span class="sender"><?= $message['user']->name ?></span>
                     <br>
-                    <span class="text">
-                        <?= $message['text'] ?>
-                    </span>
+                    <span class="text"><?= $message['text'] ?></span>
                     <br>
-                    <span class="time">
-                        <?= $message['date'] ?>
-                    </span>
+                    <span class="time"><?= $message['date'] ?></span>
                     <br>
                 </div>
+            <?php
+                echo '</div>';
+                ?> 
+                <br>
                 <?php
-                if ($message['user']->name !== $sender) {
-                    echo '</div>';
-                    ?>
-                    <br>
-                    <?php
-                    $sender = $message['user']->name;
-                }
             }
             ?>
         </div>
+
+
+        <?php if(($_session->getId()=== $ticket->creator->userId || $_session->getId()=== $ticket->replier->userId)) {?>
+        <div id="respond">
+            <form action="../actions/ticket_actions/action_add_message.php" method="post" id="reply">
+                <textarea name="text" id="text" rows="10" tabindex="4"  required="required"></textarea>
+                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+                <input type="hidden" name="id" value="<?=$ticket->ticketId?>">
+                <input name="submit" type="submit" value="Submit reply" />
+            </form>
+
+        </div>
+        <?php }?>
         <div class="history">
+            <br><br>
             <?php foreach ($history as $change) { ?>
-                <span>
-                    <?= $change->changes ?> :
-                    <?= $change->old_field ?> ->
-                    <?= $change->new_field ?>
-                </span>
-                <br><br>
-                <span>
-                    <?= $change->date ?>
-                </span>
+                <span><?= $change->changes ?> : <?= $change->old_field ?> -> <?= $change->new_field ?></span>
+                <span class="status_date"><?= $change->date ?></span>
                 <br><br>
             <?php } ?>
-        </div>
-        <div class="tags">
-            <?php foreach ($ticket->tags as $tag) { ?>
-                <span>
-                    <?= $tag ?>
-                </span>
-            <?php } ?>
-        </div>
+            </div>
         <form action="../actions/ticket_actions/action_attach_file.php" id="fileUploadForm" method="post" enctype="multipart/form-data">
             <label for="fileToUpload">
                 <img src="../images/icons/upload.png" alt="Upload icon" id="uploadFile">
@@ -154,6 +150,18 @@ function drawTicket($ticket, $messages, $history, $attachedFiles)
              <a href="../files/ticket<?=$ticket->ticketId?>_<?=$filename?>" download><?=$filename?></a>
             <?php } ?>
     </div>
-    <?php
+    <?php if($_session->getRole()=='admin' || $_session->getRole()== 'agent'){
+        ?>
+            <div class="sidebar">
+                <h1>Edit Ticket</h1>
+                <div class="sidebar-content">
+                    <!-- Sidebar content goes here -->
+                    <p>Welcome, <?= $_session->getRole() ?></p>
+                </div>
+            </div>
+            <?php
+    }?>
+    </div>    
+<?php 
 }
 ?>

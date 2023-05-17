@@ -6,16 +6,18 @@
 
   require_once(__DIR__ . '/../../database/connection.db.php');
   require_once(__DIR__ . '/../../classes/ticket.class.php');
+  require_once(__DIR__ . '/../../utils/validation.php');
 
   $db = getDatabaseConnection();
   
   if (!valid_token($_POST['csrf'])){
     die(header("Location: ../../pages/create_ticket.php"));
   }
-
-  $ticket = Ticket::getTicket($db, $_POST['id']);
-  $ticket->addMessage($db, $_POST['userId'],$_POST['text']);
+ 
+  $ticket = Ticket::getTicket($db,intval($_POST['id']));
+  $ticket->addMessage($db, intval($session->getId()),$_POST['text']);
 
   $session->addMessage('success', 'Message added!');
-  header("Location: ../../pages/tickets.php");
+
+  header("Location: ../../pages/ticket.php?id={$_POST['id']}");
 ?>
