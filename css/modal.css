@@ -8,12 +8,13 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.5);
 }
 
 .modal-content {
     margin: auto;
     padding: 20px 30px;
+    background-color: #222033;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -82,4 +83,10 @@
 
 #department-modal-content {
     max-width: 500px;
+}
+
+.modal form input[type="text"],
+form textarea,
+form select {
+  color: black;
 }

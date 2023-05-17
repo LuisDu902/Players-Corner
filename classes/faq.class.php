@@ -52,5 +52,11 @@
         $faq['content']
       );
     }
+    static function addFaq(PDO $db, string $problem, string $answer)
+  {
+      $stmt = $db->prepare('INSERT INTO FAQ (title, content) VALUES (?, ?)');
+      $stmt->execute([$problem, $answer]);
+  }
+
   }
 ?>
