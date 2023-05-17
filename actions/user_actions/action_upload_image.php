@@ -9,10 +9,12 @@
     die(header("Location: ../../pages/edit_profile.php"));
   }
 
-  if ($_FILES['imageToUpload']['tmp_name'][0] == "") {
+  if ($_FILES['imageToUpload']['tmp_name'][0] == "" || !getimagesize($_FILES["imageToUpload"]["tmp_name"])) {
     $session->addMessage('warning', 'Choose an image first!');
     die(header("Location: ../../pages/edit_profile.php"));
   }
+
+ 
 
   $fileName = "../../images/users/user" . $session->getId() . ".png";
   move_uploaded_file($_FILES['imageToUpload']['tmp_name'], $fileName);

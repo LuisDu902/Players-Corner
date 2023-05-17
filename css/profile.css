@@ -8,14 +8,10 @@
   margin-top: 20px;
 }
 
-.title {
+.container article h2{
+  position: relative;
   font-size: 2em;
-  color: #44C4D9;
-}
-
-.container article h3{
-  font-size: 2em;
-  margin: 30px 20px 0;
+  margin: 25px 0;
   background-color: transparent;
 }
 
@@ -59,4 +55,18 @@
 
 .edit-profile{
   display: flex;
+}
+
+.no-tickets{
+  display: block;
+  margin: 0 auto;
+}
+
+.no-members{
+  width: 300px;
+  height: 300px;
+}
+
+.no-background{
+  background-color: transparent;
 }

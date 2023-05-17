@@ -22,6 +22,22 @@
         return true;
     }
 
+    function valid_new_department(PDO $db, string $department): bool{
+        $stmt = $db->prepare('
+            SELECT category
+            FROM Department 
+            WHERE category = ?
+        ');
+
+        $stmt->execute(array($department));
+        if ($stmt->fetch()){
+            $session = new Session();
+            $session->addMessage('error', 'Department name already in use. Please choose a different one!');
+            return false;
+        }
+        return true;
+    }
+
     function valid_new_username(PDO $db, string $username): bool{
         $stmt = $db->prepare('
             SELECT userId, name, username, email, password, reputation, type
@@ -86,4 +102,20 @@
         return true;
     }
 
+    function valid_new_faq(PDO $db, string $problem): bool {
+        $stmt = $db->prepare('
+            SELECT FAQ.title
+            FROM FAQ 
+            WHERE FAQ.title = ?
+        ');
+    
+        $stmt->execute([$problem]);
+        if ($stmt->fetch()) {
+            $session = new Session();
+            $session->addMessage('error', 'FAQ problem already exists. Please provide a unique problem!');
+            return false;
+        }
+        return true;
+    }
+    
 ?>

@@ -4,17 +4,21 @@ const userOrderSelect = document.querySelector('#order-user')
 const searchUser = document.querySelector('#search-user')
 
 if (searchUser) {
-  searchUser.addEventListener('input', searchUsers)
-}
-if (userFilterSelect) {
-  userFilterSelect.addEventListener('change', searchUsers)
-}
-if (userOrderSelect) {
-  userOrderSelect.addEventListener('change', searchUsers)
+  searchUsers("", "users", "name")
+  searchUser.addEventListener('input', () => {
+    searchUsers(searchUser.value, userFilterSelect.value, userOrderSelect.value)
+  })
+  userFilterSelect.addEventListener('change', () => {
+    searchUsers(searchUser.value, userFilterSelect.value, userOrderSelect.value)
+  })
+  userOrderSelect.addEventListener('change', () => {
+    searchUsers(searchUser.value, userFilterSelect.value, userOrderSelect.value)
+  })
 }
 
-async function searchUsers() {
-  const response = await fetch('../api/api_search_users.php?' + encodeForAjax({search: searchUser.value}) + "&" + encodeForAjax({role: userFilterSelect.value}) + "&" + encodeForAjax({order: userOrderSelect.value}))
+
+async function searchUsers(searchValue, filterValue, orderValue) {
+  const response = await fetch('../api/api_search_users.php?' + encodeForAjax({ search: searchValue }) + "&" + encodeForAjax({ role: filterValue }) + "&" + encodeForAjax({ order: orderValue }))
   const users = await response.json()
 
   const section = document.querySelector('#users')
@@ -28,6 +32,7 @@ async function searchUsers() {
   showUpgradeModal()
   showAssignModal()
 }
+
 
 function createUserCard(user) {
   const userCard = document.createElement('div');
@@ -51,10 +56,12 @@ function createCardType(user) {
   typeSpan.textContent = user.type;
   cardType.appendChild(typeSpan);
 
-  const repSpan = document.createElement('span');
-  repSpan.classList.add('rep', 'center', 'bold', 'circle-border');
-  repSpan.textContent = user.reputation;
-  cardType.appendChild(repSpan);
+  if (user.type !== 'client') {
+    const repSpan = document.createElement('span');
+    repSpan.classList.add('rep', 'center', 'bold', 'circle-border');
+    repSpan.textContent = user.reputation;
+    cardType.appendChild(repSpan);
+  }
 
   return cardType;
 }
@@ -131,9 +138,8 @@ function createUserId(user) {
   return userIdInput;
 }
 
-
 function encodeForAjax(data) {
-  return Object.keys(data).map(function(k){
+  return Object.keys(data).map(function (k) {
     return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
   }).join('&')
 }

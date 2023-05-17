@@ -1,23 +1,7 @@
 <?php
-class Message
-{
-    public int $messageId;
-    public User $user;
-    public Ticket $ticket;
-    public string $text;
-    public string $date;
-   
-
-    public function __construct(int $messageId, User $user, Ticket $ticket, string $text, string $date)
-    {
-        $this->messageId = $messageId;
-        $this->user = $user;
-        $this->ticket = $ticket;
-        $this->date = $date;
-        $this->text = $text;
-    }
-
-}
+  declare(strict_types = 1);
+  require_once( __DIR__ . '/user.class.php');
+  require_once( __DIR__ . '/ticket.class.php');
 
 class Change
 {

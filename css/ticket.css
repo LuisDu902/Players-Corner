@@ -60,16 +60,33 @@
   color: #FFBD59;
 }
 
-#high-priority, #critical-priority{
+#high-priority, #critical-priority, #high-priority::after, #critical-priority::after{
   color: #FF5757;
 }
 
 #high-priority::after{
   content: "!";
-  color: #FF5757;
 }
 
 #critical-priority::after{
   content: "!!!";
-  color: #FF5757;
+}
+
+
+.pagination-bar {
+	display: flex;
+}
+
+.pagination-bar button {
+	width: 50px;
+	height: 50px;
+	border: none;
+	margin: 5px;
+	transition: 0.4s;
+  font-weight: bolder;
+}
+
+.pagination-bar button:hover, .pagination-bar button.active {
+  color: #D66AE6;
+  font-weight: bolder;
 }

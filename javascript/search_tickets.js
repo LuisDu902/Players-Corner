@@ -2,31 +2,80 @@
 const ticketFilterSelect = document.querySelector('#filter-ticket')
 const ticketOrderSelect = document.querySelector('#order-ticket')
 const searchTicket = document.querySelector('#search-ticket')
+const tickets = document.querySelector('.tickets')
+const departmentPage = document.querySelector('.department')
+const pagination_element = document.querySelector('.pagination-bar');
 
-if (searchTicket) {
-  searchTicket.addEventListener('input', searchTickets)
+if (tickets) {
+  if (searchTicket) {
+    searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
+    searchTicket.addEventListener('input', function () {
+      searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
+    });
+    ticketFilterSelect.addEventListener('change', function () {
+      searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
+    });
+    ticketOrderSelect.addEventListener('change', function () {
+      searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value);
+    });
+  }
+  else if (departmentPage){
+    const category = document.querySelector('#department-title')
+    searchTickets(category.textContent, 'category', 'title');
+  }
 }
-if (ticketFilterSelect) {
-  ticketFilterSelect.addEventListener('change', searchTickets)
-}
-if (ticketOrderSelect) {
-  ticketOrderSelect.addEventListener('change', searchTickets)
-}
 
-async function searchTickets() {
-
-  const response = await fetch('../api/api_search_tickets.php?' + encodeForAjax({search: searchTicket.value}) + "&" + encodeForAjax({filter: ticketFilterSelect.value}) + "&" + encodeForAjax({order: ticketOrderSelect.value}))
-
+async function searchTickets(searchValue, filterValue, orderValue) {
+  const response = await fetch('../api/api_search_tickets.php?' + encodeForAjax({ search: searchValue }) + "&" + encodeForAjax({ filter: filterValue }) + "&" + encodeForAjax({ order: orderValue }))
   const tickets = await response.json()
+  current_page = 1
+  displayTickets(tickets, current_page)
+  setupPagination(tickets, pagination_element)
+}
 
+function displayTickets(tickets, page) {
+  console.log(page)
+  page--;
+  let start = 5 * page;
+  let end = start + 5;
+  let paginatedItems = tickets.slice(start, end);
+  console.log(paginatedItems)
   const section = document.querySelector('.tickets tbody')
   section.innerHTML = ''
 
-  for (const ticket of tickets) {
+  for (const ticket of paginatedItems) {
     const ticketCard = createTicketCard(ticket)
     section.appendChild(ticketCard)
   }
+}
 
+function setupPagination(items, wrapper) {
+  wrapper.innerHTML = "";
+
+  let page_count = Math.ceil(items.length / 5);
+  for (let i = 1; i < page_count + 1; i++) {
+    let btn = paginationButton(i, items);
+    wrapper.appendChild(btn);
+  }
+}
+
+function paginationButton(page, items) {
+  let button = document.createElement('button');
+  button.innerText = page;
+
+  if (current_page == page) button.classList.add('active');
+
+  button.addEventListener('click', function () {
+    current_page = page;
+    displayTickets(items, page)
+
+    let current_btn = document.querySelector('.pagination-bar button.active');
+    current_btn.classList.remove('active');
+
+    button.classList.add('active');
+  });
+
+  return button;
 }
 
 function createTicketCard(ticket) {
@@ -38,7 +87,7 @@ function createTicketCard(ticket) {
   const creatorImg = document.createElement('img');
   if (ticket.creator.hasPhoto) {
     creatorImg.src = '../images/users/user' + ticket.creator.userId + '.png'
-  } else{
+  } else {
     creatorImg.src = '../images/users/default.png'
   }
   creatorImg.classList.add(ticket.creator.type + '-card-border', 'circle-border');

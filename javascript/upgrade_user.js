@@ -80,7 +80,7 @@ function upgradeModal() {
     const token = document.createElement('input')
     token.type = 'hidden'
     token.name = 'csrf'
-    token.value = document.querySelector('body').getAttribute('data-value') 
+    token.value = document.querySelector('body').getAttribute('data-csrf') 
 
     form.appendChild(promote)
     form.appendChild(buttonWrap)

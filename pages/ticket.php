@@ -2,7 +2,7 @@
     declare(strict_types = 1);
 
     require_once(__DIR__ . '/../classes/session.class.php');
-    require_once(__DIR__ . '/../classes/message.class.php');
+    require_once(__DIR__ . '/../classes/change.class.php');
     require_once(__DIR__ . '/../classes/ticket.class.php');
     $session = new Session();
 
@@ -12,9 +12,13 @@
 
     $db= getDatabaseConnection();
     $ticket = Ticket::getTicket($db, intval($_GET['id']));
+    
     $messages = $ticket->getMessages($db);
     $history = $ticket->getTicketHistory($db);
+    $attachedFiles = $ticket->getAttachedFiles();
+
     drawHeader($session);
-    drawTicket($session,$ticket, $messages, $history);
+
+    drawTicket($session,$ticket, $messages, $history, $attachedFiles);
     drawFooter();
 ?>

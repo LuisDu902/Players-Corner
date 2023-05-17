@@ -1,5 +1,7 @@
 <?php
 
+require_once(__DIR__ . "/department.class.php");
+require_once(__DIR__ . "/ticket.class.php");
 class User
 {
   public int $userId;
@@ -35,12 +37,13 @@ class User
     $this->username = $username;
     $this->password = password_hash($password, PASSWORD_DEFAULT, $options);
   }
-  static function getUserWithPassword(PDO $db, string $email, string $password) : ?User {
+  static function getUserWithPassword(PDO $db, string $email, string $password): ?User
+  {
 
     $stmt = $db->prepare('SELECT * FROM User WHERE email = ?');
     $stmt->execute(array($email));
     $user = $stmt->fetch();
-    
+
     if ($user !== false && password_verify($password, $user['password'])) {
       return new User(
         intval($user['userId']),
@@ -51,7 +54,8 @@ class User
         intval($user['reputation']),
         $user['type'],
       );
-    } else return null;
+    } else
+      return null;
   }
   static function registerUser(PDO $db, string $name, string $username, string $email, string $password)
   {
@@ -60,11 +64,11 @@ class User
     $stmt->execute(array($name, $username, $email, password_hash($password, PASSWORD_DEFAULT, $options)));
   }
 
- 
+
   static function getUser(PDO $db, int $id): User
   {
-    if ($id == 0){
-      return new User(0,'','','','',0,'');
+    if ($id == 0) {
+      return new User(0, '', '', '', '', 0, '');
     }
     $stmt = $db->prepare('SELECT * FROM User WHERE userId = ?');
 
@@ -88,7 +92,14 @@ class User
     $stmt->execute(array($reputation, $this->userId));
   }
 
- 
+  function getAgentDepartments(PDO $db)
+  {
+    $stmt = $db->prepare('SELECT department FROM AgentDepartment WHERE agent = ?');
+    $stmt->execute(array($this->userId));
+    $departments = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    return $departments;
+  }
+
   function getPhoto(): string
   {
     $default = "../images/users/default.png";
@@ -102,8 +113,9 @@ class User
   static function searchUsers(PDO $db, string $search = '', string $filter = 'users', string $order = 'name'): array
   {
     //prevent SQL injection attacks
-    if ($order != 'reputation' && $order != 'type') $order = 'name';
-    
+    if ($order != 'reputation' && $order != 'type')
+      $order = 'name';
+
     if ($filter === "users") {
       $query = 'SELECT * FROM User WHERE name LIKE ? ORDER BY ' . $order;
       $stmt = $db->prepare($query);
@@ -159,6 +171,8 @@ class User
     while ($department = $stmt->fetch()) {
       $departments[] = new Department(
         $department['category'],
+        Department::getTickets($db, $department['category']),
+        Department::getMembers($db, $department['category']),
       );
     }
     return $departments;
@@ -168,6 +182,18 @@ class User
   {
     $stmt = $db->prepare('INSERT INTO AgentDepartment VALUES (?, ?)');
     $stmt->execute(array($this->userId, $department));
+  }
+
+  function getTicketStats(PDO $db) : array
+  {
+    $stmt = $db->prepare('SELECT DATE(createDate) AS createDay, COUNT(*) AS numTickets FROM Ticket WHERE creator = ? GROUP BY createDay');
+    $stmt->execute(array($this->userId));
+
+    $ticket_stats = array();
+    while ($day = $stmt->fetch()) {
+      $ticket_stats[] = array($day['createDay'], $day['numTickets']);
+    }
+    return $ticket_stats;
   }
 }
 ?>

@@ -10,10 +10,7 @@
   $stmt = $db->prepare('SELECT tag FROM TicketTag GROUP BY tag');
   $stmt->execute();
   
-  $tags = array();
-  while ($tag = $stmt->fetch()) {
-   $tags[] = $tag['tag'];
-  }
+  $tags = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
   echo json_encode($tags);
 

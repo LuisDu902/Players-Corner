@@ -20,9 +20,6 @@
     align-items: center;
     margin-bottom: 20px;
 }
-.edit{
-    max-height: 40px;
-}
 .ticket-info-details{
     display: flex;
     justify-content: space-between;
@@ -47,7 +44,7 @@
     float: right;
     margin-right: 5px;
   }
-  .ticket-dep, .round-border status, .ticket-priority, .ticket-visibility, .tags{
+  .ticket-dep, .round-border status, .ticket-priority, .ticket-visibility{
     margin-left: 20px;
     font-weight: bold;
     text-align: center;
@@ -70,25 +67,25 @@
     font-size: 1.1em;
 }
 
-#ticket .messages {
+#ticket .messages-ticket {
     margin-top: 20px;
 }
 
-#ticket .messages .message-container-creator {
+#ticket .messages-ticket .message-container-creator {
     display: flex;
     flex-direction: column;
     align-items: flex-end; /* Align creator messages to the right */
     margin-bottom: 10px;
 }
 
-#ticket .messages .message-container-replier {
+#ticket .messages-ticket .message-container-replier {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-bottom: 10px;
 }
 
-#ticket .messages .message {
+#ticket .messages-ticket .message-ticket {
     margin-top: 10px;
     padding: 10px;
     border: 2px solid #D66AE6;
@@ -97,27 +94,27 @@
     width: 70%;
 }
 
-#ticket .messages .message-container-creator .message {
+#ticket .messages-ticket .message-container-creator .message-ticket {
     background-color: #D66AE6; /* Set background color for creator messages */
     color: #ffffff;
 }
 
-#ticket .messages .message-container-replier .message {
+#ticket .messages-ticket .message-container-replier .message-ticket {
     background-color: #ff5ee4; /* Set background color for replier messages */
-    color: #000000;
+    color: #ffffff;
     margin-left: 10px;
 }
 
-#ticket .messages .message .sender {
+#ticket .messages-ticket .message-ticket .sender {
     font-weight: bold;
     margin-right: 5px;
 }
 
-#ticket .messages .message .text {
+#ticket .messages-ticket .message-ticket .text {
     margin: 5px 0;
 }
 
-#ticket .messages .message .time {
+#ticket .messages-ticket .message-ticket .time {
     font-size: 0.8em;
     color: #ffffff;
 }
@@ -137,11 +134,11 @@
     margin-bottom: 10px;
 }
 
-#ticket .tags {
+#ticket .tags-info {
     margin-top: 20px;
 }
 
-#ticket .tags span {
+#ticket .tags-info span {
     display: inline-block;
     padding: 5px 10px;
     background-color: #d04545;

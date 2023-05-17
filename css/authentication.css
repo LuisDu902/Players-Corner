@@ -15,11 +15,10 @@
     width: 100%;
     padding: 20px;
     border: none;
+    background-color: #222033;
 }
 
 .input-box .icon {
-    max-height: 3rem;
-    width: 2rem;
     padding: 0px 10px 20px 0px;
 }
 
