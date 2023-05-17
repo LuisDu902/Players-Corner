@@ -3,8 +3,10 @@
     display: flex;
     justify-content: space-between;
 }
+
 #ticket {
     border: 2px solid #D66AE6;
+    border-radius: 5px;
     margin-bottom: 20px;
     padding: 10px;
     
@@ -53,14 +55,10 @@
   }
   
 
-#ticket a.ticket:hover {
-    border: 3px solid #D66AE6;
-}
-
-
 #ticket .description {
     padding-top: 10px;
     border: 2px solid #D66AE6;
+    border-radius: 10px;
 }
 #ticket .desc{
     margin-top: 10px;
@@ -158,18 +156,26 @@
     margin-top: -10px;
     padding-top: 10px;
 }
-
-.ticket-wrapper {
+.ticket-page {
     display: flex;
 }
 
-.ticket-content {
+#ticket {
     flex: 1;
     margin-right: 20px;
 }
 
 .sidebar {
-    width: 200px;
-    background-color: #f2f2f2;
+    width: 30%;
+    border: 2px solid #D66AE6;
+    border-radius: 10px;
     padding: 10px;
+}
+
+.sidebar + #ticket {
+    margin-right: 0;
+}
+
+.sidebar > h1 {
+    text-align: center;
 }
