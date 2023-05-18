@@ -12,7 +12,7 @@
     $db= getDatabaseConnection();
 
     drawHeader($session);
-    $faqs = FAQ::getFAQs($db, 5, 1);
+    $faqs = FAQ::getFAQs($db);
     drawFAQList($faqs, $session);
     drawFooter();
 ?>
