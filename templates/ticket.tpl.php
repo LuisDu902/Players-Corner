@@ -62,12 +62,7 @@
 function drawTicket($_session,$ticket, $messages, $history,$attachedFiles)
 { 
     ?>
-    <head>
-        <link rel="stylesheet" href="../css/ticket_form.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/ticket.css">
-    </head>
-    <div id="ticket-page">
+<div id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>" >
     <div id="ticket">
         <div class="ticket-header">
             <span class="ticket-title"><?= $ticket->title ?></span>
@@ -92,42 +87,26 @@ function drawTicket($_session,$ticket, $messages, $history,$attachedFiles)
             <span class="desc"><?= $ticket->text?> </span>
             </br></br>
         </div>
-        <div class="messages-ticket">
-            <?php 
-            foreach ($messages as $message) {
-                if ($message['user']->userId !== $ticket->creator->userId) {
-                    echo '<div class="message-container-replier">';
-                } else {
-                    echo '<div class="message-container-creator">';
-                }
-            ?>
-                <div class="message-ticket">
-                    <span class="sender"><?= $message['user']->name ?></span>
-                    <br>
-                    <span class="text"><?= $message['text'] ?></span>
-                    <br>
-                    <span class="time"><?= $message['date'] ?></span>
-                    <br>
+        <div class="vert-flex messages-ticket">
+            <?php  foreach ($messages as $message) {
+                if ($message['user']->userId !== $ticket->creator->userId) { ?>
+                    <div class="vert-flex replier-msg round-border">
+                <?php } else { ?>
+                    <div class="vert-flex creator-msg round-border">
+               <?php } ?>
+                    <h2 class="sender"><?= $message['user']->name ?></h2>
+                    <h3 class="text"><?= $message['text'] ?></h3>
+                    <h4 class="time"><?= $message['date'] ?></h4>
                 </div>
-            <?php
-                echo '</div>';
-                ?> 
-                <br>
-                <?php
-            }
-            ?>
+                <?php } ?>
         </div>
 
-
         <?php if(($_session->getId()=== $ticket->creator->userId || $_session->getId()=== $ticket->replier->userId)) {?>
-        <div id="respond">
-            <form action="../actions/ticket_actions/action_add_message.php" method="post" id="reply">
-                <textarea name="text" id="text" rows="10" tabindex="4"  required="required"></textarea>
-                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-                <input type="hidden" name="id" value="<?=$ticket->ticketId?>">
-                <input name="submit" type="submit" value="Submit reply" />
-            </form>
-
+        <div id="respond" >
+            <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
+            <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
+            <button id="faq-button" class="no-background"><span>FAQ</span></button>
+            <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
         </div>
         <?php }?>
         <div class="history">

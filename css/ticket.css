@@ -90,3 +90,50 @@
   color: #D66AE6;
   font-weight: bolder;
 }
+
+#respond{
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  column-gap: 15px;
+  background-color: #282948;
+  padding: 15px;
+  border-radius: 10px;
+}
+
+#respond button{
+  border: none;
+}
+
+#faq-button span{
+  background-color: white;
+  color: #282948;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  margin-top: 20px;
+}
+
+#message-input {
+  resize: none;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 1.2em;
+}
+
+
+
+.replier-msg{
+  width: 60%;
+  background-color: #ff5ee4;
+  margin: 10px;
+  padding: 10px;
+}
+
+.creator-msg{
+  align-self: flex-end;
+  width: 60%;
+  background-color: #D66AE6;
+  margin: 10px;
+  padding: 10px;
+}
