@@ -1,105 +1,15 @@
-/* Ticket Form */
-#ticket {
+
+.sidebar {
+    width: 30%;
     border: 2px solid #D66AE6;
-    margin-bottom: 20px;
+    border-radius: 10px;
     padding: 10px;
-    
 }
 
-#ticket a.ticket {
-    display: grid;
-    grid-template-columns: 0.5fr 3.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
-    grid-column-gap: 50px;
-    margin: 10px 0;
-    padding: 20px;
-    font-weight: bold;
-    font-size: 1.2em;
-    text-decoration: none;
-    color: black;
+.sidebar + #ticket {
+    margin-right: 0;
 }
 
-#ticket a.ticket:hover {
-    border: 3px solid #D66AE6;
-}
-
-#ticket a.ticket img {
-    width: 90px;
-    height: 90px;
-    object-fit: cover;
-}
-
-#ticket .description {
-    margin-top: 10px;
-    font-size: 1.1em;
-    color: #333;
-    border: 2px solid #D66AE6;
-}
-
-#ticket .messages {
-    margin-top: 20px;
-}
-
-#ticket .messages .message-container-creator {
-    display: flex;
-    flex-direction: column;
-    margin-left:10em;
-    margin-bottom: 10px;
-}
-
-#ticket .messages .message-container-replier {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    margin-bottom: 10px;
-}
-
-#ticket .messages .message {
-    margin-top: 10px;
-    padding: 10px;
-    padding: 10px;
-    padding: 10px;
-    border: 2px solid #D66AE6;
-    border-radius: 5px;
-}
-
-#ticket .messages .message .sender {
-    font-weight: bold;
-    margin-right: 5px;
-}
-
-#ticket .messages .message .text {
-    color: #ffffff;
-    margin: 5px 0;
-}
-
-#ticket .messages .message .time {
-    font-size: 0.8em;
-    color: #999;
-}
-
-#ticket .history {
-    margin-top: 20px;
-    font-size: 1.1em;
-    color: #ff0000;
-}
-
-#ticket .history span {
-    display: block;
-    margin-bottom: 10px;
-}
-
-#ticket .tags {
-    margin-top: 20px;
-}
-
-#ticket .tags span {
-    display: inline-block;
-    padding: 5px 10px;
-    background-color: #d04545;
-    border-radius: 5px;
-    margin-right: 10px;
-    margin-bottom: 10px;
-    color: #fff;
-    font-weight: bold;
-    font-size: 0.9em;
+.sidebar > h1 {
+    text-align: center;
 }
