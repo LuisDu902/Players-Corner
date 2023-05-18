@@ -11,12 +11,12 @@
 
 .ticket, .ticket-info{
   display: grid;
-  grid-template-columns: 0.5fr 3.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 3.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
   grid-column-gap: 50px;
   margin: 10px 0px;
   padding: 20px;
   font-weight: bold;
-  font-size: 1.2em;
+  font-size: 1.2em;  
 }
 
 .ticket:hover, .user-card:hover, .department-card img:hover {
@@ -24,8 +24,13 @@
 }
 
 .ticket img {
-  width: 90px;
-  height: 90px;
+  width: 70px;
+  height: 70px;
+  margin-bottom: 10px;
+}
+
+.ticket {
+  cursor: pointer;
 }
 
 .status{
@@ -71,7 +76,6 @@
 #critical-priority::after{
   content: "!!!";
 }
-
 
 .pagination-bar {
 	display: flex;

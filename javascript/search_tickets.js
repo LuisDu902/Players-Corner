@@ -84,6 +84,7 @@ function createTicketCard(ticket) {
   ticketRow.classList.add('ticket', 'white-border', 'round-border', 'center');
 
   const creatorCell = document.createElement('td');
+  creatorCell.classList.add('vert-flex', 'center')
   const creatorImg = document.createElement('img');
   if (ticket.creator.hasPhoto) {
     creatorImg.src = '../images/users/user' + ticket.creator.userId + '.png'
@@ -91,14 +92,16 @@ function createTicketCard(ticket) {
     creatorImg.src = '../images/users/default.png'
   }
   creatorImg.classList.add(ticket.creator.type + '-card-border', 'circle-border');
+  
+  const creatorName = document.createElement('h5')
+  creatorName.textContent = ticket.creator.name
+
   creatorCell.appendChild(creatorImg);
+  creatorCell.appendChild(creatorName);
   ticketRow.appendChild(creatorCell);
 
   const titleCell = document.createElement('td');
-  const titleLink = document.createElement('a');
-  titleLink.href = '../pages/ticket.php?id=' + ticket.ticketId;
-  titleLink.textContent = ticket.title;
-  titleCell.appendChild(titleLink);
+  titleCell.textContent = ticket.title;
   ticketRow.appendChild(titleCell);
 
   const tagsCell = document.createElement('td');
@@ -132,6 +135,10 @@ function createTicketCard(ticket) {
   const dateCell = document.createElement('td');
   dateCell.textContent = ticket.date;
   ticketRow.appendChild(dateCell);
+
+  ticketRow.addEventListener('click', function() {
+    window.location.href = '../pages/ticket.php?id=' + ticket.ticketId;
+  });
 
   return ticketRow
 }

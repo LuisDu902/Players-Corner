@@ -1,11 +1,11 @@
 
 
 <?php
-function drawDepartment(Session $session, Department $department)
+function drawDepartment(bool $hasAccess, Department $department)
 { ?>
     <section class="department">
     <header id="department-title"><?= $department->category ?></header>
-    <?php if ($session->getRole() !== 'client') { ?>
+    <?php if ($hasAccess) { ?>
         <section id="department-stats" class="container">
         <article class="round-border" id="dept-ticket-status">
             <h3>Tickets by status</h3>
@@ -33,9 +33,10 @@ function drawDepartment(Session $session, Department $department)
         </article>
 
     </section>
-    <?php } ?>
+   
     <section id="department-tickets">
         <header> Tickets </header>
+        <?php } ?>
         <?php drawTickets($department->tickets); ?>
     </section>
     <form action="../actions/department_actions/action_remove_department.php" method="POST">
