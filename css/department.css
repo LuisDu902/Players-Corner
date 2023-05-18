@@ -65,7 +65,7 @@
 
 .container article {
     background-color: #282948;
-    padding: 20px;
+    padding: 2vh;
     width: 55vh;
     height: 55vh;
     justify-self: center;
@@ -73,7 +73,7 @@
 
 
 .container article h3{
-    font-size: 1.5em;
+    font-size: 3vh;
     margin: 10px 10px 20px 10px;
     background-color: transparent;
 }
