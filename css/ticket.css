@@ -95,6 +95,69 @@
   font-weight: bolder;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*ticket page*/
+
+#ticket-page {
+  display: flex;
+  align-items: flex-start;
+}
+
+#tkt {
+  flex: 1;
+  margin: 20px;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 30px;
+}
+
+#tkt h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+#tkt h3{
+  font-weight: lighter;
+}
+
+
+#tkt hr{
+  
+}
+
+#ticket-text{
+  margin: 40px 0px;
+  font-size: 1.5rem;
+  padding: 20px;
+  background-color: #1A1725;
+  border: 5px solid #814FED;
+  text-align: justify;
+}
+
 #respond{
   display: grid;
   grid-template-columns: 1fr auto auto auto;

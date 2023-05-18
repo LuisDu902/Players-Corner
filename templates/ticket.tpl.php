@@ -63,46 +63,11 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles)
 {
     ?>
     <div id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
-        <div id="ticket">
-            <div class="ticket-header">
-                <span class="ticket-title">
-                    <?= $ticket->title ?>
-                </span>
-                <span class="ticket-date">
-                    <?= $ticket->date ?>
-                </span>
-            </div>
-            <br>
-            <span class="ticket-creator-small">Created by:
-                <?= $ticket->creator->name ?>
-            </span>
-            <span class="assigned">Assigned to:
-                <?= $ticket->replier->name ?>
-            </span>
-            <br>
-            <div class="ticket-info-details">
-                <span class="ticket-dep">
-                    <?= $ticket->category ?>
-                </span>
-                <span id="<?= $ticket->status ?>-status" class="round-border status"><?= $ticket->status ?></span>
-                <span id="<?= $ticket->priority ?>-priority" class="ticket-priority"><?= $ticket->priority ?></span>
-                <span class="ticket-visibility">
-                    <?= $ticket->visibility ?>
-                </span>
-            </div>
-            <div class="tags-info">
-                <?php foreach ($ticket->tags as $tag) { ?>
-                    <span>
-                        <?= $tag ?>
-                    </span>
-                <?php } ?>
-            </div>
-            <div class="description">
-                <span class="desc">
-                    <?= $ticket->text ?>
-                </span>
-                </br></br>
-            </div>
+        <article id="tkt">
+            <h1 class="highlight"><?= $ticket->title ?></h1>
+            <h3>Created by: <?= $ticket->creator->name ?> | <?= $ticket->date ?></h3>
+            <p id="ticket-text" class="round-border"><?= $ticket->text ?></p>
+            <hr>
             <div class="vert-flex messages-ticket">
                 <?php foreach ($messages as $message) {
                     if ($message['user']->userId !== $ticket->creator->userId) { ?>
@@ -132,47 +97,33 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles)
                         <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
                     </div>
                 <?php } ?>
-                <div class="history">
-                    <br><br>
-                    <?php foreach ($history as $change) { ?>
-                        <span>
-                            <?= $change->changes ?> :
-                            <?= $change->old_field ?> ->
-                            <?= $change->new_field ?>
-                        </span>
-                        <span class="status_date">
-                            <?= $change->date ?>
-                        </span>
-                        <br><br>
-                    <?php } ?>
+        </article>
+
+        <?php if ($_session->getRole() == 'admin' || $_session->getRole() == 'agent') {
+            ?>
+            <section class="sidebar">
+                <h1>Edit Ticket</h1>
+                <div class="sidebar-content">
+
+                    <p>Welcome,
+                        <?= $_session->getRole() ?>
+                    </p>
                 </div>
-
-
-            </div>
-            <?php if ($_session->getRole() == 'admin' || $_session->getRole() == 'agent') {
-                ?>
-                <section class="sidebar">
-                    <h1>Edit Ticket</h1>
-                    <div class="sidebar-content">
-
-                        <p>Welcome,
-                            <?= $_session->getRole() ?>
-                        </p>
-                    </div>
-                    <article id="files">
-                        <h2>Attached Files</h2>
-                        <ul>
-                            <?php foreach ($attachedFiles as $filename) { ?>
-                                <li>
-                                    <a href="../files/ticket<?= $ticket->ticketId ?>_<?= $filename ?>" download><?= $filename ?></a>
-                                </li>
-                            <?php } ?>
-                        </ul>
-                    </article>
-                </section>
-                <?php
-            } ?>
-        </div>
-        <?php
+                <article id="files">
+                    <h2>Attached Files</h2>
+                    <ul>
+                        <?php foreach ($attachedFiles as $filename) { ?>
+                            <li>
+                                <a href="../files/ticket<?= $ticket->ticketId ?>_<?= $filename ?>" download><?= $filename ?></a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </article>
+            </section>
+            <?php
+        } ?>
+    </div>
+    </div>
+    <?php
 }
 ?>

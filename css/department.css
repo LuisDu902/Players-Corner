@@ -66,8 +66,8 @@
 .container article {
     background-color: #282948;
     padding: 20px;
-    width: 500px;
-    height: 500px;
+    width: 55vh;
+    height: 55vh;
     justify-self: center;
 }
 
@@ -90,17 +90,17 @@
 }
 
 #dept-members {
-    max-height: 500px;
+    max-height: 55vh;
     float: left;
     overflow-y: auto;
     margin-right: 0;
 }
 
 #dept-members-img {
-    height: 85px;
-    width: 85px;
+    height: 10vh;
+    width: 10vh;
     position: relative;
-    left: 35px;
+    left: 3vh;
 }
 
 .dept-member{
@@ -112,11 +112,11 @@
 
 .dept-member span{
     background-color: #434A74;
-    padding: 25px 50px;
-    width: 400px;
+    padding: 2.5vh 5vh;
+    width: 80%;
     font-weight: bold;
-    border-radius: 0px 50px 50px 0px;
-    font-size: 1.3em;
+    border-radius: 0px 5vh 5vh 0px;
+    font-size: 2.5vh;
 }
 
 #department-tickets header{
@@ -125,7 +125,7 @@
 
 .graphics{
     background-color: transparent;
-    max-height: 380px;
+    max-height: 45vh;
 }
 
 .warning{
