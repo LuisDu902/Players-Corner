@@ -4,6 +4,7 @@
     require_once(__DIR__ . '/../classes/session.class.php');
     require_once(__DIR__ . '/../classes/change.class.php');
     require_once(__DIR__ . '/../classes/ticket.class.php');
+    require_once(__DIR__ . '/../classes/department.class.php');
     $session = new Session();
 
     require_once(__DIR__ . '/../templates/common.tpl.php');
@@ -16,9 +17,12 @@
     $messages = $ticket->getMessages($db);
     $history = $ticket->getTicketHistory($db);
     $attachedFiles = $ticket->getAttachedFiles();
-
+    $departments = Department::getDepartments($db);
+    $stats= ["new","open","closed","solved","assigned"];
+    $priorities=['1-critical','2-high','3-medium','4-low'];
+    $department=Department::getDepartment($db,$ticket->category);
     drawHeader($session);
 
-    drawTicket($session,$ticket, $messages, $history, $attachedFiles);
+    drawTicket($session,$ticket,$departments,$stats,$priorities,$department ,$messages, $history, $attachedFiles);
     drawFooter();
 ?>

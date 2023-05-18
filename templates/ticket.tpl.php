@@ -59,7 +59,7 @@
 ?>
 
 <?php
-function drawTicket($_session,$ticket, $messages, $history,$attachedFiles)
+function drawTicket($_session,$ticket, $departments,$status,$priorities,$department,$messages, $history,$attachedFiles)
 { 
     ?>
     <head>
@@ -153,10 +153,59 @@ function drawTicket($_session,$ticket, $messages, $history,$attachedFiles)
     <?php if($_session->getRole()=='admin' || $_session->getRole()== 'agent'){
         ?>
             <div class="sidebar">
-                <h1>Edit Ticket</h1>
+                <h1>Properties</h1>
                 <div class="sidebar-content">
-                    <!-- Sidebar content goes here -->
-                    <p>Welcome, <?= $_session->getRole() ?></p>
+                        <label for="categories">Category: </label>
+                        <select name="categories" id="categories">
+                            <?php foreach($departments as $category) {
+                                if($category->category == $ticket->category){
+                                    ?>
+                                   <option value="<?= $ticket->category ?>" selected><?= $ticket->category ?> </option><?php
+                                }
+                                else{ ?>
+                                    <option value="<?= $category->category ?>"><?= $category->category ?> </option> <?php
+                                }
+                            } ?>
+                        </select>
+                        <br>
+                        <label for="stat">Status: </label>
+                        <select name="stat" id="stat">
+                            <?php foreach($status as $stat) {
+                                if($stat == $ticket->status){
+                                    ?>
+                                   <option value="<?= $ticket->status?>" selected><?= $ticket->status ?> </option><?php
+                                }
+                                else{ ?>
+                                    <option value="<?= $stat ?>"><?= $stat ?> </option> <?php
+                                }
+                            } ?>
+                        </select>
+                        <br>
+                        <label for="priorities">Priority: </label>
+                        <select name="priorities" id="priorities">
+                            <?php foreach($priorities as $priority) {
+                                if($priority== $ticket->priority){
+                                    ?>
+                                   <option value="<?= $ticket->priority?>" selected><?= $ticket->priority ?> </option><?php
+                                }
+                                else{ ?>
+                                    <option value="<?= $priority ?>"><?= $priority ?> </option> <?php
+                                }
+                            } ?>
+                        </select>
+                        <br>
+                        <label for="assignee">Assignee: </label>
+                        <select name="assignee" id="assignee">
+                            <?php foreach($department->members as $member) {
+                                if($member->userId== $ticket->replier->userId){
+                                    ?>
+                                   <option value="<?= $ticket->replier->name?>" selected><?= $ticket->replier->name ?> </option><?php
+                                }
+                                else{ ?>
+                                    <option value="<?= $member->name ?>"><?= $member->name ?> </option> <?php
+                                }
+                            } ?>
+                        </select>
                 </div>
             </div>
             <?php
@@ -165,3 +214,10 @@ function drawTicket($_session,$ticket, $messages, $history,$attachedFiles)
 <?php 
 }
 ?>
+
+<?php function getPriorities($db){
+    $stmt = $db->prepare("SELECT DISTINCT 'priority' FROM Ticket");
+    $stmt->execute();
+    return $stmt->fetch();
+    
+}?>
