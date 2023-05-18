@@ -15,8 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $ticket = Ticket::getTicket($db, intval($_POST['id']));
   $ticket->addMessage($db, $session->getId(), $_POST['text']);
 
-  $session->addMessage('success', 'Message added!');
-
   $message = $ticket->getLastMessage($db);
 
   echo json_encode($message);

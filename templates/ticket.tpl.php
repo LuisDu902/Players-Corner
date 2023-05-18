@@ -59,44 +59,37 @@
 ?>
 
 <?php
-function drawTicket($_session, $ticket, $messages, $history, $attachedFiles)
-{
-    ?>
+function drawTicket($_session, $ticket, $messages, $history, $attachedFiles) { ?>
     <div id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
         <article id="tkt">
-            <h1 class="highlight"><?= $ticket->title ?></h1>
+            <h1 class="highlight"> <?= $ticket->title ?> </h1>
             <h3>Created by: <?= $ticket->creator->name ?> | <?= $ticket->date ?></h3>
-            <p id="ticket-text" class="round-border"><?= $ticket->text ?></p>
+            <h2 id="ticket-text" class="round-border"> <?= $ticket->text ?> </h2>
             <hr>
-            <div class="vert-flex messages-ticket">
+            <ol id="ticket-messages">
                 <?php foreach ($messages as $message) {
                     if ($message['user']->userId !== $ticket->creator->userId) { ?>
-                        <div class="vert-flex replier-msg round-border">
-                        <?php } else { ?>
-                            <div class="vert-flex creator-msg round-border">
-                            <?php } ?>
-                            <h2 class="sender">
-                                <?= $message['user']->name ?>
-                            </h2>
-                            <h3 class="text">
-                                <?= $message['text'] ?>
-                            </h3>
-                            <h4 class="time">
-                                <?= $message['date'] ?>
-                            </h4>
-                        </div>
+                        <li class="replier-msg ticket-msg">
+                    <?php } else { ?>
+                        <li class="creator-msg ticket-msg">
                     <?php } ?>
-                </div>
-
-                <?php if (($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) { ?>
-                    <div id="respond">
-                        <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
-                        <button id="upload-button" class="no-background"><img src="../images/icons/upload.png"
-                                alt="Send"></button>
-                        <button id="faq-button" class="no-background"><span>FAQ</span></button>
-                        <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
-                    </div>
+                        <img src="<?= $message['user']->getPhoto() ?>" alt="user-img" class="circle-border">
+                        <span> <?= $message['user']->name ?> </span>
+                        <div class="message-content round-border">
+                            <p> <?= $message['text'] ?> </p>
+                            <p class="message-date"> <?= $message['date'] ?> </p>
+                        </div>
+                    </li>
                 <?php } ?>
+            </ol>
+            <?php if (($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) { ?>
+                <div id="respond">
+                    <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
+                    <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
+                    <button id="faq-button" class="no-background"><span>FAQ</span></button>
+                    <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
+                </div>
+            <?php } ?>
         </article>
 
         <?php if ($_session->getRole() == 'admin' || $_session->getRole() == 'agent') {

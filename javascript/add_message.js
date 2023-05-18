@@ -19,42 +19,51 @@ async function addMessage() {
     body: encodeForAjax({ id: ticketId, text: messageInput.value}),
   });
   const message = await response.json()
-  const messageContainer = document.querySelector('.messages-ticket')
+  const messageContainer = document.querySelector('#ticket-messages')
 
   messageContainer.appendChild(createMessage(message))
 
   messageInput.value = ''
 }
 
-               
-                   
-                
-
 function createMessage(message) {
-  const comment = document.createElement('div')
-  comment.classList.add('vert-flex' ,'round-border')
 
   const creatorId = document.querySelector('#ticket-page').getAttribute('data-creator')
-
-  if (creatorId == message.user.userId)
-    comment.classList.add('creator-msg')
-  else
-    comment.classList.add('replier-msg')
+  const comment = document.createElement('li')
   
-  const sender = document.createElement('h2')
-  sender.classList.add('sender')
+  if (creatorId == message.user.userId)
+    comment.classList.add('creator-msg', 'ticket-msg')
+  else
+    comment.classList.add('replier-msg', 'ticket-msg')
+  
+  const img = document.createElement('img');
+  img.classList.add('circle-border');
+
+  if (message.user.hasPhoto) {
+    img.src = `../images/users/user${message.user.userId}.png`;
+  } else {
+    img.src = '../images/users/default.png';
+  }
+ 
+  const sender = document.createElement('span')
   sender.textContent = message.user.name
 
-  const text = document.createElement('h3')
-  text.classList.add('text')
+  const content = document.createElement('div')
+  content.classList.add('message-content', 'round-border')
+
+  const text = document.createElement('p')
   text.textContent = message.text
 
-  const date = document.createElement('h4')
-  date.classList.add('time')
+  const date = document.createElement('p')
+  date.classList.add('message-date')
   date.textContent = message.date
+  
+  content.appendChild(text)
+  content.appendChild(date)
 
+  comment.appendChild(img)
   comment.appendChild(sender)
-  comment.appendChild(text)
-  comment.appendChild(date)
+  comment.appendChild(content)
+
   return comment
 }
