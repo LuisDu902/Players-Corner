@@ -62,7 +62,7 @@ function setupPagination(items, wrapper) {
 function paginationButton(page, items) {
   let button = document.createElement('button');
   button.innerText = page;
-
+  button.classList.add('no-background')
   if (current_page == page) button.classList.add('active');
 
   button.addEventListener('click', function () {

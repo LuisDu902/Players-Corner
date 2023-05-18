@@ -10,14 +10,13 @@ if (respond){
 async function addMessage() {
   const messageInput = document.querySelector("#message-input");
   const ticketId = document.querySelector('#ticket-page').getAttribute('data-id')
-  const token = document.querySelector('body').getAttribute('data-csrf')
-
+  
   const response = await fetch('../api/api_message.php', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },
-    body: encodeForAjax({ id: ticketId, csrf: token, text: messageInput.value}),
+    body: encodeForAjax({ id: ticketId, text: messageInput.value}),
   });
   const message = await response.json()
   const messageContainer = document.querySelector('.messages-ticket')
