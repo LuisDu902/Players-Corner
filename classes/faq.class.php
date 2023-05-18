@@ -51,11 +51,15 @@
         $faq['content']
       );
     }
-    static function addFaq(PDO $db, string $problem, string $answer)
-  {
+    static function addFAQ(PDO $db, string $problem, string $answer)
+    {
       $stmt = $db->prepare('INSERT INTO FAQ (title, content) VALUES (?, ?)');
       $stmt->execute([$problem, $answer]);
-  }
+    }
 
+    static function removeFAQItem(PDO $db, int $id): void {
+      $stmt = $db->prepare('DELETE FROM FAQ WHERE id = ?');
+      $stmt->execute([$id]);
+    }
   }
 ?>

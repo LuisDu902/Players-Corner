@@ -29,62 +29,83 @@ function displayFaqs(faqs, number) {
 }
 
 function createFAQ(faq) {
-    const faqItem = document.createElement('li');
-    faqItem.classList.add('faq-item');
-  
-    const inputElement = document.createElement('input');
-    inputElement.id = 'cb' + faq.id;
-    inputElement.type = 'checkbox';
-    inputElement.classList.add('faq-item-checkbox');
-    faqItem.appendChild(inputElement);
-  
-    const labelElement = document.createElement('label');
-    labelElement.classList.add('faq-item-header');
-    labelElement.setAttribute('for', 'cb' + faq.id);
-  
-    const spanElement = document.createElement('span');
-    spanElement.classList.add('faq-title');
-    spanElement.textContent = faq.problem;
-    labelElement.appendChild(spanElement);
-  
-    const divElement = document.createElement('div');
-    divElement.classList.add('faq-icons');
-  
-    const addIcon = document.createElement('ion-icon');
-    addIcon.setAttribute('name', 'add-outline');
-    divElement.appendChild(addIcon);
-  
-    const removeIcon = document.createElement('ion-icon');
-    removeIcon.setAttribute('name', 'remove-outline');
-    divElement.appendChild(removeIcon);
-  
-    if (userRole == "admin") {
-      const adminLink = document.createElement('a');
-      adminLink.href = '#';
-      adminLink.classList.add('link');
-  
-      const trashIcon = document.createElement('ion-icon');
-      trashIcon.setAttribute('name', 'trash-outline');
-      trashIcon.classList.add('buzz-out-on-hover');
-  
-      adminLink.appendChild(trashIcon);
-      divElement.appendChild(adminLink);
-    }
-  
-    labelElement.appendChild(divElement);
-    faqItem.appendChild(labelElement);
-  
-    const answerElement = document.createElement('div');
-    answerElement.classList.add('faq-item-answer');
-  
-    const answerParagraph = document.createElement('p');
-    answerParagraph.textContent = faq.answer;
-  
-    answerElement.appendChild(answerParagraph);
-    faqItem.appendChild(answerElement);
-  
-    return faqItem;
+  const faqItem = document.createElement('li');
+  faqItem.classList.add('faq-item');
+
+  const inputElement = document.createElement('input');
+  inputElement.id = 'cb' + faq.id;
+  inputElement.type = 'checkbox';
+  inputElement.classList.add('faq-item-checkbox');
+  faqItem.appendChild(inputElement);
+
+  const labelElement = document.createElement('label');
+  labelElement.classList.add('faq-item-header');
+  labelElement.setAttribute('for', 'cb' + faq.id);
+
+  const spanElement = document.createElement('span');
+  spanElement.classList.add('faq-title');
+  spanElement.textContent = faq.problem;
+  labelElement.appendChild(spanElement);
+
+  const divElement = document.createElement('div');
+  divElement.classList.add('faq-icons');
+
+  const addIcon = document.createElement('ion-icon');
+  addIcon.setAttribute('name', 'add-outline');
+  divElement.appendChild(addIcon);
+
+  const removeIcon = document.createElement('ion-icon');
+  removeIcon.setAttribute('name', 'remove-outline');
+  divElement.appendChild(removeIcon);
+
+  if (userRole === "admin") {
+    const deleteForm = document.createElement('form');
+    deleteForm.action = '../actions/faq_actions/action_delete_faq.php';
+    deleteForm.method = 'post';
+    deleteForm.onsubmit = function() {
+      return confirm('Are you sure you want to delete this FAQ?');
+    };
+
+    const faqIdInput = document.createElement('input');
+    faqIdInput.type = 'hidden';
+    faqIdInput.name = 'id';
+    faqIdInput.value = faq.id;
+
+    const token = document.createElement('input');
+    token.type = 'hidden';
+    token.name = 'csrf';
+    token.value = document.querySelector('body').getAttribute('data-csrf');
+
+    const deleteButton = document.createElement('button');
+    deleteButton.type = 'submit';
+    deleteButton.classList.add('trash-button');
+
+    const trashIcon = document.createElement('ion-icon');
+    trashIcon.setAttribute('name', 'trash-outline');
+    trashIcon.classList.add('buzz-out-on-hover');
+    
+    deleteButton.appendChild(trashIcon);
+    deleteForm.appendChild(faqIdInput);
+    deleteForm.appendChild(deleteButton);
+    deleteForm.appendChild(token);
+    divElement.appendChild(deleteForm);
   }
+
+  labelElement.appendChild(divElement);
+  faqItem.appendChild(labelElement);
+
+  const answerElement = document.createElement('div');
+  answerElement.classList.add('faq-item-answer');
+
+  const answerParagraph = document.createElement('p');
+  answerParagraph.textContent = faq.answer;
+
+  answerElement.appendChild(answerParagraph);
+  faqItem.appendChild(answerElement);
+
+  return faqItem;
+}
+
   
 
   loadButton.addEventListener('click', () => {

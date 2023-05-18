@@ -311,18 +311,26 @@ li,a, button {
 }
 
 
-.link {
+.trash-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1a1725;
+  border: none;
+}
+
+.trash-button ion-icon {
+  color: #e7d5ff;
+  padding: 0.5rem;
+  font-size: 21px;
+  margin-top: 0.15rem;
+}
+
+form .delete-faq{
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-.link ion-icon {
-  color: #e7d5ff;
-  padding: 0.5rem;
-  font-size: 20px;
-}
-
 .buzz-out-on-hover {
   display: inline-block;
   vertical-align: middle;
@@ -436,3 +444,4 @@ li,a, button {
 .hidden{
   display: none;
 }
+
