@@ -433,3 +433,6 @@ li,a, button {
   margin: 30px 0 30px 40px;
 }
 
+.hidden{
+  display: none;
+}

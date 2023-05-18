@@ -14,15 +14,14 @@
     }
 
     
-    static function getFAQs(PDO $db, int $count, int $page) {
+    static function getFAQs(PDO $db) {
       $stmt = $db->prepare('
         SELECT FAQ.id, FAQ.title, content
         FROM FAQ
         ORDER BY 1
-        LIMIT ? OFFSET ?
       ');
 
-      $stmt->execute(array($count, $page * $count));
+      $stmt->execute();
   
       $faqs = array();
       while($faq = $stmt->fetch()){

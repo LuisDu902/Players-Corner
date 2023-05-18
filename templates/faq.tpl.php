@@ -1,5 +1,5 @@
 <?php function drawFAQList($faqs, $session) { ?>
-        <div id="faq-page">
+        <div id="faq-page" data-role="<?=$session->getRole()?>">
             <h1>Frequently Asked Questions</h1>
             <?php if ($session->getRole() === "admin"){ ?>
                 <div class="button-wrap round-border gradient"><button id="add-faq">Add New FAQ</button></div>
@@ -10,7 +10,7 @@
                     drawFAQ($faq, $session);
                 ?>
             </ul>
-            <div class="button-wrap gradient round-border">
+            <div id ="load" class="button-wrap gradient round-border">
                 <button type="button" class="load-more">
                     Load more
                 </button>
