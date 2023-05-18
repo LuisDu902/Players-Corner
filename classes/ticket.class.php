@@ -256,6 +256,20 @@ class Ticket
     $stmt->execute(array($userId, $this->ticketId, $text));
   }
 
+  function getLastMessage(PDO $db)
+  {
+    $lastInsertedId = $db->lastInsertId();
+    $stmt = $db->prepare('SELECT * FROM Message WHERE id = ?');
+    $stmt->execute(array($lastInsertedId));
+    $lastMessage = $stmt->fetch();
+    $message = array(
+      'user' => User::getUser($db, intval($lastMessage['user'])),
+      'text' => $lastMessage['text'],
+      'date' => $lastMessage['date'],
+    );
+    return $message;
+  }
+
   function addHistory(PDO $db, int $userId, string $changes, int $field)
   {
     $stmt = $db->prepare('INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?)');

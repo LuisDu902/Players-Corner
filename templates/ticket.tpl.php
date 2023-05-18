@@ -59,109 +59,64 @@
 ?>
 
 <?php
-function drawTicket($_session,$ticket, $messages, $history,$attachedFiles)
-{ 
-    ?>
-    <head>
-        <link rel="stylesheet" href="../css/ticket_form.css">
-        <link rel="stylesheet" href="../css/style.css">
-        <link rel="stylesheet" href="../css/ticket.css">
-    </head>
-    <div id="ticket-page">
-    <div id="ticket">
-        <div class="ticket-header">
-            <span class="ticket-title"><?= $ticket->title ?></span>
-            <span class="ticket-date"><?= $ticket->date ?></span> 
-        </div>
-        <br>
-        <span class="ticket-creator-small">Created by: <?= $ticket->creator->name ?></span>
-        <span class="assigned">Assigned to: <?= $ticket->replier->name ?> </span>
-        <br>
-        <div class="ticket-info-details">
-            <span class="ticket-dep"><?= $ticket->category ?></span>
-            <span id="<?= $ticket->status ?>-status" class="round-border status"><?= $ticket->status ?></span>
-            <span id="<?= $ticket->priority ?>-priority" class="ticket-priority"><?= $ticket->priority ?></span>
-            <span class="ticket-visibility"><?= $ticket->visibility ?></span>
-        </div>
-        <div class="tags-info">
-            <?php foreach ($ticket->tags as $tag) { ?>
-                <span><?= $tag ?></span>
-            <?php } ?>
-        </div>
-        <div class="description">
-            <span class="desc"><?= $ticket->text?> </span>
-            </br></br>
-        </div>
-        <div class="messages-ticket">
-            <?php 
-            foreach ($messages as $message) {
-                if ($message['user']->userId !== $ticket->creator->userId) {
-                    echo '<div class="message-container-replier">';
-                } else {
-                    echo '<div class="message-container-creator">';
-                }
-            ?>
-                <div class="message-ticket">
-                    <span class="sender"><?= $message['user']->name ?></span>
-                    <br>
-                    <span class="text"><?= $message['text'] ?></span>
-                    <br>
-                    <span class="time"><?= $message['date'] ?></span>
-                    <br>
+function drawTicket($_session, $ticket, $messages, $history, $attachedFiles) { ?>
+    <div id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
+        <article id="tkt">
+            <h1 class="highlight"> <?= $ticket->title ?> </h1>
+            <h3>Created by: <?= $ticket->creator->name ?> | <?= $ticket->date ?></h3>
+            <h2 id="ticket-text" class="round-border"> <?= $ticket->text ?> </h2>
+            <hr>
+            <ol id="ticket-messages">
+                <?php foreach ($messages as $message) {
+                    if ($message['user']->userId !== $ticket->creator->userId) { ?>
+                        <li class="replier-msg ticket-msg">
+                    <?php } else { ?>
+                        <li class="creator-msg ticket-msg">
+                    <?php } ?>
+                        <img src="<?= $message['user']->getPhoto() ?>" alt="user-img" class="circle-border">
+                        <span> <?= $message['user']->name ?> </span>
+                        <div class="message-content round-border">
+                            <p> <?= $message['text'] ?> </p>
+                            <p class="message-date"> <?= $message['date'] ?> </p>
+                        </div>
+                    </li>
+                <?php } ?>
+            </ol>
+            <?php if (($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) { ?>
+                <div id="respond">
+                    <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
+                    <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
+                    <button id="faq-button" class="no-background"><span>FAQ</span></button>
+                    <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
                 </div>
-            <?php
-                echo '</div>';
-                ?> 
-                <br>
-                <?php
-            }
+            <?php } ?>
+        </article>
+
+        <?php if ($_session->getRole() == 'admin' || $_session->getRole() == 'agent') {
             ?>
-        </div>
-
-
-        <?php if(($_session->getId()=== $ticket->creator->userId || $_session->getId()=== $ticket->replier->userId)) {?>
-        <div id="respond">
-            <form action="../actions/ticket_actions/action_add_message.php" method="post" id="reply">
-                <textarea name="text" id="text" rows="10" tabindex="4"  required="required"></textarea>
-                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-                <input type="hidden" name="id" value="<?=$ticket->ticketId?>">
-                <input name="submit" type="submit" value="Submit reply" />
-            </form>
-
-        </div>
-        <?php }?>
-        <div class="history">
-            <br><br>
-            <?php foreach ($history as $change) { ?>
-                <span><?= $change->changes ?> : <?= $change->old_field ?> -> <?= $change->new_field ?></span>
-                <span class="status_date"><?= $change->date ?></span>
-                <br><br>
-            <?php } ?>
-            </div>
-        <form action="../actions/ticket_actions/action_attach_file.php" id="fileUploadForm" method="post" enctype="multipart/form-data">
-            <label for="fileToUpload">
-                <img src="../images/icons/upload.png" alt="Upload icon" id="uploadFile">
-            </label>
-            <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
-            <input type="hidden" name="id" value="<?=$ticket->ticketId?>">
-            <input type="file" name="fileToUpload" id="fileToUpload" style="display: none;">
-        </form>
-        <?php foreach ($attachedFiles as $filename) { ?>
-             <a href="../files/ticket<?=$ticket->ticketId?>_<?=$filename?>" download><?=$filename?></a>
-            <?php } ?>
-    </div>
-    <?php if($_session->getRole()=='admin' || $_session->getRole()== 'agent'){
-        ?>
-            <div class="sidebar">
+            <section class="sidebar">
                 <h1>Edit Ticket</h1>
                 <div class="sidebar-content">
-                    <!-- Sidebar content goes here -->
-                    <p>Welcome, <?= $_session->getRole() ?></p>
+
+                    <p>Welcome,
+                        <?= $_session->getRole() ?>
+                    </p>
                 </div>
-            </div>
+                <article id="files">
+                    <h2>Attached Files</h2>
+                    <ul>
+                        <?php foreach ($attachedFiles as $filename) { ?>
+                            <li>
+                                <a href="../files/ticket<?= $ticket->ticketId ?>_<?= $filename ?>" download><?= $filename ?></a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </article>
+            </section>
             <?php
-    }?>
-    </div>    
-<?php 
+        } ?>
+    </div>
+    </div>
+    <?php
 }
 ?>
