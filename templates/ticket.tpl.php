@@ -152,10 +152,10 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
     </div>
     <?php if($_session->getRole()=='admin' || $_session->getRole()== 'agent'){
         ?>
-            <div class="sidebar">
+            <div id="sidebar">
                 <h1>Properties</h1>
-                <div class="sidebar-content">
-                        <label for="categories">Category: </label>
+                    <div id="cat">
+                        <label >Category: 
                         <select name="categories" id="categories">
                             <?php foreach($departments as $category) {
                                 if($category->category == $ticket->category){
@@ -167,8 +167,11 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                                 }
                             } ?>
                         </select>
+                        </label>
+                    </div>
                         <br>
-                        <label for="stat">Status: </label>
+                    <div id="st">
+                        <label>Status: 
                         <select name="stat" id="stat">
                             <?php foreach($status as $stat) {
                                 if($stat == $ticket->status){
@@ -180,8 +183,11 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                                 }
                             } ?>
                         </select>
+                        </label>
+                    </div>
                         <br>
-                        <label for="priorities">Priority: </label>
+                    <div id="pri">
+                        <label>Priority: 
                         <select name="priorities" id="priorities">
                             <?php foreach($priorities as $priority) {
                                 if($priority== $ticket->priority){
@@ -193,8 +199,11 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                                 }
                             } ?>
                         </select>
+                        </label>
+                    </div>
                         <br>
-                        <label for="assignee">Assignee: </label>
+                    <div id="as">
+                        <label>Assignee: 
                         <select name="assignee" id="assignee">
                             <?php foreach($department->members as $member) {
                                 if($member->userId== $ticket->replier->userId){
@@ -206,18 +215,12 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                                 }
                             } ?>
                         </select>
+                        </label>
+                    </div>
                 </div>
-            </div>
             <?php
     }?>
     </div>    
 <?php 
 }
 ?>
-
-<?php function getPriorities($db){
-    $stmt = $db->prepare("SELECT DISTINCT 'priority' FROM Ticket");
-    $stmt->execute();
-    return $stmt->fetch();
-    
-}?>
