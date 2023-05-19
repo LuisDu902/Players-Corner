@@ -18,7 +18,7 @@ if (searchUser) {
 
 
 async function searchUsers(searchValue, filterValue, orderValue) {
-  const response = await fetch('../api/api_search_users.php?' + encodeForAjax({ search: searchValue }) + "&" + encodeForAjax({ role: filterValue }) + "&" + encodeForAjax({ order: orderValue }))
+  const response = await fetch('../api/api_search_users.php?' + encodeForAjax({ search: searchValue, role: filterValue, order: orderValue }))
   const users = await response.json()
 
   const section = document.querySelector('#users')

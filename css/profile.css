@@ -10,22 +10,27 @@
 
 .container article h2{
   position: relative;
-  font-size: 2em;
-  margin: 25px 0;
+  font-size: 3vh;
+  margin: 2vh 0;
   background-color: transparent;
 }
 
 .user-details table{
     border-collapse: separate;
     width: 100%;
-    border-spacing: 20px 30px;
+    height: 40vh;
+    border-spacing: 1vh 2vh;
     background-color: transparent;
 }
 
+#user-tkt{
+  max-height: 40vh;
+  max-width: 40vh;
+}
 
 .field, .info {
-  padding: 10px 20px;
-  font-size: 1.2em;
+  padding: 1vh 2vh;
+  font-size: 2vh;
 }
 
 .info{
@@ -38,18 +43,13 @@
 }
 
 .profile-picture img{
-  height: 300px;
-  width: 300px;
-}
-
-#reputation{
-  background-color: transparent;
-  max-height: 350px;
+  height: 30vh;
+  width: 30vh;
 }
 
 .profile-picture h4 {
   margin: 20px;
-  font-size: 2em;
+  font-size: 4vh;
   background-color: transparent;
 }
 

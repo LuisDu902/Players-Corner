@@ -14,15 +14,14 @@
     }
 
     
-    static function getFAQs(PDO $db, int $count, int $page) {
+    static function getFAQs(PDO $db) {
       $stmt = $db->prepare('
         SELECT FAQ.id, FAQ.title, content
         FROM FAQ
         ORDER BY 1
-        LIMIT ? OFFSET ?
       ');
 
-      $stmt->execute(array($count, $page * $count));
+      $stmt->execute();
   
       $faqs = array();
       while($faq = $stmt->fetch()){
@@ -52,11 +51,15 @@
         $faq['content']
       );
     }
-    static function addFaq(PDO $db, string $problem, string $answer)
-  {
+    static function addFAQ(PDO $db, string $problem, string $answer)
+    {
       $stmt = $db->prepare('INSERT INTO FAQ (title, content) VALUES (?, ?)');
       $stmt->execute([$problem, $answer]);
-  }
+    }
 
+    static function removeFAQItem(PDO $db, int $id): void {
+      $stmt = $db->prepare('DELETE FROM FAQ WHERE id = ?');
+      $stmt->execute([$id]);
+    }
   }
 ?>

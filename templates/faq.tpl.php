@@ -1,5 +1,5 @@
 <?php function drawFAQList($faqs, $session) { ?>
-        <div id="faq-page">
+        <div id="faq-page" data-role="<?=$session->getRole()?>">
             <h1>Frequently Asked Questions</h1>
             <?php if ($session->getRole() === "admin"){ ?>
                 <div class="button-wrap round-border gradient"><button id="add-faq">Add New FAQ</button></div>
@@ -10,7 +10,7 @@
                     drawFAQ($faq, $session);
                 ?>
             </ul>
-            <div class="button-wrap gradient round-border">
+            <div id ="load" class="button-wrap gradient round-border">
                 <button type="button" class="load-more">
                     Load more
                 </button>
@@ -19,7 +19,7 @@
 <?php } ?>
 
 <?php function drawFAQ($faq, $session) { ?>
-    <li class="faq-item">
+    <li class="faq-item" data-role="<?=$faq->id?>">
     <input id="cb<?=$faq->id?>" type="checkbox" class="faq-item-checkbox">
     <label class="faq-item-header" for="cb<?=$faq->id?>">
         <span class="faq-title"><?=$faq->problem?></span>
@@ -27,17 +27,20 @@
             <ion-icon name="add-outline"></ion-icon>
             <ion-icon name="remove-outline"></ion-icon>
             <?php if ($session->getRole() === "admin"){ ?>
-                <a href="#" class="link">
+                <form class="delete-faq" action="../actions/faq_actions/action_delete_faq.php" method="post" onsubmit="return confirm('Are you sure you want to delete this FAQ?')">
+                <input type="hidden" name="id" value="<?=$faq->id?>">
+                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+                <button type="submit" class="trash-button">
                     <ion-icon name="trash-outline" class="buzz-out-on-hover"></ion-icon>
-                </a>
-
+                </button>
+                </form>
             <?php } ?>
         </div>
     </label>
     <div class="faq-item-answer">
         <p><?=$faq->answer?></p>
     </div>
-</li>
+    </li>
 
 <?php } ?>
 
