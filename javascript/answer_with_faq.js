@@ -20,8 +20,9 @@ async function answerWithFAQ(faqId){
     const message = await response.json()
     const messageContainer = document.querySelector('#ticket-messages')
     messageContainer.appendChild(createMessage(message))
-    
+
     messageContainer.scrollTop = messageContainer.scrollHeight;
+    window.scrollTo(0, document.body.scrollHeight);
     dropup_content.style.display = 'none';
 
 }
