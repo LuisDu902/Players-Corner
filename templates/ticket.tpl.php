@@ -136,24 +136,7 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles, $fa
                 <div id="respond">
                     <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
                     <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
-                    <div class="dropup">
-                        <button class="faq-btn">FAQ</button>
-                        <div class="dropup-content">
-                            <div id="search-faq" class="round-border">
-                                <div class="search-box center round-border white-border">
-                                    <input id="faq-bar" type="text" placeholder="search">
-                                    <img src="../images/icons/search.png">
-                                </div>
-                                <ul id="faq-items" class="center">
-                                    <?php foreach ($faqs as $faq) { ?>
-                                        <li class="faq-title" data-id=<?= $faq->id ?>>
-                                            <?= $faq->problem ?>
-                                        </li>
-                                    <?php } ?>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
+                    <?php if ($_session->getId() === $ticket->replier->userId) {  drawFAQDropup($faqs);} ?>
                     <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
                 </div>
 

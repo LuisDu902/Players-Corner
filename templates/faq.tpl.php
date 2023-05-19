@@ -73,7 +73,22 @@ function drawFAQForm()
 
 <?php function drawFAQDropup($faqs)
 { ?>
-    <div class="faq-wrapper">
-        
+    <div class="dropup">
+        <button class="faq-btn">FAQ</button>
+        <div class="dropup-content">
+            <div id="search-faq" class="round-border">
+                <div class="search-box center round-border white-border">
+                    <input id="faq-bar" type="text" placeholder="search">
+                    <img src="../images/icons/search.png">
+                </div>
+                <ul id="faq-items" class="center">
+                    <?php foreach ($faqs as $faq) { ?>
+                        <li class="faq-title" data-id=<?= $faq->id ?>>
+                            <?= $faq->problem ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
     </div>
 <?php } ?>
