@@ -37,7 +37,8 @@ CREATE TABLE Ticket(
    status VARCHAR REFERENCES Status(status) NOT NULL,
    category VARCHAR REFERENCES Department(category) ON DELETE SET NULL,
    creator INTEGER REFERENCES User(userId),
-   replier INTEGER REFERENCES User(userId)
+   replier INTEGER REFERENCES User(userId),
+   feedback INTEGER DEFAULT 1 
 );
 
 CREATE TABLE TicketHistory(

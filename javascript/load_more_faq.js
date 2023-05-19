@@ -1,31 +1,30 @@
 const faq_page = document.querySelector('#faq-page');
-const userRole = faq_page.getAttribute('data-role');
 const loadButton = document.querySelector('.load-more');
-const loadBorder = document.querySelector('#load')
+const loadBorder = document.querySelector('#load');
 let faqs = [];
 let number = 5;
 
-if (faq_page){
-    getFAQs();
+if (faq_page) {
+  getFAQs();
 }
 
 async function getFAQs() {
-    const response = await fetch('../api/api_get_faqs.php?');
-    faqs = await response.json();
-    displayFaqs(faqs, number);
+  const response = await fetch('../api/api_get_faqs.php?');
+  faqs = await response.json();
+  displayFaqs(faqs, number);
 }
 
 function displayFaqs(faqs, number) {
 
-    let end = number;
-    let faqItems = faqs.slice(0, end);
-    const section = document.querySelector('#faq-list');
-    section.innerHTML = '';
-  
-    for (const faq of faqItems) {
-      const faqCard = createFAQ(faq);
-      section.appendChild(faqCard);
-    }
+  let end = number;
+  let faqItems = faqs.slice(0, end);
+  const section = document.querySelector('#faq-list');
+  section.innerHTML = '';
+
+  for (const faq of faqItems) {
+    const faqCard = createFAQ(faq);
+    section.appendChild(faqCard);
+  }
 }
 
 function createFAQ(faq) {
@@ -57,12 +56,12 @@ function createFAQ(faq) {
   const removeIcon = document.createElement('ion-icon');
   removeIcon.setAttribute('name', 'remove-outline');
   divElement.appendChild(removeIcon);
-
+  const userRole = faq_page.getAttribute('data-role');
   if (userRole === "admin") {
     const deleteForm = document.createElement('form');
     deleteForm.action = '../actions/faq_actions/action_delete_faq.php';
     deleteForm.method = 'post';
-    deleteForm.onsubmit = function() {
+    deleteForm.onsubmit = function () {
       return confirm('Are you sure you want to delete this FAQ?');
     };
 
@@ -83,7 +82,7 @@ function createFAQ(faq) {
     const trashIcon = document.createElement('ion-icon');
     trashIcon.setAttribute('name', 'trash-outline');
     trashIcon.classList.add('buzz-out-on-hover');
-    
+
     deleteButton.appendChild(trashIcon);
     deleteForm.appendChild(faqIdInput);
     deleteForm.appendChild(deleteButton);
@@ -106,8 +105,8 @@ function createFAQ(faq) {
   return faqItem;
 }
 
-  
 
+if (loadButton) {
   loadButton.addEventListener('click', () => {
     console.log('Number:', number);
     console.log('FAQs Length:', faqs.length);
@@ -117,10 +116,11 @@ function createFAQ(faq) {
     displayFaqs(faqs, number);
 
     if (number >= faqs.length) {
-        console.log('No more FAQs');
-        loadButton.setAttribute('hidden', 'true');
-        loadBorder.setAttribute('hidden', 'true');
+      console.log('No more FAQs');
+      loadButton.setAttribute('hidden', 'true');
+      loadBorder.setAttribute('hidden', 'true');
     }
-});
+  });
+}
 
 

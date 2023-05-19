@@ -29,8 +29,9 @@
 }
 
 .field, .info {
-  padding: 1vh 2vh;
+  padding: 1vh;
   font-size: 2vh;
+  border-radius: 4vh;
 }
 
 .info{

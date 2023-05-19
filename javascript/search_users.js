@@ -44,6 +44,10 @@ function createUserCard(user) {
   userCard.appendChild(createButtons(user));
   userCard.appendChild(createUserId(user));
 
+  userCard.addEventListener('click', function() {
+    window.location.href = '../pages/profile.php?userId=' + user.userId;
+  });
+
   return userCard;
 }
 

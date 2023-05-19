@@ -60,7 +60,7 @@ class User
   static function registerUser(PDO $db, string $name, string $username, string $email, string $password)
   {
     $options = ['cost' => 12];
-    $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (NULL, ?, ?, ?, ?,0,"client")');
+    $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (NULL, ?, ?, ?, ?,50,"client")');
     $stmt->execute(array($name, $username, $email, password_hash($password, PASSWORD_DEFAULT, $options)));
   }
 
@@ -145,13 +145,8 @@ class User
 
   static function upgradeUser(PDO $db, string $role, int $userId)
   {
-    $stmt = $db->prepare('
-         UPDATE User SET type = ?
-         WHERE userId = ?
-        ');
-
+    $stmt = $db->prepare('UPDATE User SET type = ? WHERE userId = ?');
     $stmt->execute(array($role, $userId));
-
   }
 
   static function getAssignableDepartments(PDO $db, int $userId): array

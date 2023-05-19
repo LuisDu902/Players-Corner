@@ -16,6 +16,7 @@
                 </button>
             </div>
         </div>
+    </div>
 <?php } ?>
 
 <?php function drawFAQ($faq, $session) { ?>
@@ -52,9 +53,11 @@ function drawFAQForm()
         <div class="modal-content white-border round-border vert-flex center" id="faq-modal-content">
             <span class="modal-title"> Add new FAQ </span>
             <form action="../actions/faq_actions/action_add_new_faq.php" method="post">
-                <textarea name="problem" required="required" placeholder="Question" id="faq-problem" class="white-border round-border"></textarea>
-                <textarea name="answer" required="required" placeholder="Answer" id="faq-answer" class="white-border round-border"></textarea>
-                <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+                <textarea name="problem" required="required" placeholder="Question" id="faq-problem"
+                    class="white-border round-border"></textarea>
+                <textarea name="answer" required="required" placeholder="Answer" id="faq-answer"
+                    class="white-border round-border"></textarea>
+                <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
                 <div class="button-wrap gradient round-border auth-button">
                     <button type="submit">Confirm</button>
                 </div>
@@ -64,3 +67,26 @@ function drawFAQForm()
 <?php }
 ?>
 
+
+
+<?php function drawFAQDropup($faqs)
+{ ?>
+    <div class="dropup">
+        <button class="faq-btn">FAQ</button>
+        <div class="dropup-content">
+            <div id="search-faq" class="round-border">
+                <div class="search-box center round-border white-border">
+                    <input id="faq-bar" type="text" placeholder="search">
+                    <img src="../images/icons/search.png">
+                </div>
+                <ul id="faq-items" class="center">
+                    <?php foreach ($faqs as $faq) { ?>
+                        <li class="faq-title" data-id=<?= $faq->id ?>>
+                            <?= $faq->problem ?>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </div>
+        </div>
+    </div>
+<?php } ?>

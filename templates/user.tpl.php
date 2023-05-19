@@ -20,20 +20,20 @@ require_once(__DIR__ . '/../classes/user.class.php');
       <h2 class="center">General information</h2>
       <table class="center">
         <tr>
-          <th class="field round-border">Name</th>
-          <td class="info round-border"> <?= $user->name ?></td>
+          <th class="field">Name</th>
+          <td class="info"> <?= $user->name ?></td>
         </tr>
         <tr>
-          <th class="field round-border">Username</th>
-          <td class="info round-border"> <?= $user->username ?></td>
+          <th class="field">Username</th>
+          <td class="info"> <?= $user->username ?></td>
         </tr>
         <tr>
-          <th class="field round-border">Email</th>
-          <td class="info round-border"> <?= $user->email ?></td>
+          <th class="field">Email</th>
+          <td class="info"> <?= $user->email ?></td>
         </tr>
         <tr>
-          <th class="field round-border">Role</th>
-          <td class="info round-border"><?= $user->type ?></td>
+          <th class="field">Role</th>
+          <td class="info"><?= $user->type ?></td>
         </tr>
         <?php if ($user->type !== 'client'){ ?>
         <tr>

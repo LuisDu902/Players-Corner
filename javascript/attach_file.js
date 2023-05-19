@@ -1,5 +1,8 @@
 const uploadButton = document.getElementById('upload-button');
-uploadButton.addEventListener('click', handleFileUpload);
+
+
+if (uploadButton){
+  uploadButton.addEventListener('click', handleFileUpload);}
 
 function handleFileUpload() {
   const fileInput = document.createElement('input');
@@ -11,7 +14,7 @@ function handleFileUpload() {
 }
 async function attachFile(event) {
     const file = event.target.files[0];
-    console.log(file);
+    
     const ticketId = document.querySelector('#ticket-page').getAttribute('data-id');
     
     const formData = new FormData();
