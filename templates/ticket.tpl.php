@@ -59,7 +59,7 @@
 ?>
 
 <?php
-function drawTicket($_session, $ticket, $messages, $history, $attachedFiles, $faqs)
+function drawTicket($session, $ticket, $messages, $history, $attachedFiles, $faqs)
 { ?>
     <div id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
         <article id="tkt">
@@ -95,7 +95,7 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles, $fa
                         </div>
                     </li>
                 <?php }
-                if (($ticket->status == 'closed') && ($_session->getId() === $ticket->creator->userId) && ($ticket->feedback === 1)) { ?>
+                if (($ticket->status == 'closed') && ($session->getId() === $ticket->creator->userId) && ($ticket->feedback === 1)) { ?>
                     <li class="bot-msg ticket-msg">
                         <img src="../images/icons/bot.png" alt="user-img" class="circle-border bot-img">
                         <span> Satisfaction survey </span>
@@ -128,11 +128,11 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles, $fa
                 <?php }
                 ?>
             </ol>
-            <?php if (($ticket->status !== 'closed') && ($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) {?>
+            <?php if (($session->isLoggedIn()) && ($ticket->status !== 'closed') && ($session->getId() === $ticket->creator->userId || $session->getId() === $ticket->replier->userId)) {?>
                 <div id="respond">
                     <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
                     <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
-                    <?php if ($_session->getId() === $ticket->replier->userId) {  drawFAQDropup($faqs);} ?>
+                    <?php if ($session->getId() === $ticket->replier->userId) {  drawFAQDropup($faqs);} ?>
                     <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
                 </div>
             <?php } ?>
@@ -151,7 +151,7 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles, $fa
             <div class="sidebar-content">
 
                 <p>Welcome,
-                    <?= $_session->getRole() ?>
+                    <?= $session->getRole() ?>
                 </p>
             </div>
             <article id="files">
