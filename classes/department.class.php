@@ -118,8 +118,8 @@ class Department
       $replier = ($ticket['replier']) ? $ticket['replier'] : 0;
       $tickets[] = new Ticket(
         intval($ticket['id']),
-        $ticket['title'],
-        $ticket['text'],
+        htmlentities($ticket['title']),
+        htmlentities($ticket['text']),
         $ticket['createDate'],
         $ticket['visibility'],
         substr($ticket['priority'], 2),

@@ -27,8 +27,8 @@
       while($faq = $stmt->fetch()){
           $faqs[] = new FAQ(
               intval($faq['id']),
-              $faq['title'],
-              $faq['content']
+              htmlentities($faq['title']),
+              htmlentities($faq['content'])
           );
       }
 
@@ -47,8 +47,8 @@
       
       return new FAQ(
         $faq['id'],
-        $faq['title'],
-        $faq['content']
+        htmlentities($faq['title']),
+        htmlentities($faq['content'])
       );
     }
     static function addFaq(PDO $db, string $problem, string $answer) {
@@ -65,8 +65,8 @@
       while($faq = $stmt->fetch()){
           $faqs[] = new FAQ(
               intval($faq['id']),
-              $faq['title'],
-              $faq['content']
+              htmlentities($faq['title']),
+              htmlentities($faq['content'])
           );
       }
 

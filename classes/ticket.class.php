@@ -83,8 +83,8 @@ class Ticket
       $replier = ($ticket['replier']) ? $ticket['replier'] : 0;
       $tickets[] = new Ticket(
         intval($ticket['id']),
-        $ticket['title'],
-        $ticket['text'],
+        htmlentities($ticket['title']),
+        htmlentities($ticket['text']),
         $ticket['createDate'],
         $ticket['visibility'],
         substr($ticket['priority'], 2),
@@ -109,7 +109,7 @@ class Ticket
     while ($message = $stmt->fetch()) {
       $messages[] = array(
         'user' => User::getUser($db, intval($message['user'])),
-        'text' => $message['text'],
+        'text' => htmlentities($message['text']),
         'date' => $message['date'],
       );
     }
@@ -124,8 +124,8 @@ class Ticket
     $replier = ($ticket['replier']) ? $ticket['replier'] : 0;
     return new Ticket(
       $ticket['id'],
-      $ticket['title'],
-      $ticket['text'],
+      htmlentities($ticket['title']),
+      htmlentities($ticket['text']),
       $ticket['createDate'],
       $ticket['visibility'],
       substr($ticket['priority'], 2),
@@ -194,8 +194,8 @@ class Ticket
       if ($ticket['visibility'] === 'public' || $user->type === 'admin' || ($user->type === 'agent' && in_array($ticket['category'], $agentDepartments)) || ($ticket['creator'] === $userId)) {
         $tickets[] = new Ticket(
           intval($ticket['id']),
-          $ticket['title'],
-          $ticket['text'],
+          htmlentities($ticket['title']),
+          htmlentities($ticket['text']),
           $ticket['createDate'],
           $ticket['visibility'],
           substr($ticket['priority'], 2),
@@ -271,7 +271,7 @@ class Ticket
     $lastMessage = $stmt->fetch();
     $message = array(
       'user' => User::getUser($db, intval($lastMessage['user'])),
-      'text' => $lastMessage['text'],
+      'text' => htmlentities($lastMessage['text']),
       'date' => $lastMessage['date'],
     );
     return $message;
