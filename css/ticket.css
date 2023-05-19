@@ -324,6 +324,7 @@
   background-color: #1A1725;
   padding: 20px;
   margin: 20px 10px;
+  font-weight: bold;
 }
 
 #faq-items{
@@ -331,6 +332,10 @@
   height: 410px;
 }
 
+.faq-title:hover{
+  color: #D66AE6;
+  cursor: pointer;
+}
 
 
 
