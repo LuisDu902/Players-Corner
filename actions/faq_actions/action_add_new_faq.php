@@ -19,12 +19,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Retrieve form data
-    $problem = $_POST['problem'];
-    $answer = $_POST['answer'];
+    $problem = htmlentities($_POST['problem']);
+    $answer = htmlentities($_POST['answer']);
 
     // Add the FAQ to the database
-    FAQ::addFAQ($db, $problem, $answer);
-
+    try {
+        FAQ::addFAQ($db, $problem, $answer);
+    } catch (PDOException $e) {
+        $session->addMessage('error', 'Failed to create faq');
+    }
     // Redirect to the desired page
     header('Location: ../../pages/faq.php');
 }

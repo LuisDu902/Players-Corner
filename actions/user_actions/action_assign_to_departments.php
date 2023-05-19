@@ -9,7 +9,7 @@ require_once(__DIR__ . '/../../classes/department.class.php');
 require_once(__DIR__ . '/../../classes/user.class.php');
 require_once(__DIR__ . '/../../utils/validation.php');
 
-if (!valid_token($_POST['csrf'])){
+if (!valid_token($_POST['csrf'])) {
   die(header('Location: ../../pages/users.php'));
 }
 
@@ -19,8 +19,12 @@ $user = User::getUser($db, intval($_POST["userId"]));
 
 $selected_departments = explode(',', $_POST["selected_departments"]);
 $selected_departments = array_map('trim', $selected_departments);
-foreach ($selected_departments as $department){
-    $user->assignToDepartment($db, $department);
+foreach ($selected_departments as $department) {
+  try {
+    $user->assignToDepartment($db, htmlentities($department));
+  } catch (PDOException $e) {
+    $session->addMessage('error', 'Failed to assign to department');
+  }
 }
 
 header('Location: ../../pages/users.php');

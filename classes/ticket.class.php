@@ -53,20 +53,24 @@ class Ticket
     $stmt = $db->prepare(
       'SELECT TicketHistory.id, ticketId, user, date, changes, old_field, new_field 
       FROM TicketHistory JOIN FieldChange ON TicketHistory.field = FieldChange.id
-      WHERE ticketId = ?'
+      WHERE ticketId = ? ORDER BY date'
     );
     $stmt->execute(array($this->ticketId));
 
     $history = array();
     while ($change = $stmt->fetch()) {
-      $history[] = new Change(
+      $date = $change['date'];
+      if (!isset($history[$date])) {
+        $history[$date] = array();
+      }
+      $history[$date][] = new Change(
         intval($change['id']),
         User::getUser($db, intval($change['user'])),
         $this,
         $change['date'],
         $change['changes'],
         $change['old_field'],
-        $change['new_field'],
+        $change['new_field']
       );
     }
     return $history;
@@ -222,7 +226,7 @@ class Ticket
 
   static function registerTicket(PDO $db, array $tags, string $title, string $text, string $priority, string $category, string $visibility, int $creator)
   {
-    $stmt = $db->prepare("INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, creator, replier) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?, 'new', ?, ?, 0)");
+    $stmt = $db->prepare("INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, creator, replier) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?, 'new', ?, ?, NULL)");
     $stmt->execute(array($title, $text, $visibility, $priority, $category, $creator));
     $ticketId = $db->lastInsertId();
     foreach ($tags as $tag) {
@@ -231,32 +235,34 @@ class Ticket
     }
   }
 
-  function changeProperties(PDO $db, int $userId, array $new_tags, string $new_category, string $new_priority, string $new_status){
+  function changeProperties(PDO $db, int $userId, array $new_tags, string $new_category, string $new_priority, string $new_status)
+  {
 
-    if ($new_category !== $this->category){
+    if ($new_category !== $this->category) {
       $this->updateField($db, $userId, 'category', $new_category);
     }
-    if ($new_status !== $this->status){
+    if ($new_status !== $this->status) {
       $this->updateField($db, $userId, 'status', $new_status);
     }
-    if ($new_priority !== $this->priority){
+    if ($new_priority !== $this->priority) {
       $this->updateField($db, $userId, 'priority', $new_priority);
     }
   }
 
-  function updateField(PDO $db, int $userId, string $field, string $value) {
+  function updateField(PDO $db, int $userId, string $field, string $value)
+  {
     $stmt = $db->prepare("UPDATE Ticket SET $field = ? WHERE id = ?");
     $stmt->execute(array($value, $this->ticketId));
 
-    if (!Change::fieldChangeExists($db, $this->{$field}, $value)){
-      Change::addFieldChange($db, $this->{$field}, $value);      
-    } 
+    if (!Change::fieldChangeExists($db, $this->{$field}, $value)) {
+      Change::addFieldChange($db, $this->{$field}, $value);
+    }
 
     $change = Change::getChangeId($db, $this->{$field}, $value);
 
     $this->addHistory($db, $userId, $field . " changed", $change);
   }
-  
+
   function addMessage(PDO $db, int $userId, string $text)
   {
     $stmt = $db->prepare('INSERT INTO Message (id, user, ticket, text, date) VALUES (NULL, ?,?, ?, CURRENT_TIMESTAMP)');
@@ -316,23 +322,26 @@ class Ticket
 
   }
 
-  static function getFieldStats($db, $field): array {
+  static function getFieldStats($db, $field): array
+  {
     $stmt = $db->prepare("SELECT $field, COUNT(*) as count FROM Ticket GROUP BY $field");
     $stmt->execute();
 
     $stats = array();
     while ($row = $stmt->fetch()) {
-        $stats[] = array($row[$field], $row['count']);
+      $stats[] = array($row[$field], $row['count']);
     }
     return $stats;
-}
+  }
 
-  function updateFeedback(PDO $db, int $value){
+  function updateFeedback(PDO $db, int $value)
+  {
     $stmt = $db->prepare('UPDATE Ticket SET feedback = ? WHERE id = ?');
     $stmt->execute(array($value, $this->ticketId));
   }
 
-  function answerWithFAQ(PDO $db, int $userId, int $faqId){
+  function answerWithFAQ(PDO $db, int $userId, int $faqId)
+  {
     $faq = FAQ::getFAQ($db, $faqId);
     $this->addMessage($db, $userId, $faq->answer);
   }

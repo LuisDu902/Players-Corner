@@ -11,13 +11,16 @@ require_once(__DIR__ . '/../../utils/validation.php');
 
 $db = getDatabaseConnection();
 
-if (!valid_token($_POST['csrf'])){
+if (!valid_token($_POST['csrf'])) {
     die(header('Location: ../../pages/index.php'));
 }
 
-$faqId = (int)$_POST['id'];
+$faqId = intval($_POST['id']);
 
-FAQ::removeFAQItem($db, $faqId);
-
+try {
+    FAQ::removeFAQItem($db, $faqId);
+} catch (PDOException $e) {
+    $session->addMessage('error', 'Failed to remove faq');
+}
 header('Location: ../../pages/faq.php');
 ?>

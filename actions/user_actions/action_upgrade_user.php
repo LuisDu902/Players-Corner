@@ -10,12 +10,14 @@ require_once(__DIR__ . '/../../utils/validation.php');
 
 $db = getDatabaseConnection();
 
-if (!valid_token($_POST['csrf'])){
+if (!valid_token($_POST['csrf'])) {
     die(header("Location: ../../pages/users.php"));
 }
-
-User::upgradeUser($db,$_POST['role'],intval($_POST['userId']));
-
+try {
+    User::upgradeUser($db, htmlentities($_POST['role']), intval($_POST['userId']));
+} catch (PDOException $e) {
+    $session->addMessage('error', 'Failed to upgrade user');
+}
 $session->addMessage('success', 'User role updated');
 header("Location: ../../pages/users.php");
 ?>

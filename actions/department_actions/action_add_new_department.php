@@ -18,7 +18,12 @@
   $department_name = strtolower(str_replace(" ", "_", $_POST['new_category']));
   $fileName = "../../images/departments/" . $department_name . ".png";
   move_uploaded_file($_FILES['departmentImage']['tmp_name'], $fileName);
-  Department::addDepartment($db, $_POST['new_category']);
+  try {
+  Department::addDepartment($db, htmlentities($_POST['new_category']));
+  }
+  catch (PDOException $e) {
+    $session->addMessage('error', 'Failed to create department');
+  }
 
   header('Location: ../../pages/index.php');
 ?>

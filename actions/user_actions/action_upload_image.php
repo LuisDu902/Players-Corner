@@ -14,7 +14,6 @@
     die(header("Location: ../../pages/edit_profile.php"));
   }
 
- 
 
   $fileName = "../../images/users/user" . $session->getId() . ".png";
   move_uploaded_file($_FILES['imageToUpload']['tmp_name'], $fileName);
