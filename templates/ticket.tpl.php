@@ -59,91 +59,128 @@
 ?>
 
 <?php
-function drawTicket($_session, $ticket, $messages, $history, $attachedFiles) { ?>
+function drawTicket($_session, $ticket, $messages, $history, $attachedFiles, $faqs)
+{ ?>
     <div id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
         <article id="tkt">
-            <h1 class="highlight"> <?= $ticket->title ?> </h1>
-            <h3>Created by: <?= $ticket->creator->name ?> | <?= $ticket->date ?></h3>
-            <h2 id="ticket-text" class="round-border"> <?= $ticket->text ?> </h2>
+            <h1 class="highlight">
+                <?= $ticket->title ?>
+            </h1>
+            <h3>Created by:
+                <?= $ticket->creator->name ?> |
+                <?= $ticket->date ?>
+            </h3>
+            <h2 id="ticket-text" class="round-border">
+                <?= $ticket->text ?>
+            </h2>
             <hr>
             <ol id="ticket-messages">
                 <?php foreach ($messages as $message) {
                     if ($message['user']->userId !== $ticket->creator->userId) { ?>
                         <li class="replier-msg ticket-msg">
-                    <?php } else { ?>
+                        <?php } else { ?>
                         <li class="creator-msg ticket-msg">
-                    <?php } ?>
+                        <?php } ?>
                         <img src="<?= $message['user']->getPhoto() ?>" alt="user-img" class="circle-border">
-                        <span> <?= $message['user']->name ?> </span>
+                        <span>
+                            <?= $message['user']->name ?>
+                        </span>
                         <div class="message-content round-border">
-                            <p> <?= $message['text'] ?> </p>
-                            <p class="message-date"> <?= $message['date'] ?> </p>
+                            <p>
+                                <?= $message['text'] ?>
+                            </p>
+                            <p class="message-date">
+                                <?= $message['date'] ?>
+                            </p>
                         </div>
                     </li>
-                <?php } 
+                <?php }
                 if (($ticket->status == 'closed') && ($_session->getId() === $ticket->creator->userId) && ($ticket->feedback === 1)) { ?>
                     <li class="bot-msg ticket-msg">
                         <img src="../images/icons/bot.png" alt="user-img" class="circle-border bot-img">
                         <span> Satisfaction survey </span>
                         <div class="message-content round-border">
-                            <p>Using your game expertise, how would you classify the level of awesomeness our agent's service achieved?</p>
-                            <div id="feedback" class="center" data-id="<?=$ticket->replier->userId?>">
-                            <div class="vert-flex">
-                                <button data-value=-10><img src="../images/icons/terrible.png" alt="Terrible"></button>
-                                <p>Terrible</p>
+                            <p>Using your game expertise, how would you classify the level of awesomeness our agent's service
+                                achieved?</p>
+                            <div id="feedback" class="center" data-id="<?= $ticket->replier->userId ?>">
+                                <div class="vert-flex">
+                                    <button data-value=-10><img src="../images/icons/terrible.png" alt="Terrible"></button>
+                                    <p>Terrible</p>
+                                </div>
+                                <div class="vert-flex">
+                                    <button data-value=-5><img src="../images/icons/bad.png" alt="Not Good"></button>
+                                    <p>Not good</p>
+                                </div>
+                                <div class="vert-flex">
+                                    <button data-value=0><img src="../images/icons/normal.png" alt="Okay"></button>
+                                    <p>Okay</p>
+                                </div>
+                                <div class="vert-flex">
+                                    <button data-value=5><img src="../images/icons/great.png" alt="Great"></button>
+                                    <p>Great</p>
+                                </div>
+                                <div class="vert-flex">
+                                    <button data-value=10><img src="../images/icons/awesome.png" alt="Awesome"></button>
+                                    <p>Awesome</p>
+                                </div>
                             </div>
-                            <div class="vert-flex">
-                                <button data-value=-5><img src="../images/icons/bad.png" alt="Not Good"></button>
-                                <p>Not good</p>
-                            </div>
-                            <div class="vert-flex">
-                                <button data-value=0><img src="../images/icons/normal.png" alt="Okay"></button>
-                                <p>Okay</p>
-                            </div>
-                            <div class="vert-flex">
-                                <button data-value=5><img src="../images/icons/great.png" alt="Great"></button>
-                                <p>Great</p>
-                            </div>
-                            <div class="vert-flex">
-                                <button data-value=10><img src="../images/icons/awesome.png" alt="Awesome"></button>
-                                <p>Awesome</p>
-                            </div>
-                        </div>
                     </li>
                 <?php }
                 ?>
 
             </ol>
-            <?php if (($ticket->status !== 'closed') && ($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) { ?>
+            <?php if (($ticket->status !== 'closed') && ($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) { 
+               
+                ?>
+               
                 <div id="respond">
                     <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
                     <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
-                    <button id="faq-button" class="no-background"><span>FAQ</span></button>
-                    <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
+                    <div class="dropup">
+  <button class="faq-btn">FAQ</button>
+  <div class="dropup-content">
+  <div id="search-faq" class="round-border">
+            <div class="search-box center round-border white-border">
+                <input id="faq-bar" type="text" placeholder="search">
+                <img src="../images/icons/search.png">
+            </div>
+            <ul id="faq-items" class="center">
+                <?php foreach ($faqs as $faq) { ?>
+                    <li class="faq-title">
+                        <?= $faq->problem ?>
+                    </li>
+                <?php } ?>
+            </ul>
+        </div>
+  </div>
+</div>
+<button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
                 </div>
+
+
             <?php } ?>
         </article>
 
-          <section class="sidebar">
-                <h1>Edit Ticket</h1>
-                <div class="sidebar-content">
+        <section class="sidebar">
+            <h1>Edit Ticket</h1>
+            <div class="sidebar-content">
 
-                    <p>Welcome,
-                        <?= $_session->getRole() ?>
-                    </p>
-                </div>
-                <article id="files">
-                    <h2>Attached Files</h2>
-                    <ul>
-                        <?php foreach ($attachedFiles as $filename) { ?>
-                            <li>
-                                <a href="../files/ticket<?= $ticket->ticketId ?>_<?= $filename ?>" download><?= $filename ?></a>
-                            </li>
-                        <?php } ?>
-                    </ul>
-                </article>
-            </section>
-      
+                <p>Welcome,
+                    <?= $_session->getRole() ?>
+                </p>
+            </div>
+            <article id="files">
+                <h2>Attached Files</h2>
+                <ul>
+                    <?php foreach ($attachedFiles as $filename) { ?>
+                        <li>
+                            <a href="../files/ticket<?= $ticket->ticketId ?>_<?= $filename ?>" download><?= $filename ?></a>
+                        </li>
+                    <?php } ?>
+                </ul>
+            </article>
+        </section>
+
     </div>
     </div>
     <?php

@@ -13,7 +13,8 @@
   justify-content: space-between;
 }
 
-#search-user, .order-select, #search-ticket, .filter-criteria{
+#search-user, .order-select, #search-ticket, .filter-criteria, #faq-bar{
+  flex: 1;
   font-size: 1.1rem;
   margin-right: 10px;
   border: none;

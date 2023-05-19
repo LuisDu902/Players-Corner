@@ -15,12 +15,7 @@
 
     
     static function getFAQs(PDO $db, int $count, int $page) {
-      $stmt = $db->prepare('
-        SELECT FAQ.id, FAQ.title, content
-        FROM FAQ
-        ORDER BY 1
-        LIMIT ? OFFSET ?
-      ');
+      $stmt = $db->prepare('SELECT FAQ.id, FAQ.title, content FROM FAQ ORDER BY 1 LIMIT ? OFFSET ?');
 
       $stmt->execute(array($count, $page * $count));
   
