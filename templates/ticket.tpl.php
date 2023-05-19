@@ -127,23 +127,25 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles, $fa
                     </li>
                 <?php }
                 ?>
-
             </ol>
-            <?php if (($ticket->status !== 'closed') && ($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) {
-
-                ?>
-
+            <?php if (($ticket->status !== 'closed') && ($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) {?>
                 <div id="respond">
                     <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
                     <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
                     <?php if ($_session->getId() === $ticket->replier->userId) {  drawFAQDropup($faqs);} ?>
                     <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
                 </div>
-
-
             <?php } ?>
         </article>
 
+
+
+
+
+
+
+
+        
         <section class="sidebar">
             <h1>Edit Ticket</h1>
             <div class="sidebar-content">
