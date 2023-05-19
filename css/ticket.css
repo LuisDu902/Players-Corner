@@ -159,12 +159,34 @@
   margin-bottom: 40px;
 }
 
+#ticket-messages{
+  height: 100vh;
+  overflow-y: auto;
+}
+
+#ticket-messages::-webkit-scrollbar {
+  width: 8px; /* Adjust the width as desired */
+}
+
+#ticket-messages::-webkit-scrollbar-track {
+  border-radius: 10px; /* Adjust the border-radius as desired */
+  background-color: #1A1725; /* Set the background color to black */
+}
+
+#ticket-messages::-webkit-scrollbar-thumb {
+  border-radius: 10px; /* Adjust the border-radius as desired */
+  background-color: #282948; /* Set the thumb color to black */
+}
+
 .ticket-msg{
   display: grid;
   grid-column-gap: 10px;
-  margin-bottom: 20px;
+  margin: 20px;
   align-items: center;
+}
 
+.bot-msg{
+  margin-top: 50px;
 }
 
 .replier-msg, .bot-msg{

@@ -124,9 +124,7 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles) { ?
             <?php } ?>
         </article>
 
-        <?php if ($_session->getRole() == 'admin' || $_session->getRole() == 'agent') {
-            ?>
-            <section class="sidebar">
+          <section class="sidebar">
                 <h1>Edit Ticket</h1>
                 <div class="sidebar-content">
 
@@ -145,8 +143,7 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles) { ?
                     </ul>
                 </article>
             </section>
-            <?php
-        } ?>
+      
     </div>
     </div>
     <?php
