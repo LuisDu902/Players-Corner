@@ -47,11 +47,27 @@
         $faq['content']
       );
     }
-    static function addFaq(PDO $db, string $problem, string $answer)
-  {
+    static function addFaq(PDO $db, string $problem, string $answer) {
       $stmt = $db->prepare('INSERT INTO FAQ (title, content) VALUES (?, ?)');
       $stmt->execute([$problem, $answer]);
-  }
+    }
+
+    static function searchFAQs(PDO $db, string $search) {
+      $stmt = $db->prepare('SELECT * FROM FAQ WHERE title LIKE ? ');
+
+      $stmt->execute(array($search . '%'));
+  
+      $faqs = array();
+      while($faq = $stmt->fetch()){
+          $faqs[] = new FAQ(
+              intval($faq['id']),
+              $faq['title'],
+              $faq['content']
+          );
+      }
+
+      return $faqs;
+    }
 
   }
 ?>
