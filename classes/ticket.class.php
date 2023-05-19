@@ -1,6 +1,8 @@
 <?php
 
 require_once(__DIR__ . "/user.class.php");
+require_once(__DIR__ . "/change.class.php");
+require_once(__DIR__ . "/faq.class.php");
 class Ticket
 {
   public int $ticketId;
@@ -328,6 +330,11 @@ class Ticket
   function updateFeedback(PDO $db, int $value){
     $stmt = $db->prepare('UPDATE Ticket SET feedback = ? WHERE id = ?');
     $stmt->execute(array($value, $this->ticketId));
+  }
+
+  function answerWithFAQ(PDO $db, int $userId, int $faqId){
+    $faq = FAQ::getFAQ($db, $faqId);
+    $this->addMessage($db, $userId, $faq->answer);
   }
 
 }

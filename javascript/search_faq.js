@@ -15,8 +15,10 @@ async function searchFaqs(value) {
     sector.innerHTML = ''
     for (const faq of faqs){
         const problem = document.createElement('li')
+        problem.setAttribute('data-id', faq.id)
         problem.classList.add('faq-title')
         problem.textContent = faq.problem
         sector.appendChild(problem)
+        problem.addEventListener('click', () => {answerWithFAQ(faq.id)})
     }
 }

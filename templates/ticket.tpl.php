@@ -146,7 +146,7 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles, $fa
                                 </div>
                                 <ul id="faq-items" class="center">
                                     <?php foreach ($faqs as $faq) { ?>
-                                        <li class="faq-title">
+                                        <li class="faq-title" data-id=<?= $faq->id ?>>
                                             <?= $faq->problem ?>
                                         </li>
                                     <?php } ?>
