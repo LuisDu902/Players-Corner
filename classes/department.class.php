@@ -127,7 +127,8 @@ class Department
         $ticket['category'],
         Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
-        User::getUser($db, $replier)
+        User::getUser($db, $replier),
+        intval($ticket['feedback'])
       );
     }
     return $tickets;
