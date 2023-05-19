@@ -25,7 +25,8 @@
     <script src="../javascript/autocomplete_tags.js" defer></script>
     <script src="../javascript/chart.js" defer></script>
     <script src="../javascript/attach_file.js" defer></script>
-    <script src="../javascript/edit_ticket.js" defer></script>
+    <script src="../javascript/edit_assignee.js" defer></script>
+    <script src="../javascript/autocomple_edit.js" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
   </head>

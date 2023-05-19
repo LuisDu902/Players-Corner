@@ -67,11 +67,11 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
         <link rel="stylesheet" href="../css/style.css">
         <link rel="stylesheet" href="../css/ticket.css">
     </head>
-    <div id="ticket-page">
-    <div id="ticket">
-        <div class="ticket-header">
-            <span class="ticket-title"><?= $ticket->title ?></span>
-            <span class="ticket-date"><?= $ticket->date ?></span> 
+    <div id="ticket-page" data-id="<?= $ticket->ticketId ?>">
+        <div id="ticket">
+            <div class="ticket-header">
+                <span class="ticket-title"><?= $ticket->title ?></span>
+                <span class="ticket-date"><?= $ticket->date ?></span> 
         </div>
         <br>
         <span class="ticket-creator-small">Created by: <?= $ticket->creator->name ?></span>
@@ -216,6 +216,13 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                             } ?>
                         </select>
                         </label>
+                    </div>
+                    <div>
+                        <h3 >Tags:</h3>
+                        <input type="text" id="tags-edit" name="tags-edit" list="taglist">
+                        <input type="hidden" id="ticket_tags" name="ticket_tags" />
+                        <div id="tag-container"></div>
+                        <datalist id="taglist"></datalist>
                     </div>
                 </div>
             <?php

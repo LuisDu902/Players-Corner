@@ -3,7 +3,7 @@ const tagInput = document.querySelector('#tags');
 
 if (tagInput) {
     const tags = [];
-
+    
     tagInput.addEventListener('input', get_tags)
 
     async function get_tags(event) {
