@@ -65,7 +65,7 @@ li,a, button {
     padding: 1% 6% 1% 5%;
 }
 
-.logo, button, #fileUploadForm img{
+.logo, button, #fileUploadForm img, .ticket, .user-card{
     cursor: pointer;
 }
 
