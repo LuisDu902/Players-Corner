@@ -30,12 +30,5 @@
     </div>
     </section>
 <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-<script>
-        var typed = new Typed('.auto-type', {
-      strings: ["Player's Corner", "Adventure", "Experience", "Comfort"],
-      typeSpeed: 100,
-      backSpeed: 100,
-      loop: true
-    });
-</script>
+<script src="../javascript/typed.js"></script>
 <?php } ?>
