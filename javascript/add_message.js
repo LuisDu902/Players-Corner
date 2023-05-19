@@ -23,6 +23,7 @@ async function addMessage() {
 
   messageContainer.appendChild(createMessage(message))
 
+  messageContainer.scrollTop = messageContainer.scrollHeight;
   messageInput.value = ''
 }
 
