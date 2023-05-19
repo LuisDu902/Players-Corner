@@ -1,5 +1,8 @@
 const uploadButton = document.getElementById('upload-button');
-uploadButton.addEventListener('click', handleFileUpload);
+
+
+if (uploadButton){
+  uploadButton.addEventListener('click', handleFileUpload);}
 
 function handleFileUpload() {
   const fileInput = document.createElement('input');

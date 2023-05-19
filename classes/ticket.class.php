@@ -14,8 +14,9 @@ class Ticket
   public string $visibility;
   public User $creator;
   public User $replier;
+  public int $feedback;
 
-  public function __construct(int $ticketId, string $title, string $text, string $date, string $visibility, string $priority, string $status, string $category, array $tags, User $creator, User $replier)
+  public function __construct(int $ticketId, string $title, string $text, string $date, string $visibility, string $priority, string $status, string $category, array $tags, User $creator, User $replier, int $feedback)
   {
     $this->ticketId = $ticketId;
     $this->tags = $tags;
@@ -28,6 +29,7 @@ class Ticket
     $this->creator = $creator;
     $this->replier = $replier;
     $this->category = $category;
+    $this->feedback = $feedback;
   }
 
   function getAttachedFiles(): array
@@ -88,7 +90,8 @@ class Ticket
         $ticket['category'],
         Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
-        User::getUser($db, $replier)
+        User::getUser($db, $replier),
+        intval($ticket['feedback'])
       );
     }
     return $tickets;
@@ -128,7 +131,8 @@ class Ticket
       $ticket['category'],
       Ticket::getTicketTags($db, $ticket['id']),
       User::getUser($db, $ticket['creator']),
-      User::getUser($db, $replier)
+      User::getUser($db, $replier),
+      intval($ticket['feedback'])
     );
   }
 
@@ -197,7 +201,8 @@ class Ticket
           $ticket['category'],
           Ticket::getTicketTags($db, $ticket['id']),
           User::getUser($db, $ticket['creator']),
-          User::getUser($db, $replier)
+          User::getUser($db, $replier),
+          intval($ticket['feedback'])
         );
       }
     }
@@ -319,6 +324,11 @@ class Ticket
     }
     return $stats;
 }
+
+  function updateFeedback(PDO $db, int $value){
+    $stmt = $db->prepare('UPDATE Ticket SET feedback = ? WHERE id = ?');
+    $stmt->execute(array($value, $this->ticketId));
+  }
 
 }
 ?>

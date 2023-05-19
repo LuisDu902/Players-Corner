@@ -145,13 +145,8 @@ class User
 
   static function upgradeUser(PDO $db, string $role, int $userId)
   {
-    $stmt = $db->prepare('
-         UPDATE User SET type = ?
-         WHERE userId = ?
-        ');
-
+    $stmt = $db->prepare('UPDATE User SET type = ? WHERE userId = ?');
     $stmt->execute(array($role, $userId));
-
   }
 
   static function getAssignableDepartments(PDO $db, int $userId): array

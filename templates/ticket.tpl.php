@@ -80,9 +80,41 @@ function drawTicket($_session, $ticket, $messages, $history, $attachedFiles) { ?
                             <p class="message-date"> <?= $message['date'] ?> </p>
                         </div>
                     </li>
-                <?php } ?>
+                <?php } 
+                if (($ticket->status == 'closed') && ($_session->getId() === $ticket->creator->userId) && ($ticket->feedback === 1)) { ?>
+                    <li class="bot-msg ticket-msg">
+                        <img src="../images/icons/bot.png" alt="user-img" class="circle-border bot-img">
+                        <span> Satisfaction survey </span>
+                        <div class="message-content round-border">
+                            <p>Using your game expertise, how would you classify the level of awesomeness our agent's service achieved?</p>
+                            <div id="feedback" class="center" data-id="<?=$ticket->replier->userId?>">
+                            <div class="vert-flex">
+                                <button data-value=-10><img src="../images/icons/terrible.png" alt="Terrible"></button>
+                                <p>Terrible</p>
+                            </div>
+                            <div class="vert-flex">
+                                <button data-value=-5><img src="../images/icons/bad.png" alt="Not Good"></button>
+                                <p>Not good</p>
+                            </div>
+                            <div class="vert-flex">
+                                <button data-value=0><img src="../images/icons/normal.png" alt="Okay"></button>
+                                <p>Okay</p>
+                            </div>
+                            <div class="vert-flex">
+                                <button data-value=5><img src="../images/icons/great.png" alt="Great"></button>
+                                <p>Great</p>
+                            </div>
+                            <div class="vert-flex">
+                                <button data-value=10><img src="../images/icons/awesome.png" alt="Awesome"></button>
+                                <p>Awesome</p>
+                            </div>
+                        </div>
+                    </li>
+                <?php }
+                ?>
+
             </ol>
-            <?php if (($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) { ?>
+            <?php if (($ticket->status !== 'closed') && ($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) { ?>
                 <div id="respond">
                     <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
                     <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
