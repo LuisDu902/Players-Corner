@@ -1,3 +1,19 @@
+<?php function drawDepartments(session $session, array $departments){ ?>
+    <h1 class="heading-title">Categories</h1>
+         <?php if ($session->getRole() === "admin") { ?>
+            <div class="button-wrap round-border gradient"><button id="add-department">Add new department</button></div>
+            <?php  drawDepartmentModal() ;
+        } ?>
+         <div class="departments">
+            <?php foreach ($departments as $department): ?>
+            <a href="../pages/department.php?category=<?= $department->category ?>" class="department-card">
+                <img src=<?= $department->getPhoto() ?> alt="department image" class="white-border round-border"></img>
+                <span> <?= $department->category ?> </span>
+            </a>
+        <?php endforeach; ?>
+    </div>
+<?php } ?>
+
 
 
 <?php
@@ -16,20 +32,8 @@ function drawDepartment(bool $hasAccess, Department $department)
             <canvas id="dept-priority" class="graphics"></canvas>
         </article>
         <article class="round-border vert-flex" id="dept-members">
-            <h3>Members</h3>  
-            
-            <?php if (!empty($department->members)){
-                foreach ($department->members as $member): ?>
-                <a href="../pages/profile.php?userId=<?=$member->userId?>" class="dept-member">
-                    <img src=<?= $member->getPhoto() ?> alt="member image" class="gradient circle-border" id="dept-members-img"> 
-                    <span class="center"> <?= $member->name?> </span>
-                </a>
-                <?php endforeach; }
-            else { ?>
-                <img src="../images/icons/not-found.png" class="no-background no-members">
-                <h4 class="center warning no-background">No members yet</h4>
-            <?php }
-                ?>
+            <h3>Members</h3>   
+           <?php drawMembers($department->members); ?>
         </article>
 
     </section>
@@ -62,3 +66,5 @@ function drawDepartment(bool $hasAccess, Department $department)
         </div>
     </div>
 <?php } ?>
+
+

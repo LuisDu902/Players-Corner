@@ -5,41 +5,53 @@ require_once(__DIR__ . '/../classes/user.class.php');
 
 <?php function drawProfile(Session $session, User $user)
 { ?>
-  <header id="profile" data-id="<?=$session->getId()?>">Profile page</header>
+  <header id="profile" data-id="<?= $session->getId() ?>">Profile page</header>
   <section class="container" id="user-profile">
     <article class="round-border profile-picture round-wrap vert-flex center">
-       <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
-        <h4 class="bold highlight"> <?= $user->username ?> </h4>
-        <?php if ($session->getId() === $user->userId) {?>
-          <div class="button-wrap gradient round-border">
-            <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
-          </div>
-        <?php } ?>
+      <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
+      <h4 class="bold highlight">
+        <?= $user->username ?>
+      </h4>
+      <?php if ($session->getId() === $user->userId) { ?>
+        <div class="button-wrap gradient round-border">
+          <a href="../pages/edit_profile.php"><button>Edit profile</button></a>
+        </div>
+      <?php } ?>
     </article>
     <article class="round-border user-details" id="about">
       <h2 class="center">General information</h2>
       <table class="center">
         <tr>
           <th class="field">Name</th>
-          <td class="info"> <?= $user->name ?></td>
+          <td class="info">
+            <?= $user->name ?>
+          </td>
         </tr>
         <tr>
           <th class="field">Username</th>
-          <td class="info"> <?= $user->username ?></td>
+          <td class="info">
+            <?= $user->username ?>
+          </td>
         </tr>
         <tr>
           <th class="field">Email</th>
-          <td class="info"> <?= $user->email ?></td>
+          <td class="info">
+            <?= $user->email ?>
+          </td>
         </tr>
         <tr>
           <th class="field">Role</th>
-          <td class="info"><?= $user->type ?></td>
+          <td class="info">
+            <?= $user->type ?>
+          </td>
         </tr>
-        <?php if ($user->type !== 'client'){ ?>
-        <tr>
-          <th class="field round-border">Reputation</th>
-          <td class="info round-border"><?= $user->reputation ?></td>
-        </tr>
+        <?php if ($user->type !== 'client') { ?>
+          <tr>
+            <th class="field round-border">Reputation</th>
+            <td class="info round-border">
+              <?= $user->reputation ?>
+            </td>
+          </tr>
         <?php } ?>
       </table>
     </article>
@@ -88,13 +100,15 @@ require_once(__DIR__ . '/../classes/user.class.php');
         <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview" class="gradient circle-border">
         <input type="file" id="user-image" name="imageToUpload">
         <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
-        <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload photo</button> </div>
+        <div class="button-wrap gradient round-border auth-button" id="upload"> <button type="submit">Upload
+            photo</button> </div>
       </form>
     </div>
   </div>
 <?php } ?>
 
-<?php function drawUserSearchBar(){ ?>
+<?php function drawUserSearchBar()
+{ ?>
   <nav class="search-bar center">
     <div class="search-box center round-border white-border">
       <input id="search-user" type="text" placeholder="search">
@@ -118,8 +132,26 @@ require_once(__DIR__ . '/../classes/user.class.php');
 <?php } ?>
 
 <?php function drawUsers($users)
-{ 
-  drawUserSearchBar(); ?>
+{ ?>
   <div class="user-cards" id="users"> </div>
   <div class="modal"> </div>
 <?php } ?>
+
+
+<?php function drawMembers($members)
+{
+  if (!empty($members)) {
+    foreach ($members as $member): ?>
+      <a href="../pages/profile.php?userId=<?= $member->userId ?>" class="dept-member">
+        <img src=<?= $member->getPhoto() ?> alt="member image" class="gradient circle-border" id="dept-members-img">
+        <span class="center">
+          <?= $member->name ?>
+        </span>
+      </a>
+    <?php endforeach;
+  } else { ?>
+    <img src="../images/icons/not-found.png" class="no-background no-members">
+    <h4 class="center warning no-background">No members yet</h4>
+  <?php }
+
+} ?>
