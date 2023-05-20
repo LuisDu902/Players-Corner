@@ -8,7 +8,7 @@
                 <span class="auto-type"></span>
             </h1>
             <p><br>The one-stop-shop for all your gaming FAQs and strategies. <br> No gamer should be left out!</p>
-            <a href="#" class="btn">About us</a>
+            <a href="#about-us" class="btn">About us</a>
         </article>
         <article class="gif">
             <img src="../images/banner.gif">
