@@ -13,7 +13,7 @@ body{
   background-color: #222033;
 }
 main {
-    margin: 30px 4%;
+  margin: 30px 3% 9%;
 }
 
 li,a, button {
@@ -465,4 +465,59 @@ form .delete-faq{
   flex: 1;
   text-align: justify;
   font-size: large;
+}
+
+
+footer{
+  padding: 30px 0 30px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+
+.footer-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  margin-top: 12px;
+  padding-bottom: 20px; 
+}
+
+.socials li a{
+  margin: 20px 20px 0;
+  border-radius: 15%;
+  padding: 10px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.socials li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.socials li a ion-icon {
+  font-size: 30px;
+  color: #222033;
+}
+
+.socials li a:hover{
+
+  opacity: 0.9;
+}
+
+.footer-copyright{
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 15px;
+  color: #aaa;
+
 }

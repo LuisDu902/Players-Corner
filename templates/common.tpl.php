@@ -86,6 +86,20 @@
     <?php function drawFooter()
     { ?>
     </main>
+    <footer>
+      <section class="footer-top">
+      <h3>Contact Us</h3>
+      <ul class="socials">
+        <li><a class="white-border" href="https://www.facebook.com/NIAEFEUP" target="_blank"><ion-icon name="logo-facebook"></ion-icon></a></li>
+        <li ><a class="white-border" href="https://www.instagram.com/niaefeup/" target="_blank"><ion-icon name="logo-instagram"></ion-icon></a></li>
+        <li ><a class="white-border" href="https://twitter.com/niaefeup" target="_blank"><ion-icon name="logo-twitter"></ion-icon></a></li>
+        <li ><a class="white-border" href="https://www.linkedin.com/company/sinffeup/" target="_blank"><ion-icon name="logo-linkedin"></ion-icon></a></li>
+      </ul>
+      </section>
+      <section class="footer-copyright">
+        <p>LTW Project &copy; 2023 | Developed by: ltw13g04</p>
+      </section>
+    </footer>
   </body>
 
   </html>
