@@ -1,23 +1,22 @@
 const faq_page = document.querySelector('#faq-page');
 const loadButton = document.querySelector('.load-more');
 const loadBorder = document.querySelector('#load');
-let faqs = [];
-let number = 5;
+faqElements = 5;
 
 if (faq_page) {
   getFAQs();
 }
 
 async function getFAQs() {
-  const response = await fetch('../api/api_search.php?' + encodeForAjax({ type: 'faqs', search: ''}))
+  const response = await fetch('../api/api_search.php?' + encodeForAjax({ type: 'faqs', search: '' }))
   faqs = await response.json();
-  displayFaqs(faqs, number);
+  displayFaqs(faqs, faqElements);
 }
 
-function displayFaqs(faqs, number) {
+function displayFaqs(faqs, faqElements) {
 
-  let end = number;
-  let faqItems = faqs.slice(0, end);
+  const end = faqElements;
+  const faqItems = faqs.slice(0, end);
   const section = document.querySelector('#faq-list');
   section.innerHTML = '';
 
@@ -108,15 +107,11 @@ function createFAQ(faq) {
 
 if (loadButton) {
   loadButton.addEventListener('click', () => {
-    console.log('Number:', number);
-    console.log('FAQs Length:', faqs.length);
+    faqElements += 5;
 
-    number += 5;
+    displayFaqs(faqs, faqElements);
 
-    displayFaqs(faqs, number);
-
-    if (number >= faqs.length) {
-      console.log('No more FAQs');
+    if (faqElements >= faqs.length) {
       loadButton.setAttribute('hidden', 'true');
       loadBorder.setAttribute('hidden', 'true');
     }

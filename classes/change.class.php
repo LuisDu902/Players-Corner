@@ -22,7 +22,7 @@
     }
 
     static function addFieldChange(PDO $db, string $old_field, string $new_field) {
-      $stmt = $db->prepare('INSERT INTO FieldChange(id, old_field, new_field) VALUES (NULL, ?, ?)');
+      $stmt = $db->prepare('INSERT INTO FieldChange(old_field, new_field) VALUES (?, ?)');
       $stmt->execute(array($old_field, $new_field));
     }
 

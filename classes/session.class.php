@@ -56,11 +56,9 @@
     public function addMessage(string $type, string $text) {
       $_SESSION['messages'][] = array('type' => $type, 'text' => $text);
     }
-
     public function getMessages() {
       return $this->messages;
     }
-
     public function generate_random_token(){
       return bin2hex(openssl_random_pseudo_bytes(32));
   }

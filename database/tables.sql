@@ -17,8 +17,8 @@ CREATE TABLE User(
    username VARCHAR  NOT NULL,
    email VARCHAR NOT NULL,
    password VARCHAR NOT NULL,
-   reputation INTEGER NOT NULL,
-   type VARCHAR NOT NULL,
+   reputation INTEGER NOT NULL DEFAULT 50,
+   type VARCHAR NOT NULL DEFAULT "client" ,
    CHECK (type = "client" OR type = "agent" OR type = "admin")
 );
 

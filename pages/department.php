@@ -18,16 +18,13 @@ $db = getDatabaseConnection();
 
 $department = Department::getDepartment($db, $_GET['category']);
 
-
-$hasAccess = false;
-
-    foreach ($department->members as $member) {
-        if ($session->getId() == $member->userId || $session->getRole() === 'admin') {
-            $hasAccess = true;
-            break;
-        }
+$hasAccess = $session->getRole() === 'admin';
+foreach ($department->members as $member) {
+    if ($session->getId() == $member->userId) {
+        $hasAccess = true;
+        break;
     }
-
+}
 
 drawHeader($session);
 drawDepartment($hasAccess, $department);

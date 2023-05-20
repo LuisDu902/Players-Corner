@@ -17,21 +17,31 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="../javascript/search_users.js" defer></script>
-    <script src="../javascript/add_new_department.js" defer></script>
+  
     <script src="../javascript/add_new_faq.js" defer></script>
     <script src="../javascript/load_more_faq.js" defer></script>
     <script src="../javascript/assign_to_departments.js" defer></script>
     <script src="../javascript/upgrade_user.js" defer></script>
     
-    <script src="../javascript/search_tickets.js" defer></script>
     <script src="../javascript/preview_image.js" defer></script>
     <script src="../javascript/dropdown.js" defer></script>
-    <script src="../javascript/autocomplete_tags.js" defer></script>
-    <script src="../javascript/chart.js" defer></script>
-    <script src="../javascript/attach_file.js" defer></script>
-    <script src="../javascript/add_message.js" defer></script>
-    <script src="../javascript/feedback.js" defer></script>
-    <script src="../javascript/answer_with_faq.js" defer></script>
+    
+    <script src="../javascript/department/add_new_department.js" defer></script>
+
+    <script src="../javascript/charts/chart.js" defer></script>
+    <script src="../javascript/charts/user_charts.js" defer></script>
+    <script src="../javascript/charts/dept_charts.js" defer></script>
+    <script src="../javascript/charts/ticket_charts.js" defer></script>
+    
+    <script src="../javascript/ticket/add_message.js" defer></script>
+    <script src="../javascript/ticket/answer_with_faq.js" defer></script>
+    <script src="../javascript/ticket/attach_file.js" defer></script>
+    <script src="../javascript/ticket/autocomplete_tags.js" defer></script>
+    <script src="../javascript/ticket/feedback.js" defer></script>
+    <script src="../javascript/ticket/search_tickets.js" defer></script>
+
+
+
     <script src="../javascript/search_faq.js" defer></script>
 
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
