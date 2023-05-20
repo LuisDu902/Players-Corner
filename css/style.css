@@ -1,5 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
+
+/* main layout */
 
 * {
     box-sizing: border-box;
@@ -10,14 +12,42 @@
     text-decoration: none;
     scroll-behavior: smooth;
     list-style: none;
+}
 
+
+:root {
+  --background-color: #222033;
+  --main-pink: #D257EB;
+  --main-blue: #37E0FE;
+  --yellow: #FFE32A;
+  --orange: #F08E0F;
+  --rose: #C1164B;
+  --purple: #41276E;
 }
+
+
 body{
-  background-color: #222033;
+  background-color: var(--background-color);
+  display: grid;
+  grid-template-rows: [start] auto [nav-end banner-start] auto [banner-end categories-start] auto [categories-end about-us-start] auto [footer-start] auto [end];
 }
+
 main {
+  grid-column: left-border/right-border;
+  grid-row: banner-start/footer-start;
   margin: 30px 3% 9%;
 }
+
+#header {
+  grid-column: left/right; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1% 6% 1% 5%;
+}
+
+
+
 
 li,a, button {
     font-size: 1.1rem;
@@ -61,12 +91,6 @@ li,a, button {
     display: block;
 }
 
-#header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1% 6% 1% 5%;
-}
 
 .logo, button, #fileUploadForm img, .ticket, .user-card{
     cursor: pointer;

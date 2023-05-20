@@ -31,8 +31,7 @@
                 <ion-icon name="add-outline"></ion-icon>
                 <ion-icon name="remove-outline"></ion-icon>
                 <?php if ($session->getRole() === "admin") { ?>
-                    <form class="delete-faq" action="../actions/faq_actions/action_delete_faq.php" method="post"
-                        onsubmit="return confirm('Are you sure you want to delete this FAQ?')">
+                    <form class="delete-faq" action="../actions/faq_actions/action_delete_faq.php" method="post">
                         <input type="hidden" name="id" value="<?= $faq->id ?>">
                         <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
                         <button type="submit" class="trash-button">
