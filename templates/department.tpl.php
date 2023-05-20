@@ -37,10 +37,8 @@
                 <?php drawMembers($department->members); ?>
             </article>
         </section>
-
-        <section id="department-tickets">
-            <header class="title"> Tickets </header>
         <?php } ?>
+        <section id="department-tickets">
         <?php drawTickets($department->tickets); ?>
     </section>
     <form action="../actions/department_actions/action_remove_department.php" method="POST">
