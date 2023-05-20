@@ -4,11 +4,15 @@
   require_once(__DIR__ . '/../../classes/session.class.php');
   $session = new Session();
 
+  if (!$session->isLoggedIn()) {
+    die(header('Location: ../../pages/index.php'));
+  }
+
   require_once(__DIR__ . '/../../database/connection.db.php');
   require_once(__DIR__ . '/../../classes/user.class.php');
-  require_once(__DIR__ . '/../../utils/validation.php'); 
+  require_once(__DIR__ . '/../../utils/validation.php');
 
-  if (!valid_token($_POST['csrf']) || !valid_name($_POST['name']) || !valid_email($_POST['email']) || !valid_username($_POST['username']) || !valid_password($_POST["old-password"]) || !valid_password($_POST["new-password"])){
+  if (!valid_token($_POST['csrf']) || !valid_name($_POST['name']) || !valid_email($_POST['email']) || !valid_username($_POST['username']) || !valid_password($_POST["old-password"]) || !valid_password($_POST["new-password"])) {
     die(header("Location: ../../pages/edit_profile.php"));
   }
 
@@ -16,14 +20,18 @@
 
   $user = User::getUser($db, $session->getId());
 
-  if (!password_verify($_POST["old-password"], $user->password)){
+  if (!password_verify($_POST["old-password"], $user->password)) {
     $session->addMessage('error', 'Current password doesn\'t match!');
     die(header("Location: ../../pages/edit_profile.php"));
   }
-
-  else if ($user) {
-    $user->editProfile($db, $_POST['name'], $_POST['username'], $_POST['email'], $_POST['new-password']);
-    $session->setName($user->username);
+  
+  if ($user) {
+    try {
+      $user->editProfile($db, $_POST['name'], $_POST['username'], $_POST['email'], $_POST['new-password']);
+      $session->setName($user->username);
+    } catch (PDOException $e) {
+      $session->addMessage('error', 'Failed to edit profile');
+    }
   }
 
   header('Location: ../../pages/edit_profile.php');

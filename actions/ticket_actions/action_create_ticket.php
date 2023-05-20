@@ -4,18 +4,29 @@
   require_once(__DIR__ . '/../../classes/session.class.php');
   $session = new Session();
 
+  if (!$session->isLoggedIn()) {
+    die(header('Location: ../../pages/index.php'));
+  }
+
   require_once(__DIR__ . '/../../database/connection.db.php');
   require_once(__DIR__ . '/../../classes/ticket.class.php');
   require_once(__DIR__ . '/../../utils/validation.php');
 
   $db = getDatabaseConnection();
-  
-  if (!valid_token($_POST['csrf'])){
+
+  if (!valid_token($_POST['csrf'])) {
     die(header("Location: ../../pages/create_ticket.php"));
   }
 
-  $tags = explode(',' , $_POST['chosen_tags']);
-  Ticket::registerTicket($db, $tags, $_POST['title'], $_POST['text'], "4-low", $_POST['category'], "public", $session->getId());
-  $session->addMessage('success', 'Ticket successfully created!');
-  header("Location: ../../pages/tickets.php");
+  $tags = explode(',', htmlentities($_POST['chosen_tags']));
+
+  try {
+    Ticket::registerTicket($db, $tags, htmlentities($_POST['title']), htmlentities($_POST['text']), "4-low", htmlentities($_POST['category']), "public", $session->getId());
+    $session->addMessage('success', 'Ticket successfully created!');
+    header("Location: ../../pages/tickets.php");
+  } 
+  catch (PDOException $e) {
+    $session->addMessage('error', 'Failed to create ticket due to foreign key constraint violation.');
+    header("Location: ../../pages/create_ticket.php");
+  }
 ?>

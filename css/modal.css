@@ -71,11 +71,6 @@
     color: #D66AE6;
 }
 
-.assignable-departments {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-auto-rows: minmax(auto, max-content);
-}
 
 #assign-modal-content {
     min-width: 80%;

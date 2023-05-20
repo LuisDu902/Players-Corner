@@ -1,6 +1,8 @@
 <?php
 
 require_once(__DIR__ . "/user.class.php");
+require_once(__DIR__ . "/change.class.php");
+require_once(__DIR__ . "/faq.class.php");
 class Ticket
 {
   public int $ticketId;
@@ -14,8 +16,9 @@ class Ticket
   public string $visibility;
   public User $creator;
   public User $replier;
+  public int $feedback;
 
-  public function __construct(int $ticketId, string $title, string $text, string $date, string $visibility, string $priority, string $status, string $category, array $tags, User $creator, User $replier)
+  public function __construct(int $ticketId, string $title, string $text, string $date, string $visibility, string $priority, string $status, string $category, array $tags, User $creator, User $replier, int $feedback)
   {
     $this->ticketId = $ticketId;
     $this->tags = $tags;
@@ -28,6 +31,7 @@ class Ticket
     $this->creator = $creator;
     $this->replier = $replier;
     $this->category = $category;
+    $this->feedback = $feedback;
   }
 
   function getAttachedFiles(): array
@@ -49,20 +53,24 @@ class Ticket
     $stmt = $db->prepare(
       'SELECT TicketHistory.id, ticketId, user, date, changes, old_field, new_field 
       FROM TicketHistory JOIN FieldChange ON TicketHistory.field = FieldChange.id
-      WHERE ticketId = ?'
+      WHERE ticketId = ? ORDER BY date'
     );
     $stmt->execute(array($this->ticketId));
 
     $history = array();
     while ($change = $stmt->fetch()) {
-      $history[] = new Change(
+      $date = $change['date'];
+      if (!isset($history[$date])) {
+        $history[$date] = array();
+      }
+      $history[$date][] = new Change(
         intval($change['id']),
         User::getUser($db, intval($change['user'])),
         $this,
         $change['date'],
         $change['changes'],
         $change['old_field'],
-        $change['new_field'],
+        $change['new_field']
       );
     }
     return $history;
@@ -79,8 +87,8 @@ class Ticket
       $replier = ($ticket['replier']) ? $ticket['replier'] : 0;
       $tickets[] = new Ticket(
         intval($ticket['id']),
-        $ticket['title'],
-        $ticket['text'],
+        htmlentities($ticket['title']),
+        htmlentities($ticket['text']),
         $ticket['createDate'],
         $ticket['visibility'],
         substr($ticket['priority'], 2),
@@ -88,7 +96,8 @@ class Ticket
         $ticket['category'],
         Ticket::getTicketTags($db, $ticket['id']),
         User::getUser($db, $ticket['creator']),
-        User::getUser($db, $replier)
+        User::getUser($db, $replier),
+        intval($ticket['feedback'])
       );
     }
     return $tickets;
@@ -104,7 +113,7 @@ class Ticket
     while ($message = $stmt->fetch()) {
       $messages[] = array(
         'user' => User::getUser($db, intval($message['user'])),
-        'text' => $message['text'],
+        'text' => htmlentities($message['text']),
         'date' => $message['date'],
       );
     }
@@ -119,8 +128,8 @@ class Ticket
     $replier = ($ticket['replier']) ? $ticket['replier'] : 0;
     return new Ticket(
       $ticket['id'],
-      $ticket['title'],
-      $ticket['text'],
+      htmlentities($ticket['title']),
+      htmlentities($ticket['text']),
       $ticket['createDate'],
       $ticket['visibility'],
       substr($ticket['priority'], 2),
@@ -128,7 +137,8 @@ class Ticket
       $ticket['category'],
       Ticket::getTicketTags($db, $ticket['id']),
       User::getUser($db, $ticket['creator']),
-      User::getUser($db, $replier)
+      User::getUser($db, $replier),
+      intval($ticket['feedback'])
     );
   }
 
@@ -188,8 +198,8 @@ class Ticket
       if ($ticket['visibility'] === 'public' || $user->type === 'admin' || ($user->type === 'agent' && in_array($ticket['category'], $agentDepartments)) || ($ticket['creator'] === $userId)) {
         $tickets[] = new Ticket(
           intval($ticket['id']),
-          $ticket['title'],
-          $ticket['text'],
+          htmlentities($ticket['title']),
+          htmlentities($ticket['text']),
           $ticket['createDate'],
           $ticket['visibility'],
           substr($ticket['priority'], 2),
@@ -197,7 +207,8 @@ class Ticket
           $ticket['category'],
           Ticket::getTicketTags($db, $ticket['id']),
           User::getUser($db, $ticket['creator']),
-          User::getUser($db, $replier)
+          User::getUser($db, $replier),
+          intval($ticket['feedback'])
         );
       }
     }
@@ -205,7 +216,7 @@ class Ticket
     return $tickets;
   }
 
-  function assignTicket(PDO $db, int $userId, string $replier)
+  function assignTicket(PDO $db, int $userId, int $replier)
   {
     $stmt = $db->prepare("UPDATE Ticket SET replier = ? , status='assigned' WHERE id = ?");
     $stmt->execute(array($replier, $this->ticketId));
@@ -215,7 +226,7 @@ class Ticket
 
   static function registerTicket(PDO $db, array $tags, string $title, string $text, string $priority, string $category, string $visibility, int $creator)
   {
-    $stmt = $db->prepare("INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, creator, replier) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?, 'new', ?, ?, 0)");
+    $stmt = $db->prepare("INSERT INTO Ticket (title, text, createDate, visibility, priority, status, category, creator) VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?, 'new', ?, ?)");
     $stmt->execute(array($title, $text, $visibility, $priority, $category, $creator));
     $ticketId = $db->lastInsertId();
     foreach ($tags as $tag) {
@@ -224,35 +235,41 @@ class Ticket
     }
   }
 
-  function changeProperties(PDO $db, int $userId, array $new_tags, string $new_category, string $new_priority, string $new_status){
+  function changeProperties(PDO $db, int $userId, array $new_tags, string $new_category, string $new_priority, string $new_status,string $new_visibility)
+  {
 
-    if ($new_category !== $this->category){
+    $this->tags=$new_tags;
+    if ($new_category !== $this->category) {
       $this->updateField($db, $userId, 'category', $new_category);
     }
-    if ($new_status !== $this->status){
+    if ($new_status !== $this->status) {
       $this->updateField($db, $userId, 'status', $new_status);
     }
-    if ($new_priority !== $this->priority){
+    if ($new_priority !== $this->priority) {
       $this->updateField($db, $userId, 'priority', $new_priority);
+    }
+    if ($new_visibility !== $this->priority) {
+      $this->updateField($db, $userId, 'visibility', $new_visibility);
     }
   }
 
-  function updateField(PDO $db, int $userId, string $field, string $value) {
+  function updateField(PDO $db, int $userId, string $field, string $value)
+  {
     $stmt = $db->prepare("UPDATE Ticket SET $field = ? WHERE id = ?");
     $stmt->execute(array($value, $this->ticketId));
 
-    if (!Change::fieldChangeExists($db, $this->{$field}, $value)){
-      Change::addFieldChange($db, $this->{$field}, $value);      
-    } 
+    if (!Change::fieldChangeExists($db, $this->{$field}, $value)) {
+      Change::addFieldChange($db, $this->{$field}, $value);
+    }
 
     $change = Change::getChangeId($db, $this->{$field}, $value);
 
     $this->addHistory($db, $userId, $field . " changed", $change);
   }
-  
+
   function addMessage(PDO $db, int $userId, string $text)
   {
-    $stmt = $db->prepare('INSERT INTO Message (id, user, ticket, text, date) VALUES (NULL, ?,?, ?, CURRENT_TIMESTAMP)');
+    $stmt = $db->prepare('INSERT INTO Message (user, ticket, text, date) VALUES (?,?, ?, CURRENT_TIMESTAMP)');
     $stmt->execute(array($userId, $this->ticketId, $text));
   }
 
@@ -264,7 +281,7 @@ class Ticket
     $lastMessage = $stmt->fetch();
     $message = array(
       'user' => User::getUser($db, intval($lastMessage['user'])),
-      'text' => $lastMessage['text'],
+      'text' => htmlentities($lastMessage['text']),
       'date' => $lastMessage['date'],
     );
     return $message;
@@ -272,7 +289,7 @@ class Ticket
 
   function addHistory(PDO $db, int $userId, string $changes, int $field)
   {
-    $stmt = $db->prepare('INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO TicketHistory(ticketId, user, date, changes, field) VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?)');
     $stmt->execute(array($this->ticketId, $userId, $changes, $field));
   }
 
@@ -281,16 +298,21 @@ class Ticket
     $stats = array();
     $total_tickets_query = $db->query("SELECT COUNT(*) AS total_tickets FROM Ticket");
     $total_tickets = $total_tickets_query->fetch()['total_tickets'];
+    
     $stats['total_tickets'] = $total_tickets;
     $tickets_created_today_query = $db->query("SELECT COUNT(*) AS tickets_created_today FROM Ticket WHERE date(createDate) = date('now')");
     $tickets_created_today = $tickets_created_today_query->fetch()['tickets_created_today'];
+    
     $stats['tickets_created_today'] = $tickets_created_today;
     $tickets_created_this_week_query = $db->query("SELECT COUNT(*) AS tickets_created_this_week FROM Ticket WHERE strftime('%Y-%W', createDate) = strftime('%Y-%W', 'now')");
     $tickets_created_this_week = $tickets_created_this_week_query->fetch()['tickets_created_this_week'];
+    
     $stats['tickets_created_this_week'] = $tickets_created_this_week;
     $tickets_created_this_month_query = $db->query("SELECT COUNT(*) AS tickets_created_this_month FROM Ticket WHERE strftime('%Y-%m', createDate) = strftime('%Y-%m', 'now')");
     $tickets_created_this_month = $tickets_created_this_month_query->fetch()['tickets_created_this_month'];
+    
     $stats['tickets_created_this_month'] = $tickets_created_this_month;
+    
     return $stats;
   }
 
@@ -309,16 +331,40 @@ class Ticket
 
   }
 
-  static function getFieldStats($db, $field): array {
+  static function getFieldStats($db, $field): array
+  {
     $stmt = $db->prepare("SELECT $field, COUNT(*) as count FROM Ticket GROUP BY $field");
     $stmt->execute();
 
     $stats = array();
     while ($row = $stmt->fetch()) {
-        $stats[] = array($row[$field], $row['count']);
+      $stats[] = array($row[$field], $row['count']);
     }
     return $stats;
-}
+  }
 
+  function updateFeedback(PDO $db, int $value)
+  {
+    $stmt = $db->prepare('UPDATE Ticket SET feedback = ? WHERE id = ?');
+    $stmt->execute(array($value, $this->ticketId));
+  }
+
+  function answerWithFAQ(PDO $db, int $userId, int $faqId)
+  {
+    $faq = FAQ::getFAQ($db, $faqId);
+    $this->addMessage($db, $userId, $faq->answer);
+  }
+  static function setTicketTags(PDO $db, $ticketId,array $tags)
+  {
+  
+    $stmt = $db->prepare('DELETE  FROM TicketTag WHERE ticket = ?');
+
+    $stmt->execute(array($ticketId));
+    foreach($tags as $tag){
+      $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
+      $stmt->execute(array($ticketId, $tag));
+    }
+
+  }
 }
 ?>

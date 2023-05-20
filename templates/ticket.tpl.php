@@ -1,8 +1,8 @@
 <?php function drawTicketSearchBar()
 { ?>
-    <div class="search-bar center">
+    <nav class="search-bar center">
         <div class="filter-condition round-border white-border">
-            <span> Filter by </span>
+            <label> Filter by </label>
             <select name="" class="filter-criteria" id="filter-ticket">
                 <option value="title"> Title </option>
                 <option value="creator"> Creator </option>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="order-condition round-border white-border">
-            <span> Order by </span>
+            <label> Order by </label>
             <select name="" class="order-select" id="order-ticket">
                 <option value="title"> Title </option>
                 <option value="category"> Category </option>
@@ -30,7 +30,7 @@
                 <option value="createDate"> Date </option>
             </select>
         </div>
-    </div>
+    </nav>
 <?php } ?>
 
 <?php function drawTickets($tickets)
@@ -53,53 +53,73 @@
         </table>
         <div class="pagination-bar center"></div>
     <?php } else { ?>
-        <span>No tickets</span>
+        <h2 class="center">No tickets</h2>
     <?php }
 }
 ?>
 
 <?php
-function drawTicket($_session,$ticket, $departments,$status,$priorities,$department,$messages, $history,$attachedFiles){ ?>
+function drawTicket($_session,$ticket, $departments,$status,$priorities,$department,$messages, $history,$attachedFiles,$faqs){ ?>
     <div id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
+    
         <article id="tkt">
-            <h1 class="highlight"> <?= $ticket->title ?> </h1>
-            <h3>Created by: <?= $ticket->creator->name ?> | <?= $ticket->date ?></h3>
-            <h2 id="ticket-text" class="round-border"> <?= $ticket->text ?> </h2>
+            <h1 class="highlight">
+                <?= $ticket->title ?>
+            </h1>
+            <h3>Created by:
+                <?= $ticket->creator->name ?> |
+                <?= $ticket->date ?>
+            </h3>
+            <h2 id="ticket-text" class="round-border">
+                <?= $ticket->text ?>
+            </h2>
             <hr>
+            
             <ol id="ticket-messages">
-                <?php foreach ($messages as $message) {
+                <?php 
+                foreach ($messages as $message) {
                     if ($message['user']->userId !== $ticket->creator->userId) { ?>
                         <li class="replier-msg ticket-msg">
-                    <?php } else { ?>
+                        <?php } else { ?>
                         <li class="creator-msg ticket-msg">
-                    <?php } ?>
+                        <?php } ?>
                         <img src="<?= $message['user']->getPhoto() ?>" alt="user-img" class="circle-border">
-                        <span> <?= $message['user']->name ?> </span>
-                        <div class="message-content round-border">
-                            <p> <?= $message['text'] ?> </p>
-                            <p class="message-date"> <?= $message['date'] ?> </p>
-                        </div>
+                        <span>
+                            <?= $message['user']->name ?>
+                        </span>
+                        <section class="message-content round-border">
+                            <p>
+                                <?= $message['text'] ?>
+                            </p>
+                            <p class="message-date">
+                                <?= $message['date'] ?>
+                            </p>
+                        </section>
                     </li>
-                <?php } ?>
+                <?php }
+                if (($ticket->status == 'closed') && ($_session->getId() === $ticket->creator->userId) && ($ticket->feedback === 1)) {
+                    drawSurvey($ticket);
+                } ?>
             </ol>
             <?php if (($_session->getId() === $ticket->creator->userId || $_session->getId() === $ticket->replier->userId)) { ?>
-                <div id="respond">
+                <section id="respond">
                     <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
                     <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
-                    <button id="faq-button" class="no-background"><span>FAQ</span></button>
+                    <?php if ($_session->getId() === $ticket->replier->userId) {
+                        drawFAQDropup($faqs);
+                    } ?>
                     <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
-                </div>
+                </section>
             <?php } ?>
         </article>
-    <?php if($_session->getRole()=='admin' || $_session->getRole()== 'agent'){
-        ?>
-            <section id="sidebar">
+            <aside id="sidebar">
+                <div class="sidebar-content">
                 <h1>Properties</h1>
                     <div id="cat">
                         <label >Category: 
                         <select name="categories" id="categories">
                             <?php foreach($departments as $category) {
-                                if($category->category == $ticket->category){
+                                if($category->category === $ticket->category){
                                     ?>
                                    <option value="<?= $ticket->category ?>" selected><?= $ticket->category ?> </option><?php
                                 }
@@ -115,7 +135,7 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                         <label>Status: 
                         <select name="stat" id="stat">
                             <?php foreach($status as $stat) {
-                                if($stat == $ticket->status){
+                                if($stat === $ticket->status){
                                     ?>
                                    <option value="<?= $ticket->status?>" selected><?= $ticket->status ?> </option><?php
                                 }
@@ -131,7 +151,7 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                         <label>Priority: 
                         <select name="priorities" id="priorities">
                             <?php foreach($priorities as $priority) {
-                                if($priority== $ticket->priority){
+                                if(substr($priority,2) === $ticket->priority){
                                     ?>
                                    <option value="<?= $ticket->priority?>" selected><?= $ticket->priority ?> </option><?php
                                 }
@@ -149,22 +169,47 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                             <?php foreach($department->members as $member) {
                                 if($member->userId== $ticket->replier->userId){
                                     ?>
-                                   <option value="<?= $ticket->replier->name?>" selected><?= $ticket->replier->name ?> </option><?php
+                                   <option value="<?= $ticket->replier->userId?>" selected><?= $ticket->replier->name ?> </option><?php
                                 }
                                 else{ ?>
-                                    <option value="<?= $member->name ?>"><?= $member->name ?> </option> <?php
+                                    <option value="<?= $member->userId ?>"><?= $member->name ?> </option> <?php
                                 }
                             } ?>
                         </select>
                         </label>
                     </div>
+                    
+                    <br>
+
+                    <div id="vis">
+                        <label for="Visibility">Visiblity: 
+                            <select name="visibility" id="visibility">
+                            <?php if($ticket->visibility === 'public'){?>
+                                    <option value="public" selected> Public  </option>
+                                    <option value="private" > Private  </option>
+                                    <?php
+                            } else {?>
+                                    <option value="public" > Public  </option>
+                                    <option value="private" selected> Private  </option>
+                                    <?php
+                            } ?>
+                            </select>
+                        </label>
+                    </div>
+                    </br>
                     <div>
-                        <h3 >Tags:</h3>
+                        <label>Tags: 
                         <input type="text" id="tags-edit" name="tags-edit" list="taglist">
                         <input type="hidden" id="ticket_tags" name="ticket_tags" />
                         <div id="tag-container"></div>
                         <datalist id="taglist"></datalist>
+                        </label>
                     </div>
+                    <br>
+                    <button id="edit-btn" class="no-background">Submit edit</button>
+                    </div>
+                    <hr>
+
                     <div class="history">
                         <br><br>
                         <?php foreach ($history as $change) { ?>
@@ -172,8 +217,8 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                             <span class="status_date"><?= $change->date ?></span>
                             <br><br>
                         <?php } ?>
-                        </div>
-                
+                    </div>
+                    <hr>
                     <article id="files">
                     <h2>Attached Files</h2>
                     <ul>
@@ -183,11 +228,46 @@ function drawTicket($_session,$ticket, $departments,$status,$priorities,$departm
                             </li>
                         <?php } ?>
                     </ul>
-                </article>
-                </section>
-            <?php
-        } ?>
-    </div>
-    </div>
+                    </article>
+
+        
+            </aside>
+        </div>
     <?php } ?>
+
+
+
+
+<?php function drawSurvey(Ticket $ticket)
+{ ?>
+    <li class="bot-msg ticket-msg">
+        <img src="../images/icons/bot.png" alt="user-img" class="circle-border bot-img">
+        <span> Satisfaction survey </span>
+        <div class="message-content round-border">
+            <p>Using your game expertise, how would you classify the level of awesomeness our agent's service
+                achieved?</p>
+            <section id="feedback" class="center" data-id="<?= $ticket->replier->userId ?>">
+                <div class="vert-flex">
+                    <button data-value=-10><img src="../images/icons/terrible.png" alt="Terrible"></button>
+                    <p>Terrible</p>
+                </div>
+                <div class="vert-flex">
+                    <button data-value=-5><img src="../images/icons/bad.png" alt="Not Good"></button>
+                    <p>Not good</p>
+                </div>
+                <div class="vert-flex">
+                    <button data-value=0><img src="../images/icons/normal.png" alt="Okay"></button>
+                    <p>Okay</p>
+                </div>
+                <div class="vert-flex">
+                    <button data-value=5><img src="../images/icons/great.png" alt="Great"></button>
+                    <p>Great</p>
+                </div>
+                <div class="vert-flex">
+                    <button data-value=10><img src="../images/icons/awesome.png" alt="Awesome"></button>
+                    <p>Awesome</p>
+                </div>
+            </section>
+    </li>
+<?php } ?>
 

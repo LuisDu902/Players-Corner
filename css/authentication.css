@@ -22,7 +22,8 @@
     padding: 0px 10px 20px 0px;
 }
 
-.auth-button, .login-logo {
+.auth-button,
+.login-logo {
     margin: 0 auto;
 }
 
@@ -40,6 +41,13 @@
     padding-top: 0;
 }
 
-.white-border{
+.white-border {
     border: 2px solid white;
-  }
+}
+
+.title {
+    font-size: 2em;
+    color: #D66AE6;
+    font-weight: bold;
+    margin-bottom: 50px;
+}
