@@ -250,7 +250,7 @@ li,a, button {
   padding: 2em;
 }
 
-#faq-page header{
+#faq-page header, #user-tickets header{
   font-size: 2.5em;
   font-weight: bolder;
   margin-bottom: 2rem;

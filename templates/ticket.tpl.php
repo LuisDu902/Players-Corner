@@ -58,6 +58,25 @@
 }
 ?>
 
+<?php function drawUserTickets(Session $session, User $user, array $tickets)
+{ ?>
+    <section id="user-tickets" data-user="<?= $user->name ?>">
+        <?php if (!empty($tickets)) { ?>
+            <header class="center">
+                <?= $user->name ?>'s tickets
+            </header>
+        <?php }
+        
+        drawTickets($tickets);
+
+        if ($session->getId() === $user->userId) { ?>
+            <div class="button-wrap gradient round-border">
+                <a href="../pages/create_ticket.php"><button>Create new ticket</button></a>
+            </div>
+        <?php } ?>
+    </section>
+<?php } ?>
+
 <?php
 function drawTicket($session, $ticket, $messages, $history, $attachedFiles, $faqs)
 { ?>

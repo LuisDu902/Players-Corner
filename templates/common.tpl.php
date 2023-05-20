@@ -134,6 +134,7 @@
     </button>
     <div class="dropdown-content">
       <a href="../pages/profile.php?userId=<?= $session->getId() ?>">Profile</a>
+      <a href="../pages/user_tickets.php?userId=<?= $session->getId() ?>">My tickets</a>
       <a href="../actions/user_actions/action_logout.php">Sign out</a>
     </div>
   </div>

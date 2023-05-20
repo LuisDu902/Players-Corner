@@ -119,3 +119,6 @@
   display: flex;
 }
 
+#user-tickets .button-wrap{
+  margin: 0 auto;
+}
