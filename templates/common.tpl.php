@@ -15,15 +15,16 @@
     <link rel="stylesheet" href="../css/reports.css">
     <link rel="stylesheet" href="../css/ticket_form.css">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
-    <script src="../javascript/typed.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
+   
     <script src="../javascript/preview_image.js" defer></script>
     <script src="../javascript/drop_menus.js" defer></script>
 
     <script src="../javascript/user/search_users.js" defer></script>
     <script src="../javascript/user/upgrade_user.js" defer></script>
-    
+
     <script src="../javascript/department/add_new_department.js" defer></script>
     <script src="../javascript/department/assign_to_departments.js" defer></script>
 
@@ -31,7 +32,7 @@
     <script src="../javascript/charts/user_charts.js" defer></script>
     <script src="../javascript/charts/dept_charts.js" defer></script>
     <script src="../javascript/charts/ticket_charts.js" defer></script>
-    
+
     <script src="../javascript/ticket/add_message.js" defer></script>
     <script src="../javascript/ticket/answer_with_faq.js" defer></script>
     <script src="../javascript/ticket/attach_file.js" defer></script>
@@ -43,11 +44,9 @@
     <script src="../javascript/faq/load_more_faq.js" defer></script>
     <script src="../javascript/faq/search_faq.js" defer></script>
 
-    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
-    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-  </head>
+   </head>
 
-  <body data-csrf="<?=$_SESSION['csrf']?>">
+  <body data-csrf="<?= $_SESSION['csrf'] ?>">
     <header id="header">
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>
@@ -55,15 +54,16 @@
           <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="Users"><a href="../pages/tickets.php">Forum</a></li>
           <li class="FAQ"><a href="../pages/faq.php">FAQ</a></li>
-          <?php 
-          if ($session->isLoggedIn()){?>
-          	<li class="create-Ticket"><a href="../pages/create_ticket.php">Create Tickets</a></li> <?php 
-          }?>
-        
+          <?php
+          if ($session->isLoggedIn()) { ?>
+            <li class="create-Ticket"><a href="../pages/create_ticket.php">Create Tickets</a></li>
+          <?php
+          } ?>
+
           <?php if ($session->isLoggedIn() && $session->getRole() === "admin") {
             drawAdminButtons();
           } ?>
-            <li class="Help"><a href="#">Help</a></li>
+          <li class="Help"><a href="#">Help</a></li>
 
         </ul>
       </nav>
@@ -100,14 +100,14 @@
 
 <?php function drawAuthForms()
 { ?>
-  <div class="buttons">
-    <div class="button-wrap gradient round-border">
+  <ul class="buttons">
+    <li class="button-wrap gradient round-border">
       <a href="../pages/login.php"><button>Sign In</button></a>
-    </div>
-    <div class="button-wrap gradient round-border">
+    </li>
+    <li class="button-wrap gradient round-border">
       <a href="../pages/register.php"><button>Sign Up</button></a>
-    </div>
-  </div>
+    </li>
+  </ul>
 <?php } ?>
 
 
@@ -115,11 +115,11 @@
 { ?>
   <div class="dropdown">
     <button class="dropbtn center">
-        <img src=<?=$session->getPhoto() ?> alt="user-profile" class="gradient circle-border">
-        <span class="username"><?= $session->getName() ?></span>
+      <img src=<?= $session->getPhoto() ?> alt="user-profile" class="gradient circle-border">
+      <strong class="username"> <?= $session->getName() ?> </strong>
     </button>
     <div class="dropdown-content">
-      <a href="../pages/profile.php?userId=<?=$session->getId()?>">Profile</a>
+      <a href="../pages/profile.php?userId=<?= $session->getId() ?>">Profile</a>
       <a href="../actions/user_actions/action_logout.php">Sign out</a>
     </div>
   </div>

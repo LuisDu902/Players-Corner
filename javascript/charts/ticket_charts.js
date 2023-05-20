@@ -45,7 +45,7 @@ async function showTicketPriority() {
 }
 
 
-const reports = document.querySelector('#reports')
+const reports = document.querySelector('#all-ticket-stats')
 if (reports) {
   showTicketCounts()
   showTicketDept()

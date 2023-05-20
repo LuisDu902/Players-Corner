@@ -1,3 +1,5 @@
+
+
 async function showDeptStatus() {
   const api = '../../api/api_stats.php?' + encodeForAjax({ department: category.textContent, field: 'status' })
   const colors = ["#D66AE6", "#FF5757", "#5271FF", "#FFBD59", "#7ED957"]

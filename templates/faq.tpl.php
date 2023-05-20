@@ -1,7 +1,7 @@
 <?php function drawFAQList($faqs, $session)
 { ?>
-    <div id="faq-page" data-role="<?= $session->getRole() ?>">
-        <h1>Frequently Asked Questions</h1>
+    <section id="faq-page" class="vert-flex center" data-role="<?= $session->getRole() ?>">
+        <header>Frequently Asked Questions</header>
         <?php if ($session->getRole() === "admin") { ?>
             <div class="button-wrap round-border gradient"><button id="add-faq">Add New FAQ</button></div>
             <?php drawFAQForm();
@@ -16,8 +16,7 @@
                 Load more
             </button>
         </div>
-    </div>
-    </div>
+    </section>
 <?php } ?>
 
 <?php function drawFAQ($faq, $session)
@@ -25,7 +24,9 @@
     <li class="faq-item" data-role="<?= $faq->id ?>">
         <input id="cb<?= $faq->id ?>" type="checkbox" class="faq-item-checkbox">
         <label class="faq-item-header" for="cb<?= $faq->id ?>">
-            <span class="faq-title"><?= $faq->problem ?></span>
+            <strong class="faq-title">
+                <?= $faq->problem ?>
+            </strong>
             <div class="faq-icons">
                 <ion-icon name="add-outline"></ion-icon>
                 <ion-icon name="remove-outline"></ion-icon>
@@ -42,7 +43,9 @@
             </div>
         </label>
         <div class="faq-item-answer">
-            <p><?= $faq->answer ?></p>
+            <p>
+                <?= $faq->answer ?>
+            </p>
         </div>
     </li>
 
@@ -53,8 +56,8 @@
 function drawFAQForm()
 { ?>
     <div id="faq-modal" class="modal">
-        <div class="modal-content white-border round-border vert-flex center" id="faq-modal-content">
-            <span class="modal-title"> Add new FAQ </span>
+        <article class="modal-content white-border round-border vert-flex center" id="faq-modal-content">
+            <h2 class="modal-title"> Add new FAQ </h2>
             <form action="../actions/faq_actions/action_add_new_faq.php" method="post">
                 <textarea name="problem" required="required" placeholder="Question" id="faq-problem"
                     class="white-border round-border"></textarea>
@@ -65,7 +68,7 @@ function drawFAQForm()
                     <button type="submit">Confirm</button>
                 </div>
             </form>
-        </div>
+        </article>
     </div>
 <?php }
 ?>
@@ -76,20 +79,18 @@ function drawFAQForm()
 { ?>
     <div class="dropup">
         <button class="faq-btn">FAQ</button>
-        <div class="dropup-content">
-            <div id="search-faq" class="round-border">
-                <div class="search-box center round-border white-border">
-                    <input id="faq-bar" type="text" placeholder="search">
-                    <img src="../images/icons/search.png">
-                </div>
-                <ul id="faq-items" class="center">
-                    <?php foreach ($faqs as $faq) { ?>
-                        <li class="faq-title" data-id=<?= $faq->id ?>>
-                            <?= $faq->problem ?>
-                        </li>
-                    <?php } ?>
-                </ul>
-            </div>
-        </div>
+        <article class="dropup-content">
+            <section class="search-box center round-border white-border">
+                <input id="faq-bar" type="text" placeholder="search">
+                <img src="../images/icons/search.png">
+            </section>
+            <ul id="faq-items" class="center">
+                <?php foreach ($faqs as $faq) { ?>
+                    <li class="faq-title" data-id=<?= $faq->id ?>>
+                        <?= $faq->problem ?>
+                    </li>
+                <?php } ?>
+            </ul>
+        </article>
     </div>
 <?php } ?>

@@ -53,6 +53,7 @@ function createWarning(id, title) {
 async function fetchDataAndGenerateChart(endpoint, categorySelector, chartSelector, colors, title) {
   const response = await fetch(endpoint)
   const data = await response.json()
+  console.log(data)
   const ctx = document.querySelector(chartSelector)
   const labels = data.map(item => item[0])
   const countData = data.map(item => item[1])

@@ -17,6 +17,6 @@
     <section class="categories">
         <?php drawDepartments($session, $departments); ?>
     </section>
-<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-<script src="../javascript/typed.js"></script>
+<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js" defer></script>
+<script src="../javascript/typed.js" defer></script>
 <?php } ?>

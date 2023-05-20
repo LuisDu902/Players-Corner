@@ -1,3 +1,9 @@
+function encodeForAjax(data) {
+  return Object.keys(data).map(function (k) {
+    return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
+  }).join('&')
+}
+
 async function searchUsers(searchValue, filterValue, orderValue) {
   const response = await fetch('../api/api_search.php?' + encodeForAjax({ type: 'users', search: searchValue, role: filterValue, order: orderValue }))
   const users = await response.json()

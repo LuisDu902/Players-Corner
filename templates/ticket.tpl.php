@@ -1,8 +1,8 @@
 <?php function drawTicketSearchBar()
 { ?>
-    <div class="search-bar center">
+    <nav class="search-bar center">
         <div class="filter-condition round-border white-border">
-            <span> Filter by </span>
+            <label> Filter by </label>
             <select name="" class="filter-criteria" id="filter-ticket">
                 <option value="title"> Title </option>
                 <option value="creator"> Creator </option>
@@ -20,7 +20,7 @@
         </div>
 
         <div class="order-condition round-border white-border">
-            <span> Order by </span>
+            <label> Order by </label>
             <select name="" class="order-select" id="order-ticket">
                 <option value="title"> Title </option>
                 <option value="category"> Category </option>
@@ -30,7 +30,7 @@
                 <option value="createDate"> Date </option>
             </select>
         </div>
-    </div>
+    </nav>
 <?php } ?>
 
 <?php function drawTickets($tickets)
@@ -53,7 +53,7 @@
         </table>
         <div class="pagination-bar center"></div>
     <?php } else { ?>
-        <span>No tickets</span>
+        <h2 class="center">No tickets</h2>
     <?php }
 }
 ?>
@@ -61,7 +61,7 @@
 <?php
 function drawTicket($session, $ticket, $messages, $history, $attachedFiles, $faqs)
 { ?>
-    <div id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
+    <section id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
         <article id="tkt">
             <h1 class="highlight">
                 <?= $ticket->title ?>
@@ -85,56 +85,29 @@ function drawTicket($session, $ticket, $messages, $history, $attachedFiles, $faq
                         <span>
                             <?= $message['user']->name ?>
                         </span>
-                        <div class="message-content round-border">
+                        <section class="message-content round-border">
                             <p>
                                 <?= $message['text'] ?>
                             </p>
                             <p class="message-date">
                                 <?= $message['date'] ?>
                             </p>
-                        </div>
+                        </section>
                     </li>
                 <?php }
-                if (($ticket->status == 'closed') && ($session->getId() === $ticket->creator->userId) && ($ticket->feedback === 1)) { ?>
-                    <li class="bot-msg ticket-msg">
-                        <img src="../images/icons/bot.png" alt="user-img" class="circle-border bot-img">
-                        <span> Satisfaction survey </span>
-                        <div class="message-content round-border">
-                            <p>Using your game expertise, how would you classify the level of awesomeness our agent's service
-                                achieved?</p>
-                            <div id="feedback" class="center" data-id="<?= $ticket->replier->userId ?>">
-                                <div class="vert-flex">
-                                    <button data-value=-10><img src="../images/icons/terrible.png" alt="Terrible"></button>
-                                    <p>Terrible</p>
-                                </div>
-                                <div class="vert-flex">
-                                    <button data-value=-5><img src="../images/icons/bad.png" alt="Not Good"></button>
-                                    <p>Not good</p>
-                                </div>
-                                <div class="vert-flex">
-                                    <button data-value=0><img src="../images/icons/normal.png" alt="Okay"></button>
-                                    <p>Okay</p>
-                                </div>
-                                <div class="vert-flex">
-                                    <button data-value=5><img src="../images/icons/great.png" alt="Great"></button>
-                                    <p>Great</p>
-                                </div>
-                                <div class="vert-flex">
-                                    <button data-value=10><img src="../images/icons/awesome.png" alt="Awesome"></button>
-                                    <p>Awesome</p>
-                                </div>
-                            </div>
-                    </li>
-                <?php }
-                ?>
+                if (($ticket->status == 'closed') && ($session->getId() === $ticket->creator->userId) && ($ticket->feedback === 1)) {
+                    drawSurvey($ticket);
+                } ?>
             </ol>
-            <?php if (($session->isLoggedIn()) && ($ticket->status !== 'closed') && ($session->getId() === $ticket->creator->userId || $session->getId() === $ticket->replier->userId)) {?>
-                <div id="respond">
+            <?php if (($session->isLoggedIn()) && ($ticket->status !== 'closed') && ($session->getId() === $ticket->creator->userId || $session->getId() === $ticket->replier->userId)) { ?>
+                <section id="respond">
                     <textarea id="message-input" placeholder="Type your message..." rows="1"></textarea>
                     <button id="upload-button" class="no-background"><img src="../images/icons/upload.png" alt="Send"></button>
-                    <?php if ($session->getId() === $ticket->replier->userId) {  drawFAQDropup($faqs);} ?>
+                    <?php if ($session->getId() === $ticket->replier->userId) {
+                        drawFAQDropup($faqs);
+                    } ?>
                     <button id="send-button" class="no-background"><img src="../images/icons/send.png" alt="Send"></button>
-                </div>
+                </section>
             <?php } ?>
         </article>
 
@@ -145,8 +118,8 @@ function drawTicket($session, $ticket, $messages, $history, $attachedFiles, $faq
 
 
 
-        
-        <section class="sidebar">
+
+        <aside class="sidebar">
             <h1>Edit Ticket</h1>
             <div class="sidebar-content">
 
@@ -164,10 +137,43 @@ function drawTicket($session, $ticket, $messages, $history, $attachedFiles, $faq
                     <?php } ?>
                 </ul>
             </article>
-        </section>
+        </aside>
 
-    </div>
-    </div>
+    </section>
     <?php
 }
 ?>
+
+
+<?php function drawSurvey(Ticket $ticket)
+{ ?>
+    <li class="bot-msg ticket-msg">
+        <img src="../images/icons/bot.png" alt="user-img" class="circle-border bot-img">
+        <span> Satisfaction survey </span>
+        <div class="message-content round-border">
+            <p>Using your game expertise, how would you classify the level of awesomeness our agent's service
+                achieved?</p>
+            <section id="feedback" class="center" data-id="<?= $ticket->replier->userId ?>">
+                <div class="vert-flex">
+                    <button data-value=-10><img src="../images/icons/terrible.png" alt="Terrible"></button>
+                    <p>Terrible</p>
+                </div>
+                <div class="vert-flex">
+                    <button data-value=-5><img src="../images/icons/bad.png" alt="Not Good"></button>
+                    <p>Not good</p>
+                </div>
+                <div class="vert-flex">
+                    <button data-value=0><img src="../images/icons/normal.png" alt="Okay"></button>
+                    <p>Okay</p>
+                </div>
+                <div class="vert-flex">
+                    <button data-value=5><img src="../images/icons/great.png" alt="Great"></button>
+                    <p>Great</p>
+                </div>
+                <div class="vert-flex">
+                    <button data-value=10><img src="../images/icons/awesome.png" alt="Awesome"></button>
+                    <p>Awesome</p>
+                </div>
+            </section>
+    </li>
+<?php } ?>

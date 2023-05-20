@@ -1,5 +1,5 @@
 async function showUserStats() {
-  const userId = document.querySelector('#profile').getAttribute('data-id')
+  const userId = document.querySelector('#user-profile').getAttribute('data-id')
   const response = await fetch('../api/api_stats.php?' + encodeForAjax({userId : userId}))
   const tickets = await response.json()
   const ctx = document.querySelector('#user-tkt')
