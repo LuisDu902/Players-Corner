@@ -421,8 +421,6 @@ form .delete-faq{
 }
 
 .categories {
-  display: flex;
-  flex-direction: column;
   align-items: flex-start;
   width: 80%;
   height: 70%;

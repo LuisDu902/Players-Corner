@@ -39,7 +39,7 @@ function createMessage(message) {
   const sender = document.createElement('span')
   sender.textContent = message.user.name
 
-  const content = document.createElement('div')
+  const content = document.createElement('section')
   content.classList.add('message-content', 'round-border')
 
   const text = document.createElement('p')

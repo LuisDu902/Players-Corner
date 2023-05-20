@@ -28,7 +28,7 @@ function createBotResponse() {
   const bot = document.createElement('span')
   bot.textContent = 'Satisfaction survey'
 
-  const content = document.createElement('div')
+  const content = document.createElement('section')
   content.classList.add('message-content', 'round-border')
 
   const text = document.createElement('p')

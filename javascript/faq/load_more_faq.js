@@ -32,10 +32,10 @@ function createFAQ(faq) {
   labelElement.classList.add('faq-item-header')
   labelElement.setAttribute('for', 'cb' + faq.id)
 
-  const spanElement = document.createElement('span')
-  spanElement.classList.add('faq-title')
-  spanElement.textContent = faq.problem
-  labelElement.appendChild(spanElement)
+  const title = document.createElement('strong')
+  title.classList.add('faq-title')
+  title.textContent = faq.problem
+  labelElement.appendChild(title)
 
   const divElement = document.createElement('div')
   divElement.classList.add('faq-icons')

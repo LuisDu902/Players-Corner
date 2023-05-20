@@ -16,7 +16,7 @@ function assignToDepartments() {
       const selectedDepartmentsArray = []
       for (const department of selectedDepartments) {
         const parent = department.parentElement
-        const category = parent.querySelector('span').textContent
+        const category = parent.querySelector('strong').textContent
         selectedDepartmentsArray.push(category)
       }
       const selectedDepartmentsInput = document.querySelector("#selected-departments")
@@ -45,21 +45,21 @@ async function assignModal() {
   assignModal.classList.add('assign-modal')
   assignModal.innerHTML = ''
 
-  const content = document.createElement('div')
+  const content = document.createElement('article')
   content.classList.add('modal-content', 'white-border', 'round-border', 'vert-flex', 'center')
   content.id = 'assign-modal-content'
 
-  const assignableDepartments = document.createElement('div')
+  const assignableDepartments = document.createElement('section')
   assignableDepartments.classList.add('assignable-departments')
 
   if (departments.length == 0) {
-    const title = document.createElement('span')
+    const title = document.createElement('h2')
     title.classList.add('modal-title')
     title.textContent = 'Already assigned to all departments !!!'
     content.appendChild(title)
   } else {
     for (const department of departments) {
-      const dep = document.createElement('div')
+      const dep = document.createElement('article')
       dep.classList.add('department-card')
 
       const img = document.createElement('img')
@@ -71,7 +71,7 @@ async function assignModal() {
       }
       img.classList.add('round-border', 'white-border')
 
-      const category = document.createElement('span')
+      const category = document.createElement('strong')
       category.textContent = department.category
 
       dep.appendChild(img)

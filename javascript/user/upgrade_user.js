@@ -16,10 +16,10 @@ function upgradeModal() {
 
   const card = this.closest('.user-card')
 
-  const content = document.createElement('div')
+  const content = document.createElement('article')
   content.classList.add('modal-content', 'white-border','round-border','vert-flex','center')
 
-  const title = document.createElement('span')
+  const title = document.createElement('h2')
   title.classList.add('modal-title')
   title.textContent = card.querySelector('.card-name').textContent
 
@@ -32,11 +32,11 @@ function upgradeModal() {
   form.method = 'POST'
   form.action = '../actions/user_actions/action_upgrade_user.php'
 
-  const promote = document.createElement('div')
+  const promote = document.createElement('label')
   promote.id = 'promote'
   promote.classList.add('center')
 
-  const text = document.createElement('span')
+  const text = document.createElement('h3')
   text.textContent = 'Upgrade to'
 
   const select = document.createElement('select')

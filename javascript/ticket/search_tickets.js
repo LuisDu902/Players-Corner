@@ -80,7 +80,7 @@ function createTicketCard(ticket) {
   const tagsCell = document.createElement('td')
   tagsCell.classList.add('vert-flex')
   for (const tag of ticket.tags) {
-    const tagSpan = document.createElement('span')
+    const tagSpan = document.createElement('h4')
     tagSpan.textContent = tag
     tagsCell.appendChild(tagSpan)
   }

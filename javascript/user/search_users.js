@@ -22,7 +22,7 @@ async function searchUsers(searchValue, filterValue, orderValue) {
 
 
 function createUserCard(user) {
-  const userCard = document.createElement('div')
+  const userCard = document.createElement('article')
   userCard.classList.add('user-card', 'vert-flex', 'round-border', 'white-border')
 
   userCard.appendChild(createCardType(user))
@@ -41,19 +41,19 @@ function createUserCard(user) {
 }
 
 function createCardType(user) {
-  const cardType = document.createElement('div')
+  const cardType = document.createElement('section')
   cardType.classList.add('card-type')
 
-  const typeSpan = document.createElement('span')
-  typeSpan.classList.add('type', `${user.type}-card-type`, 'bold', 'center')
-  typeSpan.textContent = user.type
-  cardType.appendChild(typeSpan)
+  const type = document.createElement('h3')
+  type.classList.add('type', `${user.type}-card-type`, 'bold', 'center')
+  type.textContent = user.type
+  cardType.appendChild(type)
 
   if (user.type !== 'client') {
-    const repSpan = document.createElement('span')
-    repSpan.classList.add('rep', 'center', 'bold', 'circle-border')
-    repSpan.textContent = user.reputation
-    cardType.appendChild(repSpan)
+    const rep = document.createElement('h3')
+    rep.classList.add('rep', 'center', 'bold', 'circle-border')
+    rep.textContent = user.reputation
+    cardType.appendChild(rep)
   }
 
   return cardType
@@ -75,16 +75,15 @@ function createImage(user) {
 }
 
 function createCardDetails(user) {
-  const cardDetails = document.createElement('div')
+  const cardDetails = document.createElement('section')
   cardDetails.classList.add('card-details', 'vert-flex', 'center')
 
-  const cardName = document.createElement('span')
+  const cardName = document.createElement('h2')
   cardName.classList.add('card-name')
   cardName.textContent = user.name
   cardDetails.appendChild(cardName)
 
-  const username = document.createElement('span')
-  username.classList.add('span-username')
+  const username = document.createElement('h3')
   username.textContent = user.username
   cardDetails.appendChild(username)
 
@@ -92,7 +91,7 @@ function createCardDetails(user) {
 }
 
 function createButtons(user) {
-  const cardButtons = document.createElement('div')
+  const cardButtons = document.createElement('section')
   cardButtons.classList.add('card-buttons', 'center')
 
   if (user.type !== 'admin') {

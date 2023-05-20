@@ -1,7 +1,7 @@
-.departments {
+.departments, .assignable-departments {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    grid-auto-rows: minmax(250px, max-content);
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-auto-rows: minmax(auto, max-content);
     grid-gap: 30px;
 }
 
@@ -32,16 +32,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-}
-
-
-
-.title,
-#profile{
-    font-size: 2em;
-    color: #D66AE6;
-    font-weight: bold;
-    margin-bottom: 50px;
 }
 
 .container {
