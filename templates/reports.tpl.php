@@ -13,18 +13,10 @@
             </thead>
             <tbody class="center">
                 <tr>
-                    <td>
-                        <?= $stats['total_tickets'] ?>
-                    </td>
-                    <td>
-                        <?= $stats['tickets_created_today'] ?>
-                    </td>
-                    <td>
-                        <?= $stats['tickets_created_this_week'] ?>
-                    </td>
-                    <td>
-                        <?= $stats['tickets_created_this_month'] ?>
-                    </td>
+                    <td><?= $stats['total_tickets'] ?></td>
+                    <td><?= $stats['tickets_created_today'] ?></td>
+                    <td><?= $stats['tickets_created_this_week'] ?></td>
+                    <td><?= $stats['tickets_created_this_month'] ?></td>
                 </tr>
             </tbody>
         </table>
