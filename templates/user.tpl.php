@@ -5,7 +5,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
 
 <?php function drawProfile(Session $session, User $user)
 { ?>
-  <header id="profile">Profile page</header>
+  <header id="profile" data-id="<?=$session->getId()?>">Profile page</header>
   <section class="container" id="user-profile">
     <article class="round-border profile-picture round-wrap vert-flex center">
        <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">

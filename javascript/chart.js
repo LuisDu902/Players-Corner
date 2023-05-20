@@ -51,7 +51,7 @@ function createWarning(id, title) {
 }
 
 async function showDeptStatus() {
-  const response = await fetch('../api/api_dept_status_stats.php?' + encodeForAjax({ department: category.textContent }))
+  const response = await fetch('../api/api_stats.php?' + encodeForAjax({ department: category.textContent,  field: 'status' }))
   const statuses = await response.json()
   const ctx = document.querySelector('#dept-status')
   const labels = statuses.map(status => status[0])
@@ -67,7 +67,7 @@ async function showDeptStatus() {
 }
 
 async function showDeptPriority() {
-  const response = await fetch('../api/api_dept_priority_stats.php?' + encodeForAjax({ department: category.textContent }))
+  const response = await fetch('../api/api_stats.php?' + encodeForAjax({ department: category.textContent, field: 'priority' }))
   const priorities = await response.json()
   const ctx = document.querySelector('#dept-priority')
   const labels = priorities.map(priority => priority[0])
@@ -81,7 +81,8 @@ async function showDeptPriority() {
 }
 
 async function showUserStats() {
-  const response = await fetch('../api/api_get_user_tickets_stats.php');
+  const userId = document.querySelector('#profile').getAttribute('data-id')
+  const response = await fetch('../api/api_stats.php?' + encodeForAjax({userId : userId}));
   const tickets = await response.json();
   const ctx = document.querySelector('#user-tkt');
   const labels = tickets.map(day => day[0]);
@@ -105,7 +106,7 @@ async function showUserStats() {
 }
 
 async function showTicketCounts() {
-  const response = await fetch('../api/api_get_all_tickets_stats.php');
+  const response = await fetch('../api/api_stats.php?' + encodeForAjax({field: 'date'}));
   const tickets = await response.json();
 
   const ctx = document.querySelector('#ticket-counts');
@@ -116,7 +117,7 @@ async function showTicketCounts() {
 }
 
 async function showTicketDept() {
-  const response = await fetch('../api/api_get_ticket_dept_stats.php');
+  const response = await fetch('../api/api_stats.php?' + encodeForAjax({field: 'category'}));
   const tickets = await response.json();
 
   const ctx = document.querySelector('#all-tkt-dept');
@@ -128,7 +129,7 @@ async function showTicketDept() {
 }
 
 async function showTicketStatus() {
-  const response = await fetch('../api/api_get_ticket_status_stats.php');
+  const response = await fetch('../api/api_stats.php?' + encodeForAjax({field: 'status'}));
   const tickets = await response.json();
 
   const ctx = document.querySelector('#all-tkt-status');
@@ -140,7 +141,7 @@ async function showTicketStatus() {
 }
 
 async function showTicketPriority() {
-  const response = await fetch('../api/api_get_ticket_priority_stats.php');
+  const response = await fetch('../api/api_stats.php?' + encodeForAjax({field: 'priority'}));
   const tickets = await response.json();
 
   const ctx = document.querySelector('#all-tkt-priority');
