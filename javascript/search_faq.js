@@ -8,7 +8,7 @@ if (searchFaq) {
 
 
 async function searchFaqs(value) {
-    const response = await fetch('../api/api_search_faqs.php?' + encodeForAjax({ search: value}))
+    const response = await fetch('../api/api_search.php?' + encodeForAjax({ type: 'faqs', search: value}))
     const faqs = await response.json()
 
     const sector = document.querySelector('#faq-items')

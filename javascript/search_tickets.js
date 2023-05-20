@@ -26,7 +26,7 @@ if (tickets) {
 }
 
 async function searchTickets(searchValue, filterValue, orderValue) {
-  const response = await fetch('../api/api_search_tickets.php?' + encodeForAjax({ search: searchValue , filter: filterValue , order: orderValue }))
+  const response = await fetch('../api/api_search.php?' + encodeForAjax({ type: 'tickets', search: searchValue , filter: filterValue , order: orderValue }))
   const tickets = await response.json()
   current_page = 1
   displayTickets(tickets, current_page)

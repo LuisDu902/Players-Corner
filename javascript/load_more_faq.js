@@ -9,7 +9,7 @@ if (faq_page) {
 }
 
 async function getFAQs() {
-  const response = await fetch('../api/api_get_faqs.php?');
+  const response = await fetch('../api/api_search.php?' + encodeForAjax({ type: 'faqs', search: ''}))
   faqs = await response.json();
   displayFaqs(faqs, number);
 }

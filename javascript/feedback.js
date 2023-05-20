@@ -17,8 +17,8 @@ if (feedback) {
 async function updateReputation(ticketId, agentId, value) {
     const hasFeedback = document.querySelector('#last-message')
     if (!hasFeedback) {
-        const response = await fetch('../api/api_feedback.php', {
-            method: 'POST',
+        const response = await fetch('../api/api_ticket.php', {
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
             },

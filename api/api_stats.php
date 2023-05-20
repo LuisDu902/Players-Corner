@@ -15,12 +15,13 @@
       $department = Department::getDepartment($db, $_GET['department']);
       $stats = $department->getStats($db, $_GET['field']);
     }
+
     /* User stats */
     else if (isset($_GET['userId'])){
       $user = User::getUser($db, intval($_GET['userId']));
       $stats = $user->getTicketStats($db);
     }
-
+    
     /* All ticket stats */
     else {
       if ($_GET['field'] === 'date')

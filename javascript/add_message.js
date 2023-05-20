@@ -11,8 +11,8 @@ async function addMessage() {
   const messageInput = document.querySelector("#message-input");
   const ticketId = document.querySelector('#ticket-page').getAttribute('data-id')
   
-  const response = await fetch('../api/api_message.php', {
-    method: 'POST',
+  const response = await fetch('../api/api_ticket.php', {
+    method: 'PATCH',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },

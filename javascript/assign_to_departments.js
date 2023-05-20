@@ -53,7 +53,7 @@ async function assignModal() {
 
     const card = this.closest('.user-card')
 
-    const response = await fetch('../api/api_search_departments.php?' + encodeForAjax({ userId: card.querySelector('#card-userId').value }))
+    const response = await fetch('../api/api_search.php?' + encodeForAjax({ type: 'departments', userId: card.querySelector('#card-userId').value }))
 
     const departments = await response.json()
 

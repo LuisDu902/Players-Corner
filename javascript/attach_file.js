@@ -21,7 +21,7 @@ async function attachFile(event) {
     formData.append('fileToUpload', file);
     formData.append('id', ticketId);
     
-    const response = await fetch('../api/api_attach_file.php', {
+    const response = await fetch('../api/api_ticket.php', {
       method: 'POST',
       body: formData,
     });

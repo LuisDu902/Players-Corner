@@ -9,7 +9,7 @@ if (tagInput) {
     async function get_tags(event) {
         const datalist = document.querySelector('#taglist')
         datalist.innerHTML = ''
-        const response = await fetch('../api/api_get_tags.php')
+        const response = await fetch('../api/api_search.php?' + encodeForAjax({type: 'tags'}))
         const all_tags = await response.json()
 
         for (const tag of all_tags) {
