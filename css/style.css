@@ -65,6 +65,7 @@ li,a, button {
     padding: 1% 6% 1% 5%;
 }
 
+
 .logo, button, #fileUploadForm img, .ticket, .user-card{
     cursor: pointer;
 }
@@ -72,6 +73,10 @@ li,a, button {
 .logo {
     max-height: 100px;
     margin-right: 40px;
+}
+
+#hamburger{
+  display: none;
 }
 
 .nav_links {
@@ -519,5 +524,71 @@ footer{
   text-align: center;
   font-size: 15px;
   color: #aaa;
+
+}
+
+@media (max-width: 1100px) {
+  * {
+    font-size: 2vh;
+    overflow-x: scroll;
+  }
+  #header{
+    margin: 30px;
+  }
+  .logo{
+    display: none;
+  }
+  .hamburger {
+    display: block;
+    color: white;
+    padding: 1em;
+  }
+
+  .hamburger:before {
+    content:'\2630';
+  }
+
+  .nav_links{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    color: white;
+    z-index: 1;
+  }
+
+  #hamburger:checked + .hamburger + ul li{
+    max-height: 1em;
+    padding: 1em;
+    opacity: 1;
+  }
+
+  #hamburger:checked + .hamburger:before {
+    content:'\2715';
+  }
+
+  #header nav li {
+    max-height: 0;
+    padding: 0 1em;
+    background-color: #12101a;
+    text-align: center;
+    opacity: 0;
+    transition: all .3s ease-in-out;
+  }
+
+  .dropdown-content a{
+    background-color: #12101a;
+    transition: all .3s ease-in-out;
+  }
+
+  .dropdown img{
+    width: 2em;
+    height: 2em;
+  }
+
+  .dropdown strong{
+    display: none;
+  }
 
 }

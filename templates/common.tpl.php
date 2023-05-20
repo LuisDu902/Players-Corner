@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="../css/create_ticket.css">
     <link rel="stylesheet" href="../css/reports.css">
     <link rel="stylesheet" href="../css/ticket_form.css">
+    <meta name = "viewport" content = "width=device-width, initial-scale = 1.0">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
@@ -50,6 +51,8 @@
     <header id="header">
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>
+      <input type="checkbox" id="hamburger"> 
+      <label class="hamburger" for="hamburger"></label>
         <ul class="nav_links">
           <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="Users"><a href="../pages/tickets.php">Forum</a></li>
