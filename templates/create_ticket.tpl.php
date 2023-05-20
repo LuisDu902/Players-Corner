@@ -1,4 +1,4 @@
-<?php function drawTicketForm($departments_get,$tags_get) { ?>
+<?php function drawTicketForm($departments_get) { ?>
     <section class="vert-flex center">
         <div class="gradient round-border createTicket">
         <form action="../actions/ticket_actions/action_create_ticket.php" method="post" class="authentication-form">
