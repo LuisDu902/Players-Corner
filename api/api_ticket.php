@@ -36,13 +36,14 @@
 
     $ticketId = intval($requestData['ticketId']);
     $agentId = intval($requestData['agentId']);
+    $value = intval($requestData['value']);
 
     $ticket = Ticket::getTicket($db, $ticketId);
     $agent = User::getUser($db, $agentId);
 
     if ($agent) {
-      $agent->updateReputation($db, $agent->reputation + intval($_POST['value']));
-      $ticket->updateFeedback($db, intval($_POST['value']));
+      $agent->updateReputation($db, $agent->reputation + $value);
+      $ticket->updateFeedback($db, $value);
       $response = ['status' => 'success'];
     } 
     else {

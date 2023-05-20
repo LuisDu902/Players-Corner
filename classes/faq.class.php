@@ -13,7 +13,7 @@
     }
 
     static function getFAQs(PDO $db) {
-      $stmt = $db->prepare('SELECT FAQ.id, FAQ.title, content FROM FAQ ORDER BY 1');
+      $stmt = $db->prepare('SELECT FAQ.id, FAQ.title, content FROM FAQ ORDER BY 1 DESC');
       $stmt->execute();
   
       $faqs = array();
@@ -45,7 +45,7 @@
     }
 
     static function searchFAQs(PDO $db, string $search) {
-      $stmt = $db->prepare('SELECT * FROM FAQ WHERE title LIKE ? ');
+      $stmt = $db->prepare('SELECT * FROM FAQ WHERE title LIKE ? ORDER BY 1 DESC');
       $stmt->execute(array($search . '%'));
   
       $faqs = array();
@@ -62,7 +62,7 @@
 
     static function removeFAQItem(PDO $db, int $id): void {
       $stmt = $db->prepare('DELETE FROM FAQ WHERE id = ?');
-      $stmt->execute([$id]);
+      $stmt->execute(array($id));
     }
   }
 ?>

@@ -197,30 +197,6 @@ INSERT INTO FAQ (id, title, content) VALUES (34, "Certain weapons or abilities a
 INSERT INTO FAQ (id, title, content) VALUES (35, "Event page not loading", "If the event page is not loading, try refreshing the page or clearing your browser cache and cookies. If that doesn't work, try accessing the page from a different browser or device. If the problem persists, contact the event organizers for assistance.");
 INSERT INTO FAQ (id, title, content) VALUES (36, "Need help promoting my Twitch channel", "To promote your Twitch channel, you can start by creating quality content and engaging with your viewers. Utilize social media platforms to share your content and interact with your audience. Collaborate with other streamers and participate in Twitch communities. You can also consider using paid advertising or sponsorships to reach a wider audience.");
 
-INSERT INTO DepartmentFAQ (item, category) VALUES (1, 'Technical support');
-INSERT INTO DepartmentFAQ (item, category) VALUES (2, 'Technical support');
-INSERT INTO DepartmentFAQ (item, category) VALUES (7, 'Technical support');
-INSERT INTO DepartmentFAQ (item, category) VALUES (12, 'Gameplay issues');
-INSERT INTO DepartmentFAQ (item, category) VALUES (8, 'Gameplay issues');
-INSERT INTO DepartmentFAQ (item, category) VALUES (9, 'Account and billing');
-INSERT INTO DepartmentFAQ (item, category) VALUES (16, 'Account and billing');
-INSERT INTO DepartmentFAQ (item, category) VALUES (10, 'Community management');
-INSERT INTO DepartmentFAQ (item, category) VALUES (11, 'Community management');
-INSERT INTO DepartmentFAQ (item, category) VALUES (13, 'Community management');
-INSERT INTO DepartmentFAQ (item, category) VALUES (14, 'Community management');
-INSERT INTO DepartmentFAQ (item, category) VALUES (15, 'Community management');
-INSERT INTO DepartmentFAQ (item, category) VALUES (31, 'Esports and tournaments');
-INSERT INTO DepartmentFAQ (item, category) VALUES (32, 'Esports and tournaments');
-INSERT INTO DepartmentFAQ (item, category) VALUES (3, 'Game development');
-INSERT INTO DepartmentFAQ (item, category) VALUES (4, 'Game development');
-INSERT INTO DepartmentFAQ (item, category) VALUES (5, 'Game development');
-INSERT INTO DepartmentFAQ (item, category) VALUES (17, 'Game development');
-INSERT INTO DepartmentFAQ (item, category) VALUES (33, 'Game development');
-INSERT INTO DepartmentFAQ (item, category) VALUES (34, 'Game design');
-INSERT INTO DepartmentFAQ (item, category) VALUES (35, 'Marketing and promotions');
-INSERT INTO DepartmentFAQ (item, category) VALUES (36, 'Marketing and promotions');
-
-
 INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, creator, replier) VALUES (1, 'Pokemon GO connection issue', 'I cannot connect to the Pokemon GO servers. Is anyone else having this issue?', '2023-04-24 09:27:43', 'public', '2-high', 'closed', 'Technical support', 1, 73);
 INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, creator, replier) VALUES (2, 'Game client not launching', 'I am having an issue with the game client not launching. I have tried running it as administrator and reinstalling it, but it still won''t launch. What can I do to fix this issue?', '2022-02-18 15:12:57', 'public', '2-high', 'solved', 'Technical support', 3, 74);
 INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, creator, replier) VALUES (4, 'CS:GO frame rate drop', 'My frame rate drops every time I enter a smoke grenade. How do I fix this?', '2023-04-22 17:54:01', 'public', '2-high', 'open', 'Technical support', 2, 71);

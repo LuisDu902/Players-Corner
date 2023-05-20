@@ -1,6 +1,5 @@
 PRAGMA foreign_keys = ON;
 
-DROP TABLE IF EXISTS DepartmentFAQ;
 DROP TABLE IF EXISTS FAQ;
 DROP TABLE IF EXISTS AgentDepartment;
 DROP TABLE IF EXISTS Department;
@@ -82,10 +81,4 @@ CREATE TABLE FAQ(
    id INTEGER PRIMARY KEY,
    title VARCHAR NOT NULL,
    content VARCHAR NOT NULL
-);
-
-CREATE TABLE DepartmentFAQ(
-   item INTEGER REFERENCES FAQ(id),
-   category VARCHAR REFERENCES Department(category) ON DELETE SET NULL,
-   PRIMARY KEY (item, category)
 );

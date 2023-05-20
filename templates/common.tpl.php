@@ -62,8 +62,7 @@
           <?php if ($session->isLoggedIn() && $session->getRole() === "admin") {
             drawAdminButtons();
           } ?>
-          <li class="Help"><a href="#">Help</a></li>
-
+         
         </ul>
       </nav>
       <?php
