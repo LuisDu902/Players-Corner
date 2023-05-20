@@ -12,5 +12,4 @@
   $ticket_stats = $user->getTicketStats($db);
 
   echo json_encode($ticket_stats);
-
 ?>

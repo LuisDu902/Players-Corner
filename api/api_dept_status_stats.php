@@ -12,5 +12,4 @@
   $status_stats = $department->getStatusStats($db);
   
   echo json_encode($status_stats);
-
 ?>

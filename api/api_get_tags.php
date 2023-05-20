@@ -13,5 +13,4 @@
   $tags = $stmt->fetchAll(PDO::FETCH_COLUMN);
 
   echo json_encode($tags);
-
 ?>

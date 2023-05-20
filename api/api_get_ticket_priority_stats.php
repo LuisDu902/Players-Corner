@@ -11,5 +11,4 @@
   $priorityStats = Ticket::getFieldStats($db, 'priority');
 
   echo json_encode($priorityStats);
-
 ?>

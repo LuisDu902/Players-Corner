@@ -11,5 +11,4 @@
   $statusStats = Ticket::getFieldStats($db, 'status');
 
   echo json_encode($statusStats);
-
 ?>

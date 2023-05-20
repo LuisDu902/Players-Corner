@@ -12,5 +12,4 @@
   $priority_stats = $department->getPriorityStats($db);
  
   echo json_encode($priority_stats);
-
 ?>

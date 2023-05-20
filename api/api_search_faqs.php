@@ -6,11 +6,9 @@
 
   require_once(__DIR__ . '/../database/connection.db.php');
   require_once(__DIR__ . '/../classes/faq.class.php');
-
   $db = getDatabaseConnection();
 
   $faqs = FAQ::searchFAQs($db, $_GET['search']);
 
   echo json_encode($faqs);
-
 ?>

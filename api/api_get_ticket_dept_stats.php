@@ -11,5 +11,4 @@
   $deptStats = Ticket::getFieldStats($db, 'category');
 
   echo json_encode($deptStats);
-
 ?>

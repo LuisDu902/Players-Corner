@@ -13,5 +13,4 @@
   $tickets = Ticket::searchTickets($db, $session->getId(), $_GET['search'], $_GET['filter'], $_GET['order']);
 
   echo json_encode($tickets);
-
 ?>

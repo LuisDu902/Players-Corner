@@ -11,5 +11,4 @@
   $allStats = Ticket::getTicketCounts($db);
 
   echo json_encode($allStats);
-
 ?>

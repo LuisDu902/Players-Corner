@@ -13,5 +13,4 @@
   $departments = User::getAssignableDepartments($db, $_GET['userId']);
 
   echo json_encode($departments);
-
 ?>
