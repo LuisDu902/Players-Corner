@@ -7,7 +7,7 @@ function generateChart(ctx, labels, data, chartType, backgroundColor, borderColo
         data: data,
         backgroundColor: backgroundColor,
         borderColor: borderColor,
-        borderWidth: borderWidth
+        borderWidth: borderWidth,
       }]
     },
     options: {
@@ -15,6 +15,7 @@ function generateChart(ctx, labels, data, chartType, backgroundColor, borderColo
       maintainAspectRatio: false,
       scales: {
         y: {
+          beginAtZero: true,
           display: chartType !== 'doughnut',
           ticks: {
             stepSize: 1,
