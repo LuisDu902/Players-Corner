@@ -13,7 +13,7 @@ body{
   background-color: #222033;
 }
 main {
-  margin: 30px 4% 50px;
+  margin: 30px 3% 9%;
 }
 
 li,a, button {
@@ -469,8 +469,11 @@ form .delete-faq{
 
 
 footer{
-  padding: 60px 0 30px;
+  padding: 30px 0 30px;
+  border-top: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
+
 
 .footer-top {
   display: flex;
@@ -483,11 +486,12 @@ footer{
 .socials {
   display: flex;
   justify-content: center;
+  margin-top: 12px;
   padding-bottom: 20px; 
 }
 
 .socials li a{
-  margin: 20px 10px 0 10px;
+  margin: 20px 20px 0;
   border-radius: 15%;
   padding: 10px;
   background-color: #fff;
@@ -511,6 +515,7 @@ footer{
 }
 
 .footer-copyright{
+  margin-top: 1rem;
   text-align: center;
   font-size: 15px;
   color: #aaa;

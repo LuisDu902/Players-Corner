@@ -97,7 +97,7 @@
       </ul>
       </section>
       <section class="footer-copyright">
-        <p>LTW Project &copy; 2023 ltw13g04</p>
+        <p>LTW Project &copy; 2023 | Developed by: ltw13g04</p>
       </section>
     </footer>
   </body>
