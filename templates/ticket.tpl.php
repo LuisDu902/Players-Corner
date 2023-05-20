@@ -53,10 +53,27 @@
         </table>
         <div class="pagination-bar center"></div>
     <?php } else { ?>
-        <h2 class="center">No tickets</h2>
+        <img src="../images/icons/warning.png">
+        <h2 class="center">No tickets yet</h2>
     <?php }
 }
 ?>
+
+<?php function drawUserTickets(Session $session, User $user, array $tickets)
+{ ?>
+    <section id="user-tickets" class="center" data-user="<?= $user->name ?>">
+        <header>
+            <?= $user->name ?>'s tickets
+        </header>
+        <?php drawTickets($tickets);
+
+        if ($session->getId() === $user->userId) { ?>
+            <div class="button-wrap gradient round-border">
+                <a href="../pages/create_ticket.php"><button>Create new ticket</button></a>
+            </div>
+        <?php } ?>
+    </section>
+<?php } ?>
 
 <?php
 function drawTicket($session, $ticket, $messages, $history, $attachedFiles, $faqs)
