@@ -121,7 +121,7 @@ const ticketFilterSelect = document.querySelector('#filter-ticket')
 const ticketOrderSelect = document.querySelector('#order-ticket')
 const searchTicket = document.querySelector('#search-ticket')
 const tickets = document.querySelector('.tickets')
-const departmentPage = document.querySelector('.department')
+const departmentPage = document.querySelector('#department-tickets')
 const pagination_element = document.querySelector('.pagination-bar')
 
 if (tickets) {
