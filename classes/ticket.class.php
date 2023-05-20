@@ -226,7 +226,7 @@ class Ticket
 
   static function registerTicket(PDO $db, array $tags, string $title, string $text, string $priority, string $category, string $visibility, int $creator)
   {
-    $stmt = $db->prepare("INSERT INTO Ticket (id, title, text, createDate, visibility, priority, status, category, creator, replier) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?, 'new', ?, ?, NULL)");
+    $stmt = $db->prepare("INSERT INTO Ticket (title, text, createDate, visibility, priority, status, category, creator) VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?, 'new', ?, ?)");
     $stmt->execute(array($title, $text, $visibility, $priority, $category, $creator));
     $ticketId = $db->lastInsertId();
     foreach ($tags as $tag) {
@@ -265,7 +265,7 @@ class Ticket
 
   function addMessage(PDO $db, int $userId, string $text)
   {
-    $stmt = $db->prepare('INSERT INTO Message (id, user, ticket, text, date) VALUES (NULL, ?,?, ?, CURRENT_TIMESTAMP)');
+    $stmt = $db->prepare('INSERT INTO Message (user, ticket, text, date) VALUES (?,?, ?, CURRENT_TIMESTAMP)');
     $stmt->execute(array($userId, $this->ticketId, $text));
   }
 
@@ -285,7 +285,7 @@ class Ticket
 
   function addHistory(PDO $db, int $userId, string $changes, int $field)
   {
-    $stmt = $db->prepare('INSERT INTO TicketHistory(id, ticketId, user, date, changes, field) VALUES (NULL, ?, ?, CURRENT_TIMESTAMP, ?, ?)');
+    $stmt = $db->prepare('INSERT INTO TicketHistory(ticketId, user, date, changes, field) VALUES (?, ?, CURRENT_TIMESTAMP, ?, ?)');
     $stmt->execute(array($this->ticketId, $userId, $changes, $field));
   }
 
@@ -294,16 +294,21 @@ class Ticket
     $stats = array();
     $total_tickets_query = $db->query("SELECT COUNT(*) AS total_tickets FROM Ticket");
     $total_tickets = $total_tickets_query->fetch()['total_tickets'];
+    
     $stats['total_tickets'] = $total_tickets;
     $tickets_created_today_query = $db->query("SELECT COUNT(*) AS tickets_created_today FROM Ticket WHERE date(createDate) = date('now')");
     $tickets_created_today = $tickets_created_today_query->fetch()['tickets_created_today'];
+    
     $stats['tickets_created_today'] = $tickets_created_today;
     $tickets_created_this_week_query = $db->query("SELECT COUNT(*) AS tickets_created_this_week FROM Ticket WHERE strftime('%Y-%W', createDate) = strftime('%Y-%W', 'now')");
     $tickets_created_this_week = $tickets_created_this_week_query->fetch()['tickets_created_this_week'];
+    
     $stats['tickets_created_this_week'] = $tickets_created_this_week;
     $tickets_created_this_month_query = $db->query("SELECT COUNT(*) AS tickets_created_this_month FROM Ticket WHERE strftime('%Y-%m', createDate) = strftime('%Y-%m', 'now')");
     $tickets_created_this_month = $tickets_created_this_month_query->fetch()['tickets_created_this_month'];
+    
     $stats['tickets_created_this_month'] = $tickets_created_this_month;
+    
     return $stats;
   }
 

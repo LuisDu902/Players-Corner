@@ -15,30 +15,17 @@
         </article>
     </section>
     <section class="categories">
-         <h1 class="heading-title">Categories</h1>
-         <?php if ($session->getRole() === "admin") { ?>
-            <div class="button-wrap round-border gradient"><button id="add-department">Add new department</button></div>
-            <?php  drawDepartmentModal() ;
-        } ?>
-         <div class="departments">
-            <?php foreach ($departments as $department): ?>
-            <a href="../pages/department.php?category=<?= $department->category ?>" class="department-card">
-                <img src=<?= $department->getPhoto() ?> alt="department image" class="white-border round-border"></img>
-                <span> <?= $department->category ?> </span>
-            </a>
-        <?php endforeach; ?>
-    </div>
+        <?php drawDepartments($session, $departments); ?>
     </section>
     <section id="about-us">
-        <h1 class="heading-title">About us</h1>
-        <div class="about-content">
+        <h2 class="heading-title">About us</h2>
+        <article class="about-content">
             <img src="../images/about-us.jpeg" alt="about us banner" class="white-border round-border">
             <p>
             Welcome to Player's Corner, the ultimate destination for all your gaming FAQs and strategies. At Player's Corner, we believe that no gamer should be left out when it comes to finding solutions to their gaming troubles. Our dedicated team of experts is here to provide you with a one-stop-shop experience, offering comprehensive and reliable support for all your gaming needs. Whether you're stuck on a challenging level, seeking advice on game strategies, or looking for answers to common gaming queries, Player's Corner is your go-to resource. With our extensive collection of FAQs, helpful guides, and a vibrant community of fellow gamers, you'll never have to face gaming challenges alone. Join us at Player's Corner and unlock a world of knowledge, tips, and tricks to level up your gaming experience.
             </p>
-        </div>
+        </article>
     </section>
-
-<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
-<script src="../javascript/typed.js"></script>
+<script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js" defer></script>
+<script src="../javascript/typed.js" defer></script>
 <?php } ?>

@@ -309,13 +309,7 @@
 
 
 
-
-#search-faq {
-  height: 500px;
-  padding: 30px;
-}
-
-#search-faq .search-box{
+.dropup-content .search-box{
   margin-bottom: 10px;
 }
 
@@ -368,6 +362,7 @@
 
 /* Dropup content (Hidden by Default) */
 .dropup-content {
+  padding: 20px;
   display: none;
   position: absolute;
   background-color: #222033;

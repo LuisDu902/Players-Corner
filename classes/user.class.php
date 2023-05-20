@@ -60,7 +60,7 @@ class User
   static function registerUser(PDO $db, string $name, string $username, string $email, string $password)
   {
     $options = ['cost' => 12];
-    $stmt = $db->prepare('INSERT INTO User (userId, name, username, email, password, reputation, type) VALUES (NULL, ?, ?, ?, ?,50,"client")');
+    $stmt = $db->prepare('INSERT INTO User (name, username, email, password) VALUES (?, ?, ?, ?)');
     $stmt->execute(array($name, $username, $email, password_hash($password, PASSWORD_DEFAULT, $options)));
   }
 
