@@ -168,7 +168,8 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                         <?php if($ticket->status === 'new') { ?>
                             <option value="0" selected>Not assigned</option>
                         <?php } 
-                        foreach($department->members as $member) { ?>
+                        foreach($department->members as $member) { 
+                            if ($member->userId !== $ticket->creator->userId) ?>
                             <option value="<?= $member->userId?>" <?= $ticket->replier->userId === $member->userId ? 'selected' : ''?>><?= $member->name ?> </option>
                         <?php } ?>
                     </select>
@@ -187,7 +188,8 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                     <?php } ?>
                     <input type="hidden" id="ticket_tags" name="ticket_tags" />
                     <ul id="tag-container">
-                        <?php foreach($ticket->tags as $tag){ ?>
+                        <?php foreach($ticket->tags as $tag){
+                            if ($tag !== ' ') ?>
                             <li class="tag-block">
                                 <span id="value"><?= $tag ?></span>
                                 <?php if ($session->getRole() !== 'client') { ?>
