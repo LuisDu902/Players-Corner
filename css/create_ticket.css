@@ -25,7 +25,7 @@
 
 .createTicket input[type="text"],
 .createTicket select,
-.createTicket textarea {
+.createTicket textarea , .modal>article textarea{
   margin-left: -20px;
   width: 100%;
   padding: 15px 15px;

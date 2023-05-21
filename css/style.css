@@ -413,7 +413,9 @@ form .delete-faq{
   max-height: 20rem;
 }
 
-
+.modal>article textarea {
+  margin-bottom: 1em;
+}
 
 
 .load-more{
