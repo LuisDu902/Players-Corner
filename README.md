@@ -1,1 +1,17 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10505514&assignment_repo_type=AssignmentRepo)
+# Projeto LTW - 22/23
+## Turma 13 Grupo 4
+
+## Desenvolvido por
+
+| Nome        | Número UP |
+|-------------|-----------|
+| José Santos | 202108729 |
+| Luís Du     | 202105385 |
+| Madalena Ye | 202108795 |
+
+## Como correr
+
+* git clone git@github.com:FEUP-LTW-2023/project-ltw13g04.git
+* git checkout final-delivery-v1
+* sqlite3 database/tickets.db < database/script.sql
+* php -S localhost:9000
