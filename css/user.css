@@ -1,11 +1,12 @@
 .search-bar{
   display: flex;
-  margin-bottom: 30px;
+  margin: 2rem;
 }
 
 .search-box, .filter-select, .order-condition{
   padding: 10px 15px;
   font-size: 1.2em;
+  color: white;
 } 
 
 .search-box{
@@ -18,12 +19,12 @@
   font-size: 1.1rem;
   margin-right: 10px;
   border: none;
-  background-color: #222033;
+  background-color: var(--background-color);
 }
 
 .filter-select, .order-condition{
   margin-left: 20px;
-  background-color: #222033;
+  background-color: var(--background-color);
 }
 
 .user-cards{
@@ -34,7 +35,8 @@
 }
 
 .user-card{
-  max-width: 370px;
+  width: auto;
+  height: auto;
   padding: 10px 20px;
   overflow-x: auto;
 }
@@ -56,39 +58,39 @@
   height: 2.5em;
   border-radius: 10px;
   padding: 5px 20px;
-  margin: 15px 0px 0px 15px;
+  margin: 15px 0px 30px 15px;
   
 }
 
 .client-card-type{
-  background-color: #5271ff;
+  background-color: var(--main-blue);
 }
 
 .client-card-border{
-  border: 5px solid #5271ff;
+  border: 5px solid var(--main-blue);
 }
 
 .agent-card-type{
-  background-color: #ff5757;
+  background-color: var(--yellow);
 }
 
 .agent-card-border{
-  border: 5px solid #ff5757;
+  border: 5px solid var(--yellow);
 }
 
 .admin-card-type{
-  background-color: #7ed957;
+  background-color: var(--green);
 }
 
 .admin-card-border{
-  border: 5px solid #7ed957;
+  border: 5px solid var(--green);
 }
 
 .rep {
-  border: 3px solid #ff914d;
-  color: #ff914d;
+  border: 3px solid var(--orange);
+  color: var(--orange);
   margin-top: 10px;
-  margin-right: 20px;
+  margin-right: 10px;
   display: flex;
   height: 2.5em;
   width: 2.5em;
@@ -100,8 +102,8 @@
   background-color: #0D0721;
   max-height: 300px;
   object-fit: cover;
-  margin: 10px;
-  padding: 10px;
+  margin: auto;
+  padding: 1rem;
 }
 
 .card-details{
@@ -109,8 +111,7 @@
 }
 
 .card-details .card-name{
-  font-weight: bold;
-  font-size: 1.5em;
+  font-size: 1rem;
   margin-bottom: 5px;
 }
 

@@ -23,7 +23,7 @@
 
 <?php function drawRegister()
 { ?>
-  <section class="vert-flex center">
+  <section class="container vert-flex center">
     <div class="gradient round-border">
       <h2 class="auth-text center">Welcome to <strong class="highlight">Player's Corner</strong>! <br>Let's begin the adventure. </h2>
       <form action="../actions/user_actions/action_register.php" method="post" class="authentication-form vert-flex">

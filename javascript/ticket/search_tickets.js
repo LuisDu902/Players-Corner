@@ -77,15 +77,6 @@ function createTicketCard(ticket) {
   titleCell.textContent = ticket.title
   ticketRow.appendChild(titleCell)
 
-  const tagsCell = document.createElement('td')
-  tagsCell.classList.add('vert-flex')
-  for (const tag of ticket.tags) {
-    const tagSpan = document.createElement('h4')
-    tagSpan.textContent = tag
-    tagsCell.appendChild(tagSpan)
-  }
-  ticketRow.appendChild(tagsCell)
-
   const categoryCell = document.createElement('td')
   categoryCell.textContent = ticket.category
   ticketRow.appendChild(categoryCell)

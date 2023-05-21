@@ -15,16 +15,18 @@
     width: 100%;
     padding: 20px;
     border: none;
-    background-color: #222033;
+    background-color: var(--background-color);
 }
 
 .input-box .icon {
+    width: auto;
     padding: 0px 10px 20px 0px;
 }
 
 .auth-button,
 .login-logo {
     margin: 0 auto;
+    width: auto;
 }
 
 .login-logo {
@@ -47,7 +49,7 @@
 
 .title {
     font-size: 2em;
-    color: #D66AE6;
+    color: var(--main-pink);
     font-weight: bold;
     margin-bottom: 50px;
 }

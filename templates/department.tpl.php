@@ -1,20 +1,22 @@
 <?php function drawDepartments(session $session, array $departments)
 { ?>
-    <h2 class="heading-title">Categories</h2>
-    <?php if ($session->getRole() === "admin") { ?>
-        <div class="button-wrap round-border gradient"><button id="add-department">Add new department</button></div>
-        <?php drawDepartmentModal();
-    } ?>
-    <section class="departments">
-        <?php foreach ($departments as $department): ?>
-            <a href="../pages/department.php?category=<?= $department->category ?>" class="department-card">
-                <img src=<?= $department->getPhoto() ?> alt="department image" class="white-border round-border"></img>
-                <strong>
-                    <?= $department->category ?>
-                </strong>
-            </a>
-        <?php endforeach; ?>
-    </section>
+    <span class="container categories">
+        <h1 class="heading-title">Categories</h1>
+        <?php if ($session->getRole() === "admin") { ?>
+            <div class="button-wrap round-border gradient"><button id="add-department">Add new department</button></div>
+            <?php drawDepartmentModal();
+        } ?>
+        <article class="departments">
+            <?php foreach ($departments as $department): ?>
+                <a href="../pages/department.php?category=<?= $department->category ?>" class="department-card">
+                    <img src=<?= $department->getPhoto() ?> alt="department image" class="white-border round-border department-btn"></img>
+                    <strong>
+                        <?= $department->category ?>
+                    </strong>
+                </a>
+            <?php endforeach; ?>
+        </article>
+    </span>
 <?php } ?>
 
 
@@ -23,7 +25,8 @@
 { ?>
     <header class="title" id="department-title"><?= $department->category ?></header>
     <?php if (has_access($department)) { ?>
-        <section id="department-stats" class="container">
+        <section id="department-stats" class="container contain">
+
             <article class="round-border" id="dept-ticket-status">
                 <h3>Tickets by status</h3>
                 <canvas id="dept-status" class="graphics"></canvas>
@@ -37,6 +40,9 @@
                 <?php drawMembers($department->members); ?>
             </article>
         </section>
+
+        <section id="department-tickets" class="container">
+            <header class="title"> Tickets </header>
         <?php } ?>
         <section id="department-tickets">
         <?php drawTickets($department->tickets); ?>

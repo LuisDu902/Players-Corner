@@ -52,10 +52,7 @@ function createFAQ(faq) {
     const deleteForm = document.createElement('form')
     deleteForm.action = '../actions/faq_actions/action_delete_faq.php'
     deleteForm.method = 'post'
-    deleteForm.onsubmit = function () {
-      return confirm('Are you sure you want to delete this FAQ?')
-    }
-
+  
     const faqIdInput = document.createElement('input')
     faqIdInput.type = 'hidden'
     faqIdInput.name = 'id'
