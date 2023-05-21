@@ -38,7 +38,7 @@ body {
 }
 
 section{
-  padding: 6rem 0;
+  padding: 6rem auto;
 }
 
 section h2{
@@ -51,7 +51,7 @@ h1, h2, h3, h4, h5{
 }
 
 h1{
-  font-size: 2.4rem;
+  font-size: 3rem;
 }
 
 h2{
@@ -71,16 +71,6 @@ img{
   display: block;
   object-fit: cover;
 }
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -126,6 +116,7 @@ nav {
 .nav-links li a{
   font-size: 1.1em;
   font-weight: 400;
+  transition: all 200ms ease;
 }
 
 .nav-links li a:hover, .highlight, .dropdown-content a:hover {
@@ -142,59 +133,51 @@ nav {
 
 .buttons li:nth-child(2), .card-buttons div:nth-child(2) {
 
-  margin: 0 1.25em;
+  margin-left: 1.25em;
 }
 
-/*    banner   */
-/*
-.banner {
-  grid-column: span 2;
-  grid-row: span 1;
+
+
+/* Banner */
+
+
+#banner{
+  position: relative;
+  top: 5rem;
+  overflow: hidden;
+  height: 70vh;
+  margin-bottom: 5rem;
+  padding: 0;
+}
+
+.banner{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  place-items: center;
-  margin: 2rem 4rem;
-}
-
-.corner-text {
-  margin: 2rem 5rem;
-}
-
-.corner-text h1{
-  font-size: 3rem;
-  max-width: 17em;
+  grid-template-columns: repeat(2, 1fr);
   align-items: center;
-  margin: auto;
+  gap: 5rem;
+  height: 100%;
 }
 
-.auto-type{
-color: var(--main-blue);
-}
-
-
-.corner-text p{
-  font-size: 1rem;
-  line-height: 25px;
-  color: #859bb4;
-  align-items: center;
+.corner-text{
   margin: 1rem auto;
 }
+.auto-type{
+  color: var(--main-blue);
+}
 
+.corner-text p{
+  color: #859bb4;
+  margin: 1rem auto;
+}
 
 .corner-text a{
   margin: 1rem auto;
 }
 
-.gif{
-  width: 80%;
-  margin-left: 2rem;
-}
 
-.gif img{
-  width: 100%;
-}
 
-*/
+
+
 /* categories */
 /*
 .categories {

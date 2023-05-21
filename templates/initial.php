@@ -1,7 +1,7 @@
 <?php require_once(__DIR__ . '/../templates/department.tpl.php'); ?>
 
 <?php function drawInitial($session, $departments){ ?>
-    <section class="container banner">
+    <section id="banner" class="container banner">
         <div class="corner-text">
             <h1>
                 This is <br>
