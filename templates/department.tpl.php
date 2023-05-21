@@ -47,11 +47,13 @@
         <section id="department-tickets">
         <?php drawTickets($department->tickets); ?>
     </section>
+    <?php if (empty($department->members) && empty($department->tickets)) { ?>
     <form action="../actions/department_actions/action_remove_department.php" method="POST">
         <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
         <input type="hidden" id="category" name="category" value="<?= $department->category ?>" required>
         <div class="button-wrap gradient round-border"> <button type="submit">Remove department</button> </div>
     </form>
+    <?php } ?>
 
 <?php } ?>
 

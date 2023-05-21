@@ -239,6 +239,7 @@ class Ticket
     }
     $stmt = $db->prepare("INSERT INTO TicketHistory(ticketId, user, date, changes, field) VALUES (?, ?, CURRENT_TIMESTAMP, 'ticket created', 0)");
     $stmt->execute(array($ticketId, $creator));
+    return $ticketId;
   }
 
   function changeAgent(PDO $db, int $userId, int $replier)

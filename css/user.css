@@ -1,6 +1,7 @@
 .search-bar{
   display: flex;
   margin: 2rem;
+  height: max-content;
 }
 
 .search-box, .filter-select, .order-condition{

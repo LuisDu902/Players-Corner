@@ -1,6 +1,8 @@
 async function editProperties() {
     const ticketId = document.querySelector('#ticket-page').getAttribute('data-id')
     const userId = document.querySelector('#ticket-page').getAttribute('data-user')
+    const creator = document.querySelector('#ticket-page').getAttribute('data-creator')
+
     const category = document.querySelector("#categories").value;
     const visibility = document.querySelector("#visibility").value;
     const priority = document.querySelector("#priorities").value;
@@ -30,7 +32,7 @@ async function editProperties() {
         const faqs = await getFaqs.json()
         tkt.appendChild(createCommentBar(faqs))
     }
-    else {
+    else if (assignee != userId && userId != creator){
         if (res && (assignee != userId || status == 'closed'))
         res.remove()
     }

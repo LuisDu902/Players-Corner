@@ -79,7 +79,7 @@
 <?php
 function drawTicket($session,$ticket, $departments,$status,$priorities,$department,$messages, $history,$attachedFiles,$faqs)
 { ?>
-    <section id="ticket-page" class="container" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
+    <section id="ticket-page" class="container" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>" data-user="<?= $session->getId() ?>">
         <article id="tkt">
             <h1 class="highlight">
                 <?= $ticket->title ?>
@@ -240,7 +240,7 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
             <h2>Attached Files</h2>
             <ul>
                 <?php foreach ($attachedFiles as $filename) { ?>
-                <li>
+                <li class="center">
                     <a href="../files/ticket<?= $ticket->ticketId ?>_<?= $filename ?>" download><?= $filename ?></a>
                 </li>
                 <?php } ?>
@@ -328,7 +328,6 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                 <h6> Tell us the details of your problem.</h6>
                 <textarea id="description" name="text" required="required" rows="4" cols="40"></textarea>
             </div>    
-
             <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
             <div class="button-wrap gradient round-border"> <button type="submit">Create ticket</button> </div>
         </form>

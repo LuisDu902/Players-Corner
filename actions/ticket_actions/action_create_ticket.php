@@ -21,9 +21,9 @@
   $tags = explode(',', htmlentities($_POST['chosen_tags']));
 
   try {
-    Ticket::registerTicket($db, $tags, htmlentities($_POST['title']), htmlentities($_POST['text']), "4-low", htmlentities($_POST['category']), htmlentities($_POST['visibility']), $session->getId());
+    $id = Ticket::registerTicket($db, $tags, htmlentities($_POST['title']), htmlentities($_POST['text']), "4-low", htmlentities($_POST['category']), htmlentities($_POST['visibility']), $session->getId());
     $session->addMessage('success', 'Ticket successfully created!');
-    header("Location: ../../pages/tickets.php");
+    header("Location: ../../pages/ticket.php?id=" . $id);
   } 
   catch (PDOException $e) {
     $session->addMessage('error', 'Failed to create ticket due to foreign key constraint violation.');
