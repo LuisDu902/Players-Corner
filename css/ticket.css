@@ -159,6 +159,11 @@
   margin: 40px 0px;
 }
 
+#ticket-messages{
+  height: 50vh;
+  overflow-y: scroll;
+}
+
 #ticket-messages header {
   font-size: 1.5rem;
   font-weight: bold;
@@ -456,7 +461,7 @@ hr {
 }
 
 #tkt, .sidebar {
-  height: 100vh;
+  height: 95vh;
   overflow-y: auto;
 }
 

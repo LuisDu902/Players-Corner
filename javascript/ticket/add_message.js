@@ -12,8 +12,7 @@ async function addMessage() {
 
   messageContainer.appendChild(createMessage(message))
 
-  const article = document.querySelector('#tkt')
-  article.scrollTop = messageContainer.scrollHeight
+  messageContainer.scrollTop = messageContainer.scrollHeight
   messageInput.value = ''
 }
 
