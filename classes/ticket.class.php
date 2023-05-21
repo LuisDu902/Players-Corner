@@ -235,6 +235,8 @@ class Ticket
       $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
       $stmt->execute(array($ticketId, $tag));
     }
+    $stmt = $db->prepare("INSERT INTO TicketHistory(ticketId, user, date, changes, field) VALUES (?, ?, CURRENT_TIMESTAMP, 'ticket created', 0)");
+    $stmt->execute(array($ticketId, $creator));
   }
 
   function changeAgent(PDO $db, int $userId, int $replier){
