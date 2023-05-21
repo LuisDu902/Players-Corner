@@ -297,6 +297,7 @@ li,a, button {
 .vert-flex {
     display: flex;
     flex-direction: column;
+    margin: 3rem auto;
 }
 
 *:focus {
