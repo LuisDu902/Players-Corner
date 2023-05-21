@@ -606,3 +606,40 @@ li,a, button {
     margin-left: 2rem;
   }
 }
+
+/* mobile version */
+
+@media screen and (max-width: 600px){
+  body{
+    width: var(--container-width-sm);
+  }
+  .nav-links{
+    left: 3%;
+  }
+
+  #banner{
+    height: 100vh;
+  }
+
+  .banner{
+    grid-template-columns: 1fr;
+    text-align: center;
+    margin-top: 0;
+  }
+  .corner-text p{
+    margin-bottom: 1.3rem;
+  }
+
+  .ticket,
+  .ticket-info{
+    width: 79%;
+  }
+
+  #faq-list{
+    padding: 0;
+  }
+  .faq-item{
+    width: 100%;
+    padding: 0;
+  }
+}
