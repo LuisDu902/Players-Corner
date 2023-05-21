@@ -21,7 +21,8 @@
     $attachedFiles = $ticket->getAttachedFiles();
     $departments = Department::getDepartments($db);
     $stats= ["new","open","closed","solved","assigned"];
-    $priorities=["  critical","  high","  medium","  low"];
+    $priorities=["1-critical","2-high","3-medium","4-low"];
+
     $department=Department::getDepartment($db,$ticket->category);
     $faqs = FAQ::getFAQs($db);
     drawHeader($session);
