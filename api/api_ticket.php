@@ -62,6 +62,7 @@
         $ticket->changeProperties($db, $session->getId(), $assignee, $tags, $category, $priority, $status, $visibility);
         $ticket = $ticket->getTicket($db, $ticketId);
         $response = $ticket->getTicketHistory($db);
+        $response = end($response);
       } catch (PDOException $e){
         $response = ['status' => 'error'];
       }

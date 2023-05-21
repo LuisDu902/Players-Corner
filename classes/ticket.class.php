@@ -75,6 +75,8 @@ class Ticket
     }
     return $history;
   }
+ 
+
 
   static function getUserTickets(PDO $db, int $userId): array
   {

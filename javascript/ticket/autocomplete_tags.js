@@ -108,10 +108,6 @@ function addTag1(value) {
 }
 
 
-
-
-
-
 const t_tags=[];
 const tagInputs = document.querySelector('#tags-edit');
 
@@ -125,7 +121,6 @@ if (tagInputs) {
   const chosenTags = document.querySelector('#ticket_tags')
   chosenTags.value = tagsString
   
-
   const buttons = document.querySelectorAll('.tag-block button')
 
   for (const button of buttons){
@@ -133,12 +128,10 @@ if (tagInputs) {
   }
 
   tagInputs.addEventListener('input', get_remaining_tags)
-
 }
 
 
 function removeTag(event){
-  
     const tagBlock = event.target.closest('.tag-block')
     const value = tagBlock.querySelector('span').textContent
    
@@ -146,6 +139,4 @@ function removeTag(event){
    
     if (index !== -1) { t_tags.splice(index, 1) }
     tagBlock.remove()
-  
-  
 }

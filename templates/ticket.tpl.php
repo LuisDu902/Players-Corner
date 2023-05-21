@@ -127,7 +127,7 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                 </section>
             <?php } ?>
         </article>
-        <?php drawSidebar($session,$ticket, $departments,$status,$priorities,$department, $history,$attachedFiles); ?>
+        <?php drawSidebar($session, $ticket, $departments, $status, $priorities, $department, $history, $attachedFiles); ?>
       
     </section>
     <?php
@@ -140,134 +140,102 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
         <article id="properties">
             <h2>Properties</h2>
             <ul class="center">
-                <li> <label> Category: 
+                <li> <label for="categories"> Category: 
                     <select name="categories" id="categories">
                     <?php foreach($departments as $category) { ?>
-                        <option value="<?= $ticket->category ?>" selected=<?=$category->category === $ticket->category ? $ticket->category : ''?> ><?= $category->category ?></option>
+                        <option value="<?=$category->category?>" <?=$category->category === $ticket->category ? 'selected' : ''?> ><?= $category->category ?></option>
                     <?php } ?>
                     </select>
                 </label> </li>
 
-                <li> <label>Status: 
+                <li> <label for="stat">Status: 
                     <select name="stat" id="stat">
                         <?php foreach($status as $stat) { ?>
-                            <option value="<?= $ticket->status?>" selected=<?= $ticket->status === $stat ? $ticket->status : '' ?>><?= $stat ?></option>
+                            <option value="<?= $stat?>" <?= $ticket->status === $stat ? 'selected' : '' ?>><?= $stat ?></option>
                         <?php } ?>
                     </select>
-                    </label>
-                    </li>
+                </label> </li>
                     
-                <li >
-                        <label>Priority: 
-                        <select name="priorities" id="priorities">
-                            <?php foreach($priorities as $priority) {
-                                if($priority === $ticket->priority) { ?>
-                                   <option value="<?= $ticket->priority?>" selected><?= $ticket->priority ?> </option><?php
-                                }
-                                else{ ?>
-                                    <option value="<?= $priority ?>"><?= $priority ?> </option> <?php
-                                }
-                            } ?>
-                        </select>
-                        </label>
-                        </li>
+                <li> <label for="priorities">Priority: 
+                    <select name="priorities" id="priorities">
+                        <?php foreach($priorities as $priority) { ?>
+                            <option value="<?= $priority?>" <?= $ticket->priority === $priority ? 'selected' : '' ?>><?= $priority ?> </option>
+                        <?php } ?>
+                    </select>
+                </label> </li>
                     
-                        
+                <li> <label for="assignee">Assignee: 
+                    <select name="assignee" id="assignee">
+                        <?php foreach($department->members as $member) { ?>
+                            <option value="<?= $member->userId?>" <?= $ticket->replier->userId === $member->userId ? 'selected' : ''?>><?= $member->name ?> </option>
+                        <?php } ?>
+                    </select>
+                </label> </li>
                     
-                        <li>
-                        <label>Assignee: 
-                        <select name="assignee" id="assignee">
-                            <?php foreach($department->members as $member) {
-                                if($member->userId== $ticket->replier->userId){
-                                    ?>
-                                   <option value="<?= $ticket->replier->userId?>" selected><?= $ticket->replier->name ?> </option><?php
-                                }
-                                else{ ?>
-                                    <option value="<?= $member->userId ?>"><?= $member->name ?> </option> <?php
-                                }
-                            } ?>
-                        </select>
-                        </label>
-                        </li>
+                <li> <label for="visibility">Visiblity: 
+                    <select name="visibility" id="visibility">
+                        <option value="public" <?= $ticket->visibility === 'public' ? 'selected' : ''?>> Public  </option>
+                        <option value="private" <?= $ticket->visibility === 'private' ? 'selected' : ''?>> Private  </option>
+                    </select>
+                </label> </li>
                     
-                    
-
-                    <li>
-                        <label for="visibility">Visiblity: 
-                            <select name="visibility" id="visibility">
-                            <?php if($ticket->visibility === 'public'){?>
-                                    <option value="public" selected> Public  </option>
-                                    <option value="private" > Private  </option>
-                                    <?php
-                            } else {?>
-                                    <option value="public" > Public  </option>
-                                    <option value="private" selected> Private  </option>
-                                    <?php
-                            } ?>
-                            </select>
-                        </label>
-                        </li>
-                    
-                    <li class="ticket-tags">
-                        <label>Tags: 
-                        <input type="text" id="tags-edit" name="tags-edit" list="taglist1">
-                        <input type="hidden" id="ticket_tags" name="ticket_tags" />
-                        <div id="tag-container">
-                            <?php foreach($ticket->tags as $tag){ ?>
-                            <div class="tag-block">
+                <li class="ticket-tags"> <label>Tags: 
+                    <input type="text" id="tags-edit" name="tags-edit" list="taglist1">
+                    <input type="hidden" id="ticket_tags" name="ticket_tags" />
+                    <ul id="tag-container">
+                        <?php foreach($ticket->tags as $tag){ ?>
+                            <li class="tag-block">
                                 <span id="value"><?= $tag ?></span>
                                 <button class="remove-button">x</button>
-                            </div>
-                            <?php } ?>
-                        </div>
-                        <datalist id="taglist1">
-                        </datalist>
-                        </label>
-                            </li>
-                            </ul>
-                    <div class="button-wrap gradient auth-button" id="edit-btn"><button>Save changes</button></div>
-                            </article>
-
-                    <hr>
-            <article id="history">
-                    <h2> History </h2>
-                    <ol class="timeline outer">
-                        <?php foreach ($history as $date => $changes) : ?>
-                            <li class="card-history">
-                                <h3 class="title-history"><?= $date; ?></h3>
-                                <div class="vert-flex">
-                                    <?= $changes[0]->user->name; ?><br>
-                                        <ul class="ticket-changes">
-                                            <?php foreach ($changes as $change) : ?>
-                                             <li>
-                                                <?php if ($change->old_field === '') { ?>
-                                                    <p><?= $change->changes ?></p>
-                                                <?php } else { ?>
-                                                    <p><?= $change->changes ?> : <strong><?= $change->old_field; ?></strong> >>> <strong><?= $change->new_field;?></strong></p>
-                                                <?php } ?>
-                                            </li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                </div>
-                                                </li>
-                        <?php endforeach; ?>
-                                                </ol>
-                                                </article>
-                                                <hr>
-                  
-                    <article id="files">
-                    <h2>Attached Files</h2>
-                    <ul>
-                        <?php foreach ($attachedFiles as $filename) { ?>
-                            <li>
-                                <a href="../files/ticket<?= $ticket->ticketId ?>_<?= $filename ?>" download><?= $filename ?></a>
                             </li>
                         <?php } ?>
                     </ul>
-                    </article>
-           
-        </aside>
+                    <datalist id="taglist1"></datalist>
+                </label> </li>
+            </ul>
+            <div class="button-wrap gradient auth-button" id="edit-btn">
+                <button>Save changes</button>
+            </div>
+        </article>
 
+        <hr>
+            
+        <article id="history">
+            <h2> History </h2>
+            <ol class="timeline outer">
+                <?php foreach ($history as $date => $changes) : ?>
+                <li class="card-history">
+                    <h3 class="title-history"><?= $date; ?></h3>
+                    <div class="vert-flex"> <?= $changes[0]->user->name; ?>
+                        <ul class="ticket-changes">
+                            <?php foreach ($changes as $change) : ?>
+                                <li>
+                                <?php if ($change->old_field === '') { ?>
+                                    <?= $change->changes ?>
+                                <?php } else { ?>
+                                    <?= $change->changes ?> : <?= $change->old_field; ?> >>> <?= $change->new_field;?>
+                                <?php } ?>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </li> <?php endforeach; ?>
+            </ol>
+        </article>
+        
+        <hr>
+                
+        <article id="files">
+            <h2>Attached Files</h2>
+            <ul>
+                <?php foreach ($attachedFiles as $filename) { ?>
+                <li>
+                    <a href="../files/ticket<?= $ticket->ticketId ?>_<?= $filename ?>" download><?= $filename ?></a>
+                </li>
+                <?php } ?>
+            </ul>
+        </article>
+    </aside>
 <?php } ?>
 
 <?php function drawSurvey(Ticket $ticket)
