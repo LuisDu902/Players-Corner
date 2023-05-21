@@ -19,7 +19,7 @@
   font-size: 1.2em;  
 }
 
-.ticket:hover, .user-card:hover, .department-card img:hover {
+.ticket:hover, .user-card:hover{
   border: 3px solid #D66AE6;
 }
 

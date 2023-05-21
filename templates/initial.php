@@ -1,20 +1,22 @@
 <?php require_once(__DIR__ . '/../templates/department.tpl.php'); ?>
 
 <?php function drawInitial($session, $departments){ ?>
-    <section id="banner" class="container banner">
-        <div class="corner-text">
-            <h1>
-                This is <br>
-                <span class="auto-type"></span>
-            </h1>
-            <p><br>The one-stop-shop for all your gaming FAQs and strategies. <br> No gamer should be left out!</p>
-            <a href="#about-us" class="btn">About us</a>
-        </div>
-        <div class="gif">
-            <img src="../images/banner.gif">
-        </div>
+    <section id="banner">
+        <span class="container banner">
+            <article class="corner-text">
+                <h1>
+                    This is <br>
+                    <span class="auto-type"></span>
+                </h1>
+                <p><br>The one-stop-shop for all your gaming FAQs and strategies. <br> No gamer should be left out!</p>
+                <a href="#about-us" class="btn">About us</a>
+            </article>
+            <article class="gif">
+                <img src="../images/banner.gif">
+            </div>
+        </span>
     </section>
-    <section class="container categories">
+    <section id="categories">
         <?php drawDepartments($session, $departments); ?>
     </section>
     <section id="about-us" class="container">
