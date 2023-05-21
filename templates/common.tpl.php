@@ -47,10 +47,10 @@
    </head>
 
   <body data-csrf="<?= $_SESSION['csrf'] ?>">
-    <header id="header">
+    <header>
       <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
       <nav>
-        <ul class="nav_links">
+        <ul class="nav-links">
           <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="Users"><a href="../pages/tickets.php">Forum</a></li>
           <li class="FAQ"><a href="../pages/faq.php">FAQ</a></li>
@@ -66,6 +66,8 @@
           <li class="Help"><a href="#">Help</a></li>
 
         </ul>
+      <input type="checkbox" id="hamburger"> 
+      <label class="hamburger" for="hamburger"></label>
       </nav>
       <?php
       if ($session->isLoggedIn()) {
