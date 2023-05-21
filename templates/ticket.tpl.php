@@ -78,7 +78,7 @@
 <?php
 function drawTicket($session,$ticket, $departments,$status,$priorities,$department,$messages, $history,$attachedFiles,$faqs)
 { ?>
-    <section id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
+    <section id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>" data-user="<?=$session->getId()?>">
         <article id="tkt">
             <h1 class="highlight">
                 <?= $ticket->title ?>
