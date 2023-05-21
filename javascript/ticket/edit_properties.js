@@ -42,7 +42,6 @@ function createCommentBar(faqs) {
     const section = document.createElement('section');
     section.id = 'respond';
 
-    // Create the textarea element
     const textarea = document.createElement('textarea');
     textarea.id = 'message-input';
     textarea.placeholder = 'Type your message...';
@@ -72,28 +71,22 @@ function createCommentBar(faqs) {
     section.appendChild(sendButton);
 
     return section
-
 }
 
 function createFaqContainer(faqs) {
-    // Create the div element
     const dropupDiv = document.createElement('div');
     dropupDiv.classList.add('dropup');
 
-    // Create the FAQ button
     const faqButton = document.createElement('button');
     faqButton.classList.add('faq-btn');
     faqButton.innerText = 'FAQ';
 
-    // Create the dropup content article
     const dropupContent = document.createElement('article');
     dropupContent.classList.add('dropup-content');
 
-    // Create the search box section
     const searchBox = document.createElement('section');
     searchBox.classList.add('search-box', 'center', 'round-border', 'white-border');
 
-    // Create the input element for search
     const searchInput = document.createElement('input');
     searchInput.id = 'faq-bar';
     searchInput.type = 'text';
@@ -102,11 +95,9 @@ function createFaqContainer(faqs) {
     const searchIcon = document.createElement('img');
     searchIcon.src = '../images/icons/search.png';
 
-    // Append the search input and icon to the search box
     searchBox.appendChild(searchInput);
     searchBox.appendChild(searchIcon);
 
-    // Create the FAQ items list
     const faqItemsList = document.createElement('ul');
     faqItemsList.id = 'faq-items';
     faqItemsList.classList.add('center')
@@ -120,15 +111,12 @@ function createFaqContainer(faqs) {
         faqItemsList.appendChild(listItem);
     }
 
-    // Append the search box and FAQ items list to the dropup content article
     dropupContent.appendChild(searchBox);
     dropupContent.appendChild(faqItemsList);
 
-    // Append the FAQ button and dropup content to the dropup div
     dropupDiv.appendChild(faqButton);
     dropupDiv.appendChild(dropupContent);
     showDropup(faqButton, dropupContent)
-    // Append the dropup div to the document body or any desired parent element
     return dropupDiv
 }
 

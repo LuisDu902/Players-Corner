@@ -433,8 +433,10 @@ class Ticket
     /* Add new tags that are not already present */
     $newTags = array_diff($tags, $this->tags);
     foreach ($newTags as $newTag) {
-      $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
-      $stmt->execute(array($this->ticketId, $newTag));
+      if ($newTag !== '') {
+        $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
+        $stmt->execute(array($this->ticketId, $newTag));
+      }
     }
     $addedTags = implode(", ", $newTags);
     if (!empty($newTags)) {

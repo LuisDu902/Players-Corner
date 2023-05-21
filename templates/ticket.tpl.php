@@ -169,9 +169,9 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                             <option value="0" selected>Not assigned</option>
                         <?php } 
                         foreach($department->members as $member) { 
-                            if ($member->userId !== $ticket->creator->userId) ?>
+                            if ($member->userId !== $ticket->creator->userId) {?>
                             <option value="<?= $member->userId?>" <?= $ticket->replier->userId === $member->userId ? 'selected' : ''?>><?= $member->name ?> </option>
-                        <?php } ?>
+                        <?php } } ?>
                     </select>
                 </label> </li>
                     
