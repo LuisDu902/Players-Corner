@@ -12,6 +12,7 @@
 ## Como correr
 
 * git clone git@github.com:FEUP-LTW-2023/project-ltw13g04.git
+* cd project-ltw13g04
 * git checkout final-delivery-v1
 * cd database
 * ./rewrite.sh
