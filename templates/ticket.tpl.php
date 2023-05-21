@@ -142,7 +142,7 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
             <h1>Properties</h1>
                     <div id="cat">
                         <label >Category: 
-                        <select name="categories" id="categories" disabled>
+                        <select name="categories" id="categories">
                             <?php foreach($departments as $category) {
                                 if($category->category === $ticket->category){
                                     ?>
