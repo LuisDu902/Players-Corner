@@ -85,9 +85,8 @@ async function get_remaining_tags(event) {
   const chosenTags = document.querySelector('#ticket_tags')
   chosenTags.value = tagsString
 
-}
 
-
+  
 function addTag1(value) {
   t_tags.push(value)
   const tagContainer = document.querySelector('#tag-container')
@@ -106,6 +105,8 @@ function addTag1(value) {
   tagContainer.appendChild(tagBlock)
   event.target.blur()
   }
+}
+
 
 
 
