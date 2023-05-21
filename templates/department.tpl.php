@@ -19,10 +19,10 @@
 
 
 
-<?php function drawDepartment(bool $hasAccess, Department $department)
+<?php function drawDepartment(Department $department)
 { ?>
     <header class="title" id="department-title"><?= $department->category ?></header>
-    <?php if ($hasAccess) { ?>
+    <?php if (has_access($department)) { ?>
         <section id="department-stats" class="container">
             <article class="round-border" id="dept-ticket-status">
                 <h3>Tickets by status</h3>

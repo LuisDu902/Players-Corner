@@ -117,5 +117,30 @@
         }
         return true;
     }
+
+    function valid_status(string $status): array {
+        switch ($status){
+            case 'new':
+                return ["new", "assigned", "open", "solved", "closed"];
+            case 'assgined':
+                return ["assigned", "open", "solved", "closed"];
+            default:
+                return ["open", "solved", "closed"];
+        }
+    }
+
+    function has_access(Department $department): bool {
+        $session = new Session();
+       
+        if ($session->getRole() === 'admin') return true;
+
+        foreach ($department->members as $member) {
+          if ($session->getId() == $member->userId) {
+            return true;
+          }
+        }
+        
+        return false;
+    }
     
 ?>

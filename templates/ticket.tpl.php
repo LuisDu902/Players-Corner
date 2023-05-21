@@ -127,52 +127,37 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                 </section>
             <?php } ?>
         </article>
+        <?php drawSidebar($session,$ticket, $departments,$status,$priorities,$department, $history,$attachedFiles); ?>
+      
+    </section>
+    <?php
+}
+?>
 
 
+<?php function drawSidebar($session, $ticket, $departments, $status, $priorities, $department, $history, $attachedFiles){ ?>
+    <aside class="sidebar">
+        <article id="properties">
+            <h2>Properties</h2>
+            <ul class="center">
+                <li> <label> Category: 
+                    <select name="categories" id="categories">
+                    <?php foreach($departments as $category) { ?>
+                        <option value="<?= $ticket->category ?>" selected=<?=$category->category === $ticket->category ? $ticket->category : ''?> ><?= $category->category ?></option>
+                    <?php } ?>
+                    </select>
+                </label> </li>
 
-
-
-
-
-
-
-        <aside class="sidebar">
-            
-            <article id="properties">
-                <h2>Properties</h2>
-                    <ul class="center">
-                    <li>
-                        <label> Category: 
-                        <select name="categories" id="categories">
-                            <?php foreach($departments as $category) {
-                                if($category->category === $ticket->category){
-                                    ?>
-                                   <option value="<?= $ticket->category ?>" selected><?= $ticket->category ?></option><?php
-                                }
-                                else{ ?>
-                                    <option value="<?= $category->category ?>"><?= $category->category ?> </option> <?php
-                                }
-                            } ?>
-                        </select>
-                        </label>
-                        </li>
-    
-                        <li>   <label>Status: 
-                        <select name="stat" id="stat">
-                            <?php foreach($status as $stat) {
-                                if($stat === $ticket->status){
-                                    ?>
-                                   <option value="<?= $ticket->status?>" selected><?= $ticket->status ?> </option><?php
-                                }
-                                else{ ?>
-                                    <option value="<?= $stat ?>"><?= $stat ?> </option> <?php
-                                }
-                            } ?>
-                        </select>
-                        </label>
-                        </li>
-                        
-                    <li >
+                <li> <label>Status: 
+                    <select name="stat" id="stat">
+                        <?php foreach($status as $stat) { ?>
+                            <option value="<?= $ticket->status?>" selected=<?= $ticket->status === $stat ? $ticket->status : '' ?>><?= $stat ?></option>
+                        <?php } ?>
+                    </select>
+                    </label>
+                    </li>
+                    
+                <li >
                         <label>Priority: 
                         <select name="priorities" id="priorities">
                             <?php foreach($priorities as $priority) {
@@ -241,34 +226,37 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                             </li>
                             </ul>
                     <div class="button-wrap gradient auth-button" id="edit-btn"><button>Save changes</button></div>
-                    <hr>
-                    <h2> History </h2>
-                    <div class="timeline outer">
-                        <?php foreach ($history as $date => $changes) : ?>
-                            <div class="card-history">
-                                <div class="title-history"><?= $date; ?></div>
-                                <div class="changes-done">
-                                    <strong>User:</strong> <?= $changes[0]->user->name; ?><br>
+                            </article>
 
-                                        <ul>
+                    <hr>
+            <article id="history">
+                    <h2> History </h2>
+                    <ol class="timeline outer">
+                        <?php foreach ($history as $date => $changes) : ?>
+                            <li class="card-history">
+                                <h3 class="title-history"><?= $date; ?></h3>
+                                <div class="vert-flex">
+                                    <?= $changes[0]->user->name; ?><br>
+                                        <ul class="ticket-changes">
                                             <?php foreach ($changes as $change) : ?>
                                              <li>
-                                                <?php if ($change->old_field == '') { ?>
-                                                    <strong><?= $change->changes ?></strong>
+                                                <?php if ($change->old_field === '') { ?>
+                                                    <p><?= $change->changes ?></p>
                                                 <?php } else { ?>
-                                                    <strong><?= $change->changes ?></strong>: <?= $change->old_field; ?> >> <?= $change->new_field; ?><br>
+                                                    <p><?= $change->changes ?> : <strong><?= $change->old_field; ?></strong> >>> <strong><?= $change->new_field;?></strong></p>
                                                 <?php } ?>
                                             </li>
                                             <?php endforeach; ?>
                                         </ul>
                                 </div>
-                            </div>
+                                                </li>
                         <?php endforeach; ?>
-                    </div>
-                    <hr>
-                    <h2>Attached Files</h2>
+                                                </ol>
+                                                </article>
+                                                <hr>
+                  
                     <article id="files">
-                    
+                    <h2>Attached Files</h2>
                     <ul>
                         <?php foreach ($attachedFiles as $filename) { ?>
                             <li>
@@ -277,18 +265,10 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                         <?php } ?>
                     </ul>
                     </article>
-            </article>
-            
-            <article id="files">
-                
-            </article>
+           
         </aside>
 
-    </section>
-    <?php
-}
-?>
-
+<?php } ?>
 
 <?php function drawSurvey(Ticket $ticket)
 { ?>

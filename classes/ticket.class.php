@@ -401,7 +401,7 @@ class Ticket
   {
     $tags = explode(',', $new_tags);
 
-    // Remove tags that are no longer present
+    /* Remove tags that are no longer present */
     $tagsToRemove = array_diff($this->tags, $tags); 
     foreach ($tagsToRemove as $tagToRemove) {
       $stmt = $db->prepare('DELETE FROM TicketTag WHERE ticket = ? AND tag = ?');
@@ -414,7 +414,7 @@ class Ticket
       $this->addHistory($db, $userId, "Removed tags: " . $removedTags, 0);
     }
 
-    // Add new tags that are not already present
+    /* Add new tags that are not already present */
     $newTags = array_diff($tags, $this->tags);
     foreach ($newTags as $newTag) {
       $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
