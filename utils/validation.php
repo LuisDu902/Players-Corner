@@ -122,7 +122,7 @@
         switch ($status){
             case 'new':
                 return ["new", "assigned", "open", "solved", "closed"];
-            case 'assgined':
+            case 'assigned':
                 return ["assigned", "open", "solved", "closed"];
             default:
                 return ["open", "solved", "closed"];

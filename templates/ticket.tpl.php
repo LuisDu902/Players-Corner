@@ -165,7 +165,10 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                     
                 <li> <label for="assignee">Assignee: 
                     <select name="assignee" id="assignee" <?=$session->getRole() === 'client' ? 'disabled' : ''?>>
-                        <?php foreach($department->members as $member) { ?>
+                        <?php if($ticket->status === 'new') { ?>
+                            <option value="0" selected>Not assigned</option>
+                        <?php } 
+                        foreach($department->members as $member) { ?>
                             <option value="<?= $member->userId?>" <?= $ticket->replier->userId === $member->userId ? 'selected' : ''?>><?= $member->name ?> </option>
                         <?php } ?>
                     </select>
