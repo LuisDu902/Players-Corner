@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/reports.css">
 
+    <link rel="stylesheet" href="../css/ticket_form.css">
+    <link rel="stylesheet" href="../css/faq.css">
+
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js" defer></script>
@@ -44,13 +48,15 @@
     <script src="../javascript/faq/load_more_faq.js" defer></script>
     <script src="../javascript/faq/search_faq.js" defer></script>
 
+    <script src="../javascript/responsive/navbar.js" defer></script>
+
    </head>
 
   <body data-csrf="<?= $_SESSION['csrf'] ?>">
-    <header id="header">
-      <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
-      <nav>
-        <ul class="nav_links">
+    <header>
+      <nav class ="container">
+        <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
+        <ul class="nav-links">
           <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="Users"><a href="../pages/tickets.php">Forum</a></li>
           <li class="FAQ"><a href="../pages/faq.php">FAQ</a></li>
@@ -65,12 +71,17 @@
           } ?>
          
         </ul>
-      </nav>
+        <div class="nav-buttons">
+          <ion-icon name="close-outline"></ion-icon>
+          <ion-icon name="menu-outline"></ion-icon>
+        </div>
+      
       <?php
       if ($session->isLoggedIn()) {
         drawProfileButton($session);
       } else
         drawAuthForms(); ?>
+      </nav>
     </header>
     <section id="messages">
       <?php foreach ($session->getMessages() as $messsage) { ?>

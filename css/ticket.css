@@ -11,18 +11,18 @@
 .ticket,
 .ticket-info {
   display: grid;
-  grid-template-columns: 1fr 3.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
-  grid-column-gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-auto-rows: minmax(auto, max-content);
+  grid-gap: 20px;
+  grid-column-gap: 30px;
   margin: 10px 0px;
-  padding: 20px;
-  font-weight: bold;
-  font-size: 1.2em;
+  padding: 10px;
+  font-size: 1.2rem;  
 }
 
-.ticket:hover,
-.user-card:hover,
-.department-card img:hover {
-  border: 3px solid #D66AE6;
+.ticket:hover, .user-card:hover{
+  border: 3px solid var(--main-pink);
+
 }
 
 .ticket img {
@@ -35,39 +35,40 @@
   padding: 10px;
 }
 
-#open-status {
-  background-color: #FFBD59;
+
+#open-status{
+  background-color: var(--orange);  
 }
 
-#new-status {
-  background-color: #5271FF;
+#new-status{ 
+  background-color: var(--main-blue); 
 }
 
-#assigned-status {
-  background-color: #D66AE6;
+#assigned-status{ 
+  background-color: var(--main-pink); 
 }
 
-#solved-status {
-  background-color: #7ED957;
+#solved-status{
+  background-color: var(--green);
 }
 
-#closed-status {
-  background-color: #FF5757;
+#closed-status{
+  background-color: var(--rose);
 }
 
-#low-priority {
-  color: #7ED957;
+#low-priority{
+  color: var(--green);
 }
 
-#medium-priority {
-  color: #FFBD59;
+#medium-priority{
+  color: var(--yellow);
+  font-weight: 600;
 }
 
-#high-priority,
-#critical-priority,
-#high-priority::after,
-#critical-priority::after {
-  color: #FF5757;
+#high-priority, #critical-priority, #high-priority::after, #critical-priority::after{
+  color: var(--rose);
+  font-weight: 700;
+
 }
 
 #high-priority::after {
@@ -91,10 +92,16 @@
   font-weight: bolder;
 }
 
-.pagination-bar button:hover,
-.pagination-bar button.active {
-  color: #D66AE6;
+
+.pagination-bar button:hover, .pagination-bar button.active {
+  color: var(--main-pink);
   font-weight: bolder;
+}
+
+
+.tickets{
+  width: 90%;
+  margin: auto;
 }
 
 
@@ -177,7 +184,7 @@
 }
 
 .replier-msg img {
-  border: 4px solid #D66AE6;
+  border: 4px solid var(--main-pink);
 }
 
 .creator-msg img {
@@ -206,7 +213,7 @@
 }
 
 .replier-msg .message-content {
-  border: 4px solid #D66AE6;
+  border: 4px solid var(--main-pink);
 }
 
 .bot-msg .message-content {
@@ -301,7 +308,7 @@
 }
 
 .faq-title:hover {
-  color: #D66AE6;
+  color: var(--main-pink);
   cursor: pointer;
 }
 
@@ -472,7 +479,7 @@ hr {
   background: white;
   border-radius: 50%;
   left: -56px;
-  border: 5px solid #D66AE6;
+  border: 5px solid var(--main-pink);
 }
 
 .title-history {
@@ -483,6 +490,13 @@ hr {
 .ticket-changes{
   margin-top: 20px;
 }
+
+.warning-img{
+  width: auto;
+  height: auto;
+  margin: 3rem auto;
+}
+
 
 .edit-sel {
   display: flex;
@@ -495,7 +509,6 @@ hr {
 .visibility-item {
   flex-basis: 48%; /* Adjust the width as needed */
 }
-
 .createTicket{
   width:800px;
 }
@@ -557,6 +570,9 @@ hr {
   transition: 0.5s;
   appearance: none;
 }
+.createTicket button{
+  text-align: center;
+}
 
 .description{
   margin-bottom: 2rem;
@@ -587,4 +603,3 @@ hr {
 .tag-block button{
   border: none;
 }
-

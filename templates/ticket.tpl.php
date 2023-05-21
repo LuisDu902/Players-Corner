@@ -36,24 +36,25 @@
 <?php function drawTickets($tickets)
 {
     if (!empty($tickets)) { ?>
-        <table class="tickets">
-            <thead>
-                <tr class="ticket-info ">
-                    <th>Creator</th>
-                    <th>Title</th>
-
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Priority</th>
-                    <th>Visibility</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <section class = "tickets">
+            <table class="tickets">
+                <thead>
+                    <tr class="ticket-info ">
+                        <th>Creator</th>
+                        <th>Title</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Visibility</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
         <div class="pagination-bar center"></div>
     <?php } else { ?>
-        <img src="../images/icons/warning.png">
+        <img src="../images/icons/warning.png" class="warning-img">
         <h2 class="center">No tickets yet</h2>
     <?php }
 }
@@ -78,7 +79,7 @@
 <?php
 function drawTicket($session,$ticket, $departments,$status,$priorities,$department,$messages, $history,$attachedFiles,$faqs)
 { ?>
-    <section id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>" data-user="<?=$session->getId()?>">
+    <section id="ticket-page" class="container" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
         <article id="tkt">
             <h1 class="highlight">
                 <?= $ticket->title ?>
@@ -329,7 +330,7 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
             </div>    
 
             <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-            <div class="button-wrap gradient round-border auth-button"> <button type="submit">Create ticket</button> </div>
+            <div class="button-wrap gradient round-border"> <button type="submit">Create ticket</button> </div>
         </form>
     </div>
     </section>

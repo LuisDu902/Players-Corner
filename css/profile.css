@@ -1,14 +1,9 @@
-.user-profile {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-evenly;
-}
 
 .upload-form {
   margin-top: 20px;
 }
 
-.container article h2{
+.contain article h2{
   position: relative;
   font-size: 3vh;
   margin: 2vh 0;
@@ -24,8 +19,8 @@
 }
 
 #user-tkt{
-  max-height: 40vh;
-  max-width: 40vh;
+  width: auto;
+  height: auto;
 }
 
 .field, .info {
@@ -35,12 +30,12 @@
 }
 
 .info{
-  background-color: #44C4D9;
+  background-color: var(--main-blue);
   color: black;
 }
 
 .field{
-  background-color: #D66AE6;
+  background-color: var(--main-pink);
 }
 
 .profile-picture img{
@@ -55,7 +50,9 @@
 }
 
 .edit-profile{
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  position: relative;
 }
 
 .no-tickets{
@@ -70,4 +67,16 @@
 
 .no-background{
   background-color: transparent;
+}
+
+.profile-title{
+  margin: auto 14rem;
+  color: var(--main-pink);
+}
+
+
+#user-profile{
+  margin: auto;
+  padding: auto;
+  align-items: center;
 }
