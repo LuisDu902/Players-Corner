@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
 
 
 /* main layout */
 
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Lato', sans-serif;
     color: white;
     text-decoration: none;
     scroll-behavior: smooth;
@@ -62,7 +62,7 @@ body > header {
 
 .nav-links li a{
   font-size: 1.1em;
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .nav-links li a:hover, .highlight, .dropdown-content a:hover {
@@ -81,7 +81,7 @@ body > header {
 }
 
 .buttons li:nth-child(2), .card-buttons div:nth-child(2) {
-  
+
   margin: 0 1.25em;
 }
 
@@ -89,46 +89,68 @@ body > header {
 
 /*    banner   */
 
-
-#container{
-  margin: auto 6rem;
+.banner {
   display: flex;
-  color: #f7feff;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem auto;
 }
 
-.corner-text{
-  width: 50%;
-  float: left;
+.corner-text {
+  margin: 2rem;
 }
+
 .corner-text h1{
-  font-size: 43px;
-  width: 340px;
-  position: relative;
-  margin-left: 40px;
+  font-size: 3rem;
+  max-width: 17em;
   align-items: center;
-  /*margin-top: 30px;*/
+  margin: auto;
 }
+
 .auto-type{
 color: #44C4D9;
 }
+
+
 .corner-text p{
-  /*width: 650px;*/
-  font-size: 16px;
-  /*margin: 10px 0 30px 40px;*/
+  font-size: 1rem;
   line-height: 25px;
   color: #859bb4;
   align-items: center;
-
+  margin: 1rem auto;
 }
+
+
+.corner-text a{
+  margin: 1rem auto;
+}
+
 .gif{
-  width: 50%;
-  float: right;
-  margin-top: 30px;
+  width: 40%;
+  margin-left: 2rem;
 }
 
 .gif img{
   width: 100%;
 }
+
+
+/* categories */
+
+.categories {
+ display: grid;
+ margin: auto 4em;
+}
+  
+.heading-title {
+  font-size: 3rem;
+  margin-left: 2em;
+}
+  
+  .categories .button-wrap.round-border.gradient{
+  margin: 30px 0 30px 40px;
+  }
 
 
 footer {
@@ -195,22 +217,7 @@ footer {
 
 
 
-.categories {
-align-items: flex-start;
-/* width: 80%;
-height: 70%;
-margin: 4rem auto;*/
-}
 
-.heading-title {
-font-size: 43px;
-width: 340px;
-/*margin: 30px 0 40px 40px;*/
-}
-
-.categories .button-wrap.round-border.gradient{
-margin: 30px 0 30px 40px;
-}
 
 #about-us {
 display: flex;
