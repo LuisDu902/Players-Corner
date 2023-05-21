@@ -8,16 +8,18 @@ async function editProperties(){
 
    
     const ticketId = document.querySelector('#ticket-page').getAttribute('data-id')
-    const category= document.querySelector("#categories").value;
-    const visibility=document.querySelector("#visibility").value;
-    const priority=document.querySelector("#priorities").value;
-    const status=document.querySelector("#stat").value;
-    const tags= document.querySelector('#ticket_tags');
-    
+    const category = document.querySelector("#categories").value;
+    const visibility = document.querySelector("#visibility").value;
+    const priority = document.querySelector("#priorities").value;
+    const status = document.querySelector("#stat").value;
+    const tags = document.querySelector('#ticket_tags');
+    const assignee = document.querySelector('#assignee').value
+    console.log(assignee)
+
     const response = await fetch('../../api/api_ticket.php', {
         method: 'PUT',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-        body: encodeForAjax({ticketId: ticketId, category: category, visibility: visibility, priority: priority, status: status, tags: tags }),
+        body: encodeForAjax({ticketId: ticketId, category: category, visibility: visibility, priority: priority, status: status, tags: tags, assignee: assignee}),
       })
 
     const ticket = response.json()

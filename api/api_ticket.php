@@ -57,8 +57,9 @@
       $priority = $requestData['priority'];
       $status = $requestData['status'];
       $tags = $requestData['tags'];
+      $assignee = intval($requestData['assignee']);
       try {
-        $ticket->changeProperties($db, $session->getId(), $tags, $category, $priority, $status, $visibility);
+        $ticket->changeProperties($db, $session->getId(), $assignee, $tags, $category, $priority, $status, $visibility);
         $ticket = $ticket->getTicket($db, $ticketId);
         $response = $ticket->getTicketHistory($db);
       } catch (PDOException $e){

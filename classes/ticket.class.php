@@ -235,10 +235,30 @@ class Ticket
     }
   }
 
-  function changeProperties(PDO $db, int $userId, string $new_tags, string $new_category, string $new_priority, string $new_status,string $new_visibility)
+  function changeAgent(PDO $db, int $userId, int $replier){
+    $stmt = $db->prepare("UPDATE Ticket SET replier = ? WHERE id = ?");
+    $stmt->execute(array($replier, $this->ticketId));
+
+    $newAgent = User::getUser($db, $replier);
+
+    if (!Change::fieldChangeExists($db, $this->replier->name, $newAgent->name)) {
+      Change::addFieldChange($db, $this->replier->name, $newAgent->name);
+    }
+
+    $change = Change::getChangeId($db, $this->replier->name, $newAgent->name);
+
+    $this->addHistory($db, $userId, 'Replier changed', $change);
+
+  }
+
+  function changeProperties(PDO $db, int $userId, int $replier, string $new_tags, string $new_category, string $new_priority, string $new_status,string $new_visibility)
   {
     
     /*changeTags($db, $userId, $new_tags);*/
+
+    if ($replier !== $this->replier->userId){
+      $this->changeAgent($db, $userId, $replier);
+    }
 
     if ($new_category !== $this->category) {
       $this->updateField($db, $userId, 'category', $new_category);

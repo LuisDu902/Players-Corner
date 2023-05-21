@@ -243,12 +243,18 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                     <hr>
 
                     <div class="history">
-                        <br><br>
-                        <?php foreach ($history as $change) { ?>
-                            <span><?= $change->changes ?> : <?= $change->old_field ?> -> <?= $change->new_field ?></span>
-                            <span class="status_date"><?= $change->date ?></span>
-                            <br><br>
-                        <?php } ?>
+                    <?php foreach ($history as $date => $changes) : ?>
+    <h2><?= $date; ?></h2>
+    <strong>User:</strong> <?= $changes[0]->user->name; ?><br>
+
+    <ul>
+      <?php foreach ($changes as $change) : ?>
+        <li>
+          <strong><?= $change->changes ?></strong> : <?= $change->old_field; ?> >>> <?= $change->new_field; ?><br>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+  <?php endforeach; ?>
                     </div>
                     <hr>
                     <article id="files">
