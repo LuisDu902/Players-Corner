@@ -11,13 +11,17 @@ const dropup = document.querySelector('.faq-btn')
 const dropup_content = document.querySelector('.dropup-content')
 
 if (dropup) {
-  dropup.addEventListener('click', function () {
-    dropup_content.style.display = 'block'
+  showDropup(dropup, dropup_content)
+}
+
+function showDropup(button, content){
+  button.addEventListener('click', function () {
+    content.style.display = 'block'
   })
 
   document.addEventListener('click', function (event) {
-    if (!dropup.contains(event.target) && !dropup_content.contains(event.target)) {
-      dropup_content.style.display = 'none'
+    if (!button.contains(event.target) && !content.contains(event.target)) {
+      content.style.display = 'none'
     }
   })
 }

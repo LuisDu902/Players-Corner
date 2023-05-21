@@ -232,8 +232,10 @@ class Ticket
     $stmt->execute(array($title, $text, $visibility, $priority, $category, $creator));
     $ticketId = $db->lastInsertId();
     foreach ($tags as $tag) {
-      $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
-      $stmt->execute(array($ticketId, $tag));
+      if ($tag !== '') {
+        $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
+        $stmt->execute(array($ticketId, $tag));
+      }
     }
     $stmt = $db->prepare("INSERT INTO TicketHistory(ticketId, user, date, changes, field) VALUES (?, ?, CURRENT_TIMESTAMP, 'ticket created', 0)");
     $stmt->execute(array($ticketId, $creator));
@@ -265,7 +267,7 @@ class Ticket
     $this->changeTags($db, $userId, $new_tags);
 
     if ($replier !== $this->replier->userId) {
-      if ($this->status === 'new'){
+      if ($this->status === 'new') {
         $this->updateField($db, $userId, 'status', 'assigned');
       }
       $this->changeAgent($db, $userId, $replier);
@@ -431,8 +433,10 @@ class Ticket
     /* Add new tags that are not already present */
     $newTags = array_diff($tags, $this->tags);
     foreach ($newTags as $newTag) {
-      $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
-      $stmt->execute(array($this->ticketId, $newTag));
+      if ($newTag !== '') {
+        $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
+        $stmt->execute(array($this->ticketId, $newTag));
+      }
     }
     $addedTags = implode(", ", $newTags);
     if (!empty($newTags)) {

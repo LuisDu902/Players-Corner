@@ -99,29 +99,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*ticket page*/
 
 #ticket-page {
@@ -329,17 +306,6 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
 /* Dropup Button */
 .faq-btn {
   background-color: white;
@@ -530,7 +496,6 @@ hr {
   flex-basis: 48%; /* Adjust the width as needed */
 }
 
-
 .createTicket{
   width:800px;
 }
@@ -559,16 +524,19 @@ hr {
 .createTicket input[type="text"],
 .createTicket select,
 .createTicket textarea , .modal>article textarea{
+
   margin-left: -20px;
   width: 100%;
   padding: 15px 15px;
   background: transparent;
   border: none;
+
   color:#fff ;
   border-bottom: 2px solid #fff;
   font-size: 14px;
   transition: 0.5s;
   resize: none;
+
 }
 
 .createTicket input[type="text"]:focus,
