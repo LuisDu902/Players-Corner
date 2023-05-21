@@ -30,12 +30,12 @@
 }
 
 .info{
-  background-color: #44C4D9;
+  background-color: var(--main-blue);
   color: black;
 }
 
 .field{
-  background-color: #D66AE6;
+  background-color: var(--main-pink);
 }
 
 .profile-picture img{
