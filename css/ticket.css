@@ -374,3 +374,26 @@
   border-radius: 10px;
   border: 4px solid #5271FF;
 }
+
+
+
+
+/*Properties*/
+
+#properties select {
+  background-color: transparent;
+}
+
+#properties select[disabled] {
+  appearance: none;
+}
+
+#properties select option {
+  margin: 40px;
+  background: black;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0);
+}
+
+#properties #tags-edit{
+  background: transparent;
+}
