@@ -49,8 +49,8 @@
 
   <body data-csrf="<?= $_SESSION['csrf'] ?>">
     <header>
-      <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
-      <nav>
+      <nav class ="container">
+        <a href="../pages/index.php"><img class="logo" src="../images/icons/logo.png" alt="logo"> </a>
         <ul class="nav-links">
           <li class="home"> <a href="../pages/index.php">Home</a></li>
           <li class="Users"><a href="../pages/tickets.php">Forum</a></li>
@@ -67,14 +67,17 @@
           <li class="Help"><a href="#">Help</a></li>
 
         </ul>
-      <input type="checkbox" id="hamburger"> 
-      <label class="hamburger" for="hamburger"></label>
-      </nav>
+        <div class="nav-buttons">
+          <ion-icon name="close-outline"></ion-icon>
+          <ion-icon name="menu-outline"></ion-icon>
+        </div>
+      
       <?php
       if ($session->isLoggedIn()) {
         drawProfileButton($session);
       } else
         drawAuthForms(); ?>
+      </nav>
     </header>
     <section id="messages">
       <?php foreach ($session->getMessages() as $messsage) { ?>
