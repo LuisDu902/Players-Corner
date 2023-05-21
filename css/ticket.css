@@ -413,7 +413,7 @@
   font-size: 1.2em;
 }
 
-#properties > ul > li, .ticket-changes li {
+#properties > ul > li, .ticket-changes li{
   width: 100%;
   border-radius: 10px;
   border: 3px solid #814FED;
@@ -517,4 +517,17 @@ hr {
 .ticket-changes{
   margin-top: 20px;
 }
+
+.edit-sel {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+}
+
+.department-item,
+.visibility-item {
+  flex-basis: 48%; /* Adjust the width as needed */
+}
+
 

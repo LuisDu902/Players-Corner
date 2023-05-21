@@ -31,9 +31,11 @@
   padding: 15px 15px;
   background: transparent;
   border: none;
+  color:#fff ;
   border-bottom: 2px solid #fff;
   font-size: 14px;
   transition: 0.5s;
+  resize: none;
 }
 
 .createTicket input[type="text"]:focus,
@@ -49,13 +51,14 @@
   padding: 15px 15px;
   background: transparent;
   border-bottom: 2px solid #fff;
+  color: #fff;
   font-size: 18px;
   transition: 0.5s;
   appearance: none;
 }
 
 .description{
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
 }
 
 #tag-container{
