@@ -14,7 +14,7 @@
 .modal-content {
     margin: auto;
     padding: 20px 30px;
-    background-color: #222033;
+    background-color: var(--background-color);
     position: absolute;
     top: 50%;
     left: 50%;
@@ -61,14 +61,14 @@
 }
 
 #department-name:focus {
-    border: 2px solid #D66AE6;
+    border: 2px solid var(--main-pink);
     outline: none;
 }
 
 .modal-title {
     font-size: 2em;
     font-weight: bold;
-    color: #D66AE6;
+    color: var(--main-pink);
 }
 
 

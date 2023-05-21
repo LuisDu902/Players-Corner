@@ -5,8 +5,8 @@ require_once(__DIR__ . '/../classes/user.class.php');
 
 <?php function drawProfile(Session $session, User $user)
 { ?>
-  <h1 class="title">Profile page</h1>
-  <section class="container" id="user-profile" data-id="<?= $session->getId() ?>">
+  <h2 class="profile-title">Profile page</h2>
+  <section class="container contain" id="user-profile" data-id="<?= $session->getId() ?>">
     <article class="round-border profile-picture round-wrap vert-flex center">
       <img src=<?= $user->getPhoto() ?> alt="user-profile" class="gradient circle-border">
       <h4 class="bold highlight">
@@ -65,7 +65,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
 
 <?php function drawEditUserForm(User $user)
 { ?>
-  <section class="edit-profile center">
+  <section class="container edit-profile center">
     <section class="edit-fields">
       <h2 class="auth-text center">Edit profile</h2>
       </h2>
@@ -94,7 +94,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
         <div class="button-wrap gradient round-border auth-button"> <button type="submit">Save</button> </div>
       </form>
     </section>
-    <section class="profile-picture center vert-flex">
+    <section class="profile-picture center vert-flex edit">
       <form action="../actions/user_actions/action_upload_image.php" method="post"
         class="upload-form round-wrap center vert-flex" enctype="multipart/form-data">
         <img src=<?= $user->getPhoto() ?> alt="user-profile" id="user-image-preview" class="gradient circle-border">

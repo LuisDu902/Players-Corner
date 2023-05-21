@@ -40,7 +40,7 @@
             </article>
         </section>
 
-        <section id="department-tickets">
+        <section id="department-tickets" class="container">
             <header class="title"> Tickets </header>
         <?php } ?>
         <?php drawTickets($department->tickets); ?>

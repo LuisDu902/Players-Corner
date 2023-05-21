@@ -149,7 +149,7 @@
     position: absolute;
     width: .6rem;
     height: 95%;
-    background-image: linear-gradient(#D66AE6, #44C4D9), radial-gradient(circle at top left, #222033, #222033);
+    background-image: linear-gradient(var(--main-pink), var(--main-blue)), radial-gradient(circle at top left, var(--background-color), var(--background-color));
     top: 50%;
     left: 0;
     transform: translateY(-50%);
