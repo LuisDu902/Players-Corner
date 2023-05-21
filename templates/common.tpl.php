@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="../css/department.css">
     <link rel="stylesheet" href="../css/ticket.css">
     <link rel="stylesheet" href="../css/modal.css">
-    <link rel="stylesheet" href="../css/create_ticket.css">
     <link rel="stylesheet" href="../css/reports.css">
 
     <link rel="stylesheet" href="../css/ticket_form.css">

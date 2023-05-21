@@ -8,7 +8,7 @@
   require_once(__DIR__ . '/../classes/department.class.php');
 
   require_once(__DIR__ . '/../templates/common.tpl.php');
-  require_once(__DIR__ . '/../templates/create_ticket.tpl.php');
+  require_once(__DIR__ . '/../templates/ticket.tpl.php');
 
   $db = getDatabaseConnection();
   $departments = Department::getDepartments($db);

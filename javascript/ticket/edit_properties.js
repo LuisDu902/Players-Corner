@@ -1,5 +1,6 @@
 async function editProperties() {
     const ticketId = document.querySelector('#ticket-page').getAttribute('data-id')
+    const userId = document.querySelector('#ticket-page').getAttribute('data-user')
     const category = document.querySelector("#categories").value;
     const visibility = document.querySelector("#visibility").value;
     const priority = document.querySelector("#priorities").value;
@@ -21,20 +22,116 @@ async function editProperties() {
     ticketHistory.appendChild(createChange(lastChange))
     updateStatusSelect(status, assignee)
     updateAgentSelect(status, assignee)
+
+    const res = document.querySelector('#respond')
+    if (assignee == userId && !res) {
+        const tkt = document.querySelector('#tkt')
+        const getFaqs = await fetch('../api/api_search.php?' + encodeForAjax({ type: 'faqs', search: '' }))
+        const faqs = await getFaqs.json()
+        tkt.appendChild(createCommentBar(faqs))
+    }
+    else {
+        if (res && (assignee != userId || status == 'closed'))
+        res.remove()
+    }
+    
+
 }
 
-function updateAgentSelect(status, assignee){
-    if (assignee != '0' || status != 'new'){
+function createCommentBar(faqs) {
+    const section = document.createElement('section');
+    section.id = 'respond';
+
+    const textarea = document.createElement('textarea');
+    textarea.id = 'message-input';
+    textarea.placeholder = 'Type your message...';
+    textarea.rows = '1';
+
+    const uploadButton = document.createElement('button');
+    uploadButton.id = 'upload-button';
+    uploadButton.classList.add('no-background');
+    const uploadImg = document.createElement('img');
+    uploadImg.src = '../images/icons/upload.png';
+    uploadImg.alt = 'Send';
+    uploadButton.appendChild(uploadImg);
+    uploadButton.addEventListener('click', handleFileUpload)
+
+    const sendButton = document.createElement('button');
+    sendButton.id = 'send-button';
+    sendButton.classList.add('no-background');
+    const sendImg = document.createElement('img');
+    sendImg.src = '../images/icons/send.png';
+    sendImg.alt = 'Send';
+    sendButton.addEventListener('click', addMessage)
+    sendButton.appendChild(sendImg);
+
+    section.appendChild(textarea);
+    section.appendChild(uploadButton);
+    section.appendChild(createFaqContainer(faqs))
+    section.appendChild(sendButton);
+
+    return section
+}
+
+function createFaqContainer(faqs) {
+    const dropupDiv = document.createElement('div');
+    dropupDiv.classList.add('dropup');
+
+    const faqButton = document.createElement('button');
+    faqButton.classList.add('faq-btn');
+    faqButton.innerText = 'FAQ';
+
+    const dropupContent = document.createElement('article');
+    dropupContent.classList.add('dropup-content');
+
+    const searchBox = document.createElement('section');
+    searchBox.classList.add('search-box', 'center', 'round-border', 'white-border');
+
+    const searchInput = document.createElement('input');
+    searchInput.id = 'faq-bar';
+    searchInput.type = 'text';
+    searchInput.placeholder = 'search';
+
+    const searchIcon = document.createElement('img');
+    searchIcon.src = '../images/icons/search.png';
+
+    searchBox.appendChild(searchInput);
+    searchBox.appendChild(searchIcon);
+
+    const faqItemsList = document.createElement('ul');
+    faqItemsList.id = 'faq-items';
+    faqItemsList.classList.add('center')
+
+    for (const faq of faqs){
+        const listItem = document.createElement('li');
+        listItem.className = 'faq-title';
+        listItem.dataset.id = faq.id;
+        listItem.innerText = faq.problem;
+        listItem.addEventListener('click', () => { answerWithFAQ(faq.Id) })
+        faqItemsList.appendChild(listItem);
+    }
+
+    dropupContent.appendChild(searchBox);
+    dropupContent.appendChild(faqItemsList);
+
+    dropupDiv.appendChild(faqButton);
+    dropupDiv.appendChild(dropupContent);
+    showDropup(faqButton, dropupContent)
+    return dropupDiv
+}
+
+function updateAgentSelect(status, assignee) {
+    if (assignee != '0' || status != 'new') {
         const noAgent = document.querySelector(`#assignee option[value="0"]`)
-        noAgent.remove()
+        if (noAgent) noAgent.remove()
     }
 }
 
-function updateStatusSelect(new_status, agent){
+function updateStatusSelect(new_status, agent) {
     const statusSelect = document.querySelector("#stat");
     statusSelect.innerHTML = ''
 
-    if (new_status == 'assigned' || (new_status == 'new' && agent != '0')){
+    if (new_status == 'assigned' || (new_status == 'new' && agent != '0')) {
         const assigned = document.createElement('option')
         assigned.value = 'assigned'
         assigned.textContent = 'assigned'
@@ -42,8 +139,8 @@ function updateStatusSelect(new_status, agent){
         statusSelect.appendChild(assigned)
     }
     const statuses = ["open", "solved", "closed"];
-    
-    for (const status of statuses){
+
+    for (const status of statuses) {
         const option = document.createElement('option')
         option.value = status
         option.textContent = status
