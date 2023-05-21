@@ -16,7 +16,7 @@
             </div>
         </span>
     </section>
-    <section id="categories">
+    <section id="dept-categories">
         <?php drawDepartments($session, $departments); ?>
     </section>
     <section id="about-us">

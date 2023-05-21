@@ -179,7 +179,7 @@ nav {
 
 /* categories */
 
-#categories{
+#dept-categories{
   margin-bottom: 5rem;
 }
 
@@ -574,7 +574,7 @@ li,a, button {
     padding-bottom: 3rem;
   }
 
-  #categories{
+  #dept-gitcategories{
     height: auto;
   }
   .categories{
