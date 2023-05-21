@@ -141,8 +141,11 @@ function removeTag(event){
   
     const tagBlock = event.target.closest('.tag-block')
     const value = tagBlock.querySelector('span').textContent
+   
     const index = t_tags.indexOf(value)
+   
     if (index !== -1) { t_tags.splice(index, 1) }
     tagBlock.remove()
+  
   
 }

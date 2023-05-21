@@ -254,7 +254,7 @@ class Ticket
   function changeProperties(PDO $db, int $userId, int $replier, string $new_tags, string $new_category, string $new_priority, string $new_status,string $new_visibility)
   {
     
-    /*changeTags($db, $userId, $new_tags);*/
+    $this->changeTags($db, $userId, $new_tags);
 
     if ($replier !== $this->replier->userId){
       $this->changeAgent($db, $userId, $replier);
@@ -402,19 +402,27 @@ class Ticket
     $tags = explode(',', $new_tags);
 
     // Remove tags that are no longer present
-    $tagsToRemove = array_diff($this->tags, $tags);
+    $tagsToRemove = array_diff($this->tags, $tags); 
     foreach ($tagsToRemove as $tagToRemove) {
       $stmt = $db->prepare('DELETE FROM TicketTag WHERE ticket = ? AND tag = ?');
-      $stmt->execute(array($this, $tagToRemove));
-      //$this->addHistory($db, $userId, "Tag removed", $tagToRemove);
+      $stmt->execute(array($this->ticketId, $tagToRemove));
+      
+    }
+    $removedTags = implode(", ", $tagsToRemove);
+    
+    if (!empty($removedTags)){
+      $this->addHistory($db, $userId, "Removed tags: " . $removedTags, 0);
     }
 
     // Add new tags that are not already present
     $newTags = array_diff($tags, $this->tags);
     foreach ($newTags as $newTag) {
       $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
-      $stmt->execute(array($this, $newTag));
-      //$this->addHistory($db, $userId, "Tag added", $newTag);
+      $stmt->execute(array($this->ticketId, $newTag));
+    }
+    $addedTags = implode(", ", $newTags);
+    if (!empty($newTags)){
+      $this->addHistory($db, $userId, "Added tags: " . $addedTags, 0);
     }
 
   }

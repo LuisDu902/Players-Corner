@@ -250,8 +250,12 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
     <ul>
       <?php foreach ($changes as $change) : ?>
         <li>
+            <?php if ($change->old_field == '') { ?>
+                <strong><?= $change->changes ?></strong>
+            <?php } else { ?>
           <strong><?= $change->changes ?></strong> : <?= $change->old_field; ?> >>> <?= $change->new_field; ?><br>
-        </li>
+            <?php } ?>
+          </li>
       <?php endforeach; ?>
     </ul>
   <?php endforeach; ?>

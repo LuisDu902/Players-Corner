@@ -12,10 +12,9 @@ async function editProperties(){
     const visibility = document.querySelector("#visibility").value;
     const priority = document.querySelector("#priorities").value;
     const status = document.querySelector("#stat").value;
-    const tags = document.querySelector('#ticket_tags');
+    const tags = t_tags.join(',')
     const assignee = document.querySelector('#assignee').value
-    console.log(assignee)
-
+   
     const response = await fetch('../../api/api_ticket.php', {
         method: 'PUT',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'},
