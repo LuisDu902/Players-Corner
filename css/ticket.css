@@ -161,7 +161,7 @@
 
 #ticket-messages{
   height: 50vh;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 #ticket-messages header {
@@ -319,7 +319,7 @@
 }
 
 #faq-items {
-  overflow-y: scroll;
+  overflow-y: auto;
   height: 410px;
 }
 
