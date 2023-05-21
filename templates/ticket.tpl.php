@@ -36,21 +36,23 @@
 <?php function drawTickets($tickets)
 {
     if (!empty($tickets)) { ?>
-        <table class="tickets">
-            <thead>
-                <tr class="ticket-info ">
-                    <th>Creator</th>
-                    <th>Title</th>
-                    <th>Tags</th>
-                    <th>Category</th>
-                    <th>Status</th>
-                    <th>Priority</th>
-                    <th>Visibility</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
+        <section class = "container">
+            <table class="tickets">
+                <thead>
+                    <tr class="ticket-info ">
+                        <th>Creator</th>
+                        <th>Title</th>
+                        <th>Tags</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Priority</th>
+                        <th>Visibility</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
         <div class="pagination-bar center"></div>
     <?php } else { ?>
         <h2 class="center">No tickets</h2>

@@ -34,8 +34,8 @@ body {
 }
 
 main{
-  position: relative;/* Adjust the margin-top value to match the height of the header/nav */
-  top: 5rem;
+  position: relative;
+  top: 4rem;
 }
 
 .container{
@@ -86,6 +86,7 @@ body > header {
   top: 0;
   z-index: 11;
   background-color: var(--background-color);
+  margin: 1rem 0 0;
 }
 
 nav {

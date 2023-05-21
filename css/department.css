@@ -37,23 +37,24 @@
   }
   
 
-/*.container {
+.contain {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 30px;
-    margin-bottom: 50px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin: 6rem auto 2rem;
 }
 
-.container article {
+.contain article {
     background-color: #282948;
     padding: 2vh;
-    width: 55vh;
-    height: 55vh;
+    width: auto;
+    height: auto;
     justify-self: center;
+    position: relative;
 }
 
 
-.container article h3 {
+.contain article h3 {
     font-size: 3vh;
     margin: 1vh 1vh 2vh 1vh;
     background-color: transparent;
@@ -61,7 +62,7 @@
 
 
 
-.container article h3::before {
+.contain article h3::before {
     content: '';
     display: inline-block;
     width: 0.7em;
@@ -69,7 +70,7 @@
     background-color: #814FED;
     margin-right: 15px;
 }
-*/
+
 #dept-members {
     max-height: 55vh;
     float: left;

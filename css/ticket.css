@@ -15,12 +15,11 @@
   grid-column-gap: 50px;
   margin: 10px 0px;
   padding: 20px;
-  font-weight: bold;
-  font-size: 1.2em;  
+  font-size: 1.2rem;  
 }
 
 .ticket:hover, .user-card:hover{
-  border: 3px solid #D66AE6;
+  border: 3px solid var(--main-pink);
 }
 
 .ticket img {
@@ -34,35 +33,37 @@
 }
 
 #open-status{
-  background-color: #FFBD59;  
+  background-color: var(--orange);  
 }
 
 #new-status{ 
-  background-color: #5271FF; 
+  background-color: var(--main-blue); 
 }
 
 #assigned-status{ 
-  background-color: #D66AE6; 
+  background-color: var(--main-pink); 
 }
 
 #solved-status{
-  background-color: #7ED957;
+  background-color: var(--green);
 }
 
 #closed-status{
-  background-color: #FF5757;
+  background-color: var(--rose);
 }
 
 #low-priority{
-  color: #7ED957;
+  color: var(--green);
 }
 
 #medium-priority{
-  color: #FFBD59;
+  color: var(--yellow);
+  font-weight: 600;
 }
 
 #high-priority, #critical-priority, #high-priority::after, #critical-priority::after{
-  color: #FF5757;
+  color: var(--rose);
+  font-weight: 700;
 }
 
 #high-priority::after{
@@ -87,7 +88,7 @@
 }
 
 .pagination-bar button:hover, .pagination-bar button.active {
-  color: #D66AE6;
+  color: var(--main-pink);
   font-weight: bolder;
 }
 

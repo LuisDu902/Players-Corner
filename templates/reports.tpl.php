@@ -1,6 +1,6 @@
 <?php function drawStats(array $stats)
 { ?>
-    <section class="round-border" id="overview">
+    <section class="container round-border" id="overview">
         <header class="title" id="overview-title">Overview</header>
         <table>
             <thead id="overview-fields">
@@ -29,11 +29,11 @@
             </tbody>
         </table>
     </section>
-    <section id="all-ticket-stats">
+    <section id="all-ticket-stats" class="container">
         <header class="title" id="tkt-stats-title">Ticket distribution</header>
         <canvas id="ticket-counts" class="graphics"></canvas>
     </section>
-    <section id="ticket-distribution" class="container">
+    <section id="ticket-distribution" class="container contain">
         <article class="round-border">
             <h3>Tickets by department</h3>
             <canvas id="all-tkt-dept" class="graphics"></canvas>
@@ -46,6 +46,5 @@
             <h3>Tickets by priority</h3>
             <canvas id="all-tkt-priority" class="graphics"></canvas>
         </article>
-
     </section>
 <?php } ?>

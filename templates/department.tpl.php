@@ -25,7 +25,7 @@
 { ?>
     <header class="title" id="department-title"><?= $department->category ?></header>
     <?php if ($hasAccess) { ?>
-        <section id="department-stats" class="container">
+        <section id="department-stats" class="container contain">
             <article class="round-border" id="dept-ticket-status">
                 <h3>Tickets by status</h3>
                 <canvas id="dept-status" class="graphics"></canvas>
