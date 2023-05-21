@@ -242,27 +242,33 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                             </ul>
                     <div class="button-wrap gradient auth-button" id="edit-btn"><button>Save changes</button></div>
                     <hr>
-                    <div class="history">
-                    <?php foreach ($history as $date => $changes) : ?>
-    <h2><?= $date; ?></h2>
-    <strong>User:</strong> <?= $changes[0]->user->name; ?><br>
+                    <h2> History </h2>
+                    <div class="timeline outer">
+                        <?php foreach ($history as $date => $changes) : ?>
+                            <div class="card-history">
+                                <div class="title-history"><?= $date; ?></div>
+                                <div class="changes-done">
+                                    <strong>User:</strong> <?= $changes[0]->user->name; ?><br>
 
-    <ul>
-      <?php foreach ($changes as $change) : ?>
-        <li>
-            <?php if ($change->old_field == '') { ?>
-                <strong><?= $change->changes ?></strong>
-            <?php } else { ?>
-          <strong><?= $change->changes ?></strong> : <?= $change->old_field; ?> >>> <?= $change->new_field; ?><br>
-            <?php } ?>
-          </li>
-      <?php endforeach; ?>
-    </ul>
-  <?php endforeach; ?>
+                                        <ul>
+                                            <?php foreach ($changes as $change) : ?>
+                                             <li>
+                                                <?php if ($change->old_field == '') { ?>
+                                                    <strong><?= $change->changes ?></strong>
+                                                <?php } else { ?>
+                                                    <strong><?= $change->changes ?></strong>: <?= $change->old_field; ?> >> <?= $change->new_field; ?><br>
+                                                <?php } ?>
+                                            </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                </div>
+                            </div>
+                        <?php endforeach; ?>
                     </div>
                     <hr>
-                    <article id="files">
                     <h2>Attached Files</h2>
+                    <article id="files">
+                    
                     <ul>
                         <?php foreach ($attachedFiles as $filename) { ?>
                             <li>
