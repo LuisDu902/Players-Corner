@@ -173,12 +173,14 @@ nav {
   margin: 1rem auto;
 }
 
-footer{
-  position: relative;
-  top: 10em;
-}
+
 
 /* categories */
+
+#categories{
+  margin-bottom: 5rem;
+}
+
 
 .categories {
   display: flex;
@@ -188,55 +190,56 @@ footer{
   padding-top: 2rem;
 }
 
-.categories .heading-title{
+.heading-title{
   margin: 2rem 1rem 4rem;
 }
 
-/*.categories .button-wrap.round-border.gradient{
-  margin: 30px 0 30px 40px;
-}*/
 
 /* About us section */
-/*
-#about-us {
-  grid-column: span 2;
-  grid-row: span 1;
-  width: 80%;
-  height: 70%;
-  margin: 2rem auto 4rem;
+
+#about-us{
+  margin: 5rem 0;
 }
 
-
-.about-content{
+.about-us{
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  place-items: center;
-}
-.about-content img {
-  width: 60%;
-  grid-column: 1/2;
+  grid-template-columns: 60% 40%;
+  gap: 3rem;
+  align-items: center;
 }
 
-.about-content p {
-  grid-column: 2;
+.left-about > .heading-title{
+  margin-bottom: 3rem;
+  color: var(--main-blue);
+}
+.left-about > p{
   text-align: justify;
-  font-size: large;
+  margin: 1rem 1rem;
+}
+
+.paragraph-border{
+  padding: 1rem;
+}
+
+.right-about img {
+  max-width: 80%;
+  height: auto;
 }
 
 
-*/
 
 /* Footer */
 
-/*
+
 footer {
   border-top: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  padding: 1em 0 1em;
+  position: relative;
+  top: 10em;
 }
 
-footer{
-  padding: 0.5em 0 0.5em;
-  border-top: 1px solid rgba(255, 255, 255, .1);
-}
+
 
 .footer-top {
   display: flex;
@@ -284,8 +287,6 @@ footer{
 
 }
 
-
-*/
 
 /* General */
  
@@ -337,7 +338,6 @@ li,a, button {
 }
 
 
-
 .button-wrap button {
     padding: 8px 22px;
     display: block;
@@ -362,7 +362,7 @@ li,a, button {
 }
 
 .dropdown .username {
-    color: #D66AE6;
+    color: var(--main-pink);
     padding-left: 10px;
     font-weight: bold;
 }
@@ -441,12 +441,10 @@ li,a, button {
 }
 
 
-
 /* State */
 .hidden{
   display: none;
 }
-
 
 
 
