@@ -276,8 +276,29 @@ class Ticket
 
   function updateField(PDO $db, int $userId, string $field, string $value)
   {
+    if ($field === 'priority'){
+      switch ($value) {
+        case 'critical':
+          $value = '1-' . $value;
+          break;
+        case 'high':
+          $value = '2-' . $value;
+          break;
+        case 'medium':
+          $value = '3-' . $value;
+          break;
+        case 'low':
+          $value = '4-' . $value;
+          break;
+      }
+  }
+
     $stmt = $db->prepare("UPDATE Ticket SET $field = ? WHERE id = ?");
     $stmt->execute(array($value, $this->ticketId));
+   
+    if ($field === 'priority'){
+      $value = substr($value, 2);
+    }
 
     if (!Change::fieldChangeExists($db, $this->{$field}, $value)) {
       Change::addFieldChange($db, $this->{$field}, $value);
