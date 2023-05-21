@@ -11,10 +11,12 @@
 .ticket,
 .ticket-info {
   display: grid;
-  grid-template-columns: 1fr 3.5fr 1.5fr 1.5fr 1fr 1fr 1fr 1fr;
-  grid-column-gap: 50px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-auto-rows: minmax(auto, max-content);
+  grid-gap: 20px;
+  grid-column-gap: 30px;
   margin: 10px 0px;
-  padding: 20px;
+  padding: 10px;
   font-size: 1.2rem;  
 }
 
@@ -97,27 +99,10 @@
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.tickets{
+  width: 90%;
+  margin: auto;
+}
 
 
 
@@ -199,7 +184,7 @@
 }
 
 .replier-msg img {
-  border: 4px solid #D66AE6;
+  border: 4px solid var(--main-pink);
 }
 
 .creator-msg img {
@@ -228,7 +213,7 @@
 }
 
 .replier-msg .message-content {
-  border: 4px solid #D66AE6;
+  border: 4px solid var(--main-pink);
 }
 
 .bot-msg .message-content {
@@ -323,17 +308,9 @@
 }
 
 .faq-title:hover {
-  color: #D66AE6;
+  color: var(--main-pink);
   cursor: pointer;
 }
-
-
-
-
-
-
-
-
 
 
 
@@ -505,7 +482,7 @@ hr {
   background: white;
   border-radius: 50%;
   left: -56px;
-  border: 5px solid #D66AE6;
+  border: 5px solid var(--main-pink);
 }
 
 .title-history {
@@ -517,3 +494,8 @@ hr {
   margin-top: 20px;
 }
 
+.warning-img{
+  width: auto;
+  height: auto;
+  margin: 3rem auto;
+}

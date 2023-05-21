@@ -130,3 +130,12 @@
     align-items: center;
     margin: auto;
 }
+
+#department-modal-content{
+    margin: 6rem auto;
+    padding: auto;
+}
+
+.modal-title{
+    margin: auto;
+}

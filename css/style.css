@@ -577,4 +577,32 @@ li,a, button {
   .categories{
     margin-left: 2rem;
   }
+
+  .contain{
+    gap: 4rem;
+  }
+
+  .contain > article:nth-child(3) {
+    grid-column: 1 / 2; /* Span across all columns */
+    grid-row: 2; /* Place in the second row */
+    
+  }
+  .sidebar{
+    font-size: 0.9rem;
+  }
+  
+  .center li label{
+      display: inline-block;
+      max-width: 100%; /* Set the maximum width of the label */
+      white-space: nowrap; /* Prevent the label from wrapping to a new line */
+      overflow: auto; /* Hide any overflowing content */
+      text-overflow: auto;
+  }
+  .ticket,
+  .ticket-info{
+    width: 90%;
+  }
+  #department-tickets .title{
+    margin-left: 2rem;
+  }
 }

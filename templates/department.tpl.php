@@ -26,6 +26,7 @@
     <header class="title" id="department-title"><?= $department->category ?></header>
     <?php if (has_access($department)) { ?>
         <section id="department-stats" class="container contain">
+
             <article class="round-border" id="dept-ticket-status">
                 <h3>Tickets by status</h3>
                 <canvas id="dept-status" class="graphics"></canvas>
