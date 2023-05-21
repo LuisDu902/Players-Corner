@@ -169,4 +169,7 @@
   .load-more{
     padding: auto;
   }
+  .modal>article textarea {
+    margin-bottom: 1em;
+  }
   

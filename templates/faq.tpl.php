@@ -59,11 +59,11 @@ function drawFAQForm()
             <h2 class="modal-title"> Add new FAQ </h2>
             <form action="../actions/faq_actions/action_add_new_faq.php" method="post">
                 <textarea name="problem" required="required" placeholder="Question" id="faq-problem"
-                    class="white-border round-border"></textarea>
+                    class="white-border"></textarea>
                 <textarea name="answer" required="required" placeholder="Answer" id="faq-answer"
-                    class="white-border round-border"></textarea>
+                    class="white-border"></textarea>
                 <input type="hidden" name="csrf" value="<?= $_SESSION['csrf'] ?>">
-                <div class="button-wrap gradient round-border auth-button">
+                <div class="button-wrap gradient round-border ">
                     <button type="submit">Confirm</button>
                 </div>
             </form>

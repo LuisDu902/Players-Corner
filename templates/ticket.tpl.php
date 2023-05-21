@@ -291,14 +291,30 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                 <h6>Be as specific and clear as possible </h6>
                 <input type="text" name="title" required="required" placeholder="e.g. Selling item x gives more gold than its supposed to" maxlength="50">
             </label>
-            <label class="departments-choice">
-                <h3> Department </h3>
-                <select name="category">
-                    <?php foreach($departments_get as $department){?>
-                        <option value="<?= $department->category ?>"> <?= $department->category?> </option>
-                    <?php } ?>
-                </select>
-            </label>
+
+            <ul class="edit-sel">
+                <li class="department-item">
+                    <label class="departments-choice">
+                        <h3>Department</h3>
+                        <select name="category">
+                            <?php foreach ($departments_get as $department) { ?>
+                                <option value="<?= $department->category ?>"><?= $department->category ?></option>
+                            <?php } ?>
+                        </select>
+                    </label>
+                </li>
+                <li class="visibility-item">
+                    <label class="visibility">
+                        <h3>Visibility</h3>
+                        <select name="visibility" id="visibility">
+                            <option value="public">Public</option>
+                            <option value="private">Private</option>
+                        </select>
+                    </label>
+                </li>
+            </ul>
+
+
             <label>
                 <h3 >Tags:</h3>
                 <input type="text" id="tags" name="tags" list="taglist">
@@ -306,13 +322,15 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                 <div id="tag-container"></div>
                 <datalist id="taglist"></datalist>
             </label>
-            <label class="description">
+
+            <div class="description">
                 <h2> Description </h2>
                 <h6> Tell us the details of your problem.</h6>
-                <textarea id="description" name="text" required="required" rows="4" cols="40"></textarea><br>
-            </label>    
+                <textarea id="description" name="text" required="required" rows="4" cols="40"></textarea>
+            </div>    
+
             <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
-            <div class="button-wrap gradient round-border auth-button"> <button type="submit">Create ticket</button> </div>
+            <div class="button-wrap gradient round-border"> <button type="submit">Create ticket</button> </div>
         </form>
     </div>
     </section>

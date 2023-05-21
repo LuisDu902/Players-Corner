@@ -313,9 +313,6 @@
 }
 
 
-
-
-
 /* Dropup Button */
 .faq-btn {
   background-color: white;
@@ -389,7 +386,7 @@
   font-size: 1.2em;
 }
 
-#properties > ul > li, .ticket-changes li {
+#properties > ul > li, .ticket-changes li{
   width: 100%;
   border-radius: 10px;
   border: 3px solid #814FED;
@@ -494,13 +491,24 @@ hr {
   margin-top: 20px;
 }
 
-
 .warning-img{
   width: auto;
   height: auto;
   margin: 3rem auto;
 }
 
+
+.edit-sel {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+}
+
+.department-item,
+.visibility-item {
+  flex-basis: 48%; /* Adjust the width as needed */
+}
 .createTicket{
   width:800px;
 }
@@ -528,15 +536,20 @@ hr {
 
 .createTicket input[type="text"],
 .createTicket select,
-.createTicket textarea {
+.createTicket textarea , .modal>article textarea{
+
   margin-left: -20px;
   width: 100%;
   padding: 15px 15px;
   background: transparent;
   border: none;
+
+  color:#fff ;
   border-bottom: 2px solid #fff;
   font-size: 14px;
   transition: 0.5s;
+  resize: none;
+
 }
 
 .createTicket input[type="text"]:focus,
@@ -552,13 +565,17 @@ hr {
   padding: 15px 15px;
   background: transparent;
   border-bottom: 2px solid #fff;
+  color: #fff;
   font-size: 18px;
   transition: 0.5s;
   appearance: none;
 }
+.createTicket button{
+  text-align: center;
+}
 
 .description{
-  margin-bottom: 30px;
+  margin-bottom: 2rem;
 }
 
 #tag-container{

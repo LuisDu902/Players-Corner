@@ -21,7 +21,7 @@
   $tags = explode(',', htmlentities($_POST['chosen_tags']));
 
   try {
-    Ticket::registerTicket($db, $tags, htmlentities($_POST['title']), htmlentities($_POST['text']), "4-low", htmlentities($_POST['category']), "public", $session->getId());
+    Ticket::registerTicket($db, $tags, htmlentities($_POST['title']), htmlentities($_POST['text']), "4-low", htmlentities($_POST['category']), htmlentities($_POST['visibility']), $session->getId());
     $session->addMessage('success', 'Ticket successfully created!');
     header("Location: ../../pages/tickets.php");
   } 

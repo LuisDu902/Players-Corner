@@ -553,7 +553,10 @@ li,a, button {
     display: grid;
     place-items: center;
   }
-
+  .modal>article textarea {
+    margin-bottom: 1em;
+  }
+  
   .nav-links li a:hover{
     background: var(--main-pink);
     color: white;
