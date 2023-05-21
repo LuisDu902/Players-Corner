@@ -216,7 +216,7 @@ class Ticket
     return $tickets;
   }
 
-  function assignTicket(PDO $db, int $userId, string $replier)
+  function assignTicket(PDO $db, int $userId, int $replier)
   {
     $stmt = $db->prepare("UPDATE Ticket SET replier = ? , status='assigned' WHERE id = ?");
     $stmt->execute(array($replier, $this->ticketId));
@@ -235,8 +235,10 @@ class Ticket
     }
   }
 
-  function changeProperties(PDO $db, int $userId, array $new_tags, string $new_category, string $new_priority, string $new_status)
+  function changeProperties(PDO $db, int $userId, string $new_tags, string $new_category, string $new_priority, string $new_status,string $new_visibility)
   {
+    
+    /*changeTags($db, $userId, $new_tags);*/
 
     if ($new_category !== $this->category) {
       $this->updateField($db, $userId, 'category', $new_category);
@@ -246,6 +248,9 @@ class Ticket
     }
     if ($new_priority !== $this->priority) {
       $this->updateField($db, $userId, 'priority', $new_priority);
+    }
+    if ($new_visibility !== $this->visibility) {
+      $this->updateField($db, $userId, 'visibility', $new_visibility);
     }
   }
 
@@ -350,6 +355,27 @@ class Ticket
     $faq = FAQ::getFAQ($db, $faqId);
     $this->addMessage($db, $userId, $faq->answer);
   }
+  
+  function changeTags(PDO $db, int $userId, string $new_tags)
+  {
+    $tags = explode(',', $new_tags);
 
+    // Remove tags that are no longer present
+    $tagsToRemove = array_diff($this->tags, $tags);
+    foreach ($tagsToRemove as $tagToRemove) {
+      $stmt = $db->prepare('DELETE FROM TicketTag WHERE ticket = ? AND tag = ?');
+      $stmt->execute(array($this, $tagToRemove));
+      //$this->addHistory($db, $userId, "Tag removed", $tagToRemove);
+    }
+
+    // Add new tags that are not already present
+    $newTags = array_diff($tags, $this->tags);
+    foreach ($newTags as $newTag) {
+      $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
+      $stmt->execute(array($this, $newTag));
+      //$this->addHistory($db, $userId, "Tag added", $newTag);
+    }
+
+  }
 }
 ?>

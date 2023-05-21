@@ -39,6 +39,7 @@
     <script src="../javascript/ticket/feedback.js" defer></script>
     <script src="../javascript/ticket/search_tickets.js" defer></script>
     <script src="../javascript/ticket/edit_assignee.js" defer></script>
+    <script src="../javascript/ticket/edit_properties.js" defer></script>
 
 
     <script src="../javascript/faq/add_new_faq.js" defer></script>
