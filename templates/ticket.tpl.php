@@ -78,7 +78,7 @@
 <?php
 function drawTicket($session,$ticket, $departments,$status,$priorities,$department,$messages, $history,$attachedFiles,$faqs)
 { ?>
-    <section id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>">
+    <section id="ticket-page" data-id="<?= $ticket->ticketId ?>" data-creator="<?= $ticket->creator->userId ?>" data-user="<?=$session->getId()?>">
         <article id="tkt">
             <h1 class="highlight">
                 <?= $ticket->title ?>
@@ -168,9 +168,10 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                         <?php if($ticket->status === 'new') { ?>
                             <option value="0" selected>Not assigned</option>
                         <?php } 
-                        foreach($department->members as $member) { ?>
+                        foreach($department->members as $member) { 
+                            if ($member->userId !== $ticket->creator->userId) {?>
                             <option value="<?= $member->userId?>" <?= $ticket->replier->userId === $member->userId ? 'selected' : ''?>><?= $member->name ?> </option>
-                        <?php } ?>
+                        <?php } } ?>
                     </select>
                 </label> </li>
                     
@@ -187,7 +188,8 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                     <?php } ?>
                     <input type="hidden" id="ticket_tags" name="ticket_tags" />
                     <ul id="tag-container">
-                        <?php foreach($ticket->tags as $tag){ ?>
+                        <?php foreach($ticket->tags as $tag){
+                            if ($tag !== ' ') ?>
                             <li class="tag-block">
                                 <span id="value"><?= $tag ?></span>
                                 <?php if ($session->getRole() !== 'client') { ?>
@@ -278,3 +280,40 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
             </section>
     </li>
 <?php } ?>
+
+<?php function drawTicketForm($departments_get) { ?>
+    <section class="vert-flex center">
+        <div class="gradient round-border createTicket">
+        <form action="../actions/ticket_actions/action_create_ticket.php" method="post" class="authentication-form">
+            <label class="title">
+                <h2>Title</h2>
+                <h6>Be as specific and clear as possible </h6>
+                <input type="text" name="title" required="required" placeholder="e.g. Selling item x gives more gold than its supposed to" maxlength="50">
+            </label>
+            <label class="departments-choice">
+                <h3> Department </h3>
+                <select name="category">
+                    <?php foreach($departments_get as $department){?>
+                        <option value="<?= $department->category ?>"> <?= $department->category?> </option>
+                    <?php } ?>
+                </select>
+            </label>
+            <label>
+                <h3 >Tags:</h3>
+                <input type="text" id="tags" name="tags" list="taglist">
+                <input type="hidden" id="chosen_tags" name="chosen_tags" />
+                <div id="tag-container"></div>
+                <datalist id="taglist"></datalist>
+            </label>
+            <label class="description">
+                <h2> Description </h2>
+                <h6> Tell us the details of your problem.</h6>
+                <textarea id="description" name="text" required="required" rows="4" cols="40"></textarea><br>
+            </label>    
+            <input type="hidden" name="csrf" value="<?=$_SESSION['csrf']?>">
+            <div class="button-wrap gradient round-border auth-button"> <button type="submit">Create ticket</button> </div>
+        </form>
+    </div>
+    </section>
+    <?php
+} ?>
