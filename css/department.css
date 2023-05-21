@@ -56,15 +56,16 @@
     background-color: transparent;
 }
 
-
-
-.container article h3::before {
-    content: '';
-    display: inline-block;
+.container article h3::before{
     width: 0.7em;
     height: 0.7em;
-    background-color: #814FED;
     margin-right: 15px;
+}
+
+.container article h3::before, #properties>h2::before {
+    content: '';
+    display: inline-block;
+    background-color: #814FED;
 }
 
 #dept-members {

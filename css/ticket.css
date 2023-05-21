@@ -125,7 +125,7 @@
 
 #tkt {
   flex: 1;
-  margin: 20px;
+  margin: 10px;
   border: 2px solid white;
   border-radius: 5px;
   padding: 30px;
@@ -159,10 +159,6 @@
   margin-bottom: 40px;
 }
 
-#ticket-messages{
-  max-height: 100vh;
-  overflow-y: auto;
-}
 
 *::-webkit-scrollbar {
   width: 8px; /* Adjust the width as desired */
@@ -389,11 +385,79 @@
 }
 
 #properties select option {
-  margin: 40px;
-  background: black;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0);
+  
+  background: #1A1725;
 }
-
 #properties #tags-edit{
   background: transparent;
+}
+
+
+.sidebar {
+  width: 30%;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 30px;
+  margin: 10px;
+}
+
+
+
+#properties>h2::before{
+  width: 0.8em;
+  height: 0.8em;
+  margin-right: 0.5em;
+}
+#properties>h2{
+  font-size: 2em;
+  align-content: center;
+}
+
+#properties ul li {
+  width: 100%;
+  border-radius: 10px;
+  border: 3px solid #814FED;
+  margin: 20px 0;
+  padding: 20px 20px 20px 50px;
+  background-color: #1A1725;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1.2em;
+}
+
+#properties select {
+  border: none;
+  font-weight: bold;
+  font-size: 1.0rem;
+}
+
+.ticket-tags input[type="text"]{
+  border: none;
+  border-bottom: 2px solid white;
+}
+
+.ticket-tags #tag-container{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.ticket-tags .tag-block{
+  background-color: #434A74;  
+  border:none;
+}
+
+#edit-btn{
+  border-radius:10px;
+ 
+}
+
+hr{
+  margin: 30px 0;
+}
+
+#tkt, .sidebar{
+  height: 100vh;
+  overflow-y: auto;
 }

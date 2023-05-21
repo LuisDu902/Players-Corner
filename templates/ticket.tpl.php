@@ -139,9 +139,10 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
         <aside class="sidebar">
             
             <article id="properties">
-            <h1>Properties</h1>
-                    <div id="cat">
-                        <label >Category: 
+                <h2>Properties</h2>
+                    <ul class="center">
+                    <li>
+                        <label> Category: 
                         <select name="categories" id="categories">
                             <?php foreach($departments as $category) {
                                 if($category->category === $ticket->category){
@@ -154,10 +155,9 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                             } ?>
                         </select>
                         </label>
-                    </div>
-                        <br>
-                    <div id="st">
-                        <label>Status: 
+                        </li>
+    
+                        <li>   <label>Status: 
                         <select name="stat" id="stat">
                             <?php foreach($status as $stat) {
                                 if($stat === $ticket->status){
@@ -170,9 +170,9 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                             } ?>
                         </select>
                         </label>
-                    </div>
-                        <br>
-                    <div id="pri">
+                        </li>
+                        
+                    <li >
                         <label>Priority: 
                         <select name="priorities" id="priorities">
                             <?php foreach($priorities as $priority) {
@@ -185,9 +185,11 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                             } ?>
                         </select>
                         </label>
-                    </div>
-                        <br>
-                    <div id="as">
+                        </li>
+                    
+                        
+                    
+                        <li>
                         <label>Assignee: 
                         <select name="assignee" id="assignee">
                             <?php foreach($department->members as $member) {
@@ -201,11 +203,11 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                             } ?>
                         </select>
                         </label>
-                    </div>
+                        </li>
                     
-                    <br>
+                    
 
-                    <div id="vis">
+                    <li>
                         <label for="visibility">Visiblity: 
                             <select name="visibility" id="visibility">
                             <?php if($ticket->visibility === 'public'){?>
@@ -219,9 +221,9 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                             } ?>
                             </select>
                         </label>
-                    </div>
-                    </br>
-                    <div>
+                        </li>
+                    
+                    <li class="ticket-tags">
                         <label>Tags: 
                         <input type="text" id="tags-edit" name="tags-edit" list="taglist1">
                         <input type="hidden" id="ticket_tags" name="ticket_tags" />
@@ -236,12 +238,10 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                         <datalist id="taglist1">
                         </datalist>
                         </label>
-                    </div>
-                    <br>
-                    <button id="edit-btn" class="no-background">Submit edit</button>
-                    </div>
+                            </li>
+                            </ul>
+                    <div class="button-wrap gradient auth-button" id="edit-btn"><button>Save changes</button></div>
                     <hr>
-
                     <div class="history">
                     <?php foreach ($history as $date => $changes) : ?>
     <h2><?= $date; ?></h2>

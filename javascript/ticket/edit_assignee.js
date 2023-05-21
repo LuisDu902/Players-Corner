@@ -1,5 +1,4 @@
 const depChange= document.querySelector(".sidebar");
-current = document.querySelector("#assignee").value;
 
 
 if(depChange){
