@@ -140,7 +140,7 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
             <h2>Properties</h2>
             <ul class="center">
                 <li> <label for="categories"> Category: 
-                    <select name="categories" id="categories" <?=$session->getRole() === 'client' ? 'disabled' : ''?>>
+                    <select name="categories" id="categories" <?= ((!$session->isLoggedIn()) || ($session->getRole() === 'client')) ? 'disabled' : ''?>>
                     <?php foreach($departments as $category) { ?>
                         <option value="<?=$category->category?>" <?=$category->category === $ticket->category ? 'selected' : ''?> ><?= $category->category ?></option>
                     <?php } ?>
@@ -148,7 +148,7 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                 </label> </li>
 
                 <li> <label for="stat">Status: 
-                    <select name="stat" id="stat" <?=$session->getRole() === 'client' ? 'disabled' : ''?>>
+                    <select name="stat" id="stat" <?= ((!$session->isLoggedIn()) || ($session->getRole() === 'client')) ? 'disabled' : ''?>>
                         <?php foreach($status as $stat) { ?>
                             <option value="<?= $stat?>" <?= $ticket->status === $stat ? 'selected' : '' ?>><?= $stat ?></option>
                         <?php } ?>
@@ -156,7 +156,7 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                 </label> </li>
                     
                 <li> <label for="priorities">Priority: 
-                    <select name="priorities" id="priorities" <?=$session->getRole() === 'client' ? 'disabled' : ''?>>
+                    <select name="priorities" id="priorities" <?= ((!$session->isLoggedIn()) || ($session->getRole() === 'client')) ? 'disabled' : ''?>>
                         <?php foreach($priorities as $priority) { ?>
                             <option value="<?= $priority?>" <?= $ticket->priority === $priority ? 'selected' : '' ?>><?= $priority ?> </option>
                         <?php } ?>
@@ -164,7 +164,7 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                 </label> </li>
                     
                 <li> <label for="assignee">Assignee: 
-                    <select name="assignee" id="assignee" <?=$session->getRole() === 'client' ? 'disabled' : ''?>>
+                    <select name="assignee" id="assignee" <?= ((!$session->isLoggedIn()) || ($session->getRole() === 'client')) ? 'disabled' : ''?>>
                         <?php if($ticket->status === 'new') { ?>
                             <option value="0" selected>Not assigned</option>
                         <?php } 
@@ -176,14 +176,14 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                 </label> </li>
                     
                 <li> <label for="visibility">Visiblity: 
-                    <select name="visibility" id="visibility" <?=$session->getRole() === 'client' ? 'disabled' : ''?>>
+                    <select name="visibility" id="visibility" <?= ((!$session->isLoggedIn()) || ($session->getRole() === 'client')) ? 'disabled' : ''?>>
                         <option value="public" <?= $ticket->visibility === 'public' ? 'selected' : ''?>> Public  </option>
                         <option value="private" <?= $ticket->visibility === 'private' ? 'selected' : ''?>> Private  </option>
                     </select>
                 </label> </li>
                     
                 <li class="ticket-tags"> <label>Tags:
-                    <?php if ($session->getRole() !== 'client') { ?>
+                    <?php if ($session->isLoggedIn() && $session->getRole() !== 'client') { ?>
                         <input type="text" id="tags-edit" name="tags-edit" list="taglist1">
                     <?php } ?>
                     <input type="hidden" id="ticket_tags" name="ticket_tags" />
@@ -192,7 +192,7 @@ function drawTicket($session,$ticket, $departments,$status,$priorities,$departme
                             if ($tag !== ' ') ?>
                             <li class="tag-block">
                                 <span id="value"><?= $tag ?></span>
-                                <?php if ($session->getRole() !== 'client') { ?>
+                                <?php if ($session->isLoggedIn() && $session->getRole() !== 'client') { ?>
                                     <button class="remove-button">x</button>
                                 <?php } ?>
                             </li>
