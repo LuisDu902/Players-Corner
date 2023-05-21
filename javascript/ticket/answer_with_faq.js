@@ -7,7 +7,6 @@ async function answerWithFAQ(faqId) {
   messageContainer.appendChild(createMessage(message))
 
   messageContainer.scrollTop = messageContainer.scrollHeight
-  window.scrollTo(0, document.body.scrollHeight)
   dropup_content.style.display = 'none'
 
 }

@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/create_ticket.css">
     <link rel="stylesheet" href="../css/reports.css">
-    <link rel="stylesheet" href="../css/ticket_form.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
@@ -38,6 +37,9 @@
     <script src="../javascript/ticket/autocomplete_tags.js" defer></script>
     <script src="../javascript/ticket/feedback.js" defer></script>
     <script src="../javascript/ticket/search_tickets.js" defer></script>
+    <script src="../javascript/ticket/edit_assignee.js" defer></script>
+    <script src="../javascript/ticket/edit_properties.js" defer></script>
+
 
     <script src="../javascript/faq/add_new_faq.js" defer></script>
     <script src="../javascript/faq/load_more_faq.js" defer></script>

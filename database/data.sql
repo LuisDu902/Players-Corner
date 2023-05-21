@@ -596,6 +596,7 @@ INSERT INTO Message (id, user, ticket, text, date) VALUES (110, 88, 65, "If you 
 INSERT INTO Message (id, user, ticket, text, date) VALUES (111, 78, 72, "If the event page is not loading, try refreshing the page or clearing your browser cache and cookies. If that doesn't work, try accessing the page from a different browser or device. If the problem persists, contact the event organizers for assistance.", '2023-04-28 22:01:57');
 INSERT INTO Message (id, user, ticket, text, date) VALUES (112, 86, 75, "To promote your Twitch channel, you can start by creating quality content and engaging with your viewers. Utilize social media platforms to share your content and interact with your audience. Collaborate with other streamers and participate in Twitch communities. You can also consider using paid advertising or sponsorships to reach a wider audience.", "2023-04-25 00:12:30");
 
+INSERT INTO FieldChange(id, old_field, new_field) VALUES (0, '', '');
 
 INSERT INTO FieldChange(id, old_field, new_field) VALUES (1, 'new', 'assigned');
 INSERT INTO FieldChange(id, old_field, new_field) VALUES (2, 'assigned', 'open');
