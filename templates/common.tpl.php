@@ -45,6 +45,8 @@
     <script src="../javascript/faq/load_more_faq.js" defer></script>
     <script src="../javascript/faq/search_faq.js" defer></script>
 
+    <script src="../javascript/responsive/navbar.js" defer></script>
+
    </head>
 
   <body data-csrf="<?= $_SESSION['csrf'] ?>">
