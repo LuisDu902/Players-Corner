@@ -133,7 +133,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
 
 <?php function drawUsers($users)
 { ?>
-  <section class="user-cards" id="users"> </section>
+  <section class="container user-cards" id="users"> </section>
   <div class="modal"> </div>
 <?php } ?>
 
