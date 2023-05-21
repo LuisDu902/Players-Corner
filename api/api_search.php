@@ -6,6 +6,8 @@
 
   require_once(__DIR__ . '/../database/connection.db.php');
   require_once(__DIR__ . '/../classes/user.class.php');
+  require_once(__DIR__ . '/../classes/ticket.class.php');
+  require_once(__DIR__ . '/../classes/department.class.php');
   $db = getDatabaseConnection();
 
   if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -27,6 +29,10 @@
         $stmt = $db->prepare('SELECT tag FROM TicketTag GROUP BY tag');
         $stmt->execute();
         $response = $stmt->fetchAll(PDO::FETCH_COLUMN);
+        break;
+      case 'members':
+        $department = Department::getDepartment($db, $_GET['category']);
+        $response = $department->members;
         break;
     }
     echo json_encode($response);    

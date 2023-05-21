@@ -3,7 +3,7 @@ declare(strict_type=1);
 require_once(__DIR__ . '/../classes/user.class.php');
 ?>
 
-<?php function drawProfile(Session $session, User $user)
+<?php function drawProfile(Session $session, User $user, array $tickets)
 { ?>
   <h2 class="profile-title">Profile page</h2>
   <section class="container contain" id="user-profile" data-id="<?= $session->getId() ?>">
@@ -56,8 +56,13 @@ require_once(__DIR__ . '/../classes/user.class.php');
       </table>
     </article>
     <article class="round-border center vert-flex" id="ticket-stats">
-      <h2>Created tickets</h2>
-      <canvas id="user-tkt" class="graphics"></canvas>
+      <?php if (!empty($tickets)) { ?>
+        <a href="../pages/user_tickets.php?userId=<?= $user->userId ?>"><img src="../images/icons/ticket.png"></a>
+        <h2>Tickets</h2>
+      <?php } else { ?>
+        <img src="../images/icons/warning.png"></a>
+        <h2>No tickets yet</h2>
+      <?php } ?>
     </article>
 
   </section>
@@ -146,7 +151,7 @@ require_once(__DIR__ . '/../classes/user.class.php');
         <img src=<?= $member->getPhoto() ?> alt="member image" class="gradient circle-border" id="dept-members-img">
         <strong class="center">
           <?= $member->name ?>
-    </strong>
+        </strong>
       </a>
     <?php endforeach;
   } else { ?>

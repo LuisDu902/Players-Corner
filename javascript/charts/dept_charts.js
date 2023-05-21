@@ -12,8 +12,10 @@ async function showDeptPriority() {
   await fetchDataAndGenerateChart(api, '#dept-ticket-priority', '#dept-priority', colors, 'Tickets by priority')
 }
 
+const deptStats = document.querySelector('#department-stats')
 const category = document.querySelector('#department-title')
-if (category) {
+
+if (deptStats) {  
   showDeptStatus()
   showDeptPriority()
 }

@@ -21,10 +21,10 @@
 
 
 
-<?php function drawDepartment(bool $hasAccess, Department $department)
+<?php function drawDepartment(Department $department)
 { ?>
     <header class="title" id="department-title"><?= $department->category ?></header>
-    <?php if ($hasAccess) { ?>
+    <?php if (has_access($department)) { ?>
         <section id="department-stats" class="container contain">
             <article class="round-border" id="dept-ticket-status">
                 <h3>Tickets by status</h3>
@@ -43,6 +43,7 @@
         <section id="department-tickets" class="container">
             <header class="title"> Tickets </header>
         <?php } ?>
+        <section id="department-tickets">
         <?php drawTickets($department->tickets); ?>
     </section>
     <form action="../actions/department_actions/action_remove_department.php" method="POST">

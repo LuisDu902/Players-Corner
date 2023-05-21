@@ -36,18 +36,38 @@
 
     $ticketId = intval($requestData['ticketId']);
     $agentId = intval($requestData['agentId']);
+    $value = intval($requestData['value']);
 
     $ticket = Ticket::getTicket($db, $ticketId);
-    $agent = User::getUser($db, $agentId);
 
-    if ($agent) {
-      $agent->updateReputation($db, $agent->reputation + intval($_POST['value']));
-      $ticket->updateFeedback($db, intval($_POST['value']));
-      $response = ['status' => 'success'];
+    if (isset($requestData['agentId'])) {
+      $agent = User::getUser($db, $agentId);
+      if ($agent) {
+        $agent->updateReputation($db, $agent->reputation + $value);
+        $ticket->updateFeedback($db, $value);
+        $response = ['status' => 'success'];
+      } 
+      else {
+        $response = ['status' => 'error'];
+      }
     } 
     else {
-      $response = ['status' => 'error'];
+      $category = $requestData['category'];
+      $visibility = $requestData['visibility'];
+      $priority = $requestData['priority'];
+      $status = $requestData['status'];
+      $tags = $requestData['tags'];
+      $assignee = intval($requestData['assignee']);
+      try {
+        $ticket->changeProperties($db, $session->getId(), $assignee, $tags, $category, $priority, $status, $visibility);
+        $ticket = $ticket->getTicket($db, $ticketId);
+        $response = $ticket->getTicketHistory($db);
+        $response = end($response);
+      } catch (PDOException $e){
+        $response = ['status' => 'error'];
+      }
     }
+
   }
 
   else if ($_SERVER['REQUEST_METHOD'] == 'PATCH') {

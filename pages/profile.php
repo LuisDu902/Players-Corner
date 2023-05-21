@@ -13,8 +13,9 @@
   $db = getDatabaseConnection();
 
   $user = User::getUser($db, intval($_GET['userId']));
+  $tickets = Ticket::searchTickets($db, $user->userId, $user->name, 'creator', 'title');
 
   drawHeader($session);
-  drawProfile($session, $user);
+  drawProfile($session, $user, $tickets);
   drawFooter();
 ?>

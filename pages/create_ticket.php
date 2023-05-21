@@ -11,9 +11,9 @@
   require_once(__DIR__ . '/../templates/create_ticket.tpl.php');
 
   $db = getDatabaseConnection();
-  $departments_get = Department::getDepartments($db);
+  $departments = Department::getDepartments($db);
 
   drawHeader($session);
-  drawTicketForm($departments_get);
+  drawTicketForm($departments);
   drawFooter();
 ?>

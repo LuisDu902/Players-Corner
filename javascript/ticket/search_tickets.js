@@ -123,7 +123,7 @@ const searchTicket = document.querySelector('#search-ticket')
 const tickets = document.querySelector('.tickets')
 const departmentPage = document.querySelector('#department-tickets')
 const pagination_element = document.querySelector('.pagination-bar')
-
+const userPage = document.querySelector('#user-tickets')
 if (tickets) {
   if (searchTicket) {
     searchTickets(searchTicket.value, ticketFilterSelect.value, ticketOrderSelect.value)
@@ -140,5 +140,9 @@ if (tickets) {
   else if (departmentPage){
     const category = document.querySelector('#department-title')
     searchTickets(category.textContent, 'category', 'title')
+  }
+  else if (userPage){
+    const name = userPage.getAttribute('data-user')
+    searchTickets(name, 'creator', 'title')
   }
 }

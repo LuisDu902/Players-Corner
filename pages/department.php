@@ -5,6 +5,7 @@
   $session = new Session();
 
   require_once(__DIR__ . '/../classes/department.class.php');
+  require_once(__DIR__ . '/../utils/validation.php');
   require_once(__DIR__ . '/../database/connection.db.php');
 
   require_once(__DIR__ . '/../templates/common.tpl.php');
@@ -13,18 +14,9 @@
   require_once(__DIR__ . '/../templates/department.tpl.php');
 
   $db = getDatabaseConnection();
-
   $department = Department::getDepartment($db, $_GET['category']);
 
-  $hasAccess = $session->getRole() === 'admin';
-  foreach ($department->members as $member) {
-    if ($session->getId() == $member->userId) {
-      $hasAccess = true;
-      break;
-    }
-  }
-
   drawHeader($session);
-  drawDepartment($hasAccess, $department);
+  drawDepartment($department);
   drawFooter();
 ?>

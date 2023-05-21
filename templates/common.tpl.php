@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="../css/modal.css">
     <link rel="stylesheet" href="../css/create_ticket.css">
     <link rel="stylesheet" href="../css/reports.css">
+
     <link rel="stylesheet" href="../css/ticket_form.css">
     <link rel="stylesheet" href="../css/faq.css">
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.5.1/chart.min.js" integrity="sha512-Wt1bJGtlnMtGP0dqNFH1xlkLBNpEodaiQ8ZN5JLA5wpc1sUlk/O5uuOMNgvzddzkpvZ9GLyYNa8w2s7rqiTk5Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js" defer></script>
@@ -30,7 +32,6 @@
     <script src="../javascript/department/assign_to_departments.js" defer></script>
 
     <script src="../javascript/charts/chart.js" defer></script>
-    <script src="../javascript/charts/user_charts.js" defer></script>
     <script src="../javascript/charts/dept_charts.js" defer></script>
     <script src="../javascript/charts/ticket_charts.js" defer></script>
 
@@ -40,6 +41,9 @@
     <script src="../javascript/ticket/autocomplete_tags.js" defer></script>
     <script src="../javascript/ticket/feedback.js" defer></script>
     <script src="../javascript/ticket/search_tickets.js" defer></script>
+    <script src="../javascript/ticket/edit_assignee.js" defer></script>
+    <script src="../javascript/ticket/edit_properties.js" defer></script>
+
 
     <script src="../javascript/faq/add_new_faq.js" defer></script>
     <script src="../javascript/faq/load_more_faq.js" defer></script>
@@ -66,8 +70,7 @@
           <?php if ($session->isLoggedIn() && $session->getRole() === "admin") {
             drawAdminButtons();
           } ?>
-          <li class="Help"><a href="#">Help</a></li>
-
+         
         </ul>
         <div class="nav-buttons">
           <ion-icon name="close-outline"></ion-icon>
@@ -142,6 +145,7 @@
     </button>
     <div class="dropdown-content">
       <a href="../pages/profile.php?userId=<?= $session->getId() ?>">Profile</a>
+      <a href="../pages/user_tickets.php?userId=<?= $session->getId() ?>">My tickets</a>
       <a href="../actions/user_actions/action_logout.php">Sign out</a>
     </div>
   </div>

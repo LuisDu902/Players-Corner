@@ -9,9 +9,10 @@ async function updateReputation(ticketId, agentId, value) {
 
     const message = await response.json()
 
-    if (message.status != 'error') {
+    if (message.status == 'success') {
       const messages = document.querySelector('#ticket-messages')
       messages.appendChild(createBotResponse())
+      messages.scrollTop = messages.scrollHeight
     }
   }
 }

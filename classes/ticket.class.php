@@ -76,6 +76,8 @@ class Ticket
     return $history;
   }
 
+
+
   static function getUserTickets(PDO $db, int $userId): array
   {
 
@@ -216,7 +218,7 @@ class Ticket
     return $tickets;
   }
 
-  function assignTicket(PDO $db, int $userId, string $replier)
+  function assignTicket(PDO $db, int $userId, int $replier)
   {
     $stmt = $db->prepare("UPDATE Ticket SET replier = ? , status='assigned' WHERE id = ?");
     $stmt->execute(array($replier, $this->ticketId));
@@ -233,26 +235,84 @@ class Ticket
       $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
       $stmt->execute(array($ticketId, $tag));
     }
+    $stmt = $db->prepare("INSERT INTO TicketHistory(ticketId, user, date, changes, field) VALUES (?, ?, CURRENT_TIMESTAMP, 'ticket created', 0)");
+    $stmt->execute(array($ticketId, $creator));
   }
 
-  function changeProperties(PDO $db, int $userId, array $new_tags, string $new_category, string $new_priority, string $new_status)
+  function changeAgent(PDO $db, int $userId, int $replier)
   {
+    $stmt = $db->prepare("UPDATE Ticket SET replier = ? WHERE id = ?");
+    $stmt->execute(array($replier, $this->ticketId));
+
+    $newAgent = User::getUser($db, $replier);
+
+    if (!Change::fieldChangeExists($db, $this->replier->name, $newAgent->name)) {
+      Change::addFieldChange($db, $this->replier->name, $newAgent->name);
+    }
+
+    $change = Change::getChangeId($db, $this->replier->name, $newAgent->name);
+    if ($this->replier->userId !== 0) {
+      $this->addHistory($db, $userId, 'replier changed', $change);
+    } else {
+      $this->addHistory($db, $userId, 'ticket assigned to ' . $newAgent->name, $change);
+    }
+
+  }
+
+  function changeProperties(PDO $db, int $userId, int $replier, string $new_tags, string $new_category, string $new_priority, string $new_status, string $new_visibility)
+  {
+
+    $this->changeTags($db, $userId, $new_tags);
+
+    if ($replier !== $this->replier->userId) {
+      if ($this->status === 'new'){
+        $this->updateField($db, $userId, 'status', 'assigned');
+      }
+      $this->changeAgent($db, $userId, $replier);
+    }
 
     if ($new_category !== $this->category) {
       $this->updateField($db, $userId, 'category', $new_category);
     }
-    if ($new_status !== $this->status) {
+
+    if ($new_status !== $this->status && ($this->status !== 'new')) {
       $this->updateField($db, $userId, 'status', $new_status);
     }
+
     if ($new_priority !== $this->priority) {
       $this->updateField($db, $userId, 'priority', $new_priority);
+    }
+
+    if ($new_visibility !== $this->visibility) {
+      $this->updateField($db, $userId, 'visibility', $new_visibility);
     }
   }
 
   function updateField(PDO $db, int $userId, string $field, string $value)
   {
+    if ($field === 'priority') {
+      switch ($value) {
+        case 'critical':
+          $value = '1-' . $value;
+          break;
+        case 'high':
+          $value = '2-' . $value;
+          break;
+        case 'medium':
+          $value = '3-' . $value;
+          break;
+        case 'low':
+          $value = '4-' . $value;
+          break;
+      }
+    }
+
     $stmt = $db->prepare("UPDATE Ticket SET $field = ? WHERE id = ?");
     $stmt->execute(array($value, $this->ticketId));
+
+    if ($field === 'priority') {
+      $value = substr($value, 2);
+    }
 
     if (!Change::fieldChangeExists($db, $this->{$field}, $value)) {
       Change::addFieldChange($db, $this->{$field}, $value);
@@ -294,21 +354,21 @@ class Ticket
     $stats = array();
     $total_tickets_query = $db->query("SELECT COUNT(*) AS total_tickets FROM Ticket");
     $total_tickets = $total_tickets_query->fetch()['total_tickets'];
-    
+
     $stats['total_tickets'] = $total_tickets;
     $tickets_created_today_query = $db->query("SELECT COUNT(*) AS tickets_created_today FROM Ticket WHERE date(createDate) = date('now')");
     $tickets_created_today = $tickets_created_today_query->fetch()['tickets_created_today'];
-    
+
     $stats['tickets_created_today'] = $tickets_created_today;
     $tickets_created_this_week_query = $db->query("SELECT COUNT(*) AS tickets_created_this_week FROM Ticket WHERE strftime('%Y-%W', createDate) = strftime('%Y-%W', 'now')");
     $tickets_created_this_week = $tickets_created_this_week_query->fetch()['tickets_created_this_week'];
-    
+
     $stats['tickets_created_this_week'] = $tickets_created_this_week;
     $tickets_created_this_month_query = $db->query("SELECT COUNT(*) AS tickets_created_this_month FROM Ticket WHERE strftime('%Y-%m', createDate) = strftime('%Y-%m', 'now')");
     $tickets_created_this_month = $tickets_created_this_month_query->fetch()['tickets_created_this_month'];
-    
+
     $stats['tickets_created_this_month'] = $tickets_created_this_month;
-    
+
     return $stats;
   }
 
@@ -351,5 +411,34 @@ class Ticket
     $this->addMessage($db, $userId, $faq->answer);
   }
 
+  function changeTags(PDO $db, int $userId, string $new_tags)
+  {
+    $tags = explode(',', $new_tags);
+
+    /* Remove tags that are no longer present */
+    $tagsToRemove = array_diff($this->tags, $tags);
+    foreach ($tagsToRemove as $tagToRemove) {
+      $stmt = $db->prepare('DELETE FROM TicketTag WHERE ticket = ? AND tag = ?');
+      $stmt->execute(array($this->ticketId, $tagToRemove));
+
+    }
+    $removedTags = implode(", ", $tagsToRemove);
+
+    if (!empty($removedTags)) {
+      $this->addHistory($db, $userId, "Removed tags: " . $removedTags, 0);
+    }
+
+    /* Add new tags that are not already present */
+    $newTags = array_diff($tags, $this->tags);
+    foreach ($newTags as $newTag) {
+      $stmt = $db->prepare("INSERT INTO TicketTag (ticket, tag) VALUES (?, ?)");
+      $stmt->execute(array($this->ticketId, $newTag));
+    }
+    $addedTags = implode(", ", $newTags);
+    if (!empty($newTags)) {
+      $this->addHistory($db, $userId, "Added tags: " . $addedTags, 0);
+    }
+
+  }
 }
 ?>
