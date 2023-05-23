@@ -30,5 +30,5 @@
 * password: Pass*word1
 
 **role: admin**
-* email: chloehall@email.com@email.com
+* email: chloehall@email.com
 * password: Pass*word1
