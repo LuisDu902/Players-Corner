@@ -18,3 +18,17 @@
 * ./rewrite.sh
 * cd ..
 * php -S localhost:9000
+
+## Contas
+
+**role: client**
+* email: alexanderbaker@example.com
+* password: Pass*word1
+
+**role: agent**
+* email: alexandernelson@email.com
+* password: Pass*word1
+
+**role: admin**
+* email: chloehall@email.com@email.com
+* password: Pass*word1
